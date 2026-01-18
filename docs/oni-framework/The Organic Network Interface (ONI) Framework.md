@@ -1,7 +1,7 @@
 ---
 title: "The Organic Network Interface (ONI) Framework"
 source: "The Organic Network Interface (ONI) Framework.docx"
-converted: "2026-01-18T00:34:17.871080"
+converted: "2026-01-18T12:13:28.092694"
 ---
 
 *A Unified Neuro-Computational Stack for Secure Bio-Digital Integration*

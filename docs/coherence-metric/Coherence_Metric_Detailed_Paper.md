@@ -1,7 +1,7 @@
 ---
 title: "Coherence_Metric_Detailed_Paper"
 source: "Coherence_Metric_Detailed_Paper.docx"
-converted: "2026-01-18T00:34:18.465268"
+converted: "2026-01-18T12:13:28.682901"
 ---
 
 *A Mathematical Framework for Quantifying Trustworthiness in
