@@ -31,7 +31,7 @@ ONI/
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
     │   │   ├── Medium-ONI_Framework.md
-    │   │   └── ONI_Framework_TechDoc.md
+    │   │   └── TechDoc-ONI_Framework.md
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
@@ -85,8 +85,8 @@ ONI/
 | Type | Format | Example |
 |------|--------|---------|
 | Medium Posts | `Medium-[Topic_Name].md` | `Medium-Coherence_Metric.md` |
-| Technical Documents | `[Topic_Name]_TechDoc.md` | `Neural_Ransomware_TechDoc.md` |
-| Detailed TechDocs | `[Topic_Name]_Detailed_TechDoc.md` | `Coherence_Metric_Detailed_TechDoc.md` |
+| Technical Documents | `TechDoc-[Topic_Name].md` | `TechDoc-Neural_Ransomware.md` |
+| Detailed TechDocs | `TechDoc-[Topic_Name]_Detailed.md` | `TechDoc-Coherence_Metric_Detailed.md` |
 | Templates | `[NAME]_TEMPLATE_[TYPE].md` | `TECHDOC_TEMPLATE_APA.md` |
 | CICD Research | `YYYY-MM-DD_[source]_[title].md` | `2026-01-21_arxiv_neural-security.md` |
 
@@ -117,7 +117,7 @@ ONI/
 
 3. **Create files with correct naming:**
    - Medium post: `Medium-[Topic_Name].md`
-   - Technical document: `[Topic_Name]_TechDoc.md`
+   - Technical document: `TechDoc-[Topic_Name].md`
 
 4. **Apply proper formatting:**
    - Medium: Conversational, storytelling, web-optimized
@@ -190,7 +190,7 @@ For each topic, maintain this format:
 | Document | Summary |
 |----------|----------|
 | [Medium-Topic_Name](MAIN/publications/topic-folder/Medium-Topic_Name.md) | *One-line description* |
-| [Topic_Name TechDoc](MAIN/publications/topic-folder/Topic_Name_TechDoc.md) | *One-line description* |
+| [TechDoc-Topic_Name](MAIN/publications/topic-folder/TechDoc-Topic_Name.md) | *One-line description* |
 ```
 
 ### Step 3: Update Footer Stats
@@ -280,7 +280,7 @@ Before committing, verify:
 ### Add New Topic
 1. Create folder: `MAIN/publications/[topic-name]/`
 2. Create Medium file: `Medium-[Topic_Name].md`
-3. Create TechDoc file: `[Topic_Name]_TechDoc.md`
+3. Create TechDoc file: `TechDoc-[Topic_Name].md`
 4. **Extract keywords and update keywords.json**
 5. Add section to README.md Topics & Documents
 6. Update document count
@@ -304,7 +304,7 @@ Before committing, verify:
 
 ### Common Mistakes to Avoid
 1. **Wrong location:** Don't put templates or instructions in `publications/` - use `artifacts/`
-2. **Wrong naming:** Don't use dates in publication filenames (use `Medium-*` prefix)
+2. **Wrong naming:** Don't use dates in publication filenames (use `Medium-*` or `TechDoc-*` prefix)
 3. **Missing updates:** Always update README.md after adding content
 4. **Missing keywords:** Always extract and add keywords to keywords.json
 5. **Inconsistent formatting:** Always check template before writing

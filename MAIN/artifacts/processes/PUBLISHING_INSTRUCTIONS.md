@@ -24,7 +24,7 @@ ONI/
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
     │   │   ├── Medium-ONI_Framework.md
-    │   │   └── ONI_Framework_TechDoc.md
+    │   │   └── TechDoc-ONI_Framework.md
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
@@ -68,8 +68,8 @@ ONI/
 | Type | Format | Example |
 |------|--------|---------|
 | Medium Posts | `Medium-[Topic_Name].md` | `Medium-Coherence_Metric.md` |
-| Technical Documents | `[Topic_Name]_TechDoc.md` | `Neural_Ransomware_TechDoc.md` |
-| Detailed TechDocs | `[Topic_Name]_Detailed_TechDoc.md` | `Coherence_Metric_Detailed_TechDoc.md` |
+| Technical Documents | `TechDoc-[Topic_Name].md` | `TechDoc-Neural_Ransomware.md` |
+| Detailed TechDocs | `TechDoc-[Topic_Name]_Detailed.md` | `TechDoc-Coherence_Metric_Detailed.md` |
 
 ### Templates
 | Type | Format | Example |
@@ -237,7 +237,7 @@ Before committing:
 
 2. **Verify file naming:**
    - Medium files: `Medium-[Topic].md`
-   - TechDocs: `[Topic]_TechDoc.md`
+   - TechDocs: `TechDoc-[Topic].md`
 
 3. **Check formatting consistency:**
    - Tables formatted correctly
@@ -310,7 +310,7 @@ python research_monitor.py --days 7 --sources all
 
 1. Create folder: `MAIN/publications/[topic-name]/`
 2. Add Medium post: `Medium-[Topic_Name].md`
-3. Add technical document: `[Topic_Name]_TechDoc.md`
+3. Add technical document: `TechDoc-[Topic_Name].md`
 4. **Extract keywords and update keywords.json**
 5. Update README.md with new links
 
@@ -336,7 +336,7 @@ python research_monitor.py --days 7 --sources all
 
 - [ ] Content extracted and cleaned
 - [ ] Placed in correct folder (content only in publications/)
-- [ ] File named correctly (`Medium-*.md` or `*_TechDoc.md`)
+- [ ] File named correctly (`Medium-*.md` or `TechDoc-*.md`)
 - [ ] Front matter/metadata complete (date_posted, not date)
 - [ ] Footer complete (Sub-Tags, Originally published with datetime)
 - [ ] Formatting consistent with existing publications
