@@ -8,7 +8,7 @@
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| **ONI Wiki** | `ONI_WIKI.md` | **Central hub - start here for navigation** |
+| **ONI Wiki** | `MAIN/ONI_WIKI.md` | **Central hub - start here for navigation** |
 | Topic INDEX Template | `MAIN/artifacts/templates/INDEX_TEMPLATE.md` | Template for topic-level indexes |
 | APA Template | `MAIN/artifacts/templates/TECHDOC_TEMPLATE_APA.md` | Formatting for technical documents |
 | Medium Template | `MAIN/artifacts/templates/MEDIUM_TEMPLATE.md` | Formatting for Medium posts |
@@ -24,13 +24,13 @@
 ```
 ONI/
 ├── README.md                           # Public entry point
-├── ONI_WIKI.md                        # Central hub - all topics, dependencies, navigation
 ├── CLAUDE.md                           # Claude AI instructions (this file)
 ├── ABOUT.md                            # Author bio
 ├── CONTRIBUTING.md                     # Contribution guidelines
 ├── LICENSE                             # Apache 2.0 License
 │
 └── MAIN/
+    ├── ONI_WIKI.md                     # Central hub - all topics, dependencies, navigation
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
     │   │   ├── INDEX.md                # Topic index (each topic has one)
@@ -215,7 +215,7 @@ If adding new navigation features or structural changes:
 
 | Start Here | Purpose |
 |------------|---------|
-| **[ONI_WIKI.md](ONI_WIKI.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
+| **[ONI_WIKI.md](MAIN/ONI_WIKI.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
 | **This README** | Public overview — key concepts, quick reference, document list |
 ```
 
@@ -318,7 +318,7 @@ mkdir MAIN/publications/[topic-name]/
 **Step 2: Create topic INDEX.md**
 - Copy from `MAIN/artifacts/templates/INDEX_TEMPLATE.md`
 - Fill in: summary, dependencies, key concepts, related topics
-- Link back to `ONI_WIKI.md`
+- Link back to `MAIN/ONI_WIKI.md`
 
 **Step 3: Create publications**
 - `Medium-[Topic_Name].md` — Accessible narrative

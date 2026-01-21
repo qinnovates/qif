@@ -34,7 +34,7 @@
 
 | Start Here | Purpose |
 |------------|---------|
-| **[ONI_WIKI.md](ONI_WIKI.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
+| **[ONI_WIKI.md](MAIN/ONI_WIKI.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
 | **This README** | Public overview — key concepts, quick reference, document list |
 
 **For deep exploration:** Each topic folder contains an `INDEX.md` with summaries, dependencies, and related topics. Start at the Wiki, then drill into specific topics.
@@ -48,13 +48,13 @@ All research, publications, and supporting infrastructure live in the `MAIN/` di
 ```
 ONI/
 ├── README.md                    # Public overview (you are here)
-├── ONI_WIKI.md                 # Central hub — start here for navigation
 ├── CLAUDE.md                    # Claude AI instructions
 ├── ABOUT.md                     # Author bio
 ├── CONTRIBUTING.md              # Contribution guidelines
 ├── LICENSE                      # Apache 2.0
 │
 └── MAIN/
+    ├── ONI_WIKI.md              # Central hub — start here for navigation
     ├── publications/            # Content only
     │   ├── 0-oni-framework/     # Base/foundational content
     │   │   └── INDEX.md         # Topic index (each topic has one)
@@ -152,7 +152,7 @@ Physiology-first defense framework with checkpoints:
 
 ## Topics & Documents
 
-> **Tip:** For dependency maps and reading order, see [ONI_WIKI.md](ONI_WIKI.md). Each topic below also has an INDEX.md with detailed summaries.
+> **Tip:** For dependency maps and reading order, see [ONI_WIKI.md](MAIN/ONI_WIKI.md). Each topic below also has an INDEX.md with detailed summaries.
 
 ### 📊 Coherence Metric — [INDEX](MAIN/publications/coherence-metric/INDEX.md)
 
