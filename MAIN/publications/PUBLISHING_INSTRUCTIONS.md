@@ -24,7 +24,7 @@ MAIN/
     │   └── Neural_Ransomware_Paper.md
     ├── oni-framework/
     │   ├── Medium-ONI_Framework.md
-    │   └── The Organic Network Interface (ONI) Framework.md
+    │   └── ONI_Framework_Paper.md
     └── scale-frequency/
         ├── Medium-Scale_Frequency.md
         └── Scale_Frequency_Paper.md

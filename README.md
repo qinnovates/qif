@@ -94,7 +94,7 @@ Core ONI architecture, 14-layer model extending OSI into biological territory.
 | Document | Summary |
 |----------|----------|
 | [Medium-ONI_Framework](MAIN/publications/oni-framework/Medium-ONI_Framework.md) | *If you've worked in IT, you know the OSI model.* |
-| [The Organic Network Interface (ONI) Framework](MAIN/publications/oni-framework/The%20Organic%20Network%20Interface%20%28ONI%29%20Framework.md) | *A Unified Neuro-Computational Stack for Secure Bio-Digital Integration.* |
+| [ONI Framework Paper](MAIN/publications/oni-framework/ONI_Framework_Paper.md) | *A Unified Neuro-Computational Stack for Secure Bio-Digital Integration.* |
 
 ### 🔬 Scale-Frequency
 
@@ -134,10 +134,11 @@ Cross-scale neural patterns, frequency invariants, and information compression.
 
 ```
 ONI/
-├── README.md
-├── ABOUT.md
-├── CONTRIBUTING.md
-├── LICENSE
+├── README.md                    # Main documentation
+├── README.AI.md                 # Claude AI instructions
+├── ABOUT.md                     # Author bio
+├── CONTRIBUTING.md              # Contribution guidelines
+├── LICENSE                      # Apache 2.0
 └── MAIN/
     └── publications/
         ├── PAPER_TEMPLATE_APA.md

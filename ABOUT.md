@@ -1,4 +1,4 @@
-# About
+# Hello World
 
 I'm an independent security researcher with an incurable curiosity for how complex systems break—and how to design them at scale so they don't. My work lives at the intersection of a fascinating vector space: cybersecurity, science, and AI-driven systems.
 
@@ -10,7 +10,7 @@ I grew up watching my father, an autodidactic electrical engineer from China, na
 
 That fire left his parents ready to sell our ancestral home. This wasn't just a house; it was a single roof in a small fishing village that sheltered three generations and three separate families—including my aunts and uncles—all living together at once. Watching my father engineer a life for us out of nothing under that kind of pressure, balancing the grit of manual labor with the precision of a self-taught mind, is where I learned what Grit truly is. To me, engineering isn't just a career; it's a survival mechanism used to turn uncertainty into something measurable and actionable.
 
-Over the last ~15 years, I've worked across Biotech, high-scale consumer tech, and institutional finance—spanning Private Equity and high-volume mortgage lending. I've specialized in stepping into "void environments"—places where data exists at an astronomical scale, but the systems to interpret and secure it don't. I've spent my career wiring together disparate data sources and building enterprise security systems that turn raw telemetry into something my teams and I can actually reason about.
+Over the last ~15 years, I've worked across Biotech, high-scale consumer tech, publishing, and institutional finance—spanning Private Equity and high-volume mortgage lending. I've specialized in stepping into "void environments"—places where data exists at an astronomical scale, but the systems to interpret and secure it don't. I've spent my career wiring together disparate data sources and building enterprise security systems that turn raw telemetry into something my teams and I can actually reason about.
 
 The goal was never just visibility—it was anticipation.
 
@@ -18,4 +18,4 @@ Whether I was protecting the digital identities of millions in consumer tech or 
 
 "The ONI Project" is the culmination of that mindset. It is a living research effort designed to develop rigorous, testable frameworks to help protect the "crown jewels" of what makes us human. The source of our unique cognitive fingerprints as we enter the age of brain–computer interfaces.
 
-Let's Make Tomorrow Better, Together Today.
+**Let's Make Tomorrow Better, Together Today.**
