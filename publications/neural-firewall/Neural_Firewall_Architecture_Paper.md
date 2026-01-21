@@ -279,26 +279,24 @@ As BCIs evolve from research tools to consumer medical devices, the Neural Firew
 
 ## References
 
-1. Yale Digital Ethics Center. (2025). Study offers measures for safeguarding brain implants.
+Black Cell Security. (2024). *Threats of thoughts: Cybersecurity vulnerabilities of BCIs* [White paper].
 
-2. Black Cell Security. (2024). Threats of Thoughts: Cybersecurity Vulnerabilities of BCIs.
+Chile Supreme Court. (2024). *Neurodata privacy ruling*.
 
-3. Schroder, T., et al. (2025). Cyber Risks to Next-Gen Brain-Computer Interfaces. arXiv.
+Food and Drug Administration. (2021). *Guidance for brain-computer interface devices* (21 CFR Part 820). U.S. Department of Health and Human Services.
 
-4. Neuralink. (2021). 1024-Channel Simultaneous Recording Neural SoC.
+National Institute of Standards and Technology. (2024). *Cybersecurity framework 2.0*. U.S. Department of Commerce.
 
-5. NIST. (2024). Cybersecurity Framework 2.0.
+Neuralink. (2021). *1024-channel simultaneous recording neural SoC* [Technical specification].
 
-6. FDA. (2021). Guidance for Brain-Computer Interface Devices.
+Schroder, T., et al. (2025). Cyber risks to next-gen brain-computer interfaces. *arXiv preprint*.
 
-7. Chile Supreme Court. (2024). Neurodata Privacy Ruling.
+World Economic Forum. (2024). *The BCI market: Risks and opportunities* [Report].
 
-8. World Economic Forum. (2024). The BCI Market: Risks and Opportunities.
-
-9. Anthropic. (2025). Claude Code [Large language model; developer tool]. https://www.anthropic.com
+Yale Digital Ethics Center. (2025). *Study offers measures for safeguarding brain implants* [Research brief].
 
 ---
 
-## Acknowledgements
+## Acknowledgments
 
-The author wishes to acknowledge the support and inspiration of colleagues and mentors in the development of this work. Writing and structuring assistance was provided by Claude Code (Anthropic, 2025), a large language model; all ideas, analyses, and conclusions, however, are entirely the author's own.
+The author wishes to acknowledge the support of colleagues and mentors in the development of this work. Brainstorming and initial conceptualization were assisted by ChatGPT (OpenAI, 2024-2025). Writing and structuring assistance was provided by Claude (Anthropic, 2025). All ideas, analyses, conclusions, and errors are the author's own.

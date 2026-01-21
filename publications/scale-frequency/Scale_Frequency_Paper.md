@@ -298,6 +298,12 @@ Understanding it brings us closer to building brain-computer interfaces that wor
 
 9. Wilson, K. G. (1975). The renormalization group: Critical phenomena and the Kondo problem. *Reviews of Modern Physics*, 47(4), 773.
 
-10. Qi, K. L. (2025). The ONI (Organic Neural Firewall) Framework. *Working Paper*.
+10. Qi, K. L. (2026). The ONI (Organic Neural Firewall) Framework. *Working Paper*.
 
-11. Qi, K. L. (2025). The Coherence Metric for Neural Signal Integrity. *Working Paper*.
+11. Qi, K. L. (2026). The Coherence Metric for Neural Signal Integrity. *Working Paper*.
+
+---
+
+## Acknowledgments
+
+The author wishes to acknowledge the support of colleagues and mentors in the development of this work. Brainstorming and initial conceptualization were assisted by ChatGPT (OpenAI, 2024-2025). Writing and structuring assistance was provided by Claude (Anthropic, 2025). All ideas, analyses, conclusions, and errors are the author's own.
