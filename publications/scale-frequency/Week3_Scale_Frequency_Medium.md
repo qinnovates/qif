@@ -190,8 +190,8 @@ The scale-frequency invariant is a hypothesis, not a proven theorem. It needs te
 
 ---
 
-*Kevin L. Qi works at the intersection of cybersecurity, neuroscience, and AI governance. His background includes 15 years in cyber threat intelligence, biotech IT, and adversarial modeling. He's currently developing security frameworks for the bio-digital interfaces that don't exist yet — but will.*
+**Tags:** #Neuroscience #BrainComputerInterface #Physics #InformationTheory #Complexity #ONI #Neuralink
 
 ---
 
-**Tags:** #Neuroscience #BrainComputerInterface #Physics #InformationTheory #Complexity #ONI #Neuralink
+*Originally published on [Medium](https://medium.com/@qikevinl/the-hidden-equation-your-brain-runs-on-and-why-it-matters-5be5598eac1f)*

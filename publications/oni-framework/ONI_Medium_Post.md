@@ -55,4 +55,12 @@ need expert review - I'm a security person, not a neuroscientist.
 If this framework is useful, it won't be because I got it right. It'll
 be because the right people helped fix it.
 
-**\[Read the full paper on arXiv →\]**
+**[Read the full paper on arXiv →]**
+
+---
+
+**Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust #ONI
+
+---
+
+*Originally published on [Medium](https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29)*

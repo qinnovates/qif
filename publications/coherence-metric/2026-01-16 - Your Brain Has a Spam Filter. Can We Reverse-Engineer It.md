@@ -297,10 +297,6 @@ _This is the first article in a series on the ONI (Organic Neural Firewall) Fram
 
 **Read the full technical paper:** “The Coherence Metric for Neural Signal Integrity” [[link]](https://docs.google.com/document/d/126RMDRYjDS8nLAG_1o9FbjBuwhp6EE31lockjNHwXFA/edit?usp=sharing)
 
-<https://medium.com/media/96525c49bb6700b7e8391f42fa1f3ad7/href>
-
-_Kevin L. Qi is a researcher whose passions converge at the intersection of neural interface security, neuroethics, and AI governance. His background includes 15 years in cybersecurity, threat intelligence, biotech IT, and adversarial modeling. He’s currently developing security frameworks for the bio-digital interfaces that don’t exist yet — but will._
-
 **Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust #ONI
 
 ![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=799da714238e)

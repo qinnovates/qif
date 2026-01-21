@@ -195,15 +195,10 @@ implant hostage.*
 **Read the full technical paper:** "The Coherence Metric for Neural
 Signal Integrity" \[link\]
 
-• • •
+---
 
-*Kevin L. Qi works at the intersection of cybersecurity, neuroscience,
-and AI governance. His background includes 15 years in cyber threat
-intelligence, biotech IT, and adversarial modeling. He's currently
-developing security frameworks for the bio-digital interfaces that don't
-exist yet — but will.*
+**Tags:** #Neuroscience #BrainComputerInterface #Cybersecurity #Neuralink #Privacy #AI #ONI
 
-• • •
+---
 
-**Tags:** \#Neuroscience \#BrainComputerInterface \#Cybersecurity
-\#Neuralink \#Privacy \#AI \#ONI
+*Originally published on [Medium](https://medium.com/@qikevinl/your-brain-has-a-spam-filter-can-we-reverse-engineer-it-799da714238e)*

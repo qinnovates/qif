@@ -76,9 +76,6 @@ _I’m sharing this framework to start a conversation. I don’t have all the an
 
 
 
-> **About Author:**_  
-> _Kevin L. Qi is an independent researcher whose passions converge at the intersection of cybersecurity, neuroscience, and AI governance. His background includes cyber threat intelligence, zero-trust architecture, and adversarial modeling.
-
 **Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust
 
 ![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=3ca381b95c29)

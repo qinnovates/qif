@@ -361,7 +361,6 @@ If you’re a security researcher: This field needs you. The attack surface is e
 
 <https://medium.com/media/a3175b6a8327b063747ce4d3003d668b/href>
 
-_Kevin L. Qi is a researcher at the intersection of science, technology, and neuroethics. His background includes 15 years in security engineering, adversarial modeling, threat hunting, detection, and response. He’s currently developing security frameworks for the bio-digital interfaces of tomorrow, today._
 
 **Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust #ONI
 

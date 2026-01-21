@@ -267,15 +267,10 @@ Reverse-Engineer It?" Next week: "The Scale-Frequency Invariant — why f
 **Read the technical deep-dive:** "Neural Ransomware: Attack Vectors and
 Defensive Architectures for Brain-Computer Interfaces" \[link\]
 
-• • •
+---
 
-*Kevin L. Qi works at the intersection of cybersecurity, neuroscience,
-and AI governance. His background includes 15 years in cyber threat
-intelligence, biotech IT, and adversarial modeling. He's currently
-developing security frameworks for the bio-digital interfaces that don't
-exist yet — but will.*
+**Tags:** #Cybersecurity #Ransomware #BrainComputerInterface #Neuralink #Privacy #Neuroscience #ONI
 
-• • •
+---
 
-**Tags:** \#Cybersecurity \#Ransomware \#BrainComputerInterface
-\#Neuralink \#Privacy \#Neuroscience \#ONI
+*Originally published on [Medium](https://medium.com/@qikevinl/neural-ransomware-isnt-science-fiction-e3f9efe4ffb1)*

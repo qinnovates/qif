@@ -148,7 +148,7 @@ But the conversation needs to start now — before the first brain gets  _pwned_
 
 [The OSI of Mind: Securing Human-AI Interfaces](https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29)
 
- _Kevin L. Qi is an independent researcher at the intersection of cybersecurity, neuroscience, and AI governance. His background includes cyber threat intelligence, zero-trust architecture, and adversarial modeling._
+
 
 **Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust
 
