@@ -306,4 +306,4 @@ Understanding it brings us closer to building brain-computer interfaces that wor
 
 ## Acknowledgments
 
-The author wishes to acknowledge the support of colleagues and mentors in the development of this work. Brainstorming and initial conceptualization were assisted by ChatGPT (OpenAI, 2024-2025). Writing and structuring assistance was provided by Claude (Anthropic, 2025). All ideas, analyses, conclusions, and errors are the author's own.
+The author wishes to acknowledge the support of colleagues and mentors in the development of this work. Initial research validation was conducted through LMArena (LMSYS, 2024-2025), enabling cross-model verification of hypotheses and findings to mitigate single-model bias. Deep research synthesis and writing assistance was provided by Claude (Anthropic, 2025). All original ideas, theoretical frameworks, analyses, and conclusions are the author's own. Final revisions, editing, and validation were performed by the author.
