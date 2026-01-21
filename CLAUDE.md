@@ -28,11 +28,10 @@ ONI/
 ├── LICENSE                             # Apache 2.0 License
 │
 └── MAIN/
-    ├── oni-framework/                  # BASE CONTENT (foundational)
-    │   ├── Medium-ONI_Framework.md
-    │   └── ONI_Framework_Paper.md
-    │
     ├── publications/                   # CONTENT ONLY
+    │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
+    │   │   ├── Medium-ONI_Framework.md
+    │   │   └── ONI_Framework_Paper.md
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
@@ -63,7 +62,7 @@ ONI/
 
 | Folder | Purpose | What Goes Here |
 |--------|---------|----------------|
-| `oni-framework/` | **Base content** | Foundational ONI Framework publications |
+| `publications/0-oni-framework/` | **Base content** | Foundational ONI Framework publications |
 | `publications/` | **Content only** | Medium posts, technical papers |
 | `artifacts/templates/` | Formatting templates | APA template, Medium template |
 | `artifacts/processes/` | Workflow documentation | Publishing instructions, improvements |
@@ -71,7 +70,7 @@ ONI/
 | `artifacts/CICD/` | Research pipeline | Keywords, incoming papers, processed |
 
 **IMPORTANT:**
-- The `oni-framework/` folder at `MAIN/` level contains the base/foundational content.
+- The `0-oni-framework/` folder inside `publications/` contains the base/foundational content and sorts first alphabetically.
 - The `publications/` folder is for **content only**. Never put templates, instructions, or scripts there.
 - The `artifacts/` folder contains ALL non-content files (templates, processes, scripts, CICD).
 
@@ -245,7 +244,7 @@ Before committing, verify:
 
 - [ ] File naming follows conventions
 - [ ] Folder naming follows conventions
-- [ ] Content files are in `publications/` or `oni-framework/` only
+- [ ] Content files are in `publications/` only
 - [ ] Non-content files are in `artifacts/` only
 - [ ] Medium posts have proper front matter (title, date_posted, url, tags)
 - [ ] Medium posts have proper footer (Sub-Tags, Originally published with datetime)

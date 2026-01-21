@@ -5,7 +5,7 @@
 This document provides standardized instructions for Claude to follow when extracting, formatting, and uploading new content publications to the ONI Framework repository.
 
 **Important:**
-- The `publications/` and `oni-framework/` folders are for **content only**
+- The `publications/` folder is for **content only**
 - All templates, processes, scripts, and CICD files live in `MAIN/artifacts/`
 
 ---
@@ -21,11 +21,10 @@ ONI/
 ├── LICENSE                             # Apache 2.0
 │
 └── MAIN/
-    ├── oni-framework/                  # BASE CONTENT (foundational)
-    │   ├── Medium-ONI_Framework.md
-    │   └── ONI_Framework_Paper.md
-    │
     ├── publications/                   # CONTENT ONLY
+    │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
+    │   │   ├── Medium-ONI_Framework.md
+    │   │   └── ONI_Framework_Paper.md
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
@@ -56,7 +55,7 @@ ONI/
 
 | Folder | Purpose | What Goes Here |
 |--------|---------|----------------|
-| `oni-framework/` | **Base content** | Foundational ONI Framework publications |
+| `publications/0-oni-framework/` | **Base content** | Foundational ONI Framework publications |
 | `publications/` | **Content only** | Medium posts, technical papers |
 | `artifacts/templates/` | Formatting templates | APA template, Medium template |
 | `artifacts/processes/` | Workflow documentation | Publishing instructions, improvements |
@@ -96,7 +95,7 @@ ONI/
 ## Content Types
 
 ### 1. Medium Posts (`Medium-*.md`)
-**Location:** `MAIN/publications/[topic]/` or `MAIN/oni-framework/`
+**Location:** `MAIN/publications/[topic]/`
 **Template:** `MAIN/artifacts/templates/MEDIUM_TEMPLATE.md`
 
 **Characteristics:**
@@ -127,7 +126,7 @@ tags: ['tag1', 'tag2', 'tag3']
 **Note:** Use `date_posted` (not `date`) in front matter. Use `Sub-Tags:` (not `Tags:`) for the hashtag line at the bottom.
 
 ### 2. Technical Papers (`*_Paper.md`)
-**Location:** `MAIN/publications/[topic]/` or `MAIN/oni-framework/`
+**Location:** `MAIN/publications/[topic]/`
 **Template:** `MAIN/artifacts/templates/PAPER_TEMPLATE_APA.md`
 
 **Characteristics:**
@@ -233,7 +232,7 @@ When extracting content from a new source:
 Before committing:
 
 1. **Verify file location:**
-   - Content → `publications/` or `oni-framework/`
+   - Content → `publications/`
    - Templates → `artifacts/templates/`
    - Process docs → `artifacts/processes/`
    - Scripts → `artifacts/scripts/`
