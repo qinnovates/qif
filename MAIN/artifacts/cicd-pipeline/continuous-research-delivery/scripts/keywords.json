@@ -1,8 +1,9 @@
 {
+  "_comment": "PURPOSE: This file is the keyword database for research_monitor.py. It enables automated tracking of new academic publications related to ONI Framework topics. The script's KeywordManager class loads this file via _load_keywords() and uses get_search_terms() to query arXiv, PubMed, bioRxiv, IEEE, and Semantic Scholar. Keywords are organized by publication (oni-framework, coherence-metric, etc.) and by category (primary_keywords, technical_terms, security_terms). The combined_search_terms section provides cross-publication search queries. To add new keywords: edit the relevant publication section or add new entries to combined_search_terms.",
   "metadata": {
     "version": "1.0",
     "last_updated": "2026-01-20",
-    "description": "Auto-generated research keywords extracted from ONI Framework publications"
+    "description": "Research keywords for ONI Framework - used by research_monitor.py to find relevant academic publications"
   },
   "publications": {
     "oni-framework": {
