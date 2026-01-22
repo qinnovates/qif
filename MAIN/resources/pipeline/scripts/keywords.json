@@ -1,8 +1,8 @@
 {
   "_comment": "PURPOSE: This file is the keyword database for research_monitor.py. It enables automated tracking of new academic publications related to ONI Framework topics. The script's KeywordManager class loads this file via _load_keywords() and uses get_search_terms() to query arXiv, PubMed, bioRxiv, IEEE, and Semantic Scholar. Keywords are organized by publication (oni-framework, coherence-metric, etc.) and by category (primary_keywords, technical_terms, security_terms). The combined_search_terms section provides cross-publication search queries. To add new keywords: edit the relevant publication section or add new entries to combined_search_terms.",
   "metadata": {
-    "version": "1.1",
-    "last_updated": "2026-01-21",
+    "version": "1.2",
+    "last_updated": "2026-01-22",
     "description": "Research keywords for ONI Framework - used by research_monitor.py to find relevant academic publications"
   },
   "publications": {
@@ -255,6 +255,86 @@
         "data harvesting quantum",
         "retroactive decryption",
         "quantum attack timeline"
+      ]
+    },
+    "quantum-keys": {
+      "title": "Quantum Keys",
+      "primary_keywords": [
+        "quantum key distribution",
+        "QKD",
+        "quantum tunneling VPN",
+        "macroscopic quantum tunneling",
+        "quantum cryptography BCI",
+        "observer effect security"
+      ],
+      "technical_terms": [
+        "Josephson junction",
+        "Cooper pairs",
+        "BB84 protocol",
+        "E91 protocol",
+        "QSDC",
+        "quantum secure direct communication",
+        "post-quantum VPN",
+        "quantum random number generator",
+        "QRNG",
+        "lattice cryptography",
+        "CRYSTALS-Kyber"
+      ],
+      "scientific_terms": [
+        "no-cloning theorem",
+        "observer effect",
+        "superposition",
+        "entanglement",
+        "quantum coherence",
+        "decoherence",
+        "tunneling traversal time",
+        "liminal phase"
+      ],
+      "security_terms": [
+        "HNDL attack",
+        "harvest now decrypt later",
+        "quantum-resistant cryptography",
+        "quantum-safe encryption",
+        "coherence breach defense",
+        "quantum repeater",
+        "space-based QKD"
+      ]
+    },
+    "tunneling-traversal-time": {
+      "title": "Tunneling Traversal Time",
+      "primary_keywords": [
+        "tunneling traversal time",
+        "quantum tunneling BCI",
+        "liminal phase security",
+        "QPUF",
+        "quantum physical unclonable function"
+      ],
+      "technical_terms": [
+        "quantum barrier",
+        "transmission probability",
+        "tunneling probability",
+        "universal background radiation",
+        "UBR",
+        "quantum decoherence detector",
+        "quantum authentication",
+        "quantum entropy source",
+        "quantum-biological hybrid"
+      ],
+      "scientific_terms": [
+        "wave-particle duality",
+        "Schrödinger equation",
+        "potential barrier",
+        "quantum uncertainty",
+        "quantum collapse",
+        "macroscopic quantum effects"
+      ],
+      "security_terms": [
+        "liminal authentication",
+        "tunneling-based security",
+        "quantum temporal signature",
+        "observer-based detection",
+        "quantum anomaly detection",
+        "neural quantum interface"
       ]
     }
   },

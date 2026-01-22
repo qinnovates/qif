@@ -2,8 +2,8 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 1.0
-**Last Updated:** 2026-01-21
+**Version:** 1.1
+**Last Updated:** 2026-01-22
 **Status:** Active Development
 
 ---
@@ -25,6 +25,7 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 | [Neural Ransomware](publications/neural-ransomware/INDEX.md) | Threat analysis & defense | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) |
 | [Quantum Security](publications/quantum-security/INDEX.md) | HNDL attacks & post-quantum crypto | [Blog](publications/quantum-security/Blog-Quantum_Security.md) |
 | [Tunneling Traversal Time](publications/tunneling-traversal-time/INDEX.md) | Liminal phase security for BCIs | [Blog](publications/tunneling-traversal-time/Blog-Tunneling_Traversal_Time.md) · [TechDoc](publications/tunneling-traversal-time/TechDoc-Tunneling_Traversal_Time.md) |
+| [Quantum Keys](publications/quantum-keys/INDEX.md) | QKD for BCI security | [Blog](publications/quantum-keys/Blog-Quantum_Keys.md) |
 
 ---
 
@@ -39,6 +40,7 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 5. **Neural Ransomware** → Threat landscape
 6. **Quantum Security** → Cryptographic threats & defenses
 7. **Tunneling Traversal Time** → Quantum-enhanced BCI security (liminal phase)
+8. **Quantum Keys** → QKD principles for neural interface security
 
 ---
 
@@ -66,11 +68,13 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
    │ HNDL, PQC, f×S≈k│            │   Threat modeling   │
    └────────┬────────┘            └─────────────────────┘
             │
-            ▼
-   ┌─────────────────────────┐
-   │ TUNNELING TRAVERSAL TIME│
-   │ Liminal phase, QPUF, UBR│
-   └─────────────────────────┘
+            ├───────────────────────────┐
+            │                           │
+            ▼                           ▼
+   ┌─────────────────────────┐ ┌─────────────────────┐
+   │ TUNNELING TRAVERSAL TIME│ │    QUANTUM KEYS     │
+   │ Liminal phase, QPUF, UBR│ │ QKD, Observer effect│
+   └─────────────────────────┘ └─────────────────────┘
 ```
 
 ---
@@ -98,6 +102,7 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 | [Neural Ransomware](publications/neural-ransomware/INDEX.md) | Threat analysis and defensive architectures | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) | Published |
 | [Quantum Security](publications/quantum-security/INDEX.md) | Quantum threats, HNDL attacks, post-quantum cryptography | [Blog](publications/quantum-security/Blog-Quantum_Security.md) | Published |
 | [Tunneling Traversal Time](publications/tunneling-traversal-time/INDEX.md) | Liminal phase security, QPUFs for BCI authentication | [Blog](publications/tunneling-traversal-time/Blog-Tunneling_Traversal_Time.md) · [TechDoc](publications/tunneling-traversal-time/TechDoc-Tunneling_Traversal_Time.md) | Published |
+| [Quantum Keys](publications/quantum-keys/INDEX.md) | QKD principles for neural interface security | [Blog](publications/quantum-keys/Blog-Quantum_Keys.md) | Published |
 
 ---
 
@@ -105,15 +110,16 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 
 Shows which topics reference which. Use this to understand conceptual dependencies.
 
-|                    | ONI Framework | Coherence | Scale-Freq | Firewall | Ransomware | Quantum | TTT |
-|--------------------|:-------------:|:---------:|:----------:|:--------:|:----------:|:-------:|:---:|
-| **ONI Framework**  | —             | ●         | ●          | ●        | ●          | ●       | ●   |
-| **Coherence**      | ◄             | —         | ○          | ●        | ●          | ○       | ○   |
-| **Scale-Frequency**| ◄             | ○         | —          | ○        | ○          | ●       | ●   |
-| **Firewall**       | ◄             | ◄         | ○          | —        | ●          | ○       | ○   |
-| **Ransomware**     | ◄             | ◄         | ○          | ◄        | —          | ○       | ○   |
-| **Quantum**        | ◄             | ◄         | ◄          | ○        | ○          | —       | ●   |
-| **TTT**            | ◄             | ◄         | ◄          | ○        | ○          | ◄       | —   |
+|                    | ONI Framework | Coherence | Scale-Freq | Firewall | Ransomware | Quantum | TTT | QKeys |
+|--------------------|:-------------:|:---------:|:----------:|:--------:|:----------:|:-------:|:---:|:-----:|
+| **ONI Framework**  | —             | ●         | ●          | ●        | ●          | ●       | ●   | ●     |
+| **Coherence**      | ◄             | —         | ○          | ●        | ●          | ○       | ○   | ●     |
+| **Scale-Frequency**| ◄             | ○         | —          | ○        | ○          | ●       | ●   | ●     |
+| **Firewall**       | ◄             | ◄         | ○          | —        | ●          | ○       | ○   | ○     |
+| **Ransomware**     | ◄             | ◄         | ○          | ◄        | —          | ○       | ○   | ○     |
+| **Quantum**        | ◄             | ◄         | ◄          | ○        | ○          | —       | ●   | ●     |
+| **TTT**            | ◄             | ◄         | ◄          | ○        | ○          | ◄       | —   | ○     |
+| **QKeys**          | ◄             | ◄         | ◄          | ○        | ○          | ◄       | ○   | —     |
 
 **Legend:** ● = references this topic | ◄ = referenced by this topic | ○ = related concept
 
@@ -232,6 +238,7 @@ MAIN/
 │   ├── coherence-metric/
 │   ├── neural-firewall/
 │   ├── neural-ransomware/
+│   ├── quantum-keys/
 │   ├── quantum-security/
 │   ├── scale-frequency/
 │   └── tunneling-traversal-time/
@@ -252,9 +259,9 @@ MAIN/
 
 | Metric | Count |
 |--------|-------|
-| Total Topics | 7 |
-| Published Documents | 13 |
-| Blog Posts | 7 |
+| Total Topics | 8 |
+| Published Documents | 14 |
+| Blog Posts | 8 |
 | Technical Documents | 6 |
 | Prototypes | 1 |
 | Planned Topics | 5 |

@@ -4,13 +4,13 @@
 
 ### What's Working
 1. **Clear folder structure** - Topic-based organization with `MAIN/publications/` and `MAIN/resources/` separation
-2. **Naming conventions** - Consistent `Blog-*` and `TechDoc-*` patterns across all 13 publications
+2. **Naming conventions** - Consistent `Blog-*` and `TechDoc-*` patterns across all 14 publications
 3. **Templates exist** - APA TechDoc, Blog, and INDEX templates provide comprehensive formatting guidance
 4. **CLAUDE.md** - Comprehensive AI instructions with file trees, workflows, and quality checklists
 5. **MAIN/INDEX.md** - Cross-reference registry with dependency maps, publication matrix, and metrics
 6. **Research Pipeline** - Automated research monitoring via `keywords.json` and `research_monitor.py`
 7. **YAML front-matter** - Implemented on all publications with title, date, URL, and tags
-8. **Topic INDEX.md files** - All 7 topic folders have INDEX.md with dependencies, key concepts, and future work
+8. **Topic INDEX.md files** - All 8 topic folders have INDEX.md with dependencies, key concepts, and future work
 9. **APA formatting** - Technical documents follow APA 7th edition with proper citations and acknowledgments
 
 ### Gaps Identified
@@ -18,7 +18,7 @@
 2. ~~README.md updates are manual and error-prone~~ → Process documented in CLAUDE.md
 3. ~~No version tracking for individual documents~~ → Partial (front-matter on publications)
 4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: MAIN/INDEX.md**
-5. ~~INDEX.md only deployed to 1 of 5 topic folders~~ → **RESOLVED: All 7 folders have INDEX.md**
+5. ~~INDEX.md only deployed to 1 of 5 topic folders~~ → **RESOLVED: All 8 folders have INDEX.md**
 6. No content calendar or publishing schedule tracking
 7. No CHANGELOG.md at repository root
 8. No automated docx generation workflow (currently manual pandoc commands)
@@ -88,12 +88,13 @@ Maintained in MAIN/INDEX.md. Current state (as of January 2026):
 | Document | References | Referenced By |
 |----------|------------|---------------|
 | ONI Framework | - | All other papers |
-| Coherence Metric | ONI Framework | Neural Firewall, Neural Ransomware, TTT |
-| Scale-Frequency | ONI Framework | Quantum Security, TTT |
+| Coherence Metric | ONI Framework | Neural Firewall, Neural Ransomware, TTT, Quantum Keys |
+| Scale-Frequency | ONI Framework | Quantum Security, TTT, Quantum Keys |
 | Neural Firewall | ONI Framework, Coherence Metric | Neural Ransomware, TTT |
 | Neural Ransomware | ONI Framework, Coherence Metric, Neural Firewall | - |
-| Quantum Security | ONI Framework, Scale-Frequency, Coherence Metric | TTT |
+| Quantum Security | ONI Framework, Scale-Frequency, Coherence Metric | TTT, Quantum Keys |
 | Tunneling Traversal Time | ONI Framework, Scale-Frequency, Quantum Security, Coherence Metric | - |
+| Quantum Keys | ONI Framework, Scale-Frequency, Quantum Security, Coherence Metric | - |
 
 ### 4. Version Changelog
 
@@ -289,6 +290,10 @@ ONI/
     │   │   ├── Blog-Scale_Frequency.md
     │   │   └── TechDoc-Scale_Frequency.md
     │   │
+    │   ├── quantum-keys/
+    │   │   ├── INDEX.md              # COMPLETE
+    │   │   └── Blog-Quantum_Keys.md
+    │   │
     │   ├── quantum-security/
     │   │   ├── INDEX.md              # COMPLETE
     │   │   ├── Blog-Quantum_Security.md
@@ -316,7 +321,7 @@ ONI/
 - [x] Standardize file naming (`Blog-*` and `TechDoc-*` patterns)
 - [x] Update all file trees in documentation
 - [x] Create INDEX_TEMPLATE.md
-- [x] Deploy INDEX.md to all topic folders (7 of 7 complete)
+- [x] Deploy INDEX.md to all topic folders (8 of 8 complete)
 - [x] Create MAIN/INDEX.md with dependency map and cross-reference matrix
 
 ### Phase 2 (Next Session) — IN PROGRESS
@@ -340,11 +345,11 @@ ONI/
 
 | Metric | Count | Last Updated |
 |--------|-------|--------------|
-| Total Topics | 7 | 2026-01-22 |
-| Published Documents | 13 | 2026-01-22 |
-| Blog Posts | 7 | 2026-01-22 |
+| Total Topics | 8 | 2026-01-22 |
+| Published Documents | 14 | 2026-01-22 |
+| Blog Posts | 8 | 2026-01-22 |
 | Technical Documents | 6 | 2026-01-22 |
-| Topic INDEX.md Files | 7 | 2026-01-22 |
+| Topic INDEX.md Files | 8 | 2026-01-22 |
 | Prototypes | 1 | 2026-01-21 |
 | Templates | 3 | 2026-01-21 |
 | Planned Topics | 5 | 2026-01-21 |
@@ -371,6 +376,25 @@ ONI/
 
 ## Recent Additions Log
 
+### 2026-01-22 (continued)
+- **Quantum Keys** publication added:
+  - Blog post converted from .pages file (Nobel Prize QKD topic)
+  - INDEX.md with dependencies, key concepts, timeline projections
+  - Keywords extracted and added to keywords.json
+- **MAIN/INDEX.md** updated with:
+  - Quantum Keys entry in Quick Navigation
+  - Step 8 in Reading Order
+  - Expanded Dependency Map (QKeys alongside TTT under Quantum Security)
+  - QKeys row/column in Cross-Reference Matrix (8x8)
+  - Updated folder structure
+  - Metrics updated (8 topics, 14 documents, 8 blogs)
+- **README.md** updated with:
+  - Quantum Keys section in Topics & Documents
+  - Tunneling Traversal Time section in Topics & Documents
+  - Repository Structure updated with new folders
+  - Footer metrics updated
+- **CLAUDE.md** file tree updated with quantum-keys and tunneling-traversal-time folders
+
 ### 2026-01-22
 - **Tunneling Traversal Time** publication added:
   - TechDoc with APA 7th edition formatting
@@ -393,6 +417,6 @@ ONI/
 
 ---
 
-*Strategy Version: 3.0*
+*Strategy Version: 3.1*
 *Last Updated: January 22, 2026*
 *Author: Kevin L. Qi with Claude (Anthropic)*
