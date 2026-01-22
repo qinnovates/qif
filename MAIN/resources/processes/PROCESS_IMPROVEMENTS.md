@@ -417,6 +417,92 @@ ONI/
 
 ---
 
-*Strategy Version: 3.1*
+## Adoption Strategy
+
+### Current Strengths (Adoption Value)
+
+| Asset | Value |
+|-------|-------|
+| 14-layer ONI model | Novel conceptual framework bridging OSI to biology |
+| Cₛ coherence formula | Concrete, implementable metric |
+| f × S ≈ k invariant | Testable mathematical claim |
+| Threat models | Actionable security architecture |
+| Documentation quality | Low barrier to understanding |
+
+### Critical Gaps for Adoption
+
+| Gap | Issue | Impact |
+|-----|-------|--------|
+| No empirical validation | All theory, no experimental data | Low credibility |
+| No reference implementation | No working code | Nothing to use today |
+| No industry touchpoints | No BCI manufacturer engagement | No pathway to deployment |
+| No peer review | Self-published only | Lacks academic credibility |
+| No community | Single-author project | No momentum |
+
+### Adoption Roadmap
+
+#### Phase 1: Credibility (1-3 months)
+- [ ] Validate Cₛ formula against public BCI dataset (BCI Competition)
+- [ ] Submit one paper to peer-reviewed venue (Journal of Neural Engineering, Frontiers)
+- [ ] Create working Python package `oni-framework`
+- [ ] Post preprint to arXiv (cs.CR or q-bio.NC)
+
+#### Phase 2: Visibility (3-6 months)
+- [ ] Conference presentation (IEEE EMBS, BCI Meeting)
+- [ ] Whitepaper targeting BCI manufacturers
+- [ ] Engage 2-3 academic collaborators
+- [ ] Cross-post on r/neuralengineering, r/netsec, Hacker News
+
+#### Phase 3: Industry Adoption (6-12 months)
+- [ ] Reference implementation with full documentation
+- [ ] Integration guide for BCI manufacturers
+- [ ] Regulatory alignment document (FDA, EU MDR)
+- [ ] FDA pre-submission meeting request
+
+### High-Impact Actions (Prioritized)
+
+| Action | Effort | Impact | Rationale |
+|--------|--------|--------|-----------|
+| Validate Cₛ on BCI Competition data | Medium | High | Transforms theory → evidence |
+| Python package `oni-framework` | Medium | High | Lets people use it today |
+| arXiv preprint of TechDoc-ONI_Framework | Low | Medium | Citeable, discoverable |
+| FDA pre-submission meeting request | Low | High | Signals regulatory seriousness |
+| Neuralink security researcher outreach | Low | Variable | Direct industry connection |
+
+### Target Stakeholders
+
+| Stakeholder | What They Need | How ONI Helps |
+|-------------|----------------|---------------|
+| BCI manufacturers | Security architecture guidance | 14-layer model, firewall design |
+| Neuroscience researchers | Validated metrics | Cₛ formula, f × S ≈ k |
+| Security engineers | Threat models, attack surfaces | Neural ransomware, quantum security |
+| Regulators (FDA, EU) | Compliance frameworks | Layer-based risk assessment |
+| Ethics boards | Governance frameworks | Human sovereignty principles |
+
+### Python Package Specification (`oni-framework`)
+
+**Core Modules:**
+```
+oni/
+├── __init__.py
+├── coherence.py      # Cₛ calculation (phase, transport, gain variance)
+├── layers.py         # 14-layer model representation
+├── firewall.py       # Signal filtering simulation
+├── threats.py        # Threat model definitions
+├── scale_freq.py     # f × S ≈ k invariant calculations
+└── visualize.py      # Layer diagrams, coherence plots
+```
+
+**MVP Features:**
+1. `oni.coherence.calculate_cs(signal_data)` → Cₛ score (0-1)
+2. `oni.layers.ONIStack()` → 14-layer model object
+3. `oni.firewall.NeuralFirewall(threshold)` → Filter signals by Cₛ
+4. `oni.visualize.layer_diagram()` → ASCII/matplotlib layer viz
+
+**Target:** Installable via `pip install oni-framework`
+
+---
+
+*Strategy Version: 3.2*
 *Last Updated: January 22, 2026*
 *Author: Kevin L. Qi with Claude (Anthropic)*
