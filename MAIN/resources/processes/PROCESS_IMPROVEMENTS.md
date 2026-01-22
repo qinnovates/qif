@@ -296,9 +296,8 @@ ONI/
     │       ├── TechDoc-Quantum_Encryption.md
     │       └── TechDoc-Tunneling_Traversal_Time.md
     │
-    └── prototypes/
-        └── oni-visualizations/
-            └── README.md
+    └── oni-visualizations/
+        └── README.md
 ```
 
 ---

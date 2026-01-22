@@ -42,8 +42,7 @@ ONI/
     │   ├── quantum-encryption/         # Consolidated: quantum security, keys, TTT
     │   └── scale-frequency/
     │
-    ├── prototypes/                     # Interactive demos
-    │   └── oni-visualizations/
+    ├── oni-visualizations/             # Interactive demos
     │
     └── resources/                      # NON-CONTENT (infrastructure)
         ├── templates/                  # Formatting templates

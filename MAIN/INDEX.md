@@ -132,11 +132,11 @@ The ONI Framework extends OSI's 7 layers to 14, bridging silicon and biology:
 
 ---
 
-## Prototypes
+## Visualizations
 
-| Prototype | Description |
-|-----------|-------------|
-| [ONI Visualizations](prototypes/oni-visualizations/README.md) | Interactive web apps for ONI concepts |
+| Project | Description |
+|---------|-------------|
+| [ONI Visualizations](oni-visualizations/README.md) | Interactive web apps for ONI concepts |
 
 ---
 
@@ -224,8 +224,7 @@ MAIN/
 │   ├── neural-ransomware/
 │   ├── quantum-encryption/
 │   └── scale-frequency/
-├── prototypes/                 # Interactive demos
-│   └── oni-visualizations/
+├── oni-visualizations/         # Interactive demos
 └── resources/                  # Templates, processes, tools
     ├── templates/
     ├── processes/
@@ -245,7 +244,7 @@ MAIN/
 | Published Documents | 14 |
 | Blog Posts | 8 |
 | Technical Documents | 6 |
-| Prototypes | 1 |
+| Visualizations | 1 |
 | Planned Topics | 5 |
 
 ---

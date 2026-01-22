@@ -65,8 +65,7 @@ ONI/
     │   ├── quantum-encryption/
     │   └── scale-frequency/
     │
-    ├── prototypes/              # Interactive demos
-    │   └── oni-visualizations/
+    ├── oni-visualizations/      # Interactive demos
     │
     └── resources/               # Infrastructure
         ├── templates/           # Formatting templates
