@@ -37,10 +37,17 @@
 | Start Here | Purpose |
 |------------|---------|
 | **[MAIN/](MAIN/)** | All research content — publications, visualizations, resources |
-| **[INDEX.md](MAIN/INDEX.md)** | Central hub — navigation, dependencies, cross-references, roadmap |
+| **[INDEX.md](MAIN/INDEX.md)** | **Main Wiki** — central hub for navigation, dependencies, cross-references, roadmap |
 | **This README** | Public overview — key concepts, quick reference |
 
-**For deep exploration:** Each topic folder contains an `INDEX.md` with summaries, dependencies, and related topics.
+### Naming Convention
+
+| File | Location | Purpose |
+|------|----------|---------|
+| `INDEX.md` | `MAIN/` only | **Main wiki hub** — the single source of truth for navigation |
+| `README.md` | Each topic folder | **Topic overview** — auto-rendered by GitHub when browsing folders |
+
+**For deep exploration:** Each topic folder contains a `README.md` with summaries, dependencies, and related topics.
 
 ---
 
@@ -207,9 +214,9 @@ Physiology-first defense framework with checkpoints:
 
 ## Topics & Documents
 
-> **Tip:** For dependency maps and reading order, see [INDEX.md](MAIN/INDEX.md). Each topic below also has an INDEX.md with detailed summaries.
+> **Tip:** For dependency maps and reading order, see [INDEX.md](MAIN/INDEX.md) (the main wiki). Each topic folder below has a `README.md` with detailed summaries (auto-rendered by GitHub).
 
-### 📊 Coherence Metric — [INDEX](MAIN/publications/coherence-metric/INDEX.md)
+### 📊 Coherence Metric — [Overview](MAIN/publications/coherence-metric/)
 
 Signal validation mathematics, trust scoring algorithms, and biological plausibility checks.
 
@@ -218,7 +225,7 @@ Signal validation mathematics, trust scoring algorithms, and biological plausibi
 | [Blog-Coherence_Metric](MAIN/publications/coherence-metric/Blog-Coherence_Metric.md) | *Inside the math that could protect your mind from neural hackers.* |
 | [TechDoc-Coherence_Metric_Detailed](MAIN/publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md) | *A Mathematical Framework for Quantifying Trustworthiness.* |
 
-### 🛡️ Neural Firewall — [INDEX](MAIN/publications/neural-firewall/INDEX.md)
+### 🛡️ Neural Firewall — [Overview](MAIN/publications/neural-firewall/)
 
 Hardware and software firewall design for neural interfaces, signal filtering, and real-time protection.
 
@@ -227,7 +234,7 @@ Hardware and software firewall design for neural interfaces, signal filtering, a
 | [Blog-Neural_Firewall](MAIN/publications/neural-firewall/Blog-Neural_Firewall.md) | *The same security principles that protect your computer will soon need to protect your mind.* |
 | [TechDoc-Neural_Firewall_Architecture](MAIN/publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) | *A Zero-Trust Security Model for Neural Interfaces.* |
 
-### 🔓 Neural Ransomware — [INDEX](MAIN/publications/neural-ransomware/INDEX.md)
+### 🔓 Neural Ransomware — [Overview](MAIN/publications/neural-ransomware/)
 
 Threat analysis, attack vectors, kill chains, and defensive architectures.
 
@@ -236,7 +243,7 @@ Threat analysis, attack vectors, kill chains, and defensive architectures.
 | [Blog-Neural_Ransomware](MAIN/publications/neural-ransomware/Blog-Neural_Ransomware.md) | *The technical threat model for holding a brain implant hostage.* |
 | [TechDoc-Neural_Ransomware](MAIN/publications/neural-ransomware/TechDoc-Neural_Ransomware.md) | *Attack Vectors and Defensive Architectures for Brain-Computer Interfaces.* |
 
-### 🏗️ ONI Framework (Base) — [INDEX](MAIN/publications/0-oni-framework/INDEX.md)
+### 🏗️ ONI Framework (Base) — [Overview](MAIN/publications/0-oni-framework/)
 
 Core ONI architecture, 14-layer model extending OSI into biological territory. **This is the foundational content for all other publications.**
 
@@ -245,7 +252,7 @@ Core ONI architecture, 14-layer model extending OSI into biological territory. *
 | [Blog-ONI_Framework](MAIN/publications/0-oni-framework/Blog-ONI_Framework.md) | *If you've worked in IT, you know the OSI model.* |
 | [TechDoc-ONI_Framework](MAIN/publications/0-oni-framework/TechDoc-ONI_Framework.md) | *A Unified Neuro-Computational Stack for Secure Bio-Digital Integration.* |
 
-### ⚛️ Quantum Encryption — [INDEX](MAIN/publications/quantum-encryption/INDEX.md)
+### ⚛️ Quantum Encryption — [Overview](MAIN/publications/quantum-encryption/)
 
 Comprehensive coverage of quantum computing threats, quantum key distribution (QKD), tunneling traversal time, and quantum-enhanced security for brain-computer interfaces.
 
@@ -257,7 +264,7 @@ Comprehensive coverage of quantum computing threats, quantum key distribution (Q
 | [TechDoc-Quantum_Encryption](MAIN/publications/quantum-encryption/TechDoc-Quantum_Encryption.md) | *A Framework for Post-Quantum BCI Protection.* |
 | [TechDoc-Tunneling_Traversal_Time](MAIN/publications/quantum-encryption/TechDoc-Tunneling_Traversal_Time.md) | *Tunneling Traversal Time as a Security Primitive for Brain-Computer Interfaces.* |
 
-### 🔬 Scale-Frequency — [INDEX](MAIN/publications/scale-frequency/INDEX.md)
+### 🔬 Scale-Frequency — [Overview](MAIN/publications/scale-frequency/)
 
 Cross-scale neural patterns, frequency invariants, and information compression.
 

@@ -24,16 +24,16 @@ The publication connects QKD principles to the ONI framework's Scale-Frequency I
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Layer model provides structural context |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | `f × S ≈ k` invariant explains QKD security mechanism |
-| [Quantum Security](../quantum-security/INDEX.md) | HNDL threats and post-quantum cryptography context |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Coherence breach concept weaponized for defense |
+| [ONI Framework](../0-oni-framework/) | Layer model provides structural context |
+| [Scale-Frequency](../scale-frequency/) | `f × S ≈ k` invariant explains QKD security mechanism |
+| [Quantum Security](../quantum-security/) | HNDL threats and post-quantum cryptography context |
+| [Coherence Metric](../coherence-metric/) | Coherence breach concept weaponized for defense |
 
 **Topics that build on this:**
 
 | Topic | Relationship |
 |-------|--------------|
-| [Tunneling Traversal Time](../tunneling-traversal-time/INDEX.md) | Extends liminal phase concept introduced here |
+| [Tunneling Traversal Time](../tunneling-traversal-time/) | Extends liminal phase concept introduced here |
 | (Future) Neural Authentication | QKD-secured BCI authentication |
 
 ---
@@ -77,10 +77,10 @@ The publication connects QKD principles to the ONI framework's Scale-Frequency I
 
 | Topic | Connection |
 |-------|------------|
-| [Quantum Security](../quantum-security/INDEX.md) | Provides threat landscape context (HNDL, Shor's algorithm) |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | `f × S ≈ k` explains why probing collapses coherence |
-| [Tunneling Traversal Time](../tunneling-traversal-time/INDEX.md) | Extends liminal phase and POSTECH research |
-| [Neural Firewall](../neural-firewall/INDEX.md) | QKD could secure L8 boundary |
+| [Quantum Security](../quantum-security/) | Provides threat landscape context (HNDL, Shor's algorithm) |
+| [Scale-Frequency](../scale-frequency/) | `f × S ≈ k` explains why probing collapses coherence |
+| [Tunneling Traversal Time](../tunneling-traversal-time/) | Extends liminal phase and POSTECH research |
+| [Neural Firewall](../neural-firewall/) | QKD could secure L8 boundary |
 
 ---
 

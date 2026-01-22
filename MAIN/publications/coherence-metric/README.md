@@ -24,14 +24,14 @@ This approach enables the Neural Firewall to make real-time decisions about sign
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Defines L8-L10 where coherence validation occurs |
+| [ONI Framework](../0-oni-framework/) | Defines L8-L10 where coherence validation occurs |
 
 **Topics that build on this:**
 
 | Topic | Relationship |
 |-------|--------------|
-| [Neural Firewall](../neural-firewall/INDEX.md) | Uses coherence scores for ingress/egress filtering |
-| [Neural Ransomware](../neural-ransomware/INDEX.md) | Threat modeling against coherence-based defenses |
+| [Neural Firewall](../neural-firewall/) | Uses coherence scores for ingress/egress filtering |
+| [Neural Ransomware](../neural-ransomware/) | Threat modeling against coherence-based defenses |
 
 ---
 
@@ -60,8 +60,8 @@ This approach enables the Neural Firewall to make real-time decisions about sign
 
 | Topic | Connection |
 |-------|------------|
-| [Scale-Frequency](../scale-frequency/INDEX.md) | Frequency invariants inform coherence expectations |
-| [Neural Firewall](../neural-firewall/INDEX.md) | Primary consumer of coherence scores |
+| [Scale-Frequency](../scale-frequency/) | Frequency invariants inform coherence expectations |
+| [Neural Firewall](../neural-firewall/) | Primary consumer of coherence scores |
 
 ---
 

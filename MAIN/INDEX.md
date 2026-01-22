@@ -18,12 +18,12 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 
 | Topic | Description | Documents |
 |-------|-------------|-----------|
-| [ONI Framework](publications/0-oni-framework/INDEX.md) | Foundational 14-layer model | [Blog](publications/0-oni-framework/Blog-ONI_Framework.md) · [TechDoc](publications/0-oni-framework/TechDoc-ONI_Framework.md) |
-| [Coherence Metric](publications/coherence-metric/INDEX.md) | Signal trust scoring (Cₛ formula) | [Blog](publications/coherence-metric/Blog-Coherence_Metric.md) · [TechDoc](publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md) |
-| [Scale-Frequency](publications/scale-frequency/INDEX.md) | Cross-scale invariants (f × S ≈ k) | [Blog](publications/scale-frequency/Blog-Scale_Frequency.md) · [TechDoc](publications/scale-frequency/TechDoc-Scale_Frequency.md) |
-| [Neural Firewall](publications/neural-firewall/INDEX.md) | Zero-trust security at L8 | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) |
-| [Neural Ransomware](publications/neural-ransomware/INDEX.md) | Threat analysis & defense | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) |
-| [Quantum Encryption](publications/quantum-encryption/INDEX.md) | Quantum threats, QKD, TTT, QPUFs | [Blog-QSec](publications/quantum-encryption/Blog-Quantum_Security.md) · [Blog-QKeys](publications/quantum-encryption/Blog-Quantum_Keys.md) · [Blog-TTT](publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md) · [TechDoc-QEnc](publications/quantum-encryption/TechDoc-Quantum_Encryption.md) · [TechDoc-TTT](publications/quantum-encryption/TechDoc-Tunneling_Traversal_Time.md) |
+| [ONI Framework](publications/0-oni-framework/) | Foundational 14-layer model | [Blog](publications/0-oni-framework/Blog-ONI_Framework.md) · [TechDoc](publications/0-oni-framework/TechDoc-ONI_Framework.md) |
+| [Coherence Metric](publications/coherence-metric/) | Signal trust scoring (Cₛ formula) | [Blog](publications/coherence-metric/Blog-Coherence_Metric.md) · [TechDoc](publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md) |
+| [Scale-Frequency](publications/scale-frequency/) | Cross-scale invariants (f × S ≈ k) | [Blog](publications/scale-frequency/Blog-Scale_Frequency.md) · [TechDoc](publications/scale-frequency/TechDoc-Scale_Frequency.md) |
+| [Neural Firewall](publications/neural-firewall/) | Zero-trust security at L8 | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) |
+| [Neural Ransomware](publications/neural-ransomware/) | Threat analysis & defense | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) |
+| [Quantum Encryption](publications/quantum-encryption/) | Quantum threats, QKD, TTT, QPUFs | [Blog-QSec](publications/quantum-encryption/Blog-Quantum_Security.md) · [Blog-QKeys](publications/quantum-encryption/Blog-Quantum_Keys.md) · [Blog-TTT](publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md) · [TechDoc-QEnc](publications/quantum-encryption/TechDoc-Quantum_Encryption.md) · [TechDoc-TTT](publications/quantum-encryption/TechDoc-Tunneling_Traversal_Time.md) |
 
 ---
 
@@ -92,22 +92,22 @@ pip install oni-framework
 
 | Topic | Purpose | Documents | Status |
 |-------|---------|-----------|--------|
-| [ONI Framework](publications/0-oni-framework/INDEX.md) | 14-layer biological extension of OSI model | [Blog](publications/0-oni-framework/Blog-ONI_Framework.md) · [TechDoc](publications/0-oni-framework/TechDoc-ONI_Framework.md) | Published |
+| [ONI Framework](publications/0-oni-framework/) | 14-layer biological extension of OSI model | [Blog](publications/0-oni-framework/Blog-ONI_Framework.md) · [TechDoc](publications/0-oni-framework/TechDoc-ONI_Framework.md) | Published |
 
 ### Signal Processing
 
 | Topic | Purpose | Documents | Status |
 |-------|---------|-----------|--------|
-| [Coherence Metric](publications/coherence-metric/INDEX.md) | Mathematical framework for signal trust scoring | [Blog](publications/coherence-metric/Blog-Coherence_Metric.md) · [TechDoc](publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md) | Published |
-| [Scale-Frequency](publications/scale-frequency/INDEX.md) | Cross-scale frequency invariants (f × S ≈ k) | [Blog](publications/scale-frequency/Blog-Scale_Frequency.md) · [TechDoc](publications/scale-frequency/TechDoc-Scale_Frequency.md) | Published |
+| [Coherence Metric](publications/coherence-metric/) | Mathematical framework for signal trust scoring | [Blog](publications/coherence-metric/Blog-Coherence_Metric.md) · [TechDoc](publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md) | Published |
+| [Scale-Frequency](publications/scale-frequency/) | Cross-scale frequency invariants (f × S ≈ k) | [Blog](publications/scale-frequency/Blog-Scale_Frequency.md) · [TechDoc](publications/scale-frequency/TechDoc-Scale_Frequency.md) | Published |
 
 ### Security Architecture
 
 | Topic | Purpose | Documents | Status |
 |-------|---------|-----------|--------|
-| [Neural Firewall](publications/neural-firewall/INDEX.md) | Zero-trust security at the neural gateway (L8) | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) | Published |
-| [Neural Ransomware](publications/neural-ransomware/INDEX.md) | Threat analysis and defensive architectures | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) | Published |
-| [Quantum Encryption](publications/quantum-encryption/INDEX.md) | Quantum threats, QKD, liminal phase security, QPUFs | [Blog-QSec](publications/quantum-encryption/Blog-Quantum_Security.md) · [Blog-QKeys](publications/quantum-encryption/Blog-Quantum_Keys.md) · [Blog-TTT](publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md) · [TechDoc-QEnc](publications/quantum-encryption/TechDoc-Quantum_Encryption.md) · [TechDoc-TTT](publications/quantum-encryption/TechDoc-Tunneling_Traversal_Time.md) | Published |
+| [Neural Firewall](publications/neural-firewall/) | Zero-trust security at the neural gateway (L8) | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) | Published |
+| [Neural Ransomware](publications/neural-ransomware/) | Threat analysis and defensive architectures | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) | Published |
+| [Quantum Encryption](publications/quantum-encryption/) | Quantum threats, QKD, liminal phase security, QPUFs | [Blog-QSec](publications/quantum-encryption/Blog-Quantum_Security.md) · [Blog-QKeys](publications/quantum-encryption/Blog-Quantum_Keys.md) · [Blog-TTT](publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md) · [TechDoc-QEnc](publications/quantum-encryption/TechDoc-Quantum_Encryption.md) · [TechDoc-TTT](publications/quantum-encryption/TechDoc-Tunneling_Traversal_Time.md) | Published |
 
 ---
 
@@ -167,7 +167,7 @@ The ONI Framework extends OSI's 7 layers to 14, bridging silicon and biology:
 |----------|---------|
 | [BLOG_TEMPLATE.md](resources/templates/BLOG_TEMPLATE.md) | Blog post formatting guide |
 | [TECHDOC_TEMPLATE_APA.md](resources/templates/TECHDOC_TEMPLATE_APA.md) | Technical document (APA format) |
-| [INDEX_TEMPLATE.md](resources/templates/INDEX_TEMPLATE.md) | Topic index template |
+| [README_TEMPLATE.md](resources/templates/README_TEMPLATE.md) | Topic README template (for folder overviews) |
 
 ### Processes
 
@@ -196,12 +196,14 @@ When expanding the framework, follow this process:
 mkdir MAIN/publications/[topic-name]/
 ```
 
-### 2. Create Topic INDEX.md
-Use the [INDEX template](resources/templates/INDEX_TEMPLATE.md) with:
+### 2. Create Topic README.md
+Use the [README template](resources/templates/README_TEMPLATE.md) with:
 - Topic summary
 - Dependency list (what this topic builds on)
 - Document inventory
 - Related topics
+
+> **Note:** Topic folders use `README.md` (auto-rendered by GitHub), while this central index uses `INDEX.md`. This naming convention distinguishes the **main wiki hub** from **topic overviews**.
 
 ### 3. Add Publications
 - `Blog-[Topic_Name].md` — Accessible narrative (include original URL if applicable)

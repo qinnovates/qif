@@ -24,9 +24,9 @@ The goal is proactive defense: by understanding potential attack patterns before
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Layer model for mapping attack surfaces |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Detection mechanism for signal manipulation |
-| [Neural Firewall](../neural-firewall/INDEX.md) | Primary defensive architecture |
+| [ONI Framework](../0-oni-framework/) | Layer model for mapping attack surfaces |
+| [Coherence Metric](../coherence-metric/) | Detection mechanism for signal manipulation |
+| [Neural Firewall](../neural-firewall/) | Primary defensive architecture |
 
 **Topics that build on this:**
 
@@ -61,8 +61,8 @@ The goal is proactive defense: by understanding potential attack patterns before
 
 | Topic | Connection |
 |-------|------------|
-| [Neural Firewall](../neural-firewall/INDEX.md) | Primary defensive layer against ransomware |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Detection of anomalous signals indicating attack |
+| [Neural Firewall](../neural-firewall/) | Primary defensive layer against ransomware |
+| [Coherence Metric](../coherence-metric/) | Detection of anomalous signals indicating attack |
 
 ---
 

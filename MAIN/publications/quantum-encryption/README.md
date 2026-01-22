@@ -28,15 +28,15 @@ All three areas connect through the ONI Framework's Scale-Frequency Invariant (`
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Layer model extends to quantum-classical interfaces |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | `f × S ≈ k` invariant applies to quantum coherence |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Coherence concepts parallel quantum decoherence |
+| [ONI Framework](../0-oni-framework/) | Layer model extends to quantum-classical interfaces |
+| [Scale-Frequency](../scale-frequency/) | `f × S ≈ k` invariant applies to quantum coherence |
+| [Coherence Metric](../coherence-metric/) | Coherence concepts parallel quantum decoherence |
 
 **Topics that build on this:**
 
 | Topic | Relationship |
 |-------|--------------|
-| [Neural Firewall](../neural-firewall/INDEX.md) | QKD could secure L8 boundary; QPUFs for authentication |
+| [Neural Firewall](../neural-firewall/) | QKD could secure L8 boundary; QPUFs for authentication |
 | (Future) Neural Authentication | QPUF-based identity verification for BCIs |
 | (Future) Quantum-BCI Protocol | Quantum-secured communication standards |
 
@@ -150,11 +150,11 @@ All three areas connect through the ONI Framework's Scale-Frequency Invariant (`
 
 | Topic | Connection |
 |-------|------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Layers L10-L14 security, quantum-classical boundary |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | `f × S ≈ k` explains coherence collapse mechanics |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Signal coherence concepts map to quantum decoherence |
-| [Neural Firewall](../neural-firewall/INDEX.md) | Defense architectures transferable to quantum systems |
-| [Neural Ransomware](../neural-ransomware/INDEX.md) | Threat modeling approaches applicable to quantum |
+| [ONI Framework](../0-oni-framework/) | Layers L10-L14 security, quantum-classical boundary |
+| [Scale-Frequency](../scale-frequency/) | `f × S ≈ k` explains coherence collapse mechanics |
+| [Coherence Metric](../coherence-metric/) | Signal coherence concepts map to quantum decoherence |
+| [Neural Firewall](../neural-firewall/) | Defense architectures transferable to quantum systems |
+| [Neural Ransomware](../neural-ransomware/) | Threat modeling approaches applicable to quantum |
 
 ---
 

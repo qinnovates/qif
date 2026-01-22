@@ -8,15 +8,24 @@
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| **INDEX** | `MAIN/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
+| **Main Wiki (INDEX)** | `MAIN/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
 | **Python Package** | `MAIN/oni-framework/` | **pip install oni-framework** |
-| Topic INDEX Template | `MAIN/resources/templates/INDEX_TEMPLATE.md` | Template for topic-level indexes |
+| Topic README Template | `MAIN/resources/templates/README_TEMPLATE.md` | Template for topic-level overviews |
 | APA Template | `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md` | Formatting for technical documents |
 | Blog Template | `MAIN/resources/templates/BLOG_TEMPLATE.md` | Formatting for blog posts |
 | Publishing Instructions | `MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
 | Research Monitor | `MAIN/resources/pipeline/scripts/research_monitor.py` | Fetch new academic papers |
 | Keywords File | `MAIN/resources/pipeline/scripts/keywords.json` | Research search terms |
 | This File | `CLAUDE.md` | Claude-specific instructions |
+
+### Naming Convention: INDEX.md vs README.md
+
+| File | Location | Purpose |
+|------|----------|---------|
+| `INDEX.md` | `MAIN/` only | **Main wiki hub** — single source of truth for navigation, dependencies, roadmap |
+| `README.md` | Each topic folder | **Topic overview** — auto-rendered by GitHub when browsing folders |
+
+> **Why this distinction?** `INDEX.md` is unique to the main wiki. Topic folders use `README.md` because GitHub automatically renders it when viewing folders, providing a better browsing experience.
 
 ---
 
@@ -31,7 +40,7 @@ ONI/
 ├── LICENSE                             # Apache 2.0 License
 │
 └── MAIN/
-    ├── INDEX.md                        # Central hub - navigation, dependencies, cross-references
+    ├── INDEX.md                        # MAIN WIKI — navigation, dependencies, cross-references
     │
     ├── oni-framework/                  # Python library (pip install oni-framework)
     │   ├── oni/                        # Source code
@@ -46,7 +55,7 @@ ONI/
     │
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
-    │   │   ├── INDEX.md                # Topic index (each topic has one)
+    │   │   ├── README.md               # Topic overview (auto-rendered by GitHub)
     │   │   ├── Blog-ONI_Framework.md
     │   │   └── TechDoc-ONI_Framework.md
     │   ├── coherence-metric/
@@ -57,7 +66,7 @@ ONI/
     │
     └── resources/                      # NON-CONTENT (infrastructure)
         ├── templates/                  # Formatting templates
-        │   ├── INDEX_TEMPLATE.md
+        │   ├── README_TEMPLATE.md      # Template for topic README files
         │   ├── TECHDOC_TEMPLATE_APA.md
         │   └── BLOG_TEMPLATE.md
         │
@@ -293,8 +302,8 @@ Before committing, verify:
 - [ ] README.md updated with new links
 - [ ] Document count updated in README.md footer
 - [ ] Date updated in README.md footer
-- [ ] **Topic INDEX.md created** (for new topics)
-- [ ] **INDEX.md updated** (dependency map, tables, metrics)
+- [ ] **Topic README.md created** (for new topics — auto-rendered by GitHub)
+- [ ] **MAIN/INDEX.md updated** (main wiki: dependency map, tables, metrics)
 
 ---
 
@@ -325,10 +334,11 @@ Before committing, verify:
 mkdir MAIN/publications/[topic-name]/
 ```
 
-**Step 2: Create topic INDEX.md**
-- Copy from `MAIN/resources/templates/INDEX_TEMPLATE.md`
+**Step 2: Create topic README.md**
+- Copy from `MAIN/resources/templates/README_TEMPLATE.md`
 - Fill in: summary, dependencies, key concepts, related topics
-- Link back to `MAIN/INDEX.md`
+- Link back to `MAIN/INDEX.md` (main wiki)
+- **Note:** Use `README.md` (not INDEX.md) — GitHub auto-renders it when browsing folders
 
 **Step 3: Create publications**
 - `Blog-[Topic_Name].md` — Accessible narrative (include original Medium URL if applicable)

@@ -26,9 +26,9 @@ The article proposes a three-category threat taxonomy: attacks BY quantum comput
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Layer model extends to quantum-classical interfaces |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | f × S ≈ k invariant applies to quantum coherence |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Coherence concepts parallel quantum decoherence |
+| [ONI Framework](../0-oni-framework/) | Layer model extends to quantum-classical interfaces |
+| [Scale-Frequency](../scale-frequency/) | f × S ≈ k invariant applies to quantum coherence |
+| [Coherence Metric](../coherence-metric/) | Coherence concepts parallel quantum decoherence |
 
 **Topics that build on this:**
 
@@ -75,10 +75,10 @@ The article proposes a three-category threat taxonomy: attacks BY quantum comput
 
 | Topic | Connection |
 |-------|------------|
-| [Scale-Frequency](../scale-frequency/INDEX.md) | f × S ≈ k explains coherence collapse mechanics |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Signal coherence concepts apply to quantum states |
-| [Neural Firewall](../neural-firewall/INDEX.md) | Defense architectures transferable to quantum systems |
-| [Neural Ransomware](../neural-ransomware/INDEX.md) | Threat modeling approaches applicable to quantum |
+| [Scale-Frequency](../scale-frequency/) | f × S ≈ k explains coherence collapse mechanics |
+| [Coherence Metric](../coherence-metric/) | Signal coherence concepts apply to quantum states |
+| [Neural Firewall](../neural-firewall/) | Defense architectures transferable to quantum systems |
+| [Neural Ransomware](../neural-ransomware/) | Threat modeling approaches applicable to quantum |
 
 ---
 

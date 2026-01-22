@@ -24,10 +24,10 @@ The framework extends the Scale-Frequency Invariant (`f × S ≈ k`) from neural
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Layer model provides structural context for interface security |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | `f × S ≈ k` invariant extended to quantum coherence |
-| [Quantum Security](../quantum-security/INDEX.md) | Quantum threat landscape and post-quantum defenses |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Coherence concepts parallel quantum decoherence |
+| [ONI Framework](../0-oni-framework/) | Layer model provides structural context for interface security |
+| [Scale-Frequency](../scale-frequency/) | `f × S ≈ k` invariant extended to quantum coherence |
+| [Quantum Security](../quantum-security/) | Quantum threat landscape and post-quantum defenses |
+| [Coherence Metric](../coherence-metric/) | Coherence concepts parallel quantum decoherence |
 
 **Topics that build on this:**
 
@@ -85,10 +85,10 @@ The framework extends the Scale-Frequency Invariant (`f × S ≈ k`) from neural
 
 | Topic | Connection |
 |-------|------------|
-| [Quantum Security](../quantum-security/INDEX.md) | Parent topic for quantum threats; TTT extends defense mechanisms |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | `f × S ≈ k` provides unifying mathematical framework |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Coherence concepts map to quantum decoherence |
-| [Neural Firewall](../neural-firewall/INDEX.md) | TTT mechanisms integrate at L8 security boundary |
+| [Quantum Security](../quantum-security/) | Parent topic for quantum threats; TTT extends defense mechanisms |
+| [Scale-Frequency](../scale-frequency/) | `f × S ≈ k` provides unifying mathematical framework |
+| [Coherence Metric](../coherence-metric/) | Coherence concepts map to quantum decoherence |
+| [Neural Firewall](../neural-firewall/) | TTT mechanisms integrate at L8 security boundary |
 
 ---
 

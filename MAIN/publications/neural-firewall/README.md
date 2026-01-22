@@ -24,14 +24,14 @@ By treating the neural gateway as an untrusted boundary — regardless of whethe
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Defines Layer 8 architecture where firewall operates |
-| [Coherence Metric](../coherence-metric/INDEX.md) | Provides signal trust scores for filtering decisions |
+| [ONI Framework](../0-oni-framework/) | Defines Layer 8 architecture where firewall operates |
+| [Coherence Metric](../coherence-metric/) | Provides signal trust scores for filtering decisions |
 
 **Topics that build on this:**
 
 | Topic | Relationship |
 |-------|--------------|
-| [Neural Ransomware](../neural-ransomware/INDEX.md) | Threat modeling for attacks that bypass or target firewall |
+| [Neural Ransomware](../neural-ransomware/) | Threat modeling for attacks that bypass or target firewall |
 
 ---
 
@@ -60,8 +60,8 @@ By treating the neural gateway as an untrusted boundary — regardless of whethe
 
 | Topic | Connection |
 |-------|------------|
-| [Coherence Metric](../coherence-metric/INDEX.md) | Trust scores drive firewall accept/reject decisions |
-| [Neural Ransomware](../neural-ransomware/INDEX.md) | Firewall is primary defense against ransomware attacks |
+| [Coherence Metric](../coherence-metric/) | Trust scores drive firewall accept/reject decisions |
+| [Neural Ransomware](../neural-ransomware/) | Firewall is primary defense against ransomware attacks |
 
 ---
 

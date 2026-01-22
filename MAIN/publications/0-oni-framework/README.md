@@ -31,10 +31,10 @@ By providing a common vocabulary across neuroscience, security engineering, and 
 
 | Topic | Relationship |
 |-------|--------------|
-| [Coherence Metric](../coherence-metric/INDEX.md) | Signal validation mathematics for L8-L10 |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | Cross-layer frequency invariants |
-| [Neural Firewall](../neural-firewall/INDEX.md) | Zero-trust security implementation at L8 |
-| [Neural Ransomware](../neural-ransomware/INDEX.md) | Threat modeling across all layers |
+| [Coherence Metric](../coherence-metric/) | Signal validation mathematics for L8-L10 |
+| [Scale-Frequency](../scale-frequency/) | Cross-layer frequency invariants |
+| [Neural Firewall](../neural-firewall/) | Zero-trust security implementation at L8 |
+| [Neural Ransomware](../neural-ransomware/) | Threat modeling across all layers |
 
 ---
 
@@ -83,9 +83,9 @@ By providing a common vocabulary across neuroscience, security engineering, and 
 
 | Topic | Connection |
 |-------|------------|
-| [Coherence Metric](../coherence-metric/INDEX.md) | Implements signal trust scoring referenced in L8-L10 |
-| [Neural Firewall](../neural-firewall/INDEX.md) | Zero-trust architecture at the Neural Gateway |
-| [Scale-Frequency](../scale-frequency/INDEX.md) | Mathematical invariants across biological layers |
+| [Coherence Metric](../coherence-metric/) | Implements signal trust scoring referenced in L8-L10 |
+| [Neural Firewall](../neural-firewall/) | Zero-trust architecture at the Neural Gateway |
+| [Scale-Frequency](../scale-frequency/) | Mathematical invariants across biological layers |
 
 ---
 

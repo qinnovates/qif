@@ -24,13 +24,13 @@ For BCI security, this invariant establishes expectations for legitimate signals
 
 | Topic | Relationship |
 |-------|--------------|
-| [ONI Framework](../0-oni-framework/INDEX.md) | Layer definitions for scale-frequency mapping |
+| [ONI Framework](../0-oni-framework/) | Layer definitions for scale-frequency mapping |
 
 **Topics that build on this:**
 
 | Topic | Relationship |
 |-------|--------------|
-| [Coherence Metric](../coherence-metric/INDEX.md) | Frequency expectations inform coherence validation |
+| [Coherence Metric](../coherence-metric/) | Frequency expectations inform coherence validation |
 
 ---
 
@@ -59,8 +59,8 @@ For BCI security, this invariant establishes expectations for legitimate signals
 
 | Topic | Connection |
 |-------|------------|
-| [Coherence Metric](../coherence-metric/INDEX.md) | Uses frequency expectations for validation |
-| [ONI Framework](../0-oni-framework/INDEX.md) | Provides layer structure for scale mapping |
+| [Coherence Metric](../coherence-metric/) | Uses frequency expectations for validation |
+| [ONI Framework](../0-oni-framework/) | Provides layer structure for scale mapping |
 
 ---
 
