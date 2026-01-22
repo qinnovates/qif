@@ -23,6 +23,7 @@
   - [Neural Firewall](#️-neural-firewall)
   - [Neural Ransomware](#-neural-ransomware)
   - [ONI Framework (Base)](#️-oni-framework-base)
+  - [Quantum Security](#-quantum-security)
   - [Scale-Frequency](#-scale-frequency)
 - [About the Author](#about-the-author)
 - [Contributing](#contributing)
@@ -61,6 +62,7 @@ ONI/
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
+    │   ├── quantum-security/
     │   └── scale-frequency/
     │
     └── artifacts/               # Non-content (infrastructure)
@@ -190,6 +192,14 @@ Core ONI architecture, 14-layer model extending OSI into biological territory. *
 | [Blog-ONI_Framework](MAIN/publications/0-oni-framework/Blog-ONI_Framework.md) | *If you've worked in IT, you know the OSI model.* |
 | [TechDoc-ONI_Framework](MAIN/publications/0-oni-framework/TechDoc-ONI_Framework.md) | *A Unified Neuro-Computational Stack for Secure Bio-Digital Integration.* |
 
+### ⚛️ Quantum Security — [INDEX](MAIN/publications/quantum-security/INDEX.md)
+
+Quantum computing threats to cryptography, HNDL attacks, physical quantum vulnerabilities, and post-quantum defenses.
+
+| Document | Summary |
+|----------|----------|
+| [Blog-Quantum_Security](MAIN/publications/quantum-security/Blog-Quantum_Security.md) | *The real quantum threat isn't about transcending spacetime—it's about transcending computational complexity.* |
+
 ### 🔬 Scale-Frequency — [INDEX](MAIN/publications/scale-frequency/INDEX.md)
 
 Cross-scale neural patterns, frequency invariants, and information compression.
@@ -229,4 +239,4 @@ Apache License 2.0 - See [LICENSE](LICENSE)
 
 *Auto-published from research pipeline*
 *Last update: 2026-01-21*
-*Documents: 10 | Topics: 5 | Topic Indexes: 5*
+*Documents: 11 | Topics: 6 | Topic Indexes: 6*

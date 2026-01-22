@@ -32,11 +32,11 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
             │                     │                      │
             │                     └──────────┬───────────┘
             │                                │
-            │                                ▼
-            │                     ┌─────────────────────┐
-            │                     │  NEURAL RANSOMWARE  │
-            │                     │   Threat modeling   │
-            └─────────────────────┴─────────────────────┘
+            ▼                                ▼
+   ┌─────────────────┐            ┌─────────────────────┐
+   │QUANTUM SECURITY │            │  NEURAL RANSOMWARE  │
+   │ HNDL, PQC, f×S≈k│            │   Threat modeling   │
+   └─────────────────┘            └─────────────────────┘
 ```
 
 **Reading Order (Recommended):**
@@ -45,6 +45,7 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 3. Coherence Metric → Signal validation
 4. Neural Firewall → Security architecture
 5. Neural Ransomware → Threat landscape
+6. Quantum Security → Cryptographic threats & defenses
 
 ---
 
@@ -69,6 +70,7 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 |-------|---------|-----------|--------|
 | [Neural Firewall](publications/neural-firewall/INDEX.md) | Zero-trust security at the neural gateway (L8) | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) | Published |
 | [Neural Ransomware](publications/neural-ransomware/INDEX.md) | Threat analysis and defensive architectures | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) | Published |
+| [Quantum Security](publications/quantum-security/INDEX.md) | Quantum threats, HNDL attacks, post-quantum cryptography | [Blog](publications/quantum-security/Blog-Quantum_Security.md) | Published |
 
 ---
 
@@ -76,13 +78,14 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
 
 Shows which topics reference which. Use this to understand conceptual dependencies.
 
-|                    | ONI Framework | Coherence | Scale-Freq | Firewall | Ransomware |
-|--------------------|:-------------:|:---------:|:----------:|:--------:|:----------:|
-| **ONI Framework**  | —             | ●         | ●          | ●        | ●          |
-| **Coherence**      | ◄             | —         | ○          | ●        | ●          |
-| **Scale-Frequency**| ◄             | ○         | —          | ○        | ○          |
-| **Firewall**       | ◄             | ◄         | ○          | —        | ●          |
-| **Ransomware**     | ◄             | ◄         | ○          | ◄        | —          |
+|                    | ONI Framework | Coherence | Scale-Freq | Firewall | Ransomware | Quantum |
+|--------------------|:-------------:|:---------:|:----------:|:--------:|:----------:|:-------:|
+| **ONI Framework**  | —             | ●         | ●          | ●        | ●          | ●       |
+| **Coherence**      | ◄             | —         | ○          | ●        | ●          | ○       |
+| **Scale-Frequency**| ◄             | ○         | —          | ○        | ○          | ●       |
+| **Firewall**       | ◄             | ◄         | ○          | —        | ●          | ○       |
+| **Ransomware**     | ◄             | ◄         | ○          | ◄        | —          | ○       |
+| **Quantum**        | ◄             | ◄         | ◄          | ○        | ○          | —       |
 
 **Legend:** ● = references this topic | ◄ = referenced by this topic | ○ = related concept
 
@@ -176,9 +179,9 @@ Add keywords for research monitoring integration.
 
 | Metric | Count |
 |--------|-------|
-| Total Topics | 5 |
-| Published Documents | 10 |
-| Blog Posts | 5 |
+| Total Topics | 6 |
+| Published Documents | 11 |
+| Blog Posts | 6 |
 | Technical Documents | 5 |
 | Planned Topics | 5 |
 

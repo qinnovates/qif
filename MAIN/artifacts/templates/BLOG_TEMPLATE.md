@@ -338,10 +338,17 @@ tags: ['neuroscience', 'cybersecurity', 'neuralink', 'brain-computer-interface',
 
 ## Footer Format
 
-At the end of each Medium post, include:
+At the end of each blog post, include:
 
 ```markdown
 **Sub-Tags:** #Tag1 #Tag2 #Tag3 #Tag4 #Tag5
+
+---
+
+**Related Articles:**
+- [Article Title 1](link-to-article-1)
+- [Article Title 2](link-to-article-2)
+- [Article Title 3](link-to-article-3)
 
 ---
 
@@ -350,7 +357,9 @@ At the end of each Medium post, include:
 *Originally published on [Medium](URL) on [Month Day, Year] at [HH:MM:SS GMT]*
 ```
 
-**Note:** Use `Sub-Tags:` (not `Tags:`) for the hashtag line at the bottom of posts.
+**Notes:**
+- Use `Sub-Tags:` (not `Tags:`) for the hashtag line at the bottom of posts.
+- **Related Articles** section is REQUIRED - link to 2-5 other ONI Framework publications that connect to this topic.
 
 ---
 
@@ -370,11 +379,12 @@ Before publishing:
 - [ ] Analogies make complex ideas accessible
 - [ ] Call to action or forward look at the end
 - [ ] 5 relevant tags selected (2 broad, 2 niche, 1 angle)
-- [ ] Front matter complete (title, subtitle, date_posted, url, tags)
-- [ ] Footer complete (Sub-Tags, GitHub link, Originally published)
+- [ ] Front matter complete (title, subtitle, date_posted, original_url, tags)
+- [ ] Footer complete (Sub-Tags, Related Articles, GitHub link, Originally published)
+- [ ] **Related Articles section included** (2-5 linked ONI publications)
 
 ---
 
-*Template Version: 2.0*
+*Template Version: 2.1*
 *Last Updated: January 2026*
 *Series: ONI Framework Publications*
