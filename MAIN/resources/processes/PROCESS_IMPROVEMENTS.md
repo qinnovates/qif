@@ -4,21 +4,24 @@
 
 ### What's Working
 1. **Clear folder structure** - Topic-based organization with `MAIN/publications/` and `MAIN/resources/` separation
-2. **Naming conventions** - Consistent `Medium-*` and `TechDoc-*` patterns across all 10 publications
-3. **Templates exist** - APA, Medium (v2), and INDEX templates provide comprehensive formatting guidance
+2. **Naming conventions** - Consistent `Blog-*` and `TechDoc-*` patterns across all 13 publications
+3. **Templates exist** - APA TechDoc, Blog, and INDEX templates provide comprehensive formatting guidance
 4. **CLAUDE.md** - Comprehensive AI instructions with file trees, workflows, and quality checklists
-5. **MAIN/INDEX.md** - Cross-reference registry with dependency maps and publication matrix
+5. **MAIN/INDEX.md** - Cross-reference registry with dependency maps, publication matrix, and metrics
 6. **Research Pipeline** - Automated research monitoring via `keywords.json` and `research_monitor.py`
 7. **YAML front-matter** - Implemented on all publications with title, date, URL, and tags
+8. **Topic INDEX.md files** - All 7 topic folders have INDEX.md with dependencies, key concepts, and future work
+9. **APA formatting** - Technical documents follow APA 7th edition with proper citations and acknowledgments
 
 ### Gaps Identified
 1. ~~No automated validation of file naming~~ → Checklist documented, automation pending
 2. ~~README.md updates are manual and error-prone~~ → Process documented in CLAUDE.md
 3. ~~No version tracking for individual documents~~ → Partial (front-matter on publications)
 4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: MAIN/INDEX.md**
-5. No content calendar or publishing schedule tracking
-6. INDEX.md only deployed to 1 of 5 topic folders
+5. ~~INDEX.md only deployed to 1 of 5 topic folders~~ → **RESOLVED: All 7 folders have INDEX.md**
+6. No content calendar or publishing schedule tracking
 7. No CHANGELOG.md at repository root
+8. No automated docx generation workflow (currently manual pandoc commands)
 
 ---
 
@@ -32,21 +35,26 @@ Create a checklist that Claude runs through before every commit:
 ## Pre-Commit Verification
 
 ### File Naming
-- [ ] All Medium posts match `Medium-[Topic_Name].md`
-- [ ] All papers match `[Topic_Name]_Paper.md`
+- [ ] All blog posts match `Blog-[Topic_Name].md`
+- [ ] All papers match `TechDoc-[Topic_Name].md`
 - [ ] Folder names are lowercase-hyphenated
+- [ ] INDEX.md exists in topic folder
 
 ### Content Quality
-- [ ] Tables have bold numbers, italic titles
-- [ ] References are APA formatted (papers)
-- [ ] Acknowledgments included (papers)
-- [ ] Front matter complete (Medium)
+- [ ] APA formatting on TechDocs (author, abstract, keywords, numbered sections)
+- [ ] References are APA formatted with DOIs where available
+- [ ] Acknowledgments section included (TechDocs)
+- [ ] Front matter complete (Blog posts)
+- [ ] Related Articles section included (Blog posts)
 
 ### Repository Updates
-- [ ] README.md links updated
-- [ ] README.md document count updated
-- [ ] README.md date updated
-- [ ] File trees in instructions updated if structure changed
+- [ ] MAIN/INDEX.md Quick Navigation updated
+- [ ] MAIN/INDEX.md Reading Order updated
+- [ ] MAIN/INDEX.md Dependency Map updated
+- [ ] MAIN/INDEX.md Cross-Reference Matrix updated
+- [ ] MAIN/INDEX.md Metrics updated
+- [ ] Topic INDEX.md created/updated
+- [ ] docx files regenerated via pandoc
 ```
 
 ### 2. Document Metadata Standard
@@ -57,17 +65,17 @@ Add consistent metadata to all documents:
 ---
 # Required for all documents
 title: ""
-type: "Medium" | "Paper" | "Template" | "Instructions"
+type: "Blog" | "TechDoc" | "Template" | "Instructions"
 topic: ""  # Maps to folder name
 version: "1.0"
 created: "YYYY-MM-DD"
 updated: "YYYY-MM-DD"
 
-# For Medium posts
+# For Blog posts
 url: ""
 tags: []
 
-# For Papers
+# For TechDocs
 keywords: []
 abstract: ""
 ---
@@ -75,17 +83,17 @@ abstract: ""
 
 ### 3. Cross-Reference Registry
 
-Maintain a registry of how documents reference each other:
+Maintained in MAIN/INDEX.md. Current state (as of January 2026):
 
 | Document | References | Referenced By |
 |----------|------------|---------------|
-| ONI_Framework_Paper | - | All other papers |
-| Coherence_Metric_Paper | ONI_Framework | Neural_Firewall, Neural_Ransomware |
-| Neural_Firewall_Paper | ONI_Framework, Coherence_Metric | Neural_Ransomware |
-| Neural_Ransomware_Paper | ONI_Framework, Coherence_Metric, Neural_Firewall | - |
-| Scale_Frequency_Paper | ONI_Framework | - |
-
-This helps maintain consistency when updating any document.
+| ONI Framework | - | All other papers |
+| Coherence Metric | ONI Framework | Neural Firewall, Neural Ransomware, TTT |
+| Scale-Frequency | ONI Framework | Quantum Security, TTT |
+| Neural Firewall | ONI Framework, Coherence Metric | Neural Ransomware, TTT |
+| Neural Ransomware | ONI Framework, Coherence Metric, Neural Firewall | - |
+| Quantum Security | ONI Framework, Scale-Frequency, Coherence Metric | TTT |
+| Tunneling Traversal Time | ONI Framework, Scale-Frequency, Quantum Security, Coherence Metric | - |
 
 ### 4. Version Changelog
 
@@ -94,19 +102,29 @@ Create `CHANGELOG.md` at repository root:
 ```markdown
 # Changelog
 
+## [2026-01-22]
+### Added
+- Tunneling Traversal Time publication (Blog + TechDoc)
+- Topic INDEX.md for tunneling-traversal-time
+- Quantum Security TechDoc
+
+### Changed
+- Updated MAIN/INDEX.md with new publication (metrics now 7 topics, 13 docs)
+- Cross-reference matrix expanded to include TTT
+
 ## [2026-01-21]
 ### Added
-- README.AI.md for Claude instructions
-- MEDIUM_TEMPLATE.md for post formatting
-- PUBLISHING_INSTRUCTIONS.md workflow guide
+- MAIN/INDEX.md as central navigation hub
+- INDEX_TEMPLATE.md for topic folders
+- Quantum Security Blog post
 
 ### Changed
 - Reorganized into MAIN/publications structure
-- Renamed files to consistent convention
-- Updated ABOUT.md with expanded bio
+- Renamed files from Medium-* to Blog-* convention
+- Updated all topic INDEX.md files
 
 ### Removed
-- Duplicate Medium post files
+- medium_template_v2.py (consolidated into BLOG_TEMPLATE.md)
 ```
 
 ### 5. Publishing Workflow States
@@ -114,7 +132,7 @@ Create `CHANGELOG.md` at repository root:
 Track content through stages:
 
 ```
-Draft → Review → Formatted → Committed → Published
+Research → Draft → Review → Formatted → Committed → Published
 ```
 
 For each document, track:
@@ -130,11 +148,16 @@ For each document, track:
 ### Current Templates
 | Template | Purpose | Location | Status |
 |----------|---------|----------|--------|
-| TECHDOC_TEMPLATE_APA.md | Technical papers | MAIN/resources/templates/ | ✓ Active |
-| MEDIUM_TEMPLATE.md | Medium posts (v2) | MAIN/resources/templates/ | ✓ Active |
-| medium_template_v2.py | Python template generator | MAIN/resources/templates/ | ✓ Active |
-| INDEX_TEMPLATE.md | Topic folder indexes | MAIN/resources/templates/ | ✓ Active |
-| PUBLISHING_INSTRUCTIONS.md | Workflow guide | MAIN/resources/processes/ | ✓ Active |
+| TECHDOC_TEMPLATE_APA.md | Technical papers (APA 7th) | MAIN/resources/templates/ | Active |
+| BLOG_TEMPLATE.md | Blog posts (Medium-optimized) | MAIN/resources/templates/ | Active |
+| INDEX_TEMPLATE.md | Topic folder indexes | MAIN/resources/templates/ | Active |
+| PUBLISHING_INSTRUCTIONS.md | Workflow guide | MAIN/resources/processes/ | Active |
+
+### Deprecated Templates
+| Template | Reason | Replaced By |
+|----------|--------|-------------|
+| medium_template_v2.py | Consolidated | BLOG_TEMPLATE.md |
+| MEDIUM_TEMPLATE.md | Renamed | BLOG_TEMPLATE.md |
 
 ### Proposed Additional Templates
 
@@ -166,53 +189,31 @@ For shorter, less formal research notes that may become papers later:
 [Unstructured notes, quotes, references]
 ```
 
-#### 2. Topic Index Template — ✓ IMPLEMENTED
-Template exists at `MAIN/resources/templates/INDEX_TEMPLATE.md`. Deployed to `0-oni-framework/INDEX.md`.
-For each topic folder, create an INDEX.md:
-
-```markdown
-# [Topic Name] Index
-
-## Overview
-[2-3 sentence summary of this topic area]
-
-## Documents
-
-| Document | Type | Last Updated | Status |
-|----------|------|--------------|--------|
-| Medium-Topic.md | Medium | 2026-01-21 | Published |
-| Topic_Paper.md | Paper | 2026-01-21 | Complete |
-
-## Key Concepts
-- Concept 1: [brief definition]
-- Concept 2: [brief definition]
-
-## Related Topics
-- [Link to related topic 1]
-- [Link to related topic 2]
-```
+#### 2. Topic Index Template — IMPLEMENTED
+Template exists at `MAIN/resources/templates/INDEX_TEMPLATE.md`. **Deployed to all 7 topic folders.**
 
 ---
 
 ## Automation Opportunities
 
-### 1. README.md Auto-Update Script
+### 1. INDEX.md Auto-Update Script
 
 Logic for Claude to follow after each content addition:
 
 1. Scan `MAIN/publications/*/` for all markdown files
-2. Count total documents
-3. Update document count in README.md footer
-4. Update date in README.md footer
-5. Verify all links in Topics & Documents section are valid
+2. Count total documents (Blog + TechDoc per folder)
+3. Update MAIN/INDEX.md metrics section
+4. Verify all links in Quick Navigation section are valid
+5. Update dependency map if new topic added
 
 ### 2. File Naming Validator
 
 Before commit, verify:
 ```
-- Medium posts: /^Medium-[A-Z][a-zA-Z_]+\.md$/
-- Papers: /^[A-Z][a-zA-Z_]+_(Paper|Detailed_Paper)\.md$/
+- Blog posts: /^Blog-[A-Z][a-zA-Z_]+\.md$/
+- TechDocs: /^TechDoc-[A-Z][a-zA-Z_]+\.md$/
 - Folders: /^[a-z]+(-[a-z]+)*$/
+- Required files per folder: INDEX.md, Blog-*.md, TechDoc-*.md
 ```
 
 ### 3. Cross-Reference Checker
@@ -222,6 +223,15 @@ After editing any paper:
 2. Verify referenced documents exist
 3. Check if referenced documents need updates for consistency
 
+### 4. Docx Generation Automation
+
+After each markdown update:
+```bash
+cd MAIN/publications/[topic]/
+pandoc Blog-*.md -o Blog-*.docx
+pandoc TechDoc-*.md -o TechDoc-*.docx
+```
+
 ---
 
 ## Current File Tree (Implemented)
@@ -229,83 +239,115 @@ After editing any paper:
 ```
 ONI/
 ├── README.md
-├── CLAUDE.md                       # ✓ AI instructions (was README.AI.md)
-├── MAIN/INDEX.md                    # ✓ Cross-reference registry
+├── CLAUDE.md                       # AI instructions
 ├── ABOUT.md
-├── CHANGELOG.md                    # ✗ PENDING
+├── CHANGELOG.md                    # PENDING
 ├── CONTRIBUTING.md
 ├── LICENSE
 │
 └── MAIN/
+    ├── INDEX.md                     # Central navigation hub
+    │
     ├── resources/
     │   ├── templates/
     │   │   ├── TECHDOC_TEMPLATE_APA.md
-    │   │   ├── MEDIUM_TEMPLATE.md
-    │   │   ├── medium_template_v2.py
+    │   │   ├── BLOG_TEMPLATE.md
     │   │   └── INDEX_TEMPLATE.md
     │   ├── processes/
     │   │   ├── PUBLISHING_INSTRUCTIONS.md
     │   │   └── PROCESS_IMPROVEMENTS.md   # This file
     │   └── pipeline/
-    │       └── continuous-research-delivery/
-    │           └── scripts/
-    │               ├── keywords.json
-    │               └── research_monitor.py
+    │       ├── scripts/
+    │       │   ├── keywords.json
+    │       │   └── research_monitor.py
+    │       ├── incoming/
+    │       └── processed/
     │
-    └── publications/
-        ├── 0-oni-framework/
-        │   ├── INDEX.md              # ✓ COMPLETE
-        │   ├── Medium-ONI_Framework.md
-        │   └── TechDoc-ONI_Framework.md
-        │
-        ├── coherence-metric/
-        │   ├── INDEX.md              # ✗ PENDING
-        │   ├── Medium-Coherence_Metric.md
-        │   └── TechDoc-Coherence_Metric_Detailed.md
-        │
-        ├── neural-firewall/
-        │   ├── INDEX.md              # ✗ PENDING
-        │   ├── Medium-Neural_Firewall.md
-        │   └── TechDoc-Neural_Firewall_Architecture.md
-        │
-        ├── neural-ransomware/
-        │   ├── INDEX.md              # ✗ PENDING
-        │   ├── Medium-Neural_Ransomware.md
-        │   └── TechDoc-Neural_Ransomware.md
-        │
-        └── scale-frequency/
-            ├── INDEX.md              # ✗ PENDING
-            ├── Medium-Scale_Frequency.md
-            └── TechDoc-Scale_Frequency.md
+    ├── publications/
+    │   ├── 0-oni-framework/
+    │   │   ├── INDEX.md              # COMPLETE
+    │   │   ├── Blog-ONI_Framework.md
+    │   │   └── TechDoc-ONI_Framework.md
+    │   │
+    │   ├── coherence-metric/
+    │   │   ├── INDEX.md              # COMPLETE
+    │   │   ├── Blog-Coherence_Metric.md
+    │   │   └── TechDoc-Coherence_Metric_Detailed.md
+    │   │
+    │   ├── neural-firewall/
+    │   │   ├── INDEX.md              # COMPLETE
+    │   │   ├── Blog-Neural_Firewall.md
+    │   │   └── TechDoc-Neural_Firewall_Architecture.md
+    │   │
+    │   ├── neural-ransomware/
+    │   │   ├── INDEX.md              # COMPLETE
+    │   │   ├── Blog-Neural_Ransomware.md
+    │   │   └── TechDoc-Neural_Ransomware.md
+    │   │
+    │   ├── scale-frequency/
+    │   │   ├── INDEX.md              # COMPLETE
+    │   │   ├── Blog-Scale_Frequency.md
+    │   │   └── TechDoc-Scale_Frequency.md
+    │   │
+    │   ├── quantum-security/
+    │   │   ├── INDEX.md              # COMPLETE
+    │   │   ├── Blog-Quantum_Security.md
+    │   │   └── TechDoc-Quantum_Security.md
+    │   │
+    │   └── tunneling-traversal-time/
+    │       ├── INDEX.md              # COMPLETE
+    │       ├── Blog-Tunneling_Traversal_Time.md
+    │       ├── Blog-Tunneling_Traversal_Time.docx
+    │       ├── TechDoc-Tunneling_Traversal_Time.md
+    │       └── TechDoc-Tunneling_Traversal_Time.docx
+    │
+    └── prototypes/
+        └── oni-visualizations/
+            └── README.md
 ```
 
 ---
 
 ## Implementation Priority
 
-### Phase 1 (Immediate) — ✓ COMPLETE
-- [x] Create README.AI.md → **Implemented as CLAUDE.md** (11KB, comprehensive instructions)
-- [x] Create MEDIUM_TEMPLATE.md → **v2 with Python generator**
-- [x] Standardize file naming → **`Medium-*` and `TechDoc-*` patterns**
-- [x] Update all file trees in documentation → **MAIN/publications + resources structure**
+### Phase 1 (Immediate) — COMPLETE
+- [x] Create CLAUDE.md (comprehensive AI instructions)
+- [x] Create BLOG_TEMPLATE.md (v2 with style guide)
+- [x] Standardize file naming (`Blog-*` and `TechDoc-*` patterns)
+- [x] Update all file trees in documentation
+- [x] Create INDEX_TEMPLATE.md
+- [x] Deploy INDEX.md to all topic folders (7 of 7 complete)
+- [x] Create MAIN/INDEX.md with dependency map and cross-reference matrix
 
-### Phase 2 (Next Session) — 🔄 IN PROGRESS
+### Phase 2 (Next Session) — IN PROGRESS
 - [ ] Create CHANGELOG.md at repository root
-- [x] Create INDEX_TEMPLATE.md → **Implemented**
-- [ ] Deploy INDEX.md to topic folders (1 of 5 complete):
-  - [x] `0-oni-framework/INDEX.md`
-  - [ ] `coherence-metric/INDEX.md`
-  - [ ] `neural-firewall/INDEX.md`
-  - [ ] `neural-ransomware/INDEX.md`
-  - [ ] `scale-frequency/INDEX.md`
 - [ ] Create Research Note template file
+- [ ] Add docx generation to standard workflow documentation
+- [ ] Verify all topic INDEX.md files have consistent formatting
 
-### Phase 3 (Future) — 🔄 PARTIALLY COMPLETE
-- [x] Build cross-reference registry → **MAIN/INDEX.md with dependency map & matrix**
-- [x] Document pre-commit checklist → **In CLAUDE.md (lines 239-256)**
+### Phase 3 (Future)
+- [x] Build cross-reference registry → **MAIN/INDEX.md**
+- [x] Document pre-commit checklist → **In CLAUDE.md**
 - [ ] Automate pre-commit checklist as `.git/hooks/pre-commit`
-- [x] Add document metadata to publications → **YAML front-matter on all 10 publications**
+- [x] Add document metadata to publications → **YAML front-matter on all 13 publications**
 - [ ] Add consistent metadata to infrastructure files (templates, processes)
+- [ ] Implement content calendar for publishing schedule tracking
+- [ ] Create automated docx generation script
+
+---
+
+## Metrics Summary
+
+| Metric | Count | Last Updated |
+|--------|-------|--------------|
+| Total Topics | 7 | 2026-01-22 |
+| Published Documents | 13 | 2026-01-22 |
+| Blog Posts | 7 | 2026-01-22 |
+| Technical Documents | 6 | 2026-01-22 |
+| Topic INDEX.md Files | 7 | 2026-01-22 |
+| Prototypes | 1 | 2026-01-21 |
+| Templates | 3 | 2026-01-21 |
+| Planned Topics | 5 | 2026-01-21 |
 
 ---
 
@@ -313,22 +355,44 @@ ONI/
 
 ### Immediate Priority
 1. **Create CHANGELOG.md** at repository root with semantic versioning history
-2. **Deploy INDEX.md** to remaining 4 topic folders using INDEX_TEMPLATE.md:
-   - `coherence-metric/`
-   - `neural-firewall/`
-   - `neural-ransomware/`
-   - `scale-frequency/`
+2. **Verify docx files** exist for all publications (currently only tunneling-traversal-time has them)
 
 ### Short-Term
 3. **Create Research Note template** as `MAIN/resources/templates/RESEARCH_NOTE_TEMPLATE.md`
 4. **Add YAML metadata** to all infrastructure files in `resources/`
+5. **Generate docx files** for all publications using pandoc
 
 ### Medium-Term
-5. **Create pre-commit hook** (`.git/hooks/pre-commit`) to automate validation
-6. **Implement content calendar** for publishing schedule tracking
+6. **Create pre-commit hook** (`.git/hooks/pre-commit`) to automate validation
+7. **Implement content calendar** for publishing schedule tracking
+8. **Create docx generation script** to automate Word document creation
 
 ---
 
-*Strategy Version: 2.0*
-*Last Updated: January 21, 2026*
+## Recent Additions Log
+
+### 2026-01-22
+- **Tunneling Traversal Time** publication added:
+  - TechDoc with APA 7th edition formatting
+  - Blog post with template-compliant structure
+  - INDEX.md with dependencies, key concepts, threat model
+  - docx files generated for both documents
+- **MAIN/INDEX.md** updated with:
+  - New entry in Quick Navigation
+  - Step 7 in Reading Order
+  - Expanded Dependency Map (TTT under Quantum Security)
+  - TTT row/column in Cross-Reference Matrix
+  - Updated folder structure
+  - Metrics updated (7 topics, 13 documents)
+
+### 2026-01-21
+- Quantum Security publication added
+- MAIN folder restructure completed
+- All topic INDEX.md files deployed
+- Blog/TechDoc naming convention standardized
+
+---
+
+*Strategy Version: 3.0*
+*Last Updated: January 22, 2026*
 *Author: Kevin L. Qi with Claude (Anthropic)*
