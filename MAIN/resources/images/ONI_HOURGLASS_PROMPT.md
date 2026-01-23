@@ -1,6 +1,6 @@
-# ChatGPT Prompt for ONI Hourglass Diagram
+# Prompt for ONI Hourglass Diagram
 
-> Use this prompt with ChatGPT (DALL-E) or similar image generators to create the ONI Framework hourglass visualization.
+> Use this prompt with Google Nano Banana Pro or similar image generators to create the ONI Framework hourglass visualization.
 
 ---
 
@@ -65,17 +65,6 @@ Create a technical hourglass diagram showing:
 Dark background, modern style, title "ONI Framework"
 ```
 
----
-
-## Notes for Image Generation
-
-1. If the AI struggles with the hourglass shape, try describing it as "two triangles meeting at a point" or "diamond shape rotated 90 degrees"
-
-2. You may need to specify "infographic style" or "presentation diagram" to get clean technical output
-
-3. For best results with layer labels, generate at higher resolution (1024x1024 or larger)
-
-4. Post-processing: You may want to add the actual layer names manually in a graphics editor for accuracy
 
 ---
 
