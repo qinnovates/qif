@@ -442,6 +442,54 @@ Update the document count at the bottom:
 
 ---
 
+## INDEX.md Update Protocol
+
+> **CRITICAL:** INDEX.md is the central wiki hub. Update it for ANY structural or package change:
+> - Python package changes (versions, new modules, new packages)
+> - Folder structure changes (moved files, renamed directories)
+> - New topics or publications
+> - Test count changes
+> - Dependency map changes
+
+**After every commit that modifies packages, structure, or dependencies, update INDEX.md:**
+
+### Step 1: Python Packages Section
+If package versions change or new modules are added:
+- Update version numbers in the module tables
+- Add new modules to the appropriate table
+- Update `pip install` commands if package names change
+
+### Step 2: Dependency Map
+If adding new components that depend on existing ones:
+- Update the ASCII diagram to show relationships
+- Ensure arrows show correct dependency direction
+
+### Step 3: Folder Structure
+If files are moved or directories are renamed:
+- Update the folder tree diagram
+- Verify all paths are correct
+- Include test counts and version numbers
+
+### Step 4: Metrics Section
+Update the metrics table:
+- Python Packages: list all packages with versions
+- Unit Tests: total count (sum of all packages)
+- Document counts if publications change
+
+### Step 5: Version and Date
+```markdown
+**Version:** [increment minor version]
+**Last Updated:** YYYY-MM-DD
+```
+
+**Common Mistakes to Avoid:**
+- Forgetting to update `siem/` to `nsam/` (the actual folder name)
+- Missing nested package structure (e.g., `tara/tara/`)
+- Outdated version numbers in metrics
+- Stale test counts
+
+---
+
 ## Standard Acknowledgments
 
 Use this text in all technical documents:
@@ -564,6 +612,14 @@ Before committing, verify:
 - [ ] Date updated in README.md footer
 - [ ] **Topic README.md created** (for new topics — auto-rendered by GitHub)
 - [ ] **MAIN/INDEX.md updated** (main wiki: dependency map, tables, metrics)
+
+### Package/Structure Changes (CRITICAL)
+- [ ] **INDEX.md Python Packages section updated** (versions, new modules)
+- [ ] **INDEX.md Folder Structure updated** (file moves, directory changes)
+- [ ] **INDEX.md Metrics updated** (test counts, versions)
+- [ ] **INDEX.md version/date incremented**
+- [ ] **CLAUDE.md file tree updated** (if structure changed)
+- [ ] **README.md file tree updated** (if structure changed)
 
 ### Transparency Documentation (REQUIRED)
 - [ ] **TRANSPARENCY.md updated** if significant AI assistance used

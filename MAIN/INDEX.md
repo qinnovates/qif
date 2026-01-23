@@ -2,8 +2,8 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 1.2
-**Last Updated:** 2026-01-22
+**Version:** 1.3
+**Last Updated:** 2026-01-23
 **Status:** Active Development
 
 ---
@@ -34,9 +34,11 @@ This index connects all research topics, maps dependencies, and provides navigat
 
 ---
 
-## Python Library
+## Python Packages
 
-The ONI Framework concepts are implemented in a pip-installable Python package.
+The ONI Framework is implemented in two pip-installable Python packages.
+
+### oni-framework (Core Library)
 
 ```bash
 pip install oni-framework
@@ -50,7 +52,24 @@ pip install oni-framework
 | [oni.scale_freq](oni-framework/oni/scale_freq.py) | f × S ≈ k invariant | `ScaleFrequencyInvariant` |
 | [oni.neurosecurity](oni-framework/oni/neurosecurity/) | Kohno CIA + BCI Anonymizer | `NeurosecurityFirewall`, `BCIAnonymizer` |
 
-**Full documentation:** [oni-framework/README.md](oni-framework/README.md)
+**Documentation:** [oni-framework/README.md](oni-framework/README.md)
+
+### oni-tara (Security Operations Platform)
+
+```bash
+pip install oni-tara
+```
+
+| Module | Purpose | Key Functions |
+|--------|---------|---------------|
+| [tara.core](tara/tara/core/) | ONI security primitives | `CoherenceMetric`, `ONIStack`, `NeuralFirewall` |
+| [tara.simulation](tara/tara/simulation/) | Neural network simulation | `LIFNeuron`, `IzhikevichNeuron`, networks |
+| [tara.attacks](tara/tara/attacks/) | Attack testing & scenarios | `AttackSimulator`, `AttackScenario` |
+| [tara.nsam](tara/tara/nsam/) | Neural Signal Assurance Monitoring | `NSAMMonitor`, `RuleEngine`, `AlertManager` |
+| [tara.neurosecurity](tara/tara/neurosecurity/) | Kohno rules integration | `NeurosecurityMonitor` |
+| [tara.ui](tara/tara/ui/) | Streamlit web interface | `tara ui` command |
+
+**Documentation:** [tara/README.md](tara/README.md) | **CLI:** `tara --help`
 
 **Neurosecurity Implementation:** [NEUROSECURITY_IMPLEMENTATION.md](NEUROSECURITY_IMPLEMENTATION.md) — Integrates Kohno (2009) and BCI Anonymizer patent
 
@@ -91,7 +110,16 @@ pip install oni-framework
    ┌─────────────────────────┐    ┌─────────────────────┐
    │   QUANTUM ENCRYPTION    │    │  NEURAL RANSOMWARE  │
    │ HNDL, QKD, TTT, QPUFs   │    │   Threat modeling   │
-   └─────────────────────────┘    └─────────────────────┘
+   └─────────────────────────┘    └──────────┬──────────┘
+                                             │
+                    ┌────────────────────────┴────────────────────────┐
+                    │                                                  │
+                    ▼                                                  ▼
+   ┌────────────────────────────────────┐        ┌────────────────────────────┐
+   │           oni-framework            │        │          oni-tara          │
+   │    Core library (pip install)      │        │  Security Operations (SOC) │
+   │ coherence, layers, firewall, etc.  │        │  simulation, attacks, NSAM │
+   └────────────────────────────────────┘        └────────────────────────────┘
 ```
 
 ---
@@ -280,7 +308,9 @@ Planned research areas for framework expansion:
 ```
 MAIN/
 ├── INDEX.md                    # This file (central hub)
+├── TRANSPARENCY.md             # Human-AI collaboration audit trail
 ├── NEUROETHICS_ALIGNMENT.md    # Framework-to-ethics principle mapping
+├── RELATED_WORK.md             # Prior BCI security research
 │
 ├── oni-framework/              # Python library (pip install oni-framework)
 │   ├── ONI_LAYERS.md           # **Authoritative 14-layer reference**
@@ -288,17 +318,24 @@ MAIN/
 │   │   ├── coherence.py        # Cₛ calculation
 │   │   ├── layers.py           # 14-layer model
 │   │   ├── firewall.py         # Neural Firewall
-│   │   └── scale_freq.py       # f × S ≈ k
+│   │   ├── scale_freq.py       # f × S ≈ k
+│   │   └── neurosecurity/      # Kohno threat model + BCI Anonymizer
 │   ├── tests/                  # Unit tests (77 tests)
-│   └── pyproject.toml          # Package config
+│   └── pyproject.toml          # Package config (v0.1.0)
 │
-├── tara/                       # Neural Security Platform (TARA)
-│   ├── core/                   # ONI security primitives
-│   ├── simulation/             # Neural network simulation
-│   ├── attacks/                # Attack testing & scenarios
-│   ├── siem/                   # Neural Signal Assurance Monitoring (NSAM)
-│   ├── visualization/          # Real-time dashboards
-│   └── ui/                     # Streamlit web interface
+├── tara/                       # Security Operations Platform (pip install oni-tara)
+│   ├── tara/                   # Source modules (nested package structure)
+│   │   ├── core/               # ONI security primitives
+│   │   ├── simulation/         # Neural network simulation
+│   │   ├── attacks/            # Attack testing & scenarios
+│   │   ├── nsam/               # Neural Signal Assurance Monitoring
+│   │   ├── neurosecurity/      # Kohno rules integration
+│   │   ├── visualization/      # Real-time dashboards
+│   │   └── ui/                 # Streamlit web interface
+│   ├── tests/                  # Unit tests (31 tests)
+│   └── pyproject.toml          # Package config (v0.4.0)
+│
+├── oni-visualizations/         # Interactive web visualizations
 │
 ├── publications/               # Research content
 │   ├── 0-oni-framework/
@@ -309,12 +346,12 @@ MAIN/
 │   └── scale-frequency/
 │
 └── resources/                  # Templates, processes, tools
-    ├── agents/                 # PM Agent, Editor Agent instructions
+    ├── agents/                 # PM Agent instructions
+    ├── editor/                 # Editor Agent checks
     ├── images/                 # ONI diagrams and visualizations
     ├── templates/
     ├── processes/
-    ├── pipeline/
-    └── editor/                 # Editor Agent checks
+    └── pipeline/               # Research monitoring
 ```
 
 ---
@@ -327,8 +364,8 @@ MAIN/
 | Published Documents | 14 |
 | Blog Posts | 8 |
 | Technical Documents | 6 |
-| Python Package | v0.3.0 |
-| Unit Tests | 77 |
+| Python Packages | oni-framework v0.1.0, oni-tara v0.4.0 |
+| Unit Tests | 108 (77 + 31) |
 | Planned Topics | 5 |
 
 ---

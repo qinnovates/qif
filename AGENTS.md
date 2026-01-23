@@ -19,6 +19,7 @@
 | 2026-01-23 | BCI Anonymizer patent (US20140228701A1) was ABANDONED, never granted | Academic concepts freely implementable — added notes to neurosecurity module |
 | 2026-01-23 | Kohno (2009) threat taxonomy maps perfectly to ONI layers: Alteration→L8-9, Blocking→L8-9, Eavesdropping→L13-14 | Implemented in oni.neurosecurity module with 12 detection rules |
 | 2026-01-23 | PyPI trusted publishing via GitHub Actions is more secure than storing tokens | No secrets in config, OIDC-based authentication |
+| 2026-01-23 | INDEX.md must be updated when packages/structure change | Created INDEX.md Update Protocol in CLAUDE.md — check versions, folder structure, metrics |
 
 ### Patterns Established
 
@@ -31,6 +32,8 @@
 - Never trust layer tables in README.md without cross-checking TechDoc
 - The old model had L1-L7 as Biology — this is WRONG. Correct: L1-L7 = Silicon
 - README.md files don't auto-update when TechDoc changes — Editor Agent sync_rules.md handles this
+- **INDEX.md must be updated when moving files or changing packages** — Python Packages, Dependency Map, Folder Structure, and Metrics sections all need updating
+- **Folder names in INDEX.md can drift from reality** — e.g., `siem/` vs actual `nsam/`, always verify against filesystem
 
 ---
 
@@ -145,6 +148,9 @@ ONI Framework (base)
 | Broken internal links | File renamed without link update | Run Editor Agent sync_rules |
 | Stale dates in footer | Manual process skipped | Auto-fix via Editor Agent |
 | Wrong document count | New file added, footer not updated | Auto-fix via Editor Agent |
+| INDEX.md shows wrong folder names | File/folder moved without updating INDEX.md | Follow INDEX.md Update Protocol |
+| INDEX.md shows outdated versions | Package version changed without updating metrics | Update Python Packages and Metrics sections |
+| INDEX.md dependency map stale | New package/component added without diagram update | Redraw dependency map in INDEX.md |
 
 ---
 
@@ -216,9 +222,9 @@ L14: Identity & Ethics         (Biology)
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 2 |
-| Learnings Captured | 21 |
-| Gotchas Documented | 5 |
+| Total Iterations | 3 |
+| Learnings Captured | 22 |
+| Gotchas Documented | 7 |
 | Patterns Established | 12 |
 
 ---
