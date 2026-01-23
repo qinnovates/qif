@@ -38,7 +38,7 @@ The framework provides security without requiring surveillance. Signal integrity
 ## Complete 14-Layer Model
 
 <p align="center">
-  <img src="resources/images/oni-14-layer-hourglass.png" alt="ONI Framework 14-Layer Model" width="700">
+  <img src="../resources/images/oni-14-layer-hourglass.png" alt="ONI Framework 14-Layer Model" width="700">
 </p>
 
 ### OSI Stack — Classical Networking (L1-L7)

@@ -167,12 +167,12 @@ ONI/
 │
 └── MAIN/
     ├── INDEX.md                 # Central hub — navigation, dependencies, cross-references
-    ├── ONI_LAYERS.md            # **Authoritative 14-layer reference**
     ├── TRANSPARENCY.md          # Human-AI collaboration audit trail
     ├── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
     ├── RELATED_WORK.md          # Prior BCI security research
     │
     ├── oni-framework/           # Python library (pip install oni-framework)
+    │   ├── ONI_LAYERS.md        # **Authoritative 14-layer reference**
     │   ├── oni/                 # Source code
     │   │   ├── coherence.py     # Cₛ calculation
     │   │   ├── layers.py        # 14-layer model
@@ -249,7 +249,7 @@ Extends the classical OSI networking model with 7 additional layers for neural a
 
 **L8 (Neural Gateway) is the critical boundary** — most attacked, least standardized, most dangerous layer.
 
-For complete layer definitions, see [ONI_LAYERS.md](MAIN/ONI_LAYERS.md) — the authoritative reference.
+For complete layer definitions, see [ONI_LAYERS.md](MAIN/oni-framework/ONI_LAYERS.md) — the authoritative reference.
 
 ### The Coherence Metric
 
@@ -293,7 +293,7 @@ Physiology-first defense framework with checkpoints:
 | L12-L13 | Cognitive | State/Intent | Context corruption, semantic attacks |
 | L14 | Identity | Self-model | Long-term manipulation, identity attacks |
 
-**External Physical Threats** (documented in [ONI_LAYERS.md](MAIN/ONI_LAYERS.md)):
+**External Physical Threats** (documented in [ONI_LAYERS.md](MAIN/oni-framework/ONI_LAYERS.md)):
 - MRI exposure, electromagnetic interference, physical trauma, intentional jamming, proximity attacks (ProxMark-style)
 
 ### Hardware Constraints (Neuralink N1 Reference)

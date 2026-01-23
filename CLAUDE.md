@@ -55,9 +55,9 @@ ONI/
     ├── TRANSPARENCY.md                 # Human-AI collaboration audit trail
     ├── NEUROETHICS_ALIGNMENT.md        # Framework-to-ethics principle mapping
     ├── RELATED_WORK.md                 # Prior BCI security research
-    ├── ONI_LAYERS.md                   # Authoritative 14-layer reference
     │
     ├── oni-framework/                  # Python library (pip install oni-framework)
+    │   ├── ONI_LAYERS.md              # Authoritative 14-layer reference
     │   ├── oni/                        # Source code
     │   │   ├── coherence.py            # Cₛ calculation
     │   │   ├── layers.py               # 14-layer model

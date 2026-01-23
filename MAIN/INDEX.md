@@ -163,7 +163,7 @@ The ONI Framework extends the classical OSI model with 7 additional layers for n
 - **OSI (L1-L7)** answers: *How does data move?*
 - **ONI (L8-L14)** answers: *Should it move, can it be trusted, and what does it mean?*
 
-**Authoritative Reference:** [ONI_LAYERS.md](ONI_LAYERS.md)
+**Authoritative Reference:** [ONI_LAYERS.md](oni-framework/ONI_LAYERS.md)
 
 ---
 
@@ -280,10 +280,10 @@ Planned research areas for framework expansion:
 ```
 MAIN/
 ├── INDEX.md                    # This file (central hub)
-├── ONI_LAYERS.md               # **Authoritative 14-layer reference**
 ├── NEUROETHICS_ALIGNMENT.md    # Framework-to-ethics principle mapping
 │
 ├── oni-framework/              # Python library (pip install oni-framework)
+│   ├── ONI_LAYERS.md           # **Authoritative 14-layer reference**
 │   ├── oni/                    # Source modules
 │   │   ├── coherence.py        # Cₛ calculation
 │   │   ├── layers.py           # 14-layer model
