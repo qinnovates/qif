@@ -13,6 +13,22 @@ The ONI Framework was designed with neuroethical principles as foundational cons
 
 ---
 
+## Privacy & Ethics Statement
+
+**ONI is NOT a surveillance framework.**
+
+The ONI Framework exists to **protect** neural privacy and ensure the **integrity** of brain-computer interfaces. Its purpose is:
+
+- **Defense** against malicious attacks (nation-state actors, cybercriminals, ransomware)
+- **Protection** from accidental risks (MRI exposure, electromagnetic interference, device malfunction)
+- **Privacy preservation** ensuring neural data remains confidential
+- **Availability** maintaining BCI functionality when users depend on it
+- **Human sovereignty** keeping humans in control of their own neural interfaces
+
+The framework provides security without requiring surveillance. Signal integrity can be validated without reading thoughts. Attacks can be detected without decoding intent. The goal is to implement BCI security that preserves confidentiality, integrity, and availability — the same principles that protect all other computing systems.
+
+---
+
 ## Core Neuroethics Principles
 
 The following principles are widely recognized in neuroethics literature (Ienca & Andorno, 2017; Yuste et al., 2017; UNESCO, 2021):
