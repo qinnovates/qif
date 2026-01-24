@@ -123,7 +123,16 @@ anonymizer = BCIAnonymizer()
 
 **Full documentation:** [MAIN/oni-framework/README.md](MAIN/oni-framework/README.md)
 
-**Neurosecurity Integration:** Based on [Kohno et al. (2009)](https://doi.org/10.3171/2009.4.FOCUS0985) and [BCI Anonymizer patent](https://patents.google.com/patent/US20140228701A1). See [NEUROSECURITY_IMPLEMENTATION.md](MAIN/oni-framework/NEUROSECURITY_IMPLEMENTATION.md).
+### Foundational Research Integration
+
+ONI builds directly on the pioneering neurosecurity research of **Tadayoshi Kohno**, **Tamara Bonaci**, and **Howard Chizeck** at the University of Washington:
+
+| Research | Implementation in ONI |
+|----------|----------------------|
+| [Kohno et al. (2009) - Neurosecurity](https://doi.org/10.3171/2009.4.FOCUS0985) | `NeurosecurityFirewall` — CIA threat model for neural devices |
+| [BCI Anonymizer Patent (US20140228701A1)](https://patents.google.com/patent/US20140228701A1) | `BCIAnonymizer` — Privacy-preserving signal filtering |
+
+**Implementation details:** [NEUROSECURITY_IMPLEMENTATION.md](MAIN/oni-framework/NEUROSECURITY_IMPLEMENTATION.md)
 
 ### TARA - Neural Security Platform
 

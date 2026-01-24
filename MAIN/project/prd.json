@@ -1,8 +1,8 @@
 {
   "project": "ONI Framework",
-  "version": "0.3.0",
-  "last_updated": "2026-01-23",
-  "loop_iteration": 3,
+  "version": "0.4.0",
+  "last_updated": "2026-01-24",
+  "loop_iteration": 4,
 
   "exit_conditions": {
     "global": "All tasks complete, Editor Agent passes with 0 critical issues, ONI layers correct across all docs",
@@ -107,6 +107,51 @@
       "learnings": "Fixed claims in TechDoc-ONI_Framework.md and Blog-Neural_Firewall.md. Acknowledged Kohno 2009, IEEE standards, BCI Anonymizer, etc. ONI differs via OSI extension architecture, Coherence Metric, implementation focus."
     },
     {
+      "id": "lazaro-munoz-consent-framework",
+      "description": "Create INFORMED_CONSENT_FRAMEWORK.md based on Lázaro-Muñoz research",
+      "status": "complete",
+      "exit_condition": "MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md exists with consent requirements",
+      "completed_at": "2026-01-24",
+      "priority": "high",
+      "learnings": "Integrated 8 ethical themes from aDBS research (91% privacy concerns, 74% consent, 57% autonomy). Continuous consent model required for adaptive devices."
+    },
+    {
+      "id": "lazaro-munoz-post-deployment",
+      "description": "Create POST_DEPLOYMENT_ETHICS.md for device lifecycle management",
+      "status": "complete",
+      "exit_condition": "MAIN/governance/POST_DEPLOYMENT_ETHICS.md exists with lifecycle framework",
+      "completed_at": "2026-01-24",
+      "priority": "high",
+      "learnings": "Post-trial access is ethically problematic when no alternatives exist. Device maintenance costs $10K+/year. No US requirements for post-trial services."
+    },
+    {
+      "id": "lazaro-munoz-pediatric",
+      "description": "Create PEDIATRIC_CONSIDERATIONS.md for minors and incapacity",
+      "status": "complete",
+      "exit_condition": "MAIN/governance/PEDIATRIC_CONSIDERATIONS.md exists with tri-level authorization model",
+      "completed_at": "2026-01-24",
+      "priority": "high",
+      "learnings": "Don't treat minors as small adults. 4 pressing concerns: uncertainty (72%), decision-making roles (52%), information scarcity (52%), regulatory status (24%). Assent capacity concerns at 80%."
+    },
+    {
+      "id": "lazaro-munoz-neuroethics-expansion",
+      "description": "Expand NEUROETHICS_ALIGNMENT.md with stakeholder perspectives",
+      "status": "complete",
+      "exit_condition": "NEUROETHICS_ALIGNMENT.md contains Stakeholder Perspectives section with researcher concern percentages",
+      "completed_at": "2026-01-24",
+      "priority": "medium",
+      "learnings": "Relational autonomy model: patients can identify caregivers for assistance. Multi-stakeholder decision-making is the norm, not exception."
+    },
+    {
+      "id": "consent-validation-module",
+      "description": "Implement consent.py module in oni/neurosecurity/",
+      "status": "complete",
+      "exit_condition": "oni/neurosecurity/consent.py exists with ConsentManager, ConsentValidator classes; exported in __init__.py",
+      "completed_at": "2026-01-24",
+      "priority": "high",
+      "learnings": "ConsentState enum, PediatricConsentState for special populations, ConsentScope for operation authorization, ConsentRecord for audit trail."
+    },
+    {
       "id": "changelog-creation",
       "description": "Create CHANGELOG.md at repository root",
       "status": "pending",
@@ -132,6 +177,19 @@
   ],
 
   "future_work": [
+    {
+      "id": "future-neural-consent-publication",
+      "title": "Neural Consent Publication Topic",
+      "description": "Create publications/neural-consent/ with Blog and TechDoc on consent architecture for BCIs",
+      "rationale": "Consolidate Lázaro-Muñoz framework integration into publishable content",
+      "feasibility": "practical",
+      "prerequisites": [
+        "INFORMED_CONSENT_FRAMEWORK.md complete",
+        "consent.py module implemented",
+        "Stakeholder perspectives documented"
+      ],
+      "estimated_effort": "medium"
+    },
     {
       "id": "future-ai-attack-prediction",
       "title": "AI-Based Attack Vector Prediction",
@@ -192,10 +250,10 @@
   ],
 
   "metrics": {
-    "total_tasks": 14,
-    "completed": 12,
+    "total_tasks": 19,
+    "completed": 17,
     "in_progress": 0,
     "pending": 2,
-    "completion_rate": "86%"
+    "completion_rate": "89%"
   }
 }

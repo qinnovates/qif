@@ -19,6 +19,15 @@ from .threats import ThreatType, SecurityDecision, KohnoThreatModel
 from .firewall import NeurosecurityFirewall, NeurosecurityConfig
 from .anonymizer import BCIAnonymizer, AnonymizerConfig, ERPType, PrivacySensitivity
 from .privacy_score import PrivacyScoreCalculator, PrivacyScoreResult
+from .consent import (
+    ConsentState,
+    PediatricConsentState,
+    ConsentScope,
+    ConsentRecord,
+    ConsentValidationResult,
+    ConsentManager,
+    ConsentValidator,
+)
 
 __all__ = [
     # Threats
@@ -36,4 +45,12 @@ __all__ = [
     # Privacy
     "PrivacyScoreCalculator",
     "PrivacyScoreResult",
+    # Consent (Lázaro-Muñoz framework)
+    "ConsentState",
+    "PediatricConsentState",
+    "ConsentScope",
+    "ConsentRecord",
+    "ConsentValidationResult",
+    "ConsentManager",
+    "ConsentValidator",
 ]

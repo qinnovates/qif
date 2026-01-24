@@ -2,8 +2,8 @@
 
 > How the ONI Framework addresses core principles of neuroethics and cognitive liberty.
 
-**Last Updated:** 2026-01-22
-**Version:** 1.0
+**Last Updated:** 2026-01-24
+**Version:** 1.1
 
 ---
 
@@ -175,6 +175,61 @@ By modeling expected pathway reliability, the system can flag signals that "took
 
 ---
 
+## Stakeholder Perspectives (Lázaro-Muñoz Framework)
+
+Research by [Gabriel Lázaro-Muñoz et al.](https://bioethics.hms.harvard.edu/faculty-staff/gabriel-lazaro-munoz) at Harvard Medical School and Massachusetts General Hospital provides empirical grounding for ONI's ethical framework through extensive stakeholder interviews.
+
+### Researcher-Identified Ethical Concerns
+
+From interviews with 23 adaptive DBS researchers (Lázaro-Muñoz et al., 2020):
+
+| Concern | Frequency | ONI Framework Response |
+|---------|-----------|----------------------|
+| **Data Privacy & Security** | 91% | Coherence validation, Privacy Score (Pₛ), BCI Anonymizer |
+| **Risks & Safety** | 83% | Amplitude bounds, rate limiting, REJECT decisions |
+| **Informed Consent** | 74% | See [INFORMED_CONSENT_FRAMEWORK.md](INFORMED_CONSENT_FRAMEWORK.md) |
+| **Automaticity & Programming** | 65% | Biomarker validation via scale-frequency invariant |
+| **Autonomy & Control** | 57% | User Override Interface (planned), ACCEPT_FLAG pathway |
+| **Patient Selection** | 39% | Candidacy criteria documentation |
+| **Post-Trial Access** | 39% | See [POST_DEPLOYMENT_ETHICS.md](POST_DEPLOYMENT_ETHICS.md) |
+| **Personality & Identity** | 30% | L14 Identity Layer protection, psychological continuity |
+
+### Multi-Stakeholder Decision Model
+
+ONI recognizes that neural device decisions involve multiple stakeholders with legitimate interests:
+
+| Stakeholder | Role | Framework Integration |
+|-------------|------|----------------------|
+| **Patient/User** | Primary autonomy holder | Consent requirements, override capability |
+| **Caregiver** | Support and assistance | Trusted contact designation, escalation paths |
+| **Clinician** | Medical expertise | Candidacy assessment, parameter guidance |
+| **Researcher** | Scientific understanding | Transparency documentation, data sharing protocols |
+| **Engineer/Developer** | Technical capabilities | Security implementation, documentation |
+
+### Relational Autonomy
+
+Rather than strict individual autonomy, ONI adopts a **relational autonomy** model:
+
+> "Patients could identify a close caregiver to provide assistance" in treatment decisions. — Lázaro-Muñoz et al., 2020
+
+This means:
+- Autonomy is exercised within relationships, not in isolation
+- Trusted others can be formally designated in consent records
+- ACCEPT_FLAG decisions can escalate to designated stakeholders
+- Collaborative decision-making is supported, not just tolerated
+
+### Special Populations
+
+For populations requiring additional protections, see:
+
+| Population | Reference Document |
+|------------|-------------------|
+| Children and adolescents | [PEDIATRIC_CONSIDERATIONS.md](PEDIATRIC_CONSIDERATIONS.md) |
+| Adults with cognitive impairment | [PEDIATRIC_CONSIDERATIONS.md](PEDIATRIC_CONSIDERATIONS.md) (incapacity section) |
+| Post-trial participants | [POST_DEPLOYMENT_ETHICS.md](POST_DEPLOYMENT_ETHICS.md) |
+
+---
+
 ## Gaps and Future Work
 
 ### Currently Unaddressed
@@ -225,6 +280,12 @@ Ienca, M., & Andorno, R. (2017). Towards new human rights in the age of neurosci
 Yuste, R., Goering, S., Arcas, B. A. Y., et al. (2017). Four ethical priorities for neurotechnologies and AI. *Nature*, 551(7679), 159-163.
 
 UNESCO. (2021). *Recommendation on the Ethics of Artificial Intelligence*.
+
+Lázaro-Muñoz, G., Pham, M. T., Muñoz, K. A., et al. (2020). Researcher Perspectives on Ethical Considerations in Adaptive Deep Brain Stimulation Trials. *Frontiers in Human Neuroscience*, 14, 578695. https://doi.org/10.3389/fnhum.2020.578695
+
+Lázaro-Muñoz, G., Pham, M. T., Muñoz, K. A., et al. (2022). Post-trial access in implanted neural device research: Device maintenance, abandonment, and cost. *Brain Stimulation*, 15(5), 1029-1036. https://doi.org/10.1016/j.brs.2022.07.051
+
+Muñoz, K. A., Blumenthal-Barby, J., Storch, E. A., Torgerson, L., & Lázaro-Muñoz, G. (2020). Pediatric Deep Brain Stimulation for Dystonia: Current State and Ethical Considerations. *Cambridge Quarterly of Healthcare Ethics*, 29(4), 557-573.
 
 ---
 

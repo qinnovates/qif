@@ -2,8 +2,8 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 1.4
-**Last Updated:** 2026-01-23
+**Version:** 1.5
+**Last Updated:** 2026-01-24
 **Status:** Active Development
 
 ---
@@ -211,6 +211,9 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 |----------|---------|
 | [TRANSPARENCY.md](governance/TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
 | [NEUROETHICS_ALIGNMENT.md](governance/NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
+| [INFORMED_CONSENT_FRAMEWORK.md](governance/INFORMED_CONSENT_FRAMEWORK.md) | Consent requirements for neural devices (Lázaro-Muñoz framework) |
+| [POST_DEPLOYMENT_ETHICS.md](governance/POST_DEPLOYMENT_ETHICS.md) | Device lifecycle, maintenance obligations, abandonment prevention |
+| [PEDIATRIC_CONSIDERATIONS.md](governance/PEDIATRIC_CONSIDERATIONS.md) | Guidelines for minors and individuals with limited capacity |
 | [RELATED_WORK.md](RELATED_WORK.md) | Prior BCI security research — acknowledges foundational work, positions ONI's contribution |
 | [PARTNERSHIPS.md](PARTNERSHIPS.md) | Partnership opportunities, implementation roadmap, how to get involved |
 
@@ -297,10 +300,11 @@ Planned research areas for framework expansion:
 | Priority | Topic | Description | Dependencies | Status |
 |:--------:|-------|-------------|--------------|--------|
 | 1 | Neural Authentication | Identity verification via neural signatures | Coherence, Firewall | Planned |
-| 2 | Adversarial Stimulation | Attack vectors through neural feedback | Ransomware, Firewall | Planned |
-| 3 | Cross-Device Protocol | Multi-BCI communication standards | ONI L10-L12 | Conceptual |
-| 4 | Neural Privacy Framework | Data minimization for neural signals | Coherence, Firewall | Conceptual |
-| 5 | Regulatory Mapping | FDA/EU compliance for ONI architecture | All topics | Conceptual |
+| 2 | Neural Consent | Consent architecture for BCIs (Lázaro-Muñoz framework) | Firewall, Governance | In Progress |
+| 3 | Adversarial Stimulation | Attack vectors through neural feedback | Ransomware, Firewall | Planned |
+| 4 | Cross-Device Protocol | Multi-BCI communication standards | ONI L10-L12 | Conceptual |
+| 5 | Neural Privacy Framework | Data minimization for neural signals | Coherence, Firewall | Conceptual |
+| 6 | Regulatory Mapping | FDA/EU compliance for ONI architecture | All topics | Conceptual |
 
 ---
 
@@ -362,7 +366,10 @@ MAIN/
 │
 ├── governance/                 # Ethics & transparency
 │   ├── TRANSPARENCY.md         # Human-AI collaboration audit trail
-│   └── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
+│   ├── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
+│   ├── INFORMED_CONSENT_FRAMEWORK.md # Consent requirements (Lázaro-Muñoz)
+│   ├── POST_DEPLOYMENT_ETHICS.md     # Device lifecycle ethics
+│   └── PEDIATRIC_CONSIDERATIONS.md   # Minors and incapacity guidelines
 │
 ├── project/                    # Project management
 │   ├── prd.json                # Task tracker with exit conditions
