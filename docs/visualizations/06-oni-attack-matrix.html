@@ -21,14 +21,14 @@
             --oni-gray-light: #334155;
             --oni-light: #e2e8f0;
 
-            /* Tactic Colors (MITRE-inspired rainbow) */
-            --tactic-recon: #6366f1;
-            --tactic-access: #8b5cf6;
-            --tactic-exec: #ec4899;
-            --tactic-persist: #f97316;
-            --tactic-evade: #10b981;
-            --tactic-collect: #3b82f6;
-            --tactic-impact: #ef4444;
+            /* Tactic Colors (Incremental gradient: cool → warm) */
+            --tactic-recon: #3b82f6;      /* Blue - passive gathering */
+            --tactic-access: #6366f1;     /* Indigo - entry */
+            --tactic-exec: #8b5cf6;       /* Purple - active */
+            --tactic-persist: #a855f7;    /* Violet - establishing */
+            --tactic-evade: #d946ef;      /* Fuchsia - hiding */
+            --tactic-collect: #ec4899;    /* Pink - extracting */
+            --tactic-impact: #ef4444;     /* Red - harm */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -659,7 +659,7 @@
         const ATTACK_MATRIX = {
             "Reconnaissance": {
                 id: "TA0001",
-                color: "#6366f1",
+                color: "#3b82f6",
                 description: "Gathering information about the target BCI system",
                 techniques: [
                     {
@@ -717,7 +717,7 @@
             },
             "Initial Access": {
                 id: "TA0002",
-                color: "#8b5cf6",
+                color: "#6366f1",
                 description: "Techniques to gain initial foothold in the BCI system",
                 techniques: [
                     {
@@ -775,7 +775,7 @@
             },
             "Execution": {
                 id: "TA0003",
-                color: "#ec4899",
+                color: "#8b5cf6",
                 description: "Running malicious signals or commands in the BCI",
                 techniques: [
                     {
@@ -833,7 +833,7 @@
             },
             "Persistence": {
                 id: "TA0004",
-                color: "#f97316",
+                color: "#a855f7",
                 description: "Maintaining access to the compromised BCI system",
                 techniques: [
                     {
@@ -891,7 +891,7 @@
             },
             "Defense Evasion": {
                 id: "TA0005",
-                color: "#10b981",
+                color: "#d946ef",
                 description: "Avoiding detection by BCI security systems",
                 techniques: [
                     {
@@ -949,7 +949,7 @@
             },
             "Collection": {
                 id: "TA0006",
-                color: "#3b82f6",
+                color: "#ec4899",
                 description: "Gathering sensitive neural data from the BCI",
                 techniques: [
                     {
