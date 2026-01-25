@@ -11,7 +11,8 @@ This file provides instructions for Claude to follow when updating, maintaining,
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| **Main README** | `README.md` | Public documentation, installation, API reference |
+| **Main README** | `README.md` | Public documentation, installation |
+| **API Reference** | `API.md` | **Complete API documentation (UPDATE AFTER CHANGES)** |
 | **AGENTS.md** | `AGENTS.md` | Learnings from previous sessions |
 | **pyproject.toml** | `pyproject.toml` | Package configuration and dependencies |
 | **Main App** | `ui/app.py` | Streamlit dashboard entry point |
@@ -30,6 +31,7 @@ tara-neural-security-platform/   # Complete package
 ├── CLAUDE.md                    # Claude AI instructions (this file)
 ├── AGENTS.md                    # Learnings from previous sessions
 ├── README.md                    # Public documentation
+├── API.md                       # API reference (UPDATE AFTER CODE CHANGES)
 ├── pyproject.toml               # Package configuration
 ├── LICENSE                      # Apache 2.0
 │
@@ -290,8 +292,19 @@ When making changes to TARA, ensure:
 ### Documentation Changes
 - [ ] Update `README.md` with new features
 - [ ] Update architecture diagram if structure changes
-- [ ] Update API reference if adding public classes
 - [ ] Update CLI reference if adding commands
+
+### API Documentation (REQUIRED for code changes)
+> **CRITICAL:** Update `API.md` whenever public API changes are made.
+
+- [ ] **New classes/functions**: Add to appropriate section in `API.md`
+- [ ] **New attack patterns**: Add to Attack Simulation section
+- [ ] **New scenarios**: Add to AttackScenario section
+- [ ] **New CVSS/Yale items**: Add to Yale Threat Model section
+- [ ] **New NSAM features**: Add to NSAM section
+- [ ] **New CLI commands**: Add to CLI Reference section
+- [ ] **Version changes**: Update Version History table at bottom
+- [ ] **Update date**: Change "Last Updated" at bottom of `API.md`
 
 ### Data Model Changes
 - [ ] Update `data/brain_regions.py` for new regions
@@ -300,6 +313,7 @@ When making changes to TARA, ensure:
 
 ### Before Committing
 - [ ] Update `AGENTS.md` with learnings
+- [ ] **Update `API.md`** if any public API changed
 - [ ] Run `tara ui` to verify UI works
 - [ ] Check for import errors
 - [ ] Update version in `__init__.py` and `pyproject.toml` if releasing
@@ -366,12 +380,53 @@ When making changes to TARA, ensure:
 1. Add to `attacks/patterns.py`
 2. Add to `REGION_SECURITY_DATA` attack_vectors in `ui/app.py`
 3. Update `README.md` Attack Patterns table
+4. **Update `API.md`** - Add pattern to "Predefined Patterns" table
 
 ### Adding a New UI Page
 
 1. Create render function: `render_new_page()`
 2. Add to `render_sidebar()` navigation
 3. Add routing in `main()` function
+4. **Update `API.md`** if page exposes new API functionality
+
+### Updating API Documentation (REQUIRED)
+
+**When to update `API.md`:**
+- Adding new public classes, functions, or constants
+- Adding new attack patterns or scenarios
+- Adding new CVSS scores or Yale threat categories
+- Adding new NSAM rules or alerts
+- Adding new CLI commands
+- Changing function signatures or parameters
+- Changing return types or behaviors
+
+**How to update `API.md`:**
+
+1. **Find the appropriate section** (Core, Attacks, Yale/CVSS, NSAM, etc.)
+
+2. **Add class/function documentation:**
+```markdown
+### NewClassName
+
+Brief description.
+
+\`\`\`python
+from tara_mvp import NewClassName
+
+instance = NewClassName(param1=value)
+result = instance.method()
+\`\`\`
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `param1` | type | Description |
+\`\`\`
+
+3. **Update tables** (Predefined Patterns, Predefined Scenarios, etc.)
+
+4. **Update Version History** at bottom of API.md
+
+5. **Update "Last Updated" date** at bottom of API.md
 
 ### Using Neurosecurity Module
 
@@ -542,9 +597,10 @@ pytest tests/ -v
 | 0.5.0 | 2026-01 | Consolidated package structure, integrated ONI Visualization Suite |
 | 0.5.1 | 2026-01 | Fixed Layer Explorer interactivity, comprehensive educational content for all 14 layers |
 | 0.6.0 | 2026-01 | Major UI enhancements: Neurosecurity page, Real EEG Data page, Neural ATT&CK matrix, pew-pew attack animation |
+| 0.7.0 | 2026-01-25 | Yale threat model with CVSS v4.0, API.md documentation |
 
 ---
 
-*Version: 1.6*
+*Version: 1.7*
 *Last Updated: 2026-01-25*
 *For: Claude AI Assistant*
