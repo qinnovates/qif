@@ -2,7 +2,7 @@
 
 > A comprehensive mapping of foundational research, key institutions, and notable researchers whose work aligns with and informs the ONI Framework.
 
-**Last Updated:** 2026-01-24
+**Last Updated:** 2026-01-25
 **Purpose:** Academic positioning, collaboration opportunities, graduate program alignment
 
 ---
@@ -15,10 +15,13 @@
   - [University of Washington — Neuroethics Research Group](#university-of-washington--neuroethics-research-group)
   - [Harvard Medical School — Center for Bioethics](#harvard-medical-school--center-for-bioethics)
   - [Columbia University — NeuroRights Foundation](#columbia-university--neurorights-foundation)
+  - [Yale University — Digital Ethics Center](#yale-university--digital-ethics-center)
   - [ETH Zurich / TU Munich — Neurorights Theory](#eth-zurich--tu-munich--neurorights-theory)
   - [Oxford University — Uehiro Centre](#oxford-university--uehiro-centre-for-practical-ethics)
   - [University of British Columbia — Neuroethics Canada](#university-of-british-columbia--neuroethics-canada)
   - [University of Pennsylvania — Center for Neuroscience & Society](#university-of-pennsylvania--center-for-neuroscience--society)
+  - [University of North Carolina — School of Law](#university-of-north-carolina--school-of-law)
+  - [Tongji University — Intellectual Property & Neurolaw](#tongji-university--intellectual-property--neurolaw)
 - [Tier 3: Neural Engineering & BCI Development](#tier-3-neural-engineering--bci-development)
   - [Stanford University — Neural Prosthetics Systems Lab](#stanford-university--neural-prosthetics-systems-lab)
   - [Brown University — BrainGate Consortium](#brown-university--braingate-consortium)
@@ -131,15 +134,42 @@ These researchers define the ethical and legal frameworks that ONI's technical i
 
 **Legislative Impact:**
 - Chile constitutional reform (2021) — First nation to protect "mental integrity"
-- Colorado neurorights law (2024)
-- California "Neurorights Bill" (2024) — Senate unanimous approval
-- U.S. MIND Act (2025) — First federal neurotechnology governance bill
+- Colorado HB 24-1058 (April 2024) — First US state neural privacy law
+- California SB 1223 (Sept 2024) — Neural data as "sensitive personal information" under CCPA
+- Minnesota neural data law (May 2024) — Civil and criminal penalties for violations
+- U.S. MIND Act (Sept 2025) — First federal neurotechnology governance bill (Schumer, Cantwell, Markey)
+- UNESCO global standard (planned Nov 2025) — International neurotechnology ethics framework
 
 **How ONI Aligns:**
 - L14 (Identity) protects personal identity
 - `BCIAnonymizer` implements mental privacy at signal level
 - Coherence metric detects manipulation attempts (free will protection)
 - Open-source framework supports equal access principle
+
+---
+
+### Yale University — Digital Ethics Center
+
+**Emerging leader in BCI cybersecurity threat modeling and regulatory recommendations.**
+
+| Researcher | Role | Key Contributions | ONI Alignment |
+|------------|------|-------------------|---------------|
+| **[Luciano Floridi](https://dec.yale.edu/profile/luciano-floridi)** | Director, Professor | Founding figure in digital ethics, "Treating brainwaves is not an option" (*Nature*, 2018), formerly Oxford Digital Ethics Lab | Philosophical foundation for neural data ethics |
+| **[Tyler Schroder](https://dec.yale.edu/tyler-schroder)** | Research Fellow (2024-25) | BCI threat model design, cyber risk analysis for next-gen BCIs | Threat modeling methodology |
+
+**Key Publication:**
+- Schroder, T., Sirbu, R., Park, S., Morley, J., Street, S., & Floridi, L. (2025). [Cyber Risks to Next-Gen Brain-Computer Interfaces: Analysis and Recommendations](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5138265). *Neuroethics*, 18(2).
+
+**Key Findings:**
+- Designed threat model identifying cyberattack vectors for BCI patients
+- Recommend non-surgical device update methods, strong authentication for BCI software modifications
+- Call for encryption of data moving to/from the brain, minimized network connectivity
+- Warning: "A widespread security breach could affect millions of users simultaneously, leading to mass manipulation of neural data"
+
+**How ONI Aligns:**
+- Yale's threat model complements ONI's 14-layer approach at regulatory level
+- Their authentication/encryption recommendations align with L8 Neural Gateway design
+- Shared concern about AI-mediated attacks on implants (addressed in TARA attack scenarios)
 
 ---
 
@@ -202,6 +232,42 @@ Multi-disciplinary center spanning Medicine, Law, Engineering, and Wharton.
 **How ONI Aligns:**
 - Addresses legal implications through clear attribution
 - Provides technical substrate for policy implementation
+
+---
+
+### University of North Carolina — School of Law
+
+**Legal scholarship on neural data privacy and regulatory frameworks.**
+
+**Key Publication:**
+- [Examining the New Frontier of Brainwaves and Data Privacy](https://scholarship.law.unc.edu/cgi/viewcontent.cgi?article=1507&context=ncjolt). *North Carolina Journal of Law & Technology*.
+
+**Research Focus:**
+- Analysis of existing privacy law gaps for neural data
+- Comparison of state-level neurorights legislation (Colorado, California, Minnesota)
+- Recommendations for federal neural data protection
+
+**How ONI Aligns:**
+- Legal analysis informs ONI's regulatory-ready documentation
+- Framework designed to meet emerging legal standards they identify
+
+---
+
+### Tongji University — Intellectual Property & Neurolaw
+
+**International perspective on neural data regulation from Shanghai.**
+
+**Key Publication:**
+- [Regulating neural data processing in the age of BCIs: Ethical concerns and legal approaches](https://pmc.ncbi.nlm.nih.gov/articles/PMC11951885/) (2025). *Frontiers in Neuroscience*.
+
+**Research Focus:**
+- Comparative analysis of neural data regulation (EU, US, China)
+- Intellectual property implications of brain-derived data
+- Cross-border neural data governance
+
+**How ONI Aligns:**
+- Informs international deployment considerations
+- Framework accounts for varying regulatory regimes
 
 ---
 
@@ -342,6 +408,7 @@ First bidirectional BCI integrating EEG decoding with focused ultrasound stimula
 | **University of Washington** | CSE (Security) | Kohno, Goering, Klein | Extend neurosecurity, neuroethics implementation |
 | **Harvard** | Bioethics / HMS | Lázaro-Muñoz | Technical substrate for ethics research |
 | **Columbia** | Neuroscience | Yuste | Neurorights enforcement mechanisms |
+| **Yale** | Digital Ethics | Floridi, Schroder | BCI threat modeling, regulatory frameworks |
 | **Stanford** | Bioengineering | Henderson (NPTL) | Clinical security protocols |
 | **CMU** | Biomedical Engineering | He | Bidirectional BCI security |
 | **Brown** | Neuroscience | Hochberg | BrainGate security layer |
@@ -378,6 +445,10 @@ Yuste, R., et al. (2017). Four ethical priorities for neurotechnologies and AI.
 
 Goering, S., & Klein, E. (2020). Neurotechnology and human agency.
     Philosophy & Technology, 33(3), 375-396.
+
+Schroder, T., Sirbu, R., Park, S., Morley, J., Street, S., & Floridi, L. (2025).
+    Cyber risks to next-gen brain-computer interfaces: Analysis and recommendations.
+    Neuroethics, 18(2).
 ```
 
 ---
@@ -398,11 +469,13 @@ Goering, S., & Klein, E. (2020). Neurotechnology and human agency.
 
 | Priority | Research Area | Researcher | Target | Type | Status |
 |----------|---------------|------------|--------|------|--------|
+| P1 | BCI cyber threat model | Schroder/Floridi (Yale) | TARA attack scenarios | MODEL | Queued |
 | P1 | Bidirectional BCI security | He (CMU) | L8 firewall rules | CODE | Queued |
 | P1 | Synaptic reliability data | Hochberg (Brown) | Coherence validation | VALIDATION | Queued |
 | P2 | Intent decoding privacy | Andersen (Caltech) | L13 Semantic layer | MODEL | Planned |
 | P2 | Closed-loop autonomy | Maslen (Oxford) | User override mechanisms | MODEL | Planned |
 | P3 | DBS pediatric ethics | Lázaro-Muñoz (Harvard) | Vulnerable populations | ETHICS | Backlog |
+| P3 | Neural data regulation | Tongji University | International compliance | POLICY | Backlog |
 
 ---
 
@@ -423,12 +496,14 @@ Update this document when:
 
 ## Quick Reference: Key Researchers by Domain
 
-### BCI Security
+### BCI Security & Cybersecurity
 - Tadayoshi Kohno (UW) — Foundational neurosecurity
 - Tamara Bonaci (UW) — BCI privacy, anonymization
 - Howard Chizeck (UW) — Device security, closed-loop systems
+- Tyler Schroder (Yale) — BCI threat modeling, cyber risk analysis
+- Luciano Floridi (Yale) — Digital ethics, neural data philosophy
 
-### Neuroethics
+### Neuroethics & Policy
 - Sara Goering (UW) — Agency, disability theory
 - Eran Klein (UW) — Clinical neuroethics
 - Gabriel Lázaro-Muñoz (Harvard) — DBS ethics, pediatric
