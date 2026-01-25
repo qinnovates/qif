@@ -124,6 +124,7 @@ ONI/
         │   ├── incoming/               # Raw research monitor output
         │   └── processed/              # Reviewed and categorized
         ├── workflows/                  # Workflow strategies and documentation
+        │   ├── RESEARCH_INTEGRATION_WORKFLOW.md   # Academic research → ONI pipeline
         │   └── VISUALIZATION_AS_CODE_STRATEGY.md  # Remotion/programmatic viz
         └── images/                     # ONI diagrams
 ```

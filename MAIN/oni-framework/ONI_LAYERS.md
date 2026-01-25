@@ -342,6 +342,7 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.1 | 2026-01-24 | Fixed L9-L11 domain labels: Silicon → Biology (L9+ is neural side of bridge) |
 | 2.0 | 2026-01-22 | Major revision: L1-L7 now pure OSI, L8-L14 neural extension |
 | 1.0 | 2026-01 | Initial release with biological L1-L7 (deprecated) |
 
@@ -349,4 +350,4 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 *This document is the authoritative reference for ONI layer definitions. All other documentation should reference this file.*
 
-*Last Updated: 2026-01-22*
+*Last Updated: 2026-01-24*

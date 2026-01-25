@@ -252,8 +252,8 @@ ONI/
         ├── editor/              # Editor Agent (quality & sync)
         ├── images/              # ONI diagrams
         ├── templates/           # Formatting templates
-        ├── pipeline/            # Research pipeline
-        └── workflows/           # Workflow strategies (Visualization as Code)
+        ├── pipeline/            # Research pipeline + researcher tracking
+        └── workflows/           # Research integration, Visualization as Code
 ```
 
 ---

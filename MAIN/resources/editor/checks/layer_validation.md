@@ -4,6 +4,22 @@
 
 ---
 
+## ⚠️ CRITICAL: Domain Assignment Rule
+
+**L8 is the BRIDGE. Everything above L8 is on the BIOLOGY side.**
+
+```
+L1-L7:  Silicon (OSI networking - computer side)
+L8:     Bridge  (Neural Gateway - firewall location)
+L9-L14: Biology (Neural/cognitive - brain side)
+```
+
+**Common Error:** Labeling L9-L14 as "Silicon" because they involve signal processing or protocols. This is WRONG. Even though L9-L10 involve digital processing of neural signals, they operate on the BIOLOGY side of the L8 bridge — they are processing neural data, not networking data.
+
+**Memory Aid:** The bridge (L8) separates computers from brains. Below the bridge = computers (Silicon). Above the bridge = brains (Biology).
+
+---
+
 ## Authoritative Definition
 
 **Source:** `MAIN/publications/0-oni-framework/TechDoc-ONI_Framework.md`

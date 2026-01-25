@@ -24,6 +24,7 @@
 | 2026-01-24 | Research Verification Protocol adapted from kevinqicode hallucination firewall | Domain-specific verification: SOCRATES (general), GÖDEL (math), FARADAY (physics/neuro) |
 | 2026-01-24 | Persona system implemented for research verification | 7 personas: AURORA, SOCRATES, GÖDEL, FARADAY, HYPATIA, ARCHIMEDES, EDITOR |
 | 2026-01-24 | Uncertainty tagging system: ✅ ⚠️ 🔍 ❌ 🔬 | All claims must be tagged before publication |
+| 2026-01-24 | **L9-L14 domain error found in 6+ files** — labeled as "Silicon" but should be "Biology" | Fixed ONI_LAYERS.md, README.md, NEUROETHICS_ALIGNMENT.md, layer_validation.md, prototype-mvp files |
 
 ### Patterns Established
 
@@ -38,6 +39,7 @@
 - README.md files don't auto-update when TechDoc changes — Editor Agent sync_rules.md handles this
 - **INDEX.md must be updated when moving files or changing packages** — Python Packages, Dependency Map, Folder Structure, and Metrics sections all need updating
 - **Folder names in INDEX.md can drift from reality** — e.g., `siem/` vs actual `nsam/`, always verify against filesystem
+- **⚠️ CRITICAL: L9-L14 are BIOLOGY, not Silicon** — Even though L9-L10 involve signal processing/protocols, they operate on the BRAIN SIDE of the L8 bridge. This error appeared in 6+ files on 2026-01-24 and was systematically corrected. Memory aid: Below bridge (L1-L7) = computers. Above bridge (L9-L14) = brains.
 
 ---
 
@@ -292,9 +294,9 @@ L14: Identity & Ethics         (Biology)
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 5 |
-| Learnings Captured | 26 |
-| Gotchas Documented | 7 |
+| Total Iterations | 6 |
+| Learnings Captured | 27 |
+| Gotchas Documented | 8 |
 | Patterns Established | 16 |
 | Personas Defined | 7 |
 

@@ -354,6 +354,30 @@ Goering, S., & Klein, E. (2020). Neurotechnology and human agency.
 
 ---
 
+## Integrated Research Log
+
+> Tracking research successfully integrated into ONI. See [RESEARCH_INTEGRATION_WORKFLOW.md](resources/workflows/RESEARCH_INTEGRATION_WORKFLOW.md) for the full integration process.
+
+| Date | Paper/Patent | Authors | Type | ONI Component | Status |
+|------|--------------|---------|------|---------------|--------|
+| 2026-01 | Neurosecurity (2009) | Kohno, Denning, Matsuoka | MODEL | `NeurosecurityFirewall` — CIA threat model | Complete |
+| 2026-01 | BCI Anonymizer Patent | Bonaci, Calo, Chizeck | CODE | `BCIAnonymizer` — privacy filtering | Complete |
+| 2026-01 | App Stores for Brain (2015) | Bonaci, Calo, Chizeck | MODEL | Neural PII classification | Complete |
+| 2026-01 | Four Neurorights (2017) | Ienca, Andorno | ETHICS | L14 Identity layer principles | Complete |
+| 2026-01 | Five Neurorights (2017) | Yuste et al. | ETHICS | Framework-wide alignment | Complete |
+
+### Integration Queue
+
+| Priority | Research Area | Researcher | Target | Type | Status |
+|----------|---------------|------------|--------|------|--------|
+| P1 | Bidirectional BCI security | He (CMU) | L8 firewall rules | CODE | Queued |
+| P1 | Synaptic reliability data | Hochberg (Brown) | Coherence validation | VALIDATION | Queued |
+| P2 | Intent decoding privacy | Andersen (Caltech) | L13 Semantic layer | MODEL | Planned |
+| P2 | Closed-loop autonomy | Maslen (Oxford) | User override mechanisms | MODEL | Planned |
+| P3 | DBS pediatric ethics | Lázaro-Muñoz (Harvard) | Vulnerable populations | ETHICS | Backlog |
+
+---
+
 ## Document Maintenance
 
 Update this document when:
@@ -361,6 +385,7 @@ Update this document when:
 - Researchers change institutions
 - Legislative developments occur
 - New collaboration opportunities identified
+- Research integrations completed (update log above)
 
 ---
 

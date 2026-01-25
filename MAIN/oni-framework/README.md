@@ -172,9 +172,9 @@ for layer in stack.biological_layers():
 ```
 
 **Layer summary:**
-- **L1-L7 (Biological):** From molecules to behavior — the brain's processing
+- **L1-L7 (Silicon/OSI):** Standard networking layers — the computer's data movement
 - **L8 (Neural Gateway):** The critical boundary where electrodes meet neurons — this is where the firewall operates
-- **L9-L14 (Silicon):** From signal processing to applications — the computer's processing
+- **L9-L14 (Biology):** From signal processing to identity — the brain's neural processing
 
 ### Validate Scale-Frequency Relationship
 

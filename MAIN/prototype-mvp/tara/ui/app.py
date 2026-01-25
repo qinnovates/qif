@@ -952,16 +952,16 @@ def render_neural_simulator_page():
 
     # Create layer stack visualization
     layers_data = [
-        {"layer": "L14", "name": "Application", "domain": "Silicon", "regions": ["PFC", "BROCA", "WERNICKE"], "color": "#8b5cf6"},
-        {"layer": "L13", "name": "Presentation", "domain": "Silicon", "regions": ["M1", "PMC", "SMA"], "color": "#f97316"},
-        {"layer": "L12", "name": "Session", "domain": "Silicon", "regions": ["S1", "V1", "A1"], "color": "#3b82f6"},
-        {"layer": "L11", "name": "Transport", "domain": "Silicon", "regions": ["HIPP"], "color": "#22c55e"},
-        {"layer": "L10", "name": "Protocol", "domain": "Silicon", "regions": [], "color": "#06b6d4"},
-        {"layer": "L9", "name": "Signal Processing", "domain": "Silicon", "regions": [], "color": "#14b8a6"},
+        {"layer": "L14", "name": "Identity", "domain": "Biology", "regions": ["PFC", "BROCA", "WERNICKE"], "color": "#8b5cf6"},
+        {"layer": "L13", "name": "Semantic", "domain": "Biology", "regions": ["M1", "PMC", "SMA"], "color": "#f97316"},
+        {"layer": "L12", "name": "Cognitive Session", "domain": "Biology", "regions": ["S1", "V1", "A1"], "color": "#3b82f6"},
+        {"layer": "L11", "name": "Cognitive Transport", "domain": "Biology", "regions": ["HIPP"], "color": "#22c55e"},
+        {"layer": "L10", "name": "Neural Protocol", "domain": "Biology", "regions": [], "color": "#06b6d4"},
+        {"layer": "L9", "name": "Signal Processing", "domain": "Biology", "regions": [], "color": "#14b8a6"},
         {"layer": "L8", "name": "Neural Gateway", "domain": "Bridge", "regions": ["FIREWALL"], "color": "#ec4899"},
-        {"layer": "L7", "name": "Behavioral", "domain": "Biological", "regions": [], "color": "#64748b"},
-        {"layer": "L6", "name": "Whole-Brain", "domain": "Biological", "regions": [], "color": "#64748b"},
-        {"layer": "L5", "name": "Systems", "domain": "Biological", "regions": [], "color": "#64748b"},
+        {"layer": "L7", "name": "Application", "domain": "Silicon", "regions": [], "color": "#64748b"},
+        {"layer": "L6", "name": "Presentation", "domain": "Silicon", "regions": [], "color": "#64748b"},
+        {"layer": "L5", "name": "Session", "domain": "Silicon", "regions": [], "color": "#64748b"},
     ]
 
     # Highlight current region's layer

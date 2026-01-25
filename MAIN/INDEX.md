@@ -2,7 +2,7 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 1.6
+**Version:** 1.7
 **Last Updated:** 2026-01-24
 **Status:** Active Development
 
@@ -260,9 +260,16 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 | Resource | Purpose |
 |----------|---------|
 | [research_monitor.py](resources/pipeline/scripts/research_monitor.py) | Automated academic paper discovery |
-| [keywords.json](resources/pipeline/scripts/keywords.json) | Research search terms database |
+| [keywords.json](resources/pipeline/scripts/keywords.json) | Research search terms + researcher tracking database |
 | [incoming/](resources/pipeline/incoming/) | New research discoveries |
 | [processed/](resources/pipeline/processed/) | Reviewed and integrated research |
+
+### Workflows
+
+| Workflow | Purpose |
+|----------|---------|
+| [RESEARCH_INTEGRATION_WORKFLOW.md](resources/workflows/RESEARCH_INTEGRATION_WORKFLOW.md) | **Academic research → ONI integration pipeline** |
+| [VISUALIZATION_AS_CODE_STRATEGY.md](resources/workflows/VISUALIZATION_AS_CODE_STRATEGY.md) | Remotion-based programmatic visualization strategy |
 
 ### Editor Agent (Quality & Sync)
 

@@ -6,9 +6,9 @@ Each node operates at Layer 8 (Neural Gateway) as an ONI Firewall node,
 monitoring and validating signals crossing the bio-digital boundary.
 
 ONI Framework Alignment:
-- L1-L7: Biological domain (brain side)
+- L1-L7: Silicon domain (OSI networking - computer side)
 - L8: Neural Gateway - WHERE BCI NODES OPERATE (Firewall location)
-- L9-L14: Silicon domain (computer side)
+- L9-L14: Biology domain (neural processing - brain side)
 
 Each BCI Node:
 - Acts as an ONI Firewall checkpoint at Layer 8

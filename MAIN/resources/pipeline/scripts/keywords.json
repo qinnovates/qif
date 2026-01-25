@@ -1,9 +1,9 @@
 {
   "_comment": "PURPOSE: This file is the keyword database for research_monitor.py. It enables automated tracking of new academic publications related to ONI Framework topics. The script's KeywordManager class loads this file via _load_keywords() and uses get_search_terms() to query arXiv, PubMed, bioRxiv, IEEE, and Semantic Scholar. Keywords are organized by publication (oni-framework, coherence-metric, etc.) and by category (primary_keywords, technical_terms, security_terms). The combined_search_terms section provides cross-publication search queries. To add new keywords: edit the relevant publication section or add new entries to combined_search_terms.",
   "metadata": {
-    "version": "1.2",
-    "last_updated": "2026-01-22",
-    "description": "Research keywords for ONI Framework - used by research_monitor.py to find relevant academic publications"
+    "version": "2.0",
+    "last_updated": "2026-01-24",
+    "description": "Research keywords for ONI Framework - used by research_monitor.py to find relevant academic publications. Now includes researcher_tracking for integration pipeline."
   },
   "publications": {
     "oni-framework": {
@@ -339,6 +339,22 @@
       "medical device regulation neural",
       "neurodata governance"
     ],
+    "neuroethics_policy": [
+      "neurorights legislation",
+      "cognitive liberty law",
+      "mental privacy regulation",
+      "Chile neurodata",
+      "California neurorights",
+      "MIND Act neural",
+      "UNESCO neurotechnology ethics"
+    ],
+    "clinical_trials": [
+      "BrainGate clinical",
+      "intracortical BCI trial",
+      "speech BCI clinical",
+      "DBS clinical trial security",
+      "neural prosthetic trial"
+    ],
     "quantum_security": [
       "post-quantum cryptography",
       "quantum computing cybersecurity",
@@ -349,6 +365,144 @@
       "NIST post-quantum standards",
       "quantum threat timeline"
     ]
+  },
+  "researcher_tracking": {
+    "_comment": "Researcher monitoring for integration pipeline. See RESEARCH_INTEGRATION_WORKFLOW.md",
+    "tier_1_core": {
+      "description": "Foundational researchers - monitor all publications for direct integration",
+      "researchers": [
+        {
+          "name": "Tadayoshi Kohno",
+          "institution": "University of Washington",
+          "role": "Professor, Allen School",
+          "focus": ["neurosecurity", "BCI privacy", "implant security"],
+          "oni_integration": "NeurosecurityFirewall, CIA threat model",
+          "search_terms": ["Kohno neural", "Kohno BCI", "Kohno implant security"]
+        },
+        {
+          "name": "Tamara Bonaci",
+          "institution": "University of Washington",
+          "role": "Security Researcher",
+          "focus": ["BCI anonymization", "brain spyware", "neural PII"],
+          "oni_integration": "BCIAnonymizer, privacy-preserving filtering",
+          "search_terms": ["Bonaci BCI", "Bonaci brain", "BCI anonymizer"]
+        },
+        {
+          "name": "Howard Chizeck",
+          "institution": "University of Washington",
+          "role": "Professor Emeritus, BioRobotics",
+          "focus": ["DBS security", "closed-loop neural devices"],
+          "oni_integration": "Attack surface analysis, L8 firewall design",
+          "search_terms": ["Chizeck BCI", "Chizeck implant", "Chizeck neural"]
+        }
+      ]
+    },
+    "tier_2_neuroethics": {
+      "description": "Ethics/policy researchers - monitor for framework alignment and neurorights",
+      "researchers": [
+        {
+          "name": "Sara Goering",
+          "institution": "University of Washington",
+          "role": "Professor & Chair, Philosophy",
+          "focus": ["agency in BCI users", "disability theory", "BRAIN Initiative ethics"],
+          "oni_alignment": "L14 Identity layer design principles",
+          "search_terms": ["Goering BCI", "Goering agency", "Goering neuroethics"]
+        },
+        {
+          "name": "Rafael Yuste",
+          "institution": "Columbia University",
+          "role": "Professor, Biological Sciences",
+          "focus": ["neurorights", "BRAIN Initiative", "mental privacy"],
+          "oni_alignment": "5 neurorights framework, BCIAnonymizer",
+          "search_terms": ["Yuste neurorights", "Yuste BCI", "NeuroRights Foundation"]
+        },
+        {
+          "name": "Marcello Ienca",
+          "institution": "TU Munich",
+          "role": "Professor, Ethics of AI & Neuroscience",
+          "focus": ["neurorights theory", "cognitive liberty", "mental integrity"],
+          "oni_alignment": "Theoretical foundation for privacy layers",
+          "search_terms": ["Ienca neurorights", "Ienca cognitive liberty", "Ienca neural"]
+        },
+        {
+          "name": "Gabriel Lázaro-Muñoz",
+          "institution": "Harvard Medical School",
+          "role": "Assistant Professor, Center for Bioethics",
+          "focus": ["DBS ethics", "pediatric neuroethics", "post-trial access"],
+          "oni_alignment": "Privacy scoring, vulnerable population handling",
+          "search_terms": ["Lázaro-Muñoz DBS", "Lázaro-Muñoz neuroethics"]
+        },
+        {
+          "name": "Eran Klein",
+          "institution": "University of Washington",
+          "role": "Neurologist & Affiliate Professor",
+          "focus": ["clinical neuroethics", "user experience", "cognitive autonomy"],
+          "oni_alignment": "User consent models, L14 design",
+          "search_terms": ["Klein neuroethics", "Klein BCI autonomy"]
+        },
+        {
+          "name": "Hannah Maslen",
+          "institution": "Oxford University",
+          "role": "Senior Research Fellow, Uehiro Centre",
+          "focus": ["closed-loop autonomy", "EU BCI regulation", "BrainCom ethics"],
+          "oni_alignment": "User override mechanisms, regulatory preparation",
+          "search_terms": ["Maslen BCI", "Maslen neuroethics", "Maslen autonomy"]
+        },
+        {
+          "name": "Judy Illes",
+          "institution": "University of British Columbia",
+          "role": "Professor, Neurology",
+          "focus": ["WHO neurotechnology", "UNESCO ethics", "international standards"],
+          "oni_alignment": "International regulatory compliance",
+          "search_terms": ["Illes neuroethics", "Illes neurotechnology"]
+        }
+      ]
+    },
+    "tier_3_engineering": {
+      "description": "BCI developers - monitor for security integration opportunities",
+      "researchers": [
+        {
+          "name": "Leigh Hochberg",
+          "institution": "Brown University / BrainGate",
+          "role": "Associate Professor, Clinical Trial Director",
+          "focus": ["BrainGate trials", "speech decoding", "wireless BCI"],
+          "oni_opportunity": "Wireless BCI security protocols, clinical validation data",
+          "search_terms": ["Hochberg BrainGate", "Hochberg BCI", "Hochberg speech"]
+        },
+        {
+          "name": "Bin He",
+          "institution": "Carnegie Mellon University",
+          "role": "Trustee Professor",
+          "focus": ["bidirectional BCI", "ultrasound neuromodulation", "non-invasive BCI"],
+          "oni_opportunity": "Bidirectional security, ML model integrity",
+          "search_terms": ["Bin He BCI", "Bin He bidirectional", "CMU neural"]
+        },
+        {
+          "name": "Richard Andersen",
+          "institution": "Caltech",
+          "role": "Professor, Chen BMI Center",
+          "focus": ["intent decoding", "internal speech", "sensory feedback"],
+          "oni_opportunity": "Intent privacy protection, stimulation safety",
+          "search_terms": ["Andersen BCI", "Andersen intent", "Andersen parietal"]
+        },
+        {
+          "name": "Pablo Celnik",
+          "institution": "Johns Hopkins University",
+          "role": "Professor & Director",
+          "focus": ["bilateral BCI", "multi-array control", "mixed reality BCI"],
+          "oni_opportunity": "Multi-array security, MR attack surface",
+          "search_terms": ["Celnik BCI", "Celnik bilateral", "Johns Hopkins neural"]
+        },
+        {
+          "name": "Miguel Nicolelis",
+          "institution": "Duke University",
+          "role": "Professor",
+          "focus": ["brain-to-brain interfaces", "exoskeleton control", "tactile feedback"],
+          "oni_opportunity": "BTBI security (future), exoskeleton verification",
+          "search_terms": ["Nicolelis BCI", "Nicolelis brain", "Nicolelis exoskeleton"]
+        }
+      ]
+    }
   },
   "academic_sources": {
     "journals": [

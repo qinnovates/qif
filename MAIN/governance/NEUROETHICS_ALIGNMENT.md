@@ -104,7 +104,7 @@ Low Coherence + Valid Auth = REJECT (harm prevention)
 | L1-L3 (Molecular→Microcircuit) | Biological manipulation at cellular level | Identifies attack surfaces; notes biological defenses |
 | L4-L7 (Regional→Behavioral) | Higher-order cognitive manipulation | Maps system-level vulnerabilities |
 | L8 (Neural Gateway) | The critical boundary | Places firewall at bio-digital interface |
-| L9-L14 (Silicon) | Digital attack vectors | Standard cybersecurity applies |
+| L9-L14 (Biology) | Neural/cognitive attack vectors | ONI-specific neurodefense applies |
 
 **Ethical Reasoning**: You cannot protect what you cannot name. The 14-layer model provides *vocabulary* for discussing neural security across disciplines (neuroscience, security, ethics, law).
 
