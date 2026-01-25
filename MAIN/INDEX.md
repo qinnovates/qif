@@ -2,7 +2,7 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 1.9
+**Version:** 2.0
 **Last Updated:** 2026-01-24
 **Status:** Active Development
 
@@ -86,6 +86,17 @@ Five interactive HTML applications for education and demonstration:
 | [Scale-Frequency Nav](tara-neural-security-platform/visualizations/05-scale-frequency-navigator.html) | Temporal scale exploration | f × S ≈ k invariant |
 
 **Quick Start:** Open `tara-neural-security-platform/visualizations/index.html` in a browser.
+
+#### GitHub Pages Live Demo
+
+All visualizations are hosted at **[https://qikevinl.github.io/ONI/](https://qikevinl.github.io/ONI/)** for immediate exploration without downloading.
+
+| App | Live Link | Description |
+|-----|-----------|-------------|
+| Coherence Playground | [Launch](https://qikevinl.github.io/ONI/visualizations/01-coherence-metric-playground.html) | Interactive Cₛ calculation |
+| Layer Explorer | [Launch](https://qikevinl.github.io/ONI/visualizations/02-oni-layer-explorer.html) | 14-layer navigation (updated labels) |
+| Academic Alignment | [Launch](https://qikevinl.github.io/ONI/visualizations/03-academic-alignment.html) | **NEW** — 15 researchers, 12 universities |
+| Remotion Project | [View](https://qikevinl.github.io/ONI/oni-visualizations/) | **NEW** — Programmatic video generation |
 
 #### MOABB Integration (External Datasets)
 

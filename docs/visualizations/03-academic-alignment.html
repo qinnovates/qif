@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONI Academic Alignment | Research Foundation</title>
+    <style>
+        :root {
+            --oni-dark: #0a0e17;
+            --oni-darker: #060912;
+            --oni-blue: #00d4ff;
+            --oni-purple: #8b5cf6;
+            --oni-pink: #ec4899;
+            --oni-green: #10b981;
+            --oni-yellow: #f59e0b;
+            --oni-red: #ef4444;
+            --oni-orange: #f97316;
+            --oni-gray: #1e293b;
+            --oni-light: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--oni-dark);
+            color: var(--oni-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            padding: 1.5rem 2rem;
+            background: var(--oni-darker);
+            border-bottom: 1px solid var(--oni-gray);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            background: linear-gradient(135deg, var(--oni-blue), var(--oni-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Research Tiers */
+        .tier-section {
+            margin-bottom: 3rem;
+        }
+
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--oni-gray);
+        }
+
+        .tier-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .tier-1 .tier-badge { background: var(--oni-green); color: var(--oni-dark); }
+        .tier-2 .tier-badge { background: var(--oni-purple); color: white; }
+        .tier-3 .tier-badge { background: var(--oni-blue); color: var(--oni-dark); }
+
+        .tier-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Researcher Cards Grid */
+        .researcher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .researcher-card {
+            background: var(--oni-darker);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--oni-gray);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .researcher-card:hover {
+            border-color: var(--oni-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .researcher-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .tier-1 .researcher-card::before { background: var(--oni-green); }
+        .tier-2 .researcher-card::before { background: var(--oni-purple); }
+        .tier-3 .researcher-card::before { background: var(--oni-blue); }
+
+        .researcher-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .researcher-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--oni-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .researcher-institution {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .researcher-role {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            background: var(--oni-gray);
+            color: #94a3b8;
+        }
+
+        /* Contribution Section */
+        .contribution-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .contribution-text {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        /* ONI Integration */
+        .integration-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .integration-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--oni-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .integration-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .integration-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', monospace;
+        }
+
+        .tag-code { background: rgba(16, 185, 129, 0.2); color: var(--oni-green); }
+        .tag-model { background: rgba(139, 92, 246, 0.2); color: var(--oni-purple); }
+        .tag-ethics { background: rgba(236, 72, 153, 0.2); color: var(--oni-pink); }
+        .tag-layer { background: rgba(0, 212, 255, 0.2); color: var(--oni-blue); }
+
+        /* Connection Diagram */
+        .connection-diagram {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--oni-darker);
+            border-radius: 16px;
+            border: 1px solid var(--oni-gray);
+        }
+
+        .diagram-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            height: 500px;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--oni-darker);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--oni-gray);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--oni-blue), var(--oni-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        /* Domain Pills */
+        .domain-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .domain-security { background: rgba(16, 185, 129, 0.2); color: var(--oni-green); }
+        .domain-ethics { background: rgba(236, 72, 153, 0.2); color: var(--oni-pink); }
+        .domain-engineering { background: rgba(0, 212, 255, 0.2); color: var(--oni-blue); }
+
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--oni-gray);
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--oni-blue);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .researcher-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ONI Academic Research Alignment</h1>
+        <p>Foundational research and collaborations informing the ONI Neural Security Framework</p>
+    </header>
+
+    <main class="main-container">
+        <!-- Stats Overview -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Key Researchers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Universities</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Direct Code Integrations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Research Domains</div>
+            </div>
+        </section>
+
+        <!-- Domain Legend -->
+        <div style="margin-bottom: 2rem;">
+            <span class="domain-pill domain-security">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                BCI Security
+            </span>
+            <span class="domain-pill domain-ethics">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+                </svg>
+                Neuroethics
+            </span>
+            <span class="domain-pill domain-engineering">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+                Neural Engineering
+            </span>
+        </div>
+
+        <!-- Tier 1: Core Foundational -->
+        <section class="tier-section tier-1">
+            <div class="tier-header">
+                <span class="tier-badge">TIER 1</span>
+                <span class="tier-title">Core Foundational Research (Directly Integrated)</span>
+            </div>
+            <div class="researcher-grid">
+                <!-- Tadayoshi Kohno -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Tadayoshi Kohno</div>
+                            <div class="researcher-institution">University of Washington</div>
+                        </div>
+                        <span class="researcher-role">Professor, Allen School</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Coined "neurosecurity" (2009), IEEE Fellow for cybersecurity contributions.
+                        Established CIA threat model for neural devices.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-code">NeurosecurityFirewall</span>
+                            <span class="integration-tag tag-model">CIA Threat Model</span>
+                            <span class="integration-tag tag-layer">L8 Gateway</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tamara Bonaci -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Tamara Bonaci</div>
+                            <div class="researcher-institution">University of Washington</div>
+                        </div>
+                        <span class="researcher-role">PhD, Security Research</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        BCI Anonymizer patent (US20140228701A1), demonstrated "brain spyware" attack vectors,
+                        neural PII classification framework.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-code">BCIAnonymizer</span>
+                            <span class="integration-tag tag-model">Privacy Filtering</span>
+                            <span class="integration-tag tag-layer">L9-L11 Biology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Howard Chizeck -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Howard Chizeck</div>
+                            <div class="researcher-institution">University of Washington</div>
+                        </div>
+                        <span class="researcher-role">Professor Emeritus</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Deep brain stimulator security research, closed-loop neural device safety protocols,
+                        co-inventor of BCI Anonymizer.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-model">Attack Surface Analysis</span>
+                            <span class="integration-tag tag-layer">L8 Firewall Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tier 2: Neuroethics -->
+        <section class="tier-section tier-2">
+            <div class="tier-header">
+                <span class="tier-badge">TIER 2</span>
+                <span class="tier-title">Neuroethics & Policy Research</span>
+            </div>
+            <div class="researcher-grid">
+                <!-- Rafael Yuste -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Rafael Yuste</div>
+                            <div class="researcher-institution">Columbia University</div>
+                        </div>
+                        <span class="researcher-role">Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Co-initiator of BRAIN Initiative, NeuroRights Foundation founder. Defined the Five Neurorights
+                        influencing Chile's constitutional reform and California's Neurorights Bill.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-ethics">5 Neurorights Alignment</span>
+                            <span class="integration-tag tag-layer">L14 Identity Layer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marcello Ienca -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Marcello Ienca</div>
+                            <div class="researcher-institution">TU Munich / ETH Zurich</div>
+                        </div>
+                        <span class="researcher-role">Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Four original neurorights proposal (2017), UNESCO advisor on neurotechnology ethics,
+                        Council of Europe neural data guidelines.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-ethics">4 Neurorights Theory</span>
+                            <span class="integration-tag tag-model">Mental Integrity → Cₛ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sara Goering -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Sara Goering</div>
+                            <div class="researcher-institution">University of Washington</div>
+                        </div>
+                        <span class="researcher-role">Professor & Chair</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Agency in BCI users research, disability theory integration,
+                        BRAIN Initiative ethics lead. $1.6M NIH grant on Human Agency and BCIs.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-ethics">Relational Agency</span>
+                            <span class="integration-tag tag-layer">L14 Design Principles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gabriel Lázaro-Muñoz -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Gabriel Lázaro-Muñoz</div>
+                            <div class="researcher-institution">Harvard Medical School</div>
+                        </div>
+                        <span class="researcher-role">Assistant Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        DBS ethics research, pediatric neuroethics, International Brain Initiative ethics lead.
+                        UNESCO neurotechnology ethics consultation (2024).
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-ethics">Vulnerable Populations</span>
+                            <span class="integration-tag tag-model">Privacy Scoring</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hannah Maslen -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Hannah Maslen</div>
+                            <div class="researcher-institution">Oxford University</div>
+                        </div>
+                        <span class="researcher-role">Senior Research Fellow</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        BrainCom project ethics lead, EU BCI regulation advisor,
+                        research on autonomy in closed-loop neural systems.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-ethics">Closed-Loop Autonomy</span>
+                            <span class="integration-tag tag-layer">L13 Semantic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Judy Illes -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Judy Illes</div>
+                            <div class="researcher-institution">University of British Columbia</div>
+                        </div>
+                        <span class="researcher-role">Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        WHO consultation on neurotechnologies (2024), UNESCO ethics of neurotechnology (2024),
+                        Hastings Center Fellow.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-ethics">International Standards</span>
+                            <span class="integration-tag tag-model">Regulatory Compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tier 3: Neural Engineering -->
+        <section class="tier-section tier-3">
+            <div class="tier-header">
+                <span class="tier-badge">TIER 3</span>
+                <span class="tier-title">Neural Engineering & BCI Development</span>
+            </div>
+            <div class="researcher-grid">
+                <!-- Leigh Hochberg -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Leigh Hochberg</div>
+                            <div class="researcher-institution">Brown University / BrainGate</div>
+                        </div>
+                        <span class="researcher-role">Associate Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        BrainGate clinical trial director, first wireless high-bandwidth human BCI (2021),
+                        97% accuracy speech decoding for ALS patients.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-model">Clinical Translation</span>
+                            <span class="integration-tag tag-layer">L9-L10 Signal Integrity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Richard Andersen -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Richard Andersen</div>
+                            <div class="researcher-institution">Caltech</div>
+                        </div>
+                        <span class="researcher-role">Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Internal speech decoding via posterior parietal cortex, bidirectional BMIs with sensory feedback,
+                        FDA-approved clinical studies on sensory restoration.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-model">Intent Privacy</span>
+                            <span class="integration-tag tag-layer">L13 Semantic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bin He -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Bin He</div>
+                            <div class="researcher-institution">Carnegie Mellon University</div>
+                        </div>
+                        <span class="researcher-role">Trustee Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        First bidirectional BCI with ultrasound neuromodulation (2024),
+                        machine learning-enhanced non-invasive BCI performance.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-code">Bidirectional Security</span>
+                            <span class="integration-tag tag-layer">L8 Rules</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pablo Celnik -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Pablo Celnik</div>
+                            <div class="researcher-institution">Johns Hopkins University</div>
+                        </div>
+                        <span class="researcher-role">Professor & Director</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        First bilateral MEA implantation (both hemispheres), simultaneous dual prosthetic arm control,
+                        virtual object perception via BCI.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-model">Multi-Array Sync</span>
+                            <span class="integration-tag tag-layer">Mixed Reality Attack Surface</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miguel Nicolelis -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Miguel Nicolelis</div>
+                            <div class="researcher-institution">Duke University</div>
+                        </div>
+                        <span class="researcher-role">Professor</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Brain-to-brain interfaces, 2014 World Cup exoskeleton demonstration,
+                        tactile feedback integration for motor BCIs.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-model">BTBI Security</span>
+                            <span class="integration-tag tag-layer">Exoskeleton Verification</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jaimie Henderson -->
+                <div class="researcher-card">
+                    <div class="researcher-header">
+                        <div>
+                            <div class="researcher-name">Jaimie Henderson</div>
+                            <div class="researcher-institution">Stanford University</div>
+                        </div>
+                        <span class="researcher-role">NPTL Co-Director</span>
+                    </div>
+                    <div class="contribution-label">Key Contributions</div>
+                    <div class="contribution-text">
+                        Neural Prosthetics Translational Lab leadership, clinical BCI trials for paralysis restoration,
+                        17+ years safety data on intracortical BCIs.
+                    </div>
+                    <div class="integration-section">
+                        <div class="integration-label">ONI Integration</div>
+                        <div class="integration-items">
+                            <span class="integration-tag tag-model">Deployment Constraints</span>
+                            <span class="integration-tag tag-layer">Clinical Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Gap Analysis -->
+        <section class="connection-diagram">
+            <div class="diagram-title">Research Gaps ONI Addresses</div>
+            <svg class="diagram-svg" viewBox="0 0 1000 400">
+                <!-- Background -->
+                <rect x="0" y="0" width="1000" height="400" fill="#060912"/>
+
+                <!-- Gap boxes (left side) -->
+                <g transform="translate(50, 30)">
+                    <text x="0" y="0" fill="#64748b" font-size="12" font-weight="600">EXISTING GAPS</text>
+
+                    <rect x="0" y="20" width="300" height="50" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="1" rx="8"/>
+                    <text x="15" y="50" fill="#fca5a5" font-size="11">No unified security model across BCI types</text>
+
+                    <rect x="0" y="80" width="300" height="50" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="1" rx="8"/>
+                    <text x="15" y="110" fill="#fca5a5" font-size="11">Privacy concepts remain theoretical</text>
+
+                    <rect x="0" y="140" width="300" height="50" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="1" rx="8"/>
+                    <text x="15" y="170" fill="#fca5a5" font-size="11">No standard threat taxonomy</text>
+
+                    <rect x="0" y="200" width="300" height="50" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="1" rx="8"/>
+                    <text x="15" y="230" fill="#fca5a5" font-size="11">Layer-by-layer attack surface undefined</text>
+
+                    <rect x="0" y="260" width="300" height="50" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="1" rx="8"/>
+                    <text x="15" y="290" fill="#fca5a5" font-size="11">Coherence/integrity unmeasured</text>
+
+                    <rect x="0" y="320" width="300" height="50" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="1" rx="8"/>
+                    <text x="15" y="350" fill="#fca5a5" font-size="11">Neurorights lack technical enforcement</text>
+                </g>
+
+                <!-- Arrows -->
+                <g stroke="#64748b" stroke-width="2" fill="none">
+                    <path d="M380 75 L470 75" marker-end="url(#arrow)"/>
+                    <path d="M380 135 L470 135" marker-end="url(#arrow)"/>
+                    <path d="M380 195 L470 195" marker-end="url(#arrow)"/>
+                    <path d="M380 255 L470 255" marker-end="url(#arrow)"/>
+                    <path d="M380 315 L470 315" marker-end="url(#arrow)"/>
+                    <path d="M380 375 L470 195" marker-end="url(#arrow)"/>
+                </g>
+
+                <!-- ONI Solutions (right side) -->
+                <g transform="translate(500, 30)">
+                    <text x="0" y="0" fill="#10b981" font-size="12" font-weight="600">ONI SOLUTIONS</text>
+
+                    <rect x="0" y="20" width="450" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8"/>
+                    <text x="15" y="45" fill="#6ee7b7" font-size="11">14-layer model applicable to invasive, non-invasive, hybrid BCIs</text>
+                    <text x="380" y="50" fill="#10b981" font-size="10" font-family="monospace">ONI_LAYERS</text>
+
+                    <rect x="0" y="80" width="450" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8"/>
+                    <text x="15" y="105" fill="#6ee7b7" font-size="11">BCIAnonymizer provides executable implementation</text>
+                    <text x="350" y="110" fill="#10b981" font-size="10" font-family="monospace">BCIAnonymizer.py</text>
+
+                    <rect x="0" y="140" width="450" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8"/>
+                    <text x="15" y="165" fill="#6ee7b7" font-size="11">Kohno CIA model + attack pattern library in TARA</text>
+                    <text x="320" y="170" fill="#10b981" font-size="10" font-family="monospace">NeurosecurityFirewall</text>
+
+                    <rect x="0" y="200" width="450" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8"/>
+                    <text x="15" y="225" fill="#6ee7b7" font-size="11">ONI explicitly maps attacks to layers L1-L14</text>
+                    <text x="370" y="230" fill="#10b981" font-size="10" font-family="monospace">TARA Platform</text>
+
+                    <rect x="0" y="260" width="450" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8"/>
+                    <text x="15" y="280" fill="#6ee7b7" font-size="11">Cₛ = e^(−(σ²φ + σ²τ + σ²γ)) — quantifiable signal trust</text>
+                    <text x="360" y="290" fill="#10b981" font-size="10" font-family="monospace">coherence.py</text>
+
+                    <rect x="0" y="320" width="450" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8"/>
+                    <text x="15" y="345" fill="#6ee7b7" font-size="11">Framework translates neurorights to technical controls</text>
+                    <text x="350" y="350" fill="#10b981" font-size="10" font-family="monospace">L14 Identity Layer</text>
+                </g>
+
+                <!-- Arrow marker -->
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+                    </marker>
+                </defs>
+            </svg>
+        </section>
+
+        <footer class="footer">
+            <p>
+                Academic alignment data sourced from <a href="https://qikevinl.github.io/ONI/MAIN/ACADEMIC_LANDSCAPE.md">ACADEMIC_LANDSCAPE.md</a><br>
+                ONI Framework &copy; 2026 | <a href="https://github.com/qikevinl/ONI">GitHub Repository</a>
+            </p>
+        </footer>
+    </main>
+</body>
+</html>

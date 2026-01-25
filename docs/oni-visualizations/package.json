@@ -1,0 +1,36 @@
+{
+  "name": "oni-visualizations",
+  "version": "1.0.0",
+  "description": "ONI Framework investor visualizations using Remotion",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render src/index.ts CoherenceMetric out/coherence-metric.mp4",
+    "build:all": "npm run build:coherence && npm run build:layers && npm run build:firewall",
+    "build:coherence": "remotion render src/index.ts CoherenceMetric out/coherence-metric.mp4",
+    "build:layers": "remotion render src/index.ts LayerStack out/layer-stack.mp4",
+    "build:firewall": "remotion render src/index.ts AttackDetection out/attack-detection.mp4",
+    "upgrade": "remotion upgrade",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/player": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "oni",
+    "neural-security",
+    "bci",
+    "remotion",
+    "visualization"
+  ],
+  "author": "Kevin L. Qi",
+  "license": "Apache-2.0"
+}
