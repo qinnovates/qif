@@ -141,6 +141,7 @@ ONI builds directly on pioneering research from leading institutions in BCI secu
 | Institution | Researchers | Contribution | ONI Alignment |
 |-------------|-------------|--------------|---------------|
 | **[Columbia University](https://www.neurorightsfoundation.org/)** | [Rafael Yuste](https://magazine.columbia.edu/article/need-protect-data-our-brains) | [Five Neurorights](https://www.frontiersin.org/articles/10.3389/fnhum.2021.701258) — Mental privacy, identity, free will | Framework-wide design principles |
+| **[Yale Digital Ethics Center](https://dec.yale.edu/)** | [Luciano Floridi](https://dec.yale.edu/profile/luciano-floridi), [Tyler Schroder](https://dec.yale.edu/tyler-schroder) | [Cyber Risks to Next-Gen BCIs (2025)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5138265) — BCI threat modeling, regulatory recommendations | Threat model methodology, L8 design |
 | **[ETH Zurich / TU Munich](https://ethz.ch/en/news-and-events/eth-news/news/2021/10/marcello-ienca-we-must-expand-human-rights-to-cover-neurotechnology.html)** | [Marcello Ienca](https://www.professoren.tum.de/en/ienca-marcello) | [Four Neurorights (2017)](https://link.springer.com/article/10.1007/s12152-022-09498-8) — Cognitive liberty, mental integrity | L14 Identity layer design |
 | **[UW Neuroethics Group](https://phil.washington.edu/neuroethics-research-group)** | [Sara Goering](https://phil.washington.edu/people/sara-goering), [Eran Klein](https://phil.washington.edu/ethical-considerations-and-neurotechnology) | [Agency in BCI users](https://pmc.ncbi.nlm.nih.gov/articles/PMC8443241/) — Relational agency, user autonomy | User consent models |
 | **[Harvard Bioethics](https://bioethics.hms.harvard.edu/faculty-staff/gabriel-lazaro-munoz)** | [Gabriel Lázaro-Muñoz](https://brain.harvard.edu/?people=gabriel-lazaro-munoz) | [DBS ethics, neural data privacy](https://www.frontiersin.org/articles/10.3389/fnhum.2024.1332451) | Privacy scoring, vulnerable populations |
@@ -477,5 +478,5 @@ Apache License 2.0 - See [LICENSE](LICENSE)
 ---
 
 *Auto-published from research pipeline*
-*Last update: 2026-01-24*
+*Last update: 2026-01-25*
 *Documents: 16 | Topics: 6 | Python Packages: oni-framework v0.2.0, oni-tara v0.4.0*

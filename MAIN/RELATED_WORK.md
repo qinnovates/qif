@@ -9,6 +9,7 @@ This document acknowledges the foundational and concurrent research in brain-com
 ## Table of Contents
 
 - [Foundational Work](#foundational-work)
+- [Inspirational Works](#inspirational-works)
 - [Standards and Frameworks](#standards-and-frameworks)
 - [Privacy and Anonymization](#privacy-and-anonymization)
 - [Threat Modeling](#threat-modeling)
@@ -39,6 +40,46 @@ The term "neurosecurity" was coined by **Tadayoshi Kohno** and colleagues at the
 - Anticipated regulatory gaps that still exist today
 
 **ONI Framework Relationship:** The ONI Framework adopts Kohno's CIA triad framing and extends it with specific architectural implementation through the 14-layer model and Coherence Metric.
+
+---
+
+## Inspirational Works
+
+These works provided conceptual inspiration for the ONI Framework's architecture and vision.
+
+### The Society of Mind (Marvin Minsky, 1986)
+
+> Minsky, M. (1986). *The Society of Mind*. Simon & Schuster.
+
+**About the Author:**
+Marvin Minsky (1927-2016) was a cognitive scientist and co-founder of the MIT Artificial Intelligence Laboratory. A Turing Award recipient (1969), he was one of the founding fathers of artificial intelligence and made seminal contributions to AI, cognitive psychology, mathematics, and robotics.
+
+**Synopsis:**
+In this groundbreaking work, Minsky proposes that human intelligence emerges not from a single unified mechanism, but from the interactions of many simple, specialized "agents" — each individually mindless, but collectively capable of thought, emotion, memory, and reasoning. Structured as 270 interconnected essays, the book introduces concepts like "K-lines" (memory triggers), "frames" (knowledge structures), and "agencies" (collections of cooperating agents). Minsky argues that common sense is a collection of learned skills developed through childhood, and that understanding the mind requires viewing it as a "society" of interacting components rather than a monolithic processor.
+
+**How It Inspired ONI:**
+- **Layered architecture**: Minsky's multi-agent model inspired ONI's approach of decomposing neural security into 14 distinct layers, each handling specific functions
+- **Emergent properties**: The idea that complex behavior emerges from simple agents interacting informs ONI's coherence metric — trust emerges from multiple variance measurements
+- **Distributed processing**: ONI's recognition that security decisions happen at multiple layers (not just one firewall) echoes Minsky's rejection of centralized control
+- **Agency boundaries**: The concept of "agencies" as cooperating agent groups maps to ONI's domain boundaries (Silicon L1-7, Bridge L8, Biology L9-14)
+
+---
+
+### The NeuroGeneration (Tan Le, 2020)
+
+> Le, T. (2020). *The NeuroGeneration: The New Era in Brain Enhancement That Is Revolutionizing the Way We Think, Work, and Heal*. BenBella Books.
+
+**About the Author:**
+Tan Le is the founder and CEO of EMOTIV, a leading neuroinformatics company pioneering consumer EEG brain-computer interfaces. A Vietnamese refugee who arrived in Australia at age four, she was named Young Australian of the Year at 21, featured in Forbes' "50 Names You Need to Know," and serves on the World Economic Forum's Global Future Council on the Future of Neurotechnologies and Brain Science. She is recognized as one of the most influential pioneers in the emerging BCI field.
+
+**Synopsis:**
+Le takes readers on a global tour of neurotechnology's frontier, introducing the scientists and inventors pushing the boundaries of brain enhancement. The book profiles transformative cases: an endurance racer paralyzed in a fall who walks again via neural stimulation and exoskeleton; a man who drives a race car with his mind; a color-blind "cyborg" whose brain implant lets him "hear" colors. Le explores emerging technologies including cranial stimulation for accelerated learning, artificial hippocampus implants for memory restoration, and neural interfaces designed to help humans keep pace with AI. The book captures both the promise and the profound questions these technologies raise about human identity and potential.
+
+**How It Inspired ONI:**
+- **Real-world grounding**: Le's case studies demonstrate that BCIs are not theoretical — they're transforming lives today, making security an urgent rather than academic concern
+- **Commercial BCI landscape**: Understanding the EMOTIV ecosystem and consumer neurotechnology informed ONI's consideration of non-medical BCI attack surfaces
+- **Human-centered design**: Le's focus on individual stories reinforced ONI's emphasis on protecting identity (L14) and cognitive autonomy
+- **Accessibility vision**: Her work on democratizing neurotechnology aligns with ONI's open-source approach to security frameworks
 
 ---
 
@@ -385,11 +426,17 @@ This enables anomaly detection across neural scales (molecular to behavioral).
 
 10. OECD. (2019). Recommendation of the Council on Responsible Innovation in Neurotechnology.
 
+### Inspirational Works
+
+11. Minsky, M. (1986). *The Society of Mind*. Simon & Schuster.
+
+12. Le, T. (2020). *The NeuroGeneration: The New Era in Brain Enhancement That Is Revolutionizing the Way We Think, Work, and Heal*. BenBella Books.
+
 ### Open Source Resources
 
-11. Jayaram, V., & Barachant, A. (2018). MOABB: Trustworthy algorithm benchmarking for BCIs. *Journal of Neural Engineering*, 15(6), 066011. https://doi.org/10.1088/1741-2552/aadea0
+13. Jayaram, V., & Barachant, A. (2018). MOABB: Trustworthy algorithm benchmarking for BCIs. *Journal of Neural Engineering*, 15(6), 066011. https://doi.org/10.1088/1741-2552/aadea0
 
-12. NeuroTechX. (2024). awesome-bci: Curated collection of BCI resources. GitHub. https://github.com/NeuroTechX/awesome-bci
+14. NeuroTechX. (2024). awesome-bci: Curated collection of BCI resources. GitHub. https://github.com/NeuroTechX/awesome-bci
 
 ---
 
@@ -446,5 +493,5 @@ This document is maintained as part of the ONI Framework. If you know of relevan
 
 ---
 
-*Last Updated: 2026-01-24*
+*Last Updated: 2026-01-25*
 *Part of the [ONI Framework](../README.md)*
