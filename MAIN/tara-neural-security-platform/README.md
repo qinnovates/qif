@@ -1,6 +1,6 @@
 # TARA - Neural Security Platform
 
-**Telemetry Awareness and Response Analyzer**
+**Telemetry Analysis and Response Automation**
 
 TARA is a comprehensive neural security platform for brain-computer interfaces (BCIs). It combines neural network simulation, attack modeling, real-time security monitoring, and interactive visualization in a unified framework aligned with the ONI 14-layer model.
 
@@ -796,7 +796,7 @@ If you use TARA in your research, please cite:
 
 ```bibtex
 @software{tara2026,
-  title={TARA: Telemetry Awareness and Response Analyzer},
+  title={TARA: Telemetry Analysis and Response Automation},
   author={Qi, Kevin L.},
   year={2026},
   url={https://github.com/qikevinl/ONI}
