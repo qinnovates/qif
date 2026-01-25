@@ -151,7 +151,7 @@ All commits involving AI assistance include:
 Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 ```
 
-This provides a machine-readable audit trail. Commits without this tag represent purely human work.
+This provides a historical audit trail of all changes requested by the HITL (human-in-the-layer). Commits without this tag represent manual changes made within the Github UI.
 
 ### Enhanced Commit Format (Adopted January 2026)
 
