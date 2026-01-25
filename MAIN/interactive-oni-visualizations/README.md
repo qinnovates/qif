@@ -25,9 +25,9 @@ This prototype suite demonstrates 6 interactive web applications designed to mak
 | 05 | **Scale-Frequency Navigator** | Explore temporal scales | 6 time scales, frequency bands, security context |
 | 06 | **ONI ATT&CK Matrix** | MITRE-inspired threat framework | 7 tactics, 21 techniques, ONI layer mapping, mitigations |
 
-## Quick Start
+## Alternative Methods
 
-### Option A: Download and Run (Easiest)
+### Option A: Download and Run
 
 1. **Download the project**
    - Click the green **"Code"** button at the top of this page
