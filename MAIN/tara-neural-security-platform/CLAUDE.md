@@ -507,9 +507,10 @@ pytest tests/ -v
 | 0.3.0 | 2026-01 | Added Neural Simulator with region security analysis |
 | 0.4.0 | 2026-01 | Added neurosecurity module (Kohno 2009, Bonaci 2015) |
 | 0.5.0 | 2026-01 | Consolidated package structure, integrated ONI Visualization Suite |
+| 0.5.1 | 2026-01 | Fixed Layer Explorer interactivity, comprehensive educational content for all 14 layers |
 
 ---
 
-*Version: 1.3*
+*Version: 1.4*
 *Last Updated: 2026-01-24*
 *For: Claude AI Assistant*
