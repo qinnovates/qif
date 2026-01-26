@@ -75,6 +75,23 @@
 - **Dependencies:** moabb-adapter-implementation ✓
 - **Estimate:** Medium effort
 
+### [P2] bci-macro-to-micro-visualization
+- **Description:** Create animated Blender visualization showing macro-to-micro BCI interface (brain → region → neurons → synapses → neurotransmitters)
+- **Exit Condition:** Blender animation file with seamless zoom from whole brain to molecular level
+- **Risk:** Medium (engineering challenge to stitch scales)
+- **Dependencies:** None
+- **Estimate:** Large effort
+- **Notes:**
+  - Goal: Visualize how BCIs interface with the brain, where electrodes sit, which regions
+  - Current tech limitation: BCIs use electrical stimulation, cannot directly stimulate neurotransmitters (VERIFIED)
+  - Resources found:
+    - brain2printAI: AI tool to convert MRI → 3D printable brain models (https://www.nature.com/articles/s41598-025-00014-5)
+    - Free brain STL: https://www.cgtrader.com/free-3d-models/character/human-anatomy/brain-59cffe18-e669-4dae-a588-1f82cee6fd45
+    - Molecular Nodes addon for Blender (neurotransmitter/molecule rendering)
+    - PDB database for receptor structures (e.g., dopamine D2 receptor: 6CM4)
+  - Approach: Programmatically stitch components across scales for seamless animation
+  - Related: Research doc `brain-anatomy/Research-BCI_Mouse_Movement.md`
+
 ---
 
 ## To Do (Ready to Start)

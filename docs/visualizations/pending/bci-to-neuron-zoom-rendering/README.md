@@ -40,7 +40,8 @@ A visual journey that starts at the BCI hardware level and zooms progressively d
 
 ### Brain Region Research
 
-- See: `@qikevinl/drafts/` for motor cortex specific research
+- **[Research-BCI_Mouse_Movement.md](../../../../MAIN/publications/brain-anatomy/Research-BCI_Mouse_Movement.md)** — Deep dive on electrode placement, neural decoding, BCI specifications
+- **[Brain Anatomy Research](../../../../MAIN/publications/brain-anatomy/)** — Folder structure for brain region documentation
 - ONI_LAYERS.md biological foundation section for molecular cascade details
 
 ---
