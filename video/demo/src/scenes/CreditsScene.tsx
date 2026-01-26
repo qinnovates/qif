@@ -335,16 +335,49 @@ export const CreditsScene: React.FC = () => {
         {/* "Welcome to the OSI of Mind" - Final reveal with white bg and geometric waves */}
         {showWelcome && (
           <>
-            {/* White background overlay that fades in */}
+            {/* Background: dim to bright "birth" effect */}
             <div
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: '#ffffff',
-                opacity: interpolate(frame - 420, [0, 40], [0, 1], {
+                background: interpolate(frame - 420, [0, 30, 80], [0, 0.3, 1], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }) > 0.8 ? '#ffffff' : `rgb(${Math.round(interpolate(frame - 420, [0, 80], [20, 255], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }))}, ${Math.round(interpolate(frame - 420, [0, 80], [20, 255], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }))}, ${Math.round(interpolate(frame - 420, [0, 80], [30, 255], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }))})`,
+                opacity: 1,
+              }}
+            />
+
+            {/* Bright glow burst effect */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                width: interpolate(frame - 420, [0, 60], [0, 2000], {
                   extrapolateLeft: 'clamp',
                   extrapolateRight: 'clamp',
                 }),
+                height: interpolate(frame - 420, [0, 60], [0, 2000], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }),
+                transform: 'translate(-50%, -50%)',
+                background: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 30%, transparent 70%)',
+                opacity: interpolate(frame - 420, [0, 40, 80], [0, 0.9, 0], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }),
+                pointerEvents: 'none',
               }}
             />
 
