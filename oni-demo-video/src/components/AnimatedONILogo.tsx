@@ -1,6 +1,6 @@
 /**
- * AnimatedONILogo - Premium Apple-style logo animation
- * Features: Circular wave ripples, spring physics, dynamic color gradients
+ * AnimatedONILogo - Cinematic full-screen logo animation
+ * Features: Aurora effects, elegant typography, smooth reveals
  */
 
 import React, { useMemo } from 'react';
@@ -10,102 +10,80 @@ import { colors } from '../data/oni-theme';
 interface AnimatedONILogoProps {
   width?: number;
   height?: number;
-  showText?: boolean;
+  showTagline?: boolean;
 }
 
-// Seeded random for consistent wave positions
+// Seeded random for consistent animations
 const seededRandom = (seed: number) => {
   const x = Math.sin(seed * 9999) * 10000;
   return x - Math.floor(x);
 };
 
-// Custom easing curve inspired by Apple's animations
-const appleEaseOut = (t: number) => 1 - Math.pow(1 - t, 4);
-
 export const AnimatedONILogo: React.FC<AnimatedONILogoProps> = ({
-  width = 800,
-  height = 800,
-  showText = true,
+  width = 1920,
+  height = 1080,
+  showTagline = true,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const centerX = width / 2;
   const centerY = height / 2;
 
-  // Main logo entrance - Apple-style spring
-  const logoProgress = spring({
+  // Main entrance animation - cinematic slow reveal
+  const mainProgress = spring({
     frame,
     fps,
-    config: { damping: 12, stiffness: 40, mass: 1.2 },
+    config: { damping: 80, stiffness: 30, mass: 2 },
   });
 
-  const logoScale = interpolate(
-    Math.max(0, logoProgress),
-    [0, 1],
-    [0.3, 1],
-    { easing: appleEaseOut }
-  );
+  // Letter animations with stagger
+  const letterConfigs = ['O', 'N', 'I'].map((letter, i) => ({
+    letter,
+    progress: spring({
+      frame: frame - 15 - i * 12,
+      fps,
+      config: { damping: 20, stiffness: 60, mass: 1.5 },
+    }),
+  }));
 
-  const logoOpacity = interpolate(
-    Math.max(0, logoProgress),
-    [0, 0.3, 1],
-    [0, 0.8, 1]
-  );
-
-  // Circular wave ripples configuration - purple-enhanced for curiosity/innovation
-  const numWaves = 6;
-  const waveColors = [
-    colors.primary.accent,       // Cyan
-    colors.primary.accentPurple, // Purple (curiosity)
-    colors.primary.accent,       // Cyan
-    colors.glow.purple,          // Purple
-    colors.glow.blue,            // Blue-purple
-    colors.primary.accentPurple, // Purple
-  ];
-
-  // Generate wave data
-  const waves = useMemo(() => {
-    return Array.from({ length: numWaves }, (_, i) => ({
-      delay: i * 12,
-      maxRadius: 300 + i * 60,
-      thickness: 2 + (numWaves - i) * 0.5,
-      color: waveColors[i % waveColors.length],
-    }));
-  }, []);
-
-  // Rotating particle ring
-  const numParticles = 24;
-  const particles = useMemo(() => {
-    return Array.from({ length: numParticles }, (_, i) => ({
-      angle: (i / numParticles) * Math.PI * 2,
-      radius: 180 + seededRandom(i * 1.5) * 40,
-      size: 2 + seededRandom(i * 2.5) * 3,
-      speed: 0.3 + seededRandom(i * 3.5) * 0.4,
-      colorIndex: Math.floor(seededRandom(i * 4.5) * 4),
-    }));
-  }, []);
-
-  const particleColors = [
-    colors.primary.accent,
-    colors.primary.accentPurple,
-    colors.glow.purple,
-    colors.glow.blue,
-  ];
-
-  // Glow pulse animation
-  const glowPhase = Math.sin(frame * 0.04);
-  const glowIntensity = interpolate(glowPhase, [-1, 1], [0.5, 1]);
-
-  // Inner geometric pattern rotation
-  const innerRotation = frame * 0.2;
-  const outerRotation = frame * -0.1;
-
-  // Text animation
-  const textProgress = spring({
-    frame: frame - 40,
+  // Tagline animation
+  const taglineProgress = spring({
+    frame: frame - 60,
     fps,
-    config: { damping: 20, stiffness: 80 },
+    config: { damping: 30, stiffness: 50 },
   });
+
+  // Aurora wave animation
+  const auroraPhase = frame * 0.015;
+
+  // Glow pulse
+  const glowPulse = interpolate(
+    Math.sin(frame * 0.03),
+    [-1, 1],
+    [0.6, 1]
+  );
+
+  // Generate aurora paths
+  const auroraPaths = useMemo(() => {
+    return Array.from({ length: 5 }, (_, i) => ({
+      offset: i * 0.2,
+      amplitude: 80 + i * 30,
+      wavelength: 400 + i * 100,
+      color: i % 2 === 0 ? colors.primary.accent : colors.primary.accentPurple,
+      opacity: 0.15 - i * 0.02,
+    }));
+  }, []);
+
+  // Particle field
+  const particles = useMemo(() => {
+    return Array.from({ length: 80 }, (_, i) => ({
+      x: seededRandom(i * 1.1) * width,
+      y: seededRandom(i * 2.2) * height,
+      size: 1 + seededRandom(i * 3.3) * 3,
+      speed: 0.2 + seededRandom(i * 4.4) * 0.5,
+      delay: seededRandom(i * 5.5) * 100,
+    }));
+  }, [width, height]);
 
   return (
     <div
@@ -113,217 +91,176 @@ export const AnimatedONILogo: React.FC<AnimatedONILogoProps> = ({
         width,
         height,
         position: 'relative',
+        overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
+      {/* Background gradient layers */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: `
+            radial-gradient(ellipse 120% 80% at 50% 120%, ${colors.primary.accentPurple}25 0%, transparent 50%),
+            radial-gradient(ellipse 100% 60% at 50% -20%, ${colors.primary.accent}15 0%, transparent 40%),
+            radial-gradient(ellipse at center, ${colors.primary.main} 0%, ${colors.primary.dark} 100%)
+          `,
+        }}
+      />
+
+      {/* Aurora SVG layer */}
       <svg
         width={width}
         height={height}
-        viewBox={`0 0 ${width} ${height}`}
         style={{ position: 'absolute', top: 0, left: 0 }}
       >
         <defs>
-          {/* Radial gradient for center glow */}
-          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={colors.primary.accent} stopOpacity={0.4 * glowIntensity} />
-            <stop offset="40%" stopColor={colors.primary.accent} stopOpacity={0.1 * glowIntensity} />
-            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
-          </radialGradient>
+          {/* Blur filter for aurora */}
+          <filter id="auroraBlur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="40" />
+          </filter>
 
-          {/* Gradient for waves */}
-          {waves.map((wave, i) => (
-            <linearGradient
-              key={`waveGrad-${i}`}
-              id={`waveGradient-${i}`}
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor={wave.color} stopOpacity={0.8} />
-              <stop offset="50%" stopColor={colors.primary.accent} stopOpacity={0.6} />
-              <stop offset="100%" stopColor={wave.color} stopOpacity={0.3} />
-            </linearGradient>
-          ))}
-
-          {/* Glow filter */}
-          <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="8" result="blur" />
+          {/* Glow filter for particles */}
+          <filter id="particleGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
 
-          {/* Soft blur for waves */}
-          <filter id="waveBlur" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="2" />
-          </filter>
+          {/* Gradient for light rays */}
+          <linearGradient id="rayGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={colors.primary.accent} stopOpacity="0.3" />
+            <stop offset="50%" stopColor={colors.primary.accentPurple} stopOpacity="0.1" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </linearGradient>
         </defs>
 
-        {/* Background glow */}
-        <circle
-          cx={centerX}
-          cy={centerY}
-          r={250 * glowIntensity}
-          fill="url(#centerGlow)"
-          opacity={logoOpacity}
-        />
-
-        {/* Expanding circular waves */}
-        {waves.map((wave, i) => {
-          const waveFrame = Math.max(0, frame - wave.delay);
-          const cycleDuration = 90; // frames per cycle
-          const cycleProgress = (waveFrame % cycleDuration) / cycleDuration;
-
-          // Apple-style ease out for wave expansion
-          const easedProgress = appleEaseOut(cycleProgress);
-
-          const waveRadius = interpolate(
-            easedProgress,
-            [0, 1],
-            [60, wave.maxRadius]
-          );
-
-          const waveOpacity = interpolate(
-            easedProgress,
-            [0, 0.2, 0.7, 1],
-            [0, 0.6, 0.4, 0]
-          );
-
-          // Only show after logo appears
-          if (frame < 20 + wave.delay) return null;
+        {/* Aurora waves */}
+        {auroraPaths.map((aurora, i) => {
+          const pathD = Array.from({ length: 20 }, (_, j) => {
+            const x = (j / 19) * width;
+            const baseY = height * 0.3;
+            const wave = Math.sin((x / aurora.wavelength) + auroraPhase + aurora.offset * Math.PI * 2) * aurora.amplitude;
+            const wave2 = Math.sin((x / (aurora.wavelength * 0.7)) + auroraPhase * 1.3) * (aurora.amplitude * 0.5);
+            const y = baseY + wave + wave2;
+            return j === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
+          }).join(' ');
 
           return (
-            <circle
-              key={`wave-${i}`}
-              cx={centerX}
-              cy={centerY}
-              r={waveRadius}
-              fill="none"
-              stroke={`url(#waveGradient-${i})`}
-              strokeWidth={wave.thickness}
-              opacity={waveOpacity * logoOpacity}
-              filter="url(#waveBlur)"
+            <path
+              key={i}
+              d={pathD + ` L ${width} ${height} L 0 ${height} Z`}
+              fill={aurora.color}
+              opacity={aurora.opacity * Math.max(0, mainProgress)}
+              filter="url(#auroraBlur)"
             />
           );
         })}
 
-        {/* Rotating outer geometric ring */}
-        <g
-          style={{
-            transform: `rotate(${outerRotation}deg)`,
-            transformOrigin: `${centerX}px ${centerY}px`,
-          }}
-          opacity={logoOpacity * 0.3}
-        >
-          {[0, 1, 2, 3, 4, 5].map((i) => {
-            const angle = (i / 6) * Math.PI * 2;
-            const x1 = centerX + Math.cos(angle) * 280;
-            const y1 = centerY + Math.sin(angle) * 280;
-            const x2 = centerX + Math.cos(angle) * 320;
-            const y2 = centerY + Math.sin(angle) * 320;
+        {/* Vertical light rays */}
+        {[0.3, 0.5, 0.7].map((pos, i) => {
+          const rayOpacity = interpolate(
+            Math.sin(frame * 0.02 + i * 2),
+            [-1, 1],
+            [0.02, 0.08]
+          ) * Math.max(0, mainProgress);
 
-            return (
-              <line
-                key={`outer-line-${i}`}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke={colors.primary.accent}
-                strokeWidth={1}
-                opacity={0.5}
-              />
-            );
-          })}
-        </g>
+          return (
+            <rect
+              key={i}
+              x={width * pos - 100}
+              y={0}
+              width={200}
+              height={height}
+              fill="url(#rayGradient)"
+              opacity={rayOpacity}
+            />
+          );
+        })}
 
-        {/* Inner rotating hexagon */}
-        <g
-          style={{
-            transform: `rotate(${innerRotation}deg)`,
-            transformOrigin: `${centerX}px ${centerY}px`,
-          }}
-          opacity={logoOpacity * 0.4}
-        >
-          <polygon
-            points={Array.from({ length: 6 }, (_, i) => {
-              const angle = (i / 6) * Math.PI * 2 - Math.PI / 2;
-              const x = centerX + Math.cos(angle) * 200;
-              const y = centerY + Math.sin(angle) * 200;
-              return `${x},${y}`;
-            }).join(' ')}
-            fill="none"
-            stroke={colors.gateway.L8}
-            strokeWidth={1}
-            strokeDasharray="10 20"
-          />
-        </g>
-
-        {/* Orbiting particles */}
+        {/* Floating particles */}
         {particles.map((particle, i) => {
-          const orbitProgress = (frame * particle.speed * 0.01 + particle.angle) % (Math.PI * 2);
-          const x = centerX + Math.cos(orbitProgress) * particle.radius;
-          const y = centerY + Math.sin(orbitProgress) * particle.radius;
-
-          // Fade in particles
-          const particleOpacity = interpolate(
-            frame - 30 - i * 2,
-            [0, 20],
-            [0, 0.8],
+          const particleY = (particle.y - (frame * particle.speed) % height + height) % height;
+          const fadeIn = interpolate(
+            frame - particle.delay,
+            [0, 30],
+            [0, 1],
             { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
           );
-
-          // Pulse effect
-          const pulse = 1 + Math.sin(frame * 0.1 + i) * 0.3;
+          const twinkle = 0.3 + Math.sin(frame * 0.1 + i) * 0.7;
 
           return (
             <circle
-              key={`particle-${i}`}
-              cx={x}
-              cy={y}
-              r={particle.size * pulse}
-              fill={particleColors[particle.colorIndex]}
-              opacity={particleOpacity * logoOpacity}
-              filter="url(#logoGlow)"
+              key={i}
+              cx={particle.x}
+              cy={particleY}
+              r={particle.size}
+              fill={i % 3 === 0 ? colors.primary.accent : colors.primary.accentPurple}
+              opacity={fadeIn * twinkle * 0.6 * Math.max(0, mainProgress)}
+              filter="url(#particleGlow)"
             />
           );
         })}
 
-        {/* Center connection lines to particles (select few) */}
-        {particles.slice(0, 8).map((particle, i) => {
-          const orbitProgress = (frame * particle.speed * 0.01 + particle.angle) % (Math.PI * 2);
-          const x = centerX + Math.cos(orbitProgress) * particle.radius;
-          const y = centerY + Math.sin(orbitProgress) * particle.radius;
-
-          const lineOpacity = interpolate(
-            Math.sin(frame * 0.05 + i),
-            [-1, 1],
-            [0.05, 0.15]
-          );
-
-          return (
-            <line
-              key={`connection-${i}`}
-              x1={centerX}
-              y1={centerY}
-              x2={x}
-              y2={y}
-              stroke={particleColors[particle.colorIndex]}
-              strokeWidth={0.5}
-              opacity={lineOpacity * logoOpacity}
-            />
-          );
-        })}
+        {/* Central glow */}
+        <ellipse
+          cx={centerX}
+          cy={centerY}
+          rx={400 * glowPulse}
+          ry={250 * glowPulse}
+          fill={colors.primary.accentPurple}
+          opacity={0.08 * Math.max(0, mainProgress)}
+          filter="url(#auroraBlur)"
+        />
+        <ellipse
+          cx={centerX}
+          cy={centerY}
+          rx={300 * glowPulse}
+          ry={180 * glowPulse}
+          fill={colors.primary.accent}
+          opacity={0.1 * Math.max(0, mainProgress)}
+          filter="url(#auroraBlur)"
+        />
       </svg>
 
-      {/* Main ONI Text Logo */}
+      {/* Concentric rings */}
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {[1, 2, 3].map((ring) => {
+          const ringProgress = spring({
+            frame: frame - 30 - ring * 20,
+            fps,
+            config: { damping: 40, stiffness: 40 },
+          });
+          const size = 300 + ring * 150;
+          const rotation = frame * (0.05 / ring) * (ring % 2 === 0 ? 1 : -1);
+
+          return (
+            <div
+              key={ring}
+              style={{
+                position: 'absolute',
+                width: size,
+                height: size,
+                borderRadius: '50%',
+                border: `1px solid ${ring % 2 === 0 ? colors.primary.accent : colors.primary.accentPurple}`,
+                opacity: Math.max(0, ringProgress) * 0.2,
+                transform: `rotate(${rotation}deg) scale(${interpolate(Math.max(0, ringProgress), [0, 1], [0.8, 1])})`,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Main ONI text */}
       <div
         style={{
           position: 'relative',
-          transform: `scale(${logoScale})`,
-          opacity: logoOpacity,
-          filter: `drop-shadow(0 0 ${30 * glowIntensity}px ${colors.primary.accent}66)`,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 30,
+          zIndex: 10,
         }}
       >
         {/* ONI Letters */}
@@ -332,89 +269,72 @@ export const AnimatedONILogo: React.FC<AnimatedONILogoProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 8,
+            gap: 20,
           }}
         >
-          {['O', 'N', 'I'].map((letter, i) => {
-            const letterProgress = spring({
-              frame: frame - 10 - i * 8,
-              fps,
-              config: { damping: 10, stiffness: 100 },
-            });
-
-            const letterY = interpolate(
-              Math.max(0, letterProgress),
-              [0, 1],
-              [40, 0]
-            );
-
-            const letterOpacity = Math.max(0, letterProgress);
-
-            // Subtle color pulse per letter
-            const letterGlow = interpolate(
-              Math.sin(frame * 0.06 + i * 0.5),
-              [-1, 1],
-              [0.7, 1]
-            );
+          {letterConfigs.map(({ letter, progress }, i) => {
+            const y = interpolate(Math.max(0, progress), [0, 1], [80, 0]);
+            const opacity = Math.max(0, progress);
+            const scale = interpolate(Math.max(0, progress), [0, 1], [0.8, 1]);
+            const blur = interpolate(Math.max(0, progress), [0, 1], [20, 0]);
 
             return (
-              <span
+              <div
                 key={letter}
                 style={{
-                  fontSize: 140,
+                  fontSize: 200,
                   fontWeight: 800,
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Inter', 'Helvetica Neue', sans-serif",
                   letterSpacing: '-0.02em',
                   background: `linear-gradient(180deg,
-                    ${colors.text.primary} 0%,
-                    rgba(255,255,255,0.9) 40%,
-                    ${colors.primary.accent}${Math.round(letterGlow * 100).toString(16).padStart(2, '0')} 100%
+                    #ffffff 0%,
+                    rgba(255,255,255,0.95) 30%,
+                    ${colors.primary.accent}90 70%,
+                    ${colors.primary.accentPurple}80 100%
                   )`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  transform: `translateY(${letterY}px)`,
-                  opacity: letterOpacity,
-                  display: 'inline-block',
+                  transform: `translateY(${y}px) scale(${scale})`,
+                  opacity,
+                  filter: `blur(${blur}px) drop-shadow(0 0 ${60 * glowPulse}px ${colors.primary.accent}66)`,
+                  textShadow: `0 0 80px ${colors.primary.accent}44`,
                 }}
               >
                 {letter}
-              </span>
+              </div>
             );
           })}
         </div>
 
         {/* Tagline */}
-        {showText && (
+        {showTagline && (
           <div
             style={{
-              marginTop: 20,
-              textAlign: 'center',
-              opacity: Math.max(0, textProgress),
-              transform: `translateY(${interpolate(
-                Math.max(0, textProgress),
-                [0, 1],
-                [20, 0]
-              )}px)`,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 16,
+              opacity: Math.max(0, taglineProgress),
+              transform: `translateY(${interpolate(Math.max(0, taglineProgress), [0, 1], [30, 0])}px)`,
             }}
           >
             <div
               style={{
-                fontSize: 24,
+                fontSize: 28,
                 fontWeight: 300,
-                letterSpacing: '0.3em',
+                letterSpacing: '0.4em',
                 color: colors.primary.accent,
                 textTransform: 'uppercase',
               }}
             >
-              Open Neural Interface
+              Open Neurocomputing Interface
             </div>
             <div
               style={{
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: 400,
-                letterSpacing: '0.1em',
+                letterSpacing: '0.15em',
                 color: colors.text.muted,
-                marginTop: 8,
               }}
             >
               The OSI of Mind
@@ -423,37 +343,29 @@ export const AnimatedONILogo: React.FC<AnimatedONILogoProps> = ({
         )}
       </div>
 
-      {/* Outer pulsing ring */}
+      {/* Bottom fade gradient */}
       <div
         style={{
           position: 'absolute',
-          width: 500,
-          height: 500,
-          borderRadius: '50%',
-          border: `1px solid ${colors.primary.accent}`,
-          opacity: interpolate(
-            Math.sin(frame * 0.03),
-            [-1, 1],
-            [0.1, 0.3]
-          ) * logoOpacity,
-          transform: `scale(${1 + Math.sin(frame * 0.02) * 0.05})`,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 200,
+          background: `linear-gradient(transparent, ${colors.primary.dark}cc)`,
+          pointerEvents: 'none',
         }}
       />
 
-      {/* Second pulsing ring (offset phase) */}
+      {/* Top fade gradient */}
       <div
         style={{
           position: 'absolute',
-          width: 600,
-          height: 600,
-          borderRadius: '50%',
-          border: `1px solid ${colors.gateway.L8}`,
-          opacity: interpolate(
-            Math.sin(frame * 0.025 + Math.PI),
-            [-1, 1],
-            [0.05, 0.2]
-          ) * logoOpacity,
-          transform: `scale(${1 + Math.sin(frame * 0.015 + 1) * 0.03})`,
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 150,
+          background: `linear-gradient(${colors.primary.dark}88, transparent)`,
+          pointerEvents: 'none',
         }}
       />
     </div>
@@ -477,6 +389,9 @@ export const CircularWaves: React.FC<{
   const frame = useCurrentFrame();
   const centerX = width / 2;
   const centerY = height / 2;
+
+  // Apple-style ease out
+  const appleEaseOut = (t: number) => 1 - Math.pow(1 - t, 4);
 
   return (
     <svg width={width} height={height} style={{ position: 'absolute' }}>
@@ -504,7 +419,7 @@ export const CircularWaves: React.FC<{
             cy={centerY}
             r={radius}
             fill="none"
-            stroke={color}
+            stroke={i % 2 === 0 ? color : colors.primary.accentPurple}
             strokeWidth={2}
             opacity={opacity}
             filter="url(#circularWaveBlur)"

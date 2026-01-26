@@ -29,7 +29,7 @@ const features = [
     title: 'NSAM Monitor',
     description: 'Neural Signal Assurance flags anomalies',
     iconType: 'monitor' as const,
-    color: colors.security.safe,
+    color: colors.primary.accent,
   },
 ];
 

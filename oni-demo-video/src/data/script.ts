@@ -69,7 +69,7 @@ export const script: ScriptLine[] = [
   },
   {
     scene: 'problem',
-    text: "Introducing the Open Neural Interface Framework.",
+    text: "Introducing ONI—the Open Neurocomputing Interface.",
     startFrame: 960,
     endFrame: 1200,
   },
@@ -135,7 +135,7 @@ export const script: ScriptLine[] = [
   // Scene 5: TARA Platform (1:50-2:25)
   {
     scene: 'tara',
-    text: "For security professionals, there's TARA—the Telemetry Analysis & Response Automation platform.",
+    text: "For security professionals, there's TARA—the Telemetry Analysis and Response Automation platform.",
     startFrame: 3300,
     endFrame: 3540,
   },
@@ -202,7 +202,7 @@ export const script: ScriptLine[] = [
     endFrame: 5340,
   },
 
-  // Scene 7: Call to Action (2:53-3:15)
+  // Scene 7: Call to Action (2:53-3:10)
   {
     scene: 'cta',
     text: "Ready to secure the neural frontier?",
@@ -223,35 +223,47 @@ export const script: ScriptLine[] = [
   },
   {
     scene: 'cta',
-    text: "Explore the documentation on GitHub.",
-    startFrame: 5700,
-    endFrame: 5820,
-  },
-  {
-    scene: 'cta',
     text: "Join us in building the security standards for brain-computer interfaces.",
-    startFrame: 5820,
-    endFrame: 5970,
+    startFrame: 5700,
+    endFrame: 5880,
   },
 
-  // Scene 8: Credits (3:19-3:30)
+  // Scene 8: Credits (3:10-3:30) - Powerful closing
   {
     scene: 'credits',
-    text: "The Open Neural Interface Framework.",
-    startFrame: 5970,
-    endFrame: 6090,
+    text: "Our mind.",
+    startFrame: 5880,
+    endFrame: 5970,
   },
   {
     scene: 'credits',
-    text: "The OSI of Mind.",
-    startFrame: 6090,
-    endFrame: 6210,
+    text: "Our future.",
+    startFrame: 5970,
+    endFrame: 6060,
+  },
+  {
+    scene: 'credits',
+    text: "Our rules.",
+    startFrame: 6060,
+    endFrame: 6150,
+  },
+  {
+    scene: 'credits',
+    text: "Because the most important connections deserve the most thought.",
+    startFrame: 6150,
+    endFrame: 6300,
+  },
+  {
+    scene: 'credits',
+    text: "Welcome to the OSI of Mind.",
+    startFrame: 6300,
+    endFrame: 6450,
   },
 ];
 
 // Full script as single text for voiceover generation
 export const fullScript = script.map(line => line.text).join(' ');
 
-// Word count: ~380 words
-// Estimated read time at 110 WPM: ~3:27 (fits 3:30 with brief pauses)
-// Final frame: 6210 = 3:27 at 30fps
+// Word count: ~400 words
+// Estimated read time at 110 WPM: ~3:38 (fits 3:30 with natural pacing)
+// Final frame: 6450 = 3:35 at 30fps
