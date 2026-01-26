@@ -673,6 +673,19 @@ TERMINAL_CSS = """
         margin: 0.25rem 0;
         white-space: pre-wrap;
         word-break: break-word;
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    .terminal-line.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .terminal-line.typing .typed-text {
+        border-right: 2px solid #58a6ff;
+        animation: cursor-blink 0.7s step-end infinite;
     }
 
     .terminal-prompt {
@@ -706,26 +719,16 @@ TERMINAL_CSS = """
     .terminal-cursor {
         display: inline-block;
         width: 8px;
-        height: 16px;
+        height: 18px;
         background: #58a6ff;
-        animation: blink 1s step-end infinite;
+        animation: cursor-blink 0.7s step-end infinite;
         vertical-align: text-bottom;
         margin-left: 2px;
     }
 
-    @keyframes blink {
+    @keyframes cursor-blink {
         0%, 50% { opacity: 1; }
         51%, 100% { opacity: 0; }
-    }
-
-    .terminal-typing {
-        overflow: hidden;
-        animation: typing 0.5s steps(40, end);
-    }
-
-    @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
     }
 
     /* API Reference Card Styles */
@@ -775,14 +778,16 @@ def inject_terminal_styles():
     st.markdown(TERMINAL_CSS, unsafe_allow_html=True)
 
 
-def mock_terminal(lines: list, title: str = "Terminal"):
+def mock_terminal(lines: list, title: str = "Terminal", animate: bool = True, typing_speed: int = 30):
     """
-    Create a mock terminal display.
+    Create a mock terminal display with typing animation.
 
     Args:
         lines: List of dicts with 'type' and 'text' keys.
                Types: 'prompt', 'command', 'output', 'success', 'error', 'warning', 'highlight'
         title: Terminal window title
+        animate: Whether to animate the typing effect
+        typing_speed: Milliseconds per character for typing (lower = faster)
 
     Example:
         mock_terminal([
@@ -793,25 +798,136 @@ def mock_terminal(lines: list, title: str = "Terminal"):
         ])
     """
     import streamlit as st
+    import json
+    import random
 
-    # Build terminal lines HTML
+    # Generate unique ID for this terminal instance
+    terminal_id = f"term_{random.randint(10000, 99999)}"
+
+    # Build terminal lines HTML with data attributes for animation
     lines_html = ""
-    for line in lines:
+    line_index = 0
+    i = 0
+    while i < len(lines):
+        line = lines[i]
         line_type = line.get("type", "output")
         text = line.get("text", "")
         css_class = f"terminal-{line_type}"
 
-        # Handle combined prompt + command lines
-        if line_type == "prompt":
-            lines_html += f'<div class="terminal-line"><span class="terminal-prompt">{text}</span>'
-        elif line_type == "command" and lines_html.endswith("</span>"):
-            lines_html = lines_html[:-7]  # Remove closing </span>
-            lines_html += f'</span><span class="terminal-command">{text}</span></div>'
+        # Check if next line is a command (to combine prompt + command)
+        if line_type == "prompt" and i + 1 < len(lines) and lines[i + 1].get("type") == "command":
+            next_line = lines[i + 1]
+            command_text = next_line.get("text", "")
+            # Combined prompt + command line with typing animation on command
+            lines_html += f'''<div class="terminal-line" data-line="{line_index}" data-type="command" data-prompt="{text}" data-text="{command_text}"><span class="terminal-prompt">{text}</span><span class="terminal-command typed-text"></span><span class="terminal-cursor" style="display:none;"></span></div>'''
+            i += 2  # Skip the command line since we combined it
         else:
-            lines_html += f'<div class="terminal-line"><span class="{css_class}">{text}</span></div>'
+            # Regular line - appears instantly or with fade
+            escaped_text = text.replace('"', '&quot;').replace('<', '&lt;').replace('>', '&gt;')
+            lines_html += f'''<div class="terminal-line" data-line="{line_index}" data-type="{line_type}" data-text="{escaped_text}"><span class="{css_class}"></span></div>'''
+            i += 1
+
+        line_index += 1
+
+    # JavaScript for typing animation
+    animation_script = f"""
+    <script>
+    (function() {{
+        const terminalId = '{terminal_id}';
+        const container = document.getElementById(terminalId);
+        if (!container) return;
+
+        const lines = container.querySelectorAll('.terminal-line');
+        const typingSpeed = {typing_speed};
+        const lineDelay = 100;  // Delay between lines
+        let currentLine = 0;
+
+        function typeText(element, text, callback) {{
+            const span = element.querySelector('.typed-text') || element.querySelector('span');
+            const cursor = element.querySelector('.terminal-cursor');
+            let charIndex = 0;
+
+            if (cursor) cursor.style.display = 'inline-block';
+
+            function typeChar() {{
+                if (charIndex < text.length) {{
+                    span.textContent += text.charAt(charIndex);
+                    charIndex++;
+                    // Vary typing speed slightly for realism
+                    const delay = typingSpeed + Math.random() * 20 - 10;
+                    setTimeout(typeChar, delay);
+                }} else {{
+                    if (cursor) cursor.style.display = 'none';
+                    if (callback) callback();
+                }}
+            }}
+            typeChar();
+        }}
+
+        function showLine(element, callback) {{
+            const type = element.dataset.type;
+            const text = element.dataset.text || '';
+            const prompt = element.dataset.prompt || '';
+
+            element.classList.add('visible');
+
+            if (type === 'command') {{
+                // Type out command character by character
+                typeText(element, text, callback);
+            }} else {{
+                // Show output instantly
+                const span = element.querySelector('span');
+                if (span) span.textContent = text;
+                setTimeout(callback, lineDelay);
+            }}
+        }}
+
+        function processNextLine() {{
+            if (currentLine < lines.length) {{
+                const line = lines[currentLine];
+                const type = line.dataset.type;
+
+                // Add delay before commands for realism
+                const preDelay = (type === 'command') ? 300 : 50;
+
+                setTimeout(() => {{
+                    showLine(line, () => {{
+                        currentLine++;
+                        // Longer pause after commands
+                        const postDelay = (type === 'command') ? 400 : 80;
+                        setTimeout(processNextLine, postDelay);
+                    }});
+                }}, preDelay);
+            }}
+        }}
+
+        // Start animation after a brief delay
+        setTimeout(processNextLine, 500);
+    }})();
+    </script>
+    """
+
+    # If animation disabled, show all lines immediately
+    if not animate:
+        animation_script = f"""
+        <script>
+        (function() {{
+            const container = document.getElementById('{terminal_id}');
+            if (!container) return;
+            container.querySelectorAll('.terminal-line').forEach(line => {{
+                line.classList.add('visible');
+                const text = line.dataset.text || '';
+                const span = line.querySelector('.typed-text') || line.querySelector('span');
+                if (span) span.textContent = text;
+                const cursor = line.querySelector('.terminal-cursor');
+                if (cursor) cursor.style.display = 'none';
+            }});
+        }})();
+        </script>
+        """
 
     terminal_html = f"""
-    <div class="mock-terminal">
+    <div class="mock-terminal" id="{terminal_id}">
         <div class="terminal-header">
             <span class="terminal-btn close"></span>
             <span class="terminal-btn minimize"></span>
@@ -822,6 +938,7 @@ def mock_terminal(lines: list, title: str = "Terminal"):
             {lines_html}
         </div>
     </div>
+    {animation_script}
     """
 
     st.markdown(terminal_html, unsafe_allow_html=True)
