@@ -4,30 +4,37 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "oni-framework"
-version = "0.1.0"
-description = "Organic Neural Interface Framework - Security library for brain-computer interfaces"
+version = "0.2.0"
+description = "Neural security framework for brain-computer interfaces. Calculate signal trust scores, filter suspicious signals, anonymize neural data, and validate BCI communications against the 14-layer ONI model."
 readme = "README.md"
 license = {text = "Apache-2.0"}
 authors = [
-    {name = "Kevin L. Qi"}
+    {name = "Kevin L. Qi", email = "kevin@qikevinl.com"}
 ]
 maintainers = [
-    {name = "Kevin L. Qi"}
+    {name = "Kevin L. Qi", email = "kevin@qikevinl.com"}
 ]
 keywords = [
     "brain-computer-interface",
     "BCI",
     "neural-security",
+    "neurosecurity",
+    "neuroethics",
     "neuroscience",
     "cybersecurity",
     "signal-processing",
-    "coherence",
+    "coherence-metric",
     "neural-firewall",
+    "privacy",
+    "EEG",
+    "neural-interface",
+    "medical-device-security",
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
@@ -38,6 +45,8 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Bio-Informatics",
     "Topic :: Scientific/Engineering :: Medical Science Apps.",
     "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
 ]
 requires-python = ">=3.9"
 dependencies = []
@@ -54,15 +63,23 @@ viz = [
     "matplotlib>=3.5",
     "numpy>=1.21",
 ]
+ui = [
+    "streamlit>=1.28.0",
+    "plotly>=5.17.0",
+]
 all = [
-    "oni-framework[dev,viz]",
+    "oni-framework[dev,viz,ui]",
 ]
 
 [project.urls]
-Homepage = "https://github.com/qikevinl/ONI"
+Homepage = "https://qikevinl.github.io/ONI/"
 Documentation = "https://github.com/qikevinl/ONI/tree/main/MAIN/oni-framework"
 Repository = "https://github.com/qikevinl/ONI"
 Issues = "https://github.com/qikevinl/ONI/issues"
+Changelog = "https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/CHANGELOG.md"
+
+[project.scripts]
+oni = "oni.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
