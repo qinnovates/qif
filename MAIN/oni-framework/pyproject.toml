@@ -63,13 +63,12 @@ viz = [
     "matplotlib>=3.5",
     "numpy>=1.21",
 ]
-ui = [
-    "streamlit>=1.28.0",
-    "plotly>=5.17.0",
-]
 all = [
-    "oni-framework[dev,viz,ui]",
+    "oni-framework[dev,viz]",
 ]
+
+# Note: For educational content and interactive learning UI, install oni-academy instead:
+#   pip install oni-academy[ui]
 
 [project.urls]
 Homepage = "https://qikevinl.github.io/ONI/"

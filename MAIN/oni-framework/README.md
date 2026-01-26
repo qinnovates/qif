@@ -52,26 +52,30 @@ The ONI Framework provides tools for validating and securing neural signals at t
 
 ## Package Architecture
 
+> **This package is the core API library.** For educational content and interactive learning, see [ONI Academy](../oni-academy/ONI_ACADEMY.md) (`pip install oni-academy`).
+
 ```
 oni-framework (pip install oni-framework)
 │
-├── Core Library (oni/)
-│   ├── coherence.py      # Cₛ signal trust scoring
-│   ├── firewall.py       # Zero-trust signal filtering
-│   ├── layers.py         # 14-layer ONI model
-│   ├── scale_freq.py     # f × S ≈ k invariant
-│   └── neurosecurity/    # Kohno threat model, BCI Anonymizer
-│
-└── ONI Academy (oni/ui/)
-    └── Interactive learning interface for BCI security concepts
+└── Core Library (oni/)
+    ├── coherence.py      # Cₛ signal trust scoring
+    ├── firewall.py       # Zero-trust signal filtering
+    ├── layers.py         # 14-layer ONI model
+    ├── scale_freq.py     # f × S ≈ k invariant
+    └── neurosecurity/    # Kohno threat model, BCI Anonymizer
 ```
 
-| Component | Purpose | Access |
-|-----------|---------|--------|
-| **Core Library** | Security primitives for BCI development | `from oni import CoherenceMetric, NeuralFirewall` |
-| **ONI Academy** | Interactive UI for learning ONI concepts | `oni ui` or `streamlit run oni/ui/app.py` |
+| Package | Purpose | Install |
+|---------|---------|---------|
+| **oni-framework** | Core API for BCI security (this package) | `pip install oni-framework` |
+| **oni-academy** | Educational platform, tutorials, interactive learning | `pip install oni-academy` |
+| **oni-tara** | Security monitoring & attack simulation platform | `pip install oni-tara` |
 
-**ONI Academy** is the branded learning interface included with the framework. It provides interactive visualizations and tutorials but is built on the same core library you use in production code.
+**Use oni-framework when you need:**
+- Security primitives for your BCI application
+- Coherence scoring in your signal processing pipeline
+- Firewall logic for neural data validation
+- Programmatic access to the 14-layer model
 
 ---
 
@@ -337,14 +341,25 @@ oni-framework/
 - `expected_frequency(scale)` → Predicted frequency
 - `anomaly_score(frequency, scale)` → 0-1 anomaly score
 
-## Research Background
+## Documentation & Resources
 
-This library implements concepts from the ONI Framework research:
+**Full documentation on GitHub:**
 
-- [ONI Framework Overview](../publications/0-oni-framework/)
-- [Coherence Metric Technical Document](../publications/coherence-metric/)
-- [Neural Firewall Architecture](../publications/neural-firewall/)
-- [Scale-Frequency Invariant](../publications/scale-frequency/)
+| Resource | Description |
+|----------|-------------|
+| [ONI Framework Wiki](https://github.com/qikevinl/ONI/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
+| [14-Layer Model Reference](https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md) | Complete layer specification with attack surfaces |
+| [Coherence Metric](https://github.com/qikevinl/ONI/tree/main/MAIN/publications/coherence-metric/) | Technical document on Cₛ calculation |
+| [Neural Firewall](https://github.com/qikevinl/ONI/tree/main/MAIN/publications/neural-firewall/) | Firewall architecture and decision matrix |
+| [Scale-Frequency Invariant](https://github.com/qikevinl/ONI/tree/main/MAIN/publications/scale-frequency/) | The f × S ≈ k constraint |
+| [Interactive Demos](https://qikevinl.github.io/ONI/visualizations/) | Browser-based learning tools |
+
+**Related packages:**
+
+| Package | Purpose | Install |
+|---------|---------|---------|
+| [oni-academy](https://pypi.org/project/oni-academy/) | Educational platform, tutorials | `pip install oni-academy` |
+| [oni-tara](https://pypi.org/project/oni-tara/) | Security monitoring, attack simulation | `pip install oni-tara` |
 
 ## Contributing
 

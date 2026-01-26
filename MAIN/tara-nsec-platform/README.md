@@ -833,10 +833,24 @@ See `CLAUDE.md` for development conventions and update procedures.
 
 ---
 
-## Related Projects
+## Documentation & Resources
 
-- [ONI Framework](https://github.com/qikevinl/ONI) - The underlying 14-layer BCI security model
-- [oni-framework](../oni-framework) - Python library for ONI primitives
+**Full documentation on GitHub:**
+
+| Resource | Description |
+|----------|-------------|
+| [ONI Framework Wiki](https://github.com/qikevinl/ONI/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
+| [TARA Developer Guide](https://github.com/qikevinl/ONI/blob/main/MAIN/tara-nsec-platform/CLAUDE.md) | Development conventions, architecture details |
+| [14-Layer Model Reference](https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md) | Complete ONI layer specification |
+| [Academic Landscape](https://github.com/qikevinl/ONI/blob/main/MAIN/ACADEMIC_LANDSCAPE.md) | Research foundation, key papers |
+| [Interactive Demos](https://qikevinl.github.io/ONI/visualizations/) | Browser-based learning tools |
+
+**Related packages:**
+
+| Package | Purpose | Install |
+|---------|---------|---------|
+| [oni-framework](https://pypi.org/project/oni-framework/) | Core API library (coherence, firewall, layers) | `pip install oni-framework` |
+| [oni-academy](https://pypi.org/project/oni-academy/) | Educational platform, tutorials | `pip install oni-academy` |
 
 ---
 
