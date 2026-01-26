@@ -8,12 +8,37 @@
 
 ## Table of Contents
 
-1. [Folder Structure](#folder-structure)
-2. [Purpose of Each Folder](#purpose-of-each-folder)
-3. [Research Documents](#research-documents)
-4. [Key Questions](#key-questions-this-research-aims-to-answer)
-5. [Related Projects](#related-projects)
-6. [Adding Research](#adding-research)
+1. [Kanban](#kanban)
+2. [Folder Structure](#folder-structure)
+3. [Purpose of Each Folder](#purpose-of-each-folder)
+4. [Research Documents](#research-documents)
+5. [Key Questions](#key-questions-this-research-aims-to-answer)
+6. [Related Projects](#related-projects)
+7. [Adding Research](#adding-research)
+
+---
+
+## Kanban
+
+### Backlog
+| Task | Description | Priority |
+|------|-------------|----------|
+| Motor cortex deep dive | Understand electrode placement, neural decoding | High |
+| Neurotransmitter systems | DA, 5-HT, NE pathways and cofactors | High |
+| BCI-to-neuron zoom animation | Blender/Manim visualization project | Medium |
+| Synaptic transmission | How signals cross synapses | Medium |
+| Ion channel mechanics | Na+/K+ channels, action potentials | Low |
+
+### In Progress
+| Task | Description | Notes |
+|------|-------------|-------|
+| BCI Mouse Movement | How BCIs decode motor signals | See Research-BCI_Mouse_Movement.md |
+
+### Done
+| Task | Completed | Output |
+|------|-----------|--------|
+| Initial folder structure | 2026-01-26 | Brain region folders created |
+| Visualization assets collected | 2026-01-26 | visualizing-the-mind/ |
 
 ---
 
@@ -23,6 +48,10 @@
 neuroscience-homework-todo/
 ├── README.md                           # This file
 ├── Research-BCI_Mouse_Movement.md      # How BCIs enable cursor/keyboard control
+│
+├── visualizing-the-mind/               # 3D visualization projects (Blender, Manim)
+│   ├── blender/                        # Blender scene files and renders
+│   └── manim/                          # Manim animation scripts
 │
 ├── cerebral-cortex/                    # Outer brain layer (higher functions)
 │   ├── motor-cortex/                   # Movement control (BCI primary target)
@@ -87,8 +116,9 @@ Each brain region folder is for documenting:
 
 ## Related Projects
 
-- **Backlog:** [bci-to-neuron-zoom-rendering](../docs/visualizations/pending/bci-to-neuron-zoom-rendering/) — Blender animation from brain → neurons → molecules
-- **Video Assets:** `video/bci-zoom/` — Visualization project files
+- **Visualizations:** [visualizing-the-mind/](./visualizing-the-mind/) — Blender and Manim visualization projects
+- **Backlog:** [bci-to-neuron-zoom-rendering](../docs/visualizations/pending/bci-to-neuron-zoom-rendering/) — GitHub Pages pending visualization
+- **Video Assets:** `video/bci-zoom/` — Video project files
 - **ONI_LAYERS.md:** Biological Foundation section — How this maps to L8-L14
 - **oni/neuromapping.py:** Python API for brain region → layer mappings
 
