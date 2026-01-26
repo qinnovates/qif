@@ -8,10 +8,51 @@ import { AbsoluteFill, useCurrentFrame, spring, useVideoConfig, interpolate } fr
 import { FloatingParticles } from '../components/Particles';
 import { colors } from '../data/oni-theme';
 
-// Circular waves component for the finale
-const CircularWaveEffect: React.FC<{ intensity: number }> = ({ intensity }) => {
+// Complex geometric wave animation for the finale - intertwining vectors
+const GeometricWaveEffect: React.FC<{ intensity: number }> = ({ intensity }) => {
   const frame = useCurrentFrame();
-  const numWaves = 8;
+
+  // Generate flowing wave paths
+  const generateWavePath = (
+    yOffset: number,
+    amplitude: number,
+    frequency: number,
+    phase: number,
+    points: number = 100
+  ) => {
+    const pathPoints: string[] = [];
+    for (let i = 0; i <= points; i++) {
+      const x = (i / points) * 1920;
+      const wave1 = Math.sin((x * frequency) / 100 + phase) * amplitude;
+      const wave2 = Math.sin((x * frequency * 1.5) / 100 + phase * 0.7) * (amplitude * 0.5);
+      const wave3 = Math.cos((x * frequency * 0.5) / 100 + phase * 1.3) * (amplitude * 0.3);
+      const y = yOffset + wave1 + wave2 + wave3;
+      pathPoints.push(`${i === 0 ? 'M' : 'L'} ${x} ${y}`);
+    }
+    return pathPoints.join(' ');
+  };
+
+  // Wave configurations - multiple intertwining layers
+  const waves = [
+    { y: 540, amp: 80, freq: 2, speed: 0.03, color: '#3b82f6', width: 3 },
+    { y: 540, amp: 100, freq: 1.5, speed: 0.025, color: '#8b5cf6', width: 2.5 },
+    { y: 540, amp: 60, freq: 2.5, speed: 0.035, color: '#06b6d4', width: 2 },
+    { y: 540, amp: 120, freq: 1, speed: 0.02, color: '#a855f7', width: 2 },
+    { y: 540, amp: 40, freq: 3, speed: 0.04, color: '#3b82f6', width: 1.5 },
+    { y: 540, amp: 90, freq: 1.8, speed: 0.028, color: '#06b6d4', width: 1.5 },
+  ];
+
+  // Geometric shapes that orbit and rotate
+  const numShapes = 12;
+  const shapes = Array.from({ length: numShapes }, (_, i) => {
+    const angle = (i / numShapes) * Math.PI * 2 + frame * 0.01;
+    const radius = 300 + Math.sin(frame * 0.02 + i) * 50;
+    const x = 960 + Math.cos(angle) * radius;
+    const y = 540 + Math.sin(angle) * radius * 0.6;
+    const rotation = frame * (0.5 + i * 0.1);
+    const size = 20 + Math.sin(frame * 0.03 + i * 0.5) * 10;
+    return { x, y, rotation, size, index: i };
+  });
 
   return (
     <svg
@@ -24,37 +65,105 @@ const CircularWaveEffect: React.FC<{ intensity: number }> = ({ intensity }) => {
       viewBox="0 0 1920 1080"
     >
       <defs>
-        <filter id="waveBlur">
-          <feGaussianBlur stdDeviation="2" />
+        <filter id="geoBlur">
+          <feGaussianBlur stdDeviation="1.5" />
         </filter>
-        <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={colors.primary.accent} stopOpacity="0.6" />
-          <stop offset="50%" stopColor={colors.primary.accentPurple} stopOpacity="0.4" />
-          <stop offset="100%" stopColor={colors.primary.accent} stopOpacity="0.2" />
+        <filter id="geoGlow">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
+          <stop offset="20%" stopColor="#3b82f6" stopOpacity="0.8" />
+          <stop offset="80%" stopColor="#8b5cf6" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
+          <stop offset="30%" stopColor="#06b6d4" stopOpacity="0.6" />
+          <stop offset="70%" stopColor="#a855f7" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
         </linearGradient>
       </defs>
-      {Array.from({ length: numWaves }, (_, i) => {
-        const baseRadius = 150 + i * 80;
-        const phase = (frame * 0.02 + i * 0.5) % (Math.PI * 2);
-        const wobble = Math.sin(frame * 0.03 + i) * 20;
-        const radius = baseRadius + wobble + Math.sin(phase) * 30;
-        const opacity = interpolate(i, [0, numWaves - 1], [0.4, 0.1]) * intensity;
-        const rotation = frame * (0.3 + i * 0.1);
 
-        return (
-          <g key={i} transform={`translate(960, 540) rotate(${rotation})`}>
-            <ellipse
-              cx={0}
-              cy={0}
-              rx={radius * 1.3}
-              ry={radius}
+      {/* Flowing wave lines */}
+      {waves.map((wave, i) => (
+        <path
+          key={`wave-${i}`}
+          d={generateWavePath(wave.y, wave.amp, wave.freq, frame * wave.speed + i * 0.5)}
+          fill="none"
+          stroke={wave.color}
+          strokeWidth={wave.width}
+          opacity={0.4 * intensity}
+          filter="url(#geoGlow)"
+        />
+      ))}
+
+      {/* Orbiting geometric shapes */}
+      {shapes.map((shape) => (
+        <g
+          key={`shape-${shape.index}`}
+          transform={`translate(${shape.x}, ${shape.y}) rotate(${shape.rotation})`}
+        >
+          {/* Alternating between different geometric shapes */}
+          {shape.index % 3 === 0 ? (
+            // Triangle
+            <polygon
+              points={`0,${-shape.size} ${shape.size * 0.866},${shape.size * 0.5} ${-shape.size * 0.866},${shape.size * 0.5}`}
               fill="none"
-              stroke="url(#waveGrad)"
-              strokeWidth={2 - i * 0.15}
-              opacity={opacity}
-              filter="url(#waveBlur)"
+              stroke={shape.index % 2 === 0 ? '#3b82f6' : '#8b5cf6'}
+              strokeWidth={1.5}
+              opacity={0.5 * intensity}
             />
-          </g>
+          ) : shape.index % 3 === 1 ? (
+            // Square/Diamond
+            <rect
+              x={-shape.size / 2}
+              y={-shape.size / 2}
+              width={shape.size}
+              height={shape.size}
+              fill="none"
+              stroke={shape.index % 2 === 0 ? '#06b6d4' : '#a855f7'}
+              strokeWidth={1.5}
+              opacity={0.4 * intensity}
+            />
+          ) : (
+            // Hexagon
+            <polygon
+              points={Array.from({ length: 6 }, (_, j) => {
+                const a = (j / 6) * Math.PI * 2 - Math.PI / 2;
+                return `${Math.cos(a) * shape.size},${Math.sin(a) * shape.size}`;
+              }).join(' ')}
+              fill="none"
+              stroke={shape.index % 2 === 0 ? '#3b82f6' : '#06b6d4'}
+              strokeWidth={1.5}
+              opacity={0.45 * intensity}
+            />
+          )}
+        </g>
+      ))}
+
+      {/* Central connecting lines that pulse */}
+      {Array.from({ length: 6 }, (_, i) => {
+        const angle1 = (i / 6) * Math.PI * 2 + frame * 0.008;
+        const angle2 = ((i + 3) / 6) * Math.PI * 2 + frame * 0.008;
+        const r1 = 200 + Math.sin(frame * 0.025 + i) * 30;
+        const r2 = 200 + Math.sin(frame * 0.025 + i + Math.PI) * 30;
+        return (
+          <line
+            key={`line-${i}`}
+            x1={960 + Math.cos(angle1) * r1}
+            y1={540 + Math.sin(angle1) * r1 * 0.6}
+            x2={960 + Math.cos(angle2) * r2}
+            y2={540 + Math.sin(angle2) * r2 * 0.6}
+            stroke={i % 2 === 0 ? '#3b82f6' : '#8b5cf6'}
+            strokeWidth={1}
+            opacity={0.25 * intensity}
+            filter="url(#geoBlur)"
+          />
         );
       })}
     </svg>
@@ -223,11 +332,24 @@ export const CreditsScene: React.FC = () => {
           </div>
         )}
 
-        {/* "Welcome to the OSI of Mind" - Final reveal with dynamic waves */}
+        {/* "Welcome to the OSI of Mind" - Final reveal with white bg and geometric waves */}
         {showWelcome && (
           <>
-            {/* Circular wave background animation */}
-            <CircularWaveEffect
+            {/* White background overlay that fades in */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: '#ffffff',
+                opacity: interpolate(frame - 420, [0, 40], [0, 1], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }),
+              }}
+            />
+
+            {/* Complex geometric wave background animation */}
+            <GeometricWaveEffect
               intensity={interpolate(frame - 420, [0, 60], [0, 1], {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
@@ -255,7 +377,7 @@ export const CreditsScene: React.FC = () => {
                 const blur = interpolate(Math.max(0, welcomeProgress), [0, 1], [20, 0]);
 
                 // Pulsing glow effect
-                const pulseGlow = 30 + Math.sin(frame * 0.08) * 15;
+                const pulseGlow = 20 + Math.sin(frame * 0.08) * 10;
 
                 return (
                   <>
@@ -264,7 +386,7 @@ export const CreditsScene: React.FC = () => {
                       fontSize: 28,
                       fontWeight: 300,
                       letterSpacing: '0.3em',
-                      color: colors.text.muted,
+                      color: '#64748b',
                       textTransform: 'uppercase',
                       opacity: Math.max(0, welcomeProgress),
                       transform: `translateY(${interpolate(Math.max(0, welcomeProgress), [0, 1], [20, 0])}px)`,
@@ -278,12 +400,12 @@ export const CreditsScene: React.FC = () => {
                       fontSize: 88,
                       fontWeight: 800,
                       letterSpacing: '-0.02em',
-                      background: `linear-gradient(135deg, #ffffff 0%, ${colors.primary.accent} 50%, ${colors.primary.accentPurple} 100%)`,
+                      background: `linear-gradient(135deg, #1e293b 0%, ${colors.primary.accent} 50%, ${colors.primary.accentPurple} 100%)`,
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       opacity: Math.max(0, welcomeProgress),
                       transform: `scale(${scale})`,
-                      filter: `blur(${blur}px) drop-shadow(0 0 ${pulseGlow}px ${colors.primary.accent}66)`,
+                      filter: `blur(${blur}px) drop-shadow(0 0 ${pulseGlow}px ${colors.primary.accent}44)`,
                       textAlign: 'center',
                     }}
                   >
@@ -296,7 +418,7 @@ export const CreditsScene: React.FC = () => {
                       fontSize: 18,
                       fontWeight: 400,
                       letterSpacing: '0.1em',
-                      color: colors.text.muted,
+                      color: '#64748b',
                       opacity: interpolate(frame - 480, [0, 30], [0, 1], {
                         extrapolateLeft: 'clamp',
                         extrapolateRight: 'clamp',
@@ -309,10 +431,10 @@ export const CreditsScene: React.FC = () => {
                     Open{' '}
                     <span
                       style={{
-                        background: 'linear-gradient(90deg, #2a7ab8 0%, #4aa8d8 40%, #a0dff0 70%, #ffffff 100%)',
+                        background: 'linear-gradient(90deg, #2563eb 0%, #3b82f6 40%, #06b6d4 70%, #8b5cf6 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        fontWeight: 500,
+                        fontWeight: 600,
                       }}
                     >
                       Neuro
@@ -335,10 +457,10 @@ export const CreditsScene: React.FC = () => {
                       }),
                     }}
                   >
-                    <div style={{ fontSize: 14, color: colors.text.muted }}>
-                      Created by <span style={{ color: colors.text.primary }}>Kevin Qi</span>
+                    <div style={{ fontSize: 14, color: '#64748b' }}>
+                      Created by <span style={{ color: '#1e293b', fontWeight: 600 }}>Kevin Qi</span>
                     </div>
-                    <div style={{ fontSize: 12, color: colors.text.muted }}>
+                    <div style={{ fontSize: 12, color: '#94a3b8' }}>
                       Built with Claude Code • Apache 2.0 • 2026
                     </div>
                   </div>
