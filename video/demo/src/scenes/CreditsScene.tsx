@@ -433,16 +433,14 @@ export const CreditsScene: React.FC = () => {
                       fontSize: 88,
                       fontWeight: 800,
                       letterSpacing: '-0.02em',
-                      background: `linear-gradient(135deg, #1e293b 0%, ${colors.primary.accent} 50%, ${colors.primary.accentPurple} 100%)`,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
+                      color: '#000000',
                       opacity: Math.max(0, welcomeProgress),
                       transform: `scale(${scale})`,
-                      filter: `blur(${blur}px) drop-shadow(0 0 ${pulseGlow}px ${colors.primary.accent}44)`,
+                      filter: `blur(${blur}px)`,
                       textAlign: 'center',
                     }}
                   >
-                    The OSI of Mind
+                    "The OSI of Mind"
                   </div>
 
                   {/* ONI tagline - NEURO with gradient */}
