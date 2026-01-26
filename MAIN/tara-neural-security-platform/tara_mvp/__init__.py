@@ -41,17 +41,19 @@ License: Apache 2.0
 Repository: https://github.com/qikevinl/ONI
 """
 
-__version__ = "0.8.0"
 __author__ = "Kevin L. Qi"
 
-# Import brand constants from oni-framework (single source of truth)
+# Import brand constants from brand.json (single source of truth)
+# Uses local _brand.py which loads from repo root brand.json
 try:
-    from oni.brand import TARA as _TARA_BRAND, ONI as _ONI_BRAND
+    from ._brand import TARA as _TARA_BRAND, ONI as _ONI_BRAND, TARA_VERSION
+    __version__ = TARA_VERSION
     __name_full__ = _TARA_BRAND.full_name
     __tagline__ = _TARA_BRAND.tagline
     __mission__ = _TARA_BRAND.mission
 except ImportError:
-    # Fallback if oni-framework not installed
+    # Fallback if _brand.py fails
+    __version__ = "0.8.0"
     __name_full__ = "Telemetry Analysis & Response Automation"
     __tagline__ = "Protection for the neural frontier"
     __mission__ = "Real-time neural security monitoring aligned with ONI."
