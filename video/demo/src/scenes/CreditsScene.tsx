@@ -223,29 +223,42 @@ export const CreditsScene: React.FC = () => {
           </div>
         )}
 
-        {/* "Welcome to the OSI of Mind" - Final reveal */}
+        {/* "Welcome to the OSI of Mind" - Final reveal with dynamic waves */}
         {showWelcome && (
-          <div
-            style={{
-              position: 'absolute',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 40,
-            }}
-          >
-            {(() => {
-              const welcomeProgress = spring({
-                frame: frame - 420,
-                fps,
-                config: { damping: 20, stiffness: 40 },
-              });
+          <>
+            {/* Circular wave background animation */}
+            <CircularWaveEffect
+              intensity={interpolate(frame - 420, [0, 60], [0, 1], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+              })}
+            />
 
-              const scale = interpolate(Math.max(0, welcomeProgress), [0, 1], [0.9, 1]);
-              const blur = interpolate(Math.max(0, welcomeProgress), [0, 1], [20, 0]);
+            <div
+              style={{
+                position: 'absolute',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 40,
+                zIndex: 10,
+              }}
+            >
+              {(() => {
+                const welcomeProgress = spring({
+                  frame: frame - 420,
+                  fps,
+                  config: { damping: 20, stiffness: 40 },
+                });
 
-              return (
-                <>
+                const scale = interpolate(Math.max(0, welcomeProgress), [0, 1], [0.9, 1]);
+                const blur = interpolate(Math.max(0, welcomeProgress), [0, 1], [20, 0]);
+
+                // Pulsing glow effect
+                const pulseGlow = 30 + Math.sin(frame * 0.08) * 15;
+
+                return (
+                  <>
                   <div
                     style={{
                       fontSize: 28,
@@ -270,14 +283,14 @@ export const CreditsScene: React.FC = () => {
                       WebkitTextFillColor: 'transparent',
                       opacity: Math.max(0, welcomeProgress),
                       transform: `scale(${scale})`,
-                      filter: `blur(${blur}px) drop-shadow(0 0 ${40 * glowPulse}px ${colors.primary.accent}44)`,
+                      filter: `blur(${blur}px) drop-shadow(0 0 ${pulseGlow}px ${colors.primary.accent}66)`,
                       textAlign: 'center',
                     }}
                   >
                     The OSI of Mind
                   </div>
 
-                  {/* ONI tagline */}
+                  {/* ONI tagline - NEURO with gradient */}
                   <div
                     style={{
                       fontSize: 18,
@@ -293,7 +306,18 @@ export const CreditsScene: React.FC = () => {
                       lineHeight: 1.6,
                     }}
                   >
-                    Open Neurosecurity Interoperability
+                    Open{' '}
+                    <span
+                      style={{
+                        background: 'linear-gradient(90deg, #2a7ab8 0%, #4aa8d8 40%, #a0dff0 70%, #ffffff 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: 500,
+                      }}
+                    >
+                      Neuro
+                    </span>
+                    security Interoperability
                   </div>
 
                   {/* Credits footer */}
@@ -318,10 +342,11 @@ export const CreditsScene: React.FC = () => {
                       Built with Claude Code • Apache 2.0 • 2026
                     </div>
                   </div>
-                </>
-              );
-            })()}
-          </div>
+                  </>
+                );
+              })()}
+            </div>
+          </>
         )}
       </div>
 
