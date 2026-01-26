@@ -22,9 +22,8 @@ metric = CoherenceMetric()
 | API Type | This Package | Future |
 |----------|--------------|--------|
 | **Library API (SDK)** | ✓ Available now | — |
-| **REST API** | — | Planned |
+| **REST API** | — | Unplanned |
 
-> **Note on REST API:** A REST/HTTP API for integration with external tools and platforms is on the roadmap but requires extensive infrastructure and a secure deployment environment. This will be revisited as the project matures through the SDLC.
 
 ---
 
