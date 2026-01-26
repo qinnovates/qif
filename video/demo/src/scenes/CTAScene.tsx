@@ -13,9 +13,79 @@ import { colors, typography } from '../data/oni-theme';
 export const CTAScene: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // Terminal typing animation
-  const pipCommand = 'pip install oni-framework';
+  // Terminal typing animation with package cycling
   const typingDelay = 120;
+  const baseCommand = 'pip install oni-';
+  const packages = ['framework', 'tara', 'academy'];
+
+  // Timing for each package cycle (in frames after typingDelay)
+  const typingSpeed = 2; // frames per character
+  const baseTypingDuration = baseCommand.length * typingSpeed; // ~32 frames for base
+  const pauseBetweenCycles = 45; // pause after completing each package
+  const backspaceSpeed = 1.5; // faster backspace
+
+  // Calculate which package and what state we're in
+  const frameAfterBase = Math.max(0, frame - typingDelay - baseTypingDuration);
+
+  // Each cycle: type package + pause + backspace package
+  const getPackageCycleDuration = (pkg: string) => {
+    return pkg.length * typingSpeed + pauseBetweenCycles + pkg.length * backspaceSpeed;
+  };
+
+  // Calculate current display text
+  const getCurrentText = () => {
+    if (frame < typingDelay) return '';
+
+    const frameInTyping = frame - typingDelay;
+
+    // Still typing base command
+    if (frameInTyping < baseTypingDuration) {
+      const charsTyped = Math.floor(frameInTyping / typingSpeed);
+      return baseCommand.substring(0, charsTyped);
+    }
+
+    // After base command, cycle through packages
+    let cycleFrame = frameAfterBase;
+    let packageIndex = 0;
+
+    while (packageIndex < packages.length) {
+      const pkg = packages[packageIndex];
+      const typeTime = pkg.length * typingSpeed;
+      const totalCycleTime = getPackageCycleDuration(pkg);
+
+      // Last package doesn't backspace
+      if (packageIndex === packages.length - 1) {
+        const charsTyped = Math.min(pkg.length, Math.floor(cycleFrame / typingSpeed));
+        return baseCommand + pkg.substring(0, charsTyped);
+      }
+
+      if (cycleFrame < totalCycleTime) {
+        // Within this package's cycle
+        if (cycleFrame < typeTime) {
+          // Typing phase
+          const charsTyped = Math.floor(cycleFrame / typingSpeed);
+          return baseCommand + pkg.substring(0, charsTyped);
+        } else if (cycleFrame < typeTime + pauseBetweenCycles) {
+          // Pause phase - full package shown
+          return baseCommand + pkg;
+        } else {
+          // Backspace phase
+          const backspaceFrame = cycleFrame - typeTime - pauseBetweenCycles;
+          const charsDeleted = Math.floor(backspaceFrame / backspaceSpeed);
+          const remaining = Math.max(0, pkg.length - charsDeleted);
+          return baseCommand + pkg.substring(0, remaining);
+        }
+      }
+
+      cycleFrame -= totalCycleTime;
+      packageIndex++;
+    }
+
+    // Default to last package fully typed
+    return baseCommand + packages[packages.length - 1];
+  };
+
+  const currentText = getCurrentText();
 
   // Background glow pulse
   const glowPulse = interpolate(

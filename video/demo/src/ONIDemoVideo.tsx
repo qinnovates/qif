@@ -5,7 +5,7 @@ import { colors, sceneTimestamps } from "./data/oni-theme";
 import { ColdOpenScene } from "./scenes/ColdOpenScene";
 import { TitleScene } from "./scenes/TitleScene";
 import { ProblemScene } from "./scenes/ProblemScene";
-import { LayersScene } from "./scenes/LayersScene";
+import { LayersScene } from "./scenes/ONILayersAnimation";
 import { CoherenceScene } from "./scenes/CoherenceScene";
 import { TARAScene } from "./scenes/TARAScene";
 import { AcademicScene } from "./scenes/AcademicScene";

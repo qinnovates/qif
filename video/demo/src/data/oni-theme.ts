@@ -19,28 +19,28 @@ export const colors = {
     accentPurple: '#a855f7', // Purple accent (curiosity, creativity)
   },
 
-  // Layer colors - 14-layer model
+  // Layer colors - 14-layer model (matched to GitHub Pages)
   silicon: {
-    L1: '#2196f3',  // Physical Carrier - blue
-    L2: '#1e88e5',  // Signal Processing
-    L3: '#1976d2',  // Protocol
-    L4: '#1565c0',  // Transport
-    L5: '#0d47a1',  // Session
-    L6: '#0277bd',  // Presentation
-    L7: '#01579b',  // Application Interface
+    L1: '#1e3a5f',  // Physical Carrier - dark blue
+    L2: '#1e4d6f',  // Signal Processing
+    L3: '#1e5f7f',  // Protocol
+    L4: '#1e6f8f',  // Transport
+    L5: '#1e7f9f',  // Session
+    L6: '#1e8faf',  // Presentation
+    L7: '#2d9fbf',  // Application Interface - teal
   },
 
   gateway: {
-    L8: '#ff9800',  // Neural Gateway - orange (bridge)
+    L8: '#d97706',  // Neural Gateway - amber (bridge)
   },
 
   biology: {
-    L9:  '#4caf50',  // Ion Channel Encoding - green
-    L10: '#43a047',  // Spike Train
-    L11: '#388e3c',  // Neural Population
-    L12: '#2e7d32',  // Circuit Dynamics
-    L13: '#1b5e20',  // Cognitive Function
-    L14: '#7c3aed',  // Identity & Ethics - vibrant purple
+    L9:  '#14532d',  // Ion Channel Encoding - dark green
+    L10: '#166534',  // Spike Train
+    L11: '#15803d',  // Neural Population
+    L12: '#16a34a',  // Circuit Dynamics
+    L13: '#22c55e',  // Cognitive Function
+    L14: '#4ade80',  // Identity & Ethics - light green
   },
 
   // Security states
@@ -71,10 +71,10 @@ export const colors = {
     textPremium: 'linear-gradient(180deg, #ffffff 0%, rgba(200,210,230,0.9) 100%)',
     textAccent: 'linear-gradient(90deg, #00e5ff, #a855f7)',
 
-    // Layer gradients
-    silicon: 'linear-gradient(180deg, #2196f3 0%, #01579b 100%)',
-    biology: 'linear-gradient(180deg, #4caf50 0%, #1b5e20 100%)',
-    gateway: 'linear-gradient(180deg, #ff9800 0%, #e65100 100%)',
+    // Layer gradients (matched to GitHub Pages)
+    silicon: 'linear-gradient(180deg, #2d9fbf 0%, #1e3a5f 100%)',
+    biology: 'linear-gradient(180deg, #4ade80 0%, #14532d 100%)',
+    gateway: 'linear-gradient(180deg, #f59e0b 0%, #b45309 100%)',
 
     // Innovation/TARA scenes - purple emphasis
     innovation: 'radial-gradient(ellipse at 70% 50%, #7c3aed20 0%, #080b16 70%)',
