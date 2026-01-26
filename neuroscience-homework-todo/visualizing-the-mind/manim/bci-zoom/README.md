@@ -1,4 +1,4 @@
-# BCI Zoom Animation
+# BCI Macro-to-Micro Zoom Animation Rendering (3D). The objective is to learn and visually demonstrate how different BCIs stimulate neurons (i.e. Utah Arrays, Neuralink, and what depth, which reglion, etc.)
 
 > **From Implant to Molecule: A 15-order-of-magnitude journey through the brain**
 
