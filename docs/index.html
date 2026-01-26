@@ -1052,7 +1052,7 @@
 
     <!-- Slogan Banner -->
     <div style="text-align: center; padding: 3rem 2rem;" data-aos="fade-up">
-        <p id="slogan-text" style="font-size: 1.75rem; font-style: italic; color: var(--text-secondary); font-weight: 300; letter-spacing: 0.02em;">"Our minds. Our rules. Our future."</p>
+        <p id="slogan-text" style="font-size: 1.75rem; font-style: italic; color: var(--text-secondary); font-weight: 300; letter-spacing: 0.02em;">"Life's most important connections deserve the most thought."</p>
     </div>
 
     <section class="section" id="install" style="padding-top: 2rem;">
@@ -1813,6 +1813,19 @@
 
             // Initial call
             updateReveal();
+
+            // Fallback: Use IntersectionObserver to ensure animation starts when visible
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    updateReveal();
+                    // Small delay to ensure smooth animation start
+                    setTimeout(updateReveal, 100);
+                }
+            }, { threshold: 0.1 });
+            observer.observe(container);
+
+            // Additional fallback: retry after layout settles
+            setTimeout(updateReveal, 500);
         }
 
         // Security: Sanitize and validate brand.json input
