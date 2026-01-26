@@ -245,6 +245,7 @@ GLOBAL_CSS = """
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
+        text-align: center;
     }
 
     /* Cards - uniform grid */
@@ -630,7 +631,7 @@ def section_header(title: str, subtitle: str = ""):
     import streamlit as st
     st.markdown(f'<h2 class="oni-section-header">{title}</h2>', unsafe_allow_html=True)
     if subtitle:
-        st.markdown(f'<p style="color: #94a3b8; margin-top: -0.5rem; margin-bottom: 1rem;">{subtitle}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="color: #a8b5c7 /* WCAG AA: 7.2:1 */; margin-top: 0.75rem; margin-bottom: 1.5rem;">{subtitle}</p>', unsafe_allow_html=True)
 
 
 def feature_card(icon: str, title: str, description: str):
