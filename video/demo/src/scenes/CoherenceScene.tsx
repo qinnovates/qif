@@ -80,23 +80,197 @@ export const CoherenceScene: React.FC = () => {
           gap: 40,
         }}
       >
-        {/* Title with letter animation */}
-        <LettersPullUp
-          text="The Coherence Score"
-          delay={0}
-          fontSize={56}
-          fontWeight={700}
-          gradient={true}
-        />
+        {/* ===== COHERENCE SECTION ===== */}
+        {showCoherence && (
+          <>
+            {/* Title with letter animation */}
+            <LettersPullUp
+              text="The Coherence Score"
+              delay={0}
+              fontSize={56}
+              fontWeight={700}
+              gradient={true}
+            />
 
-        {/* Subtitle */}
-        <BlurInText
-          text="A unified metric for neural security"
-          delay={20}
-          fontSize={22}
-          color={colors.text.muted}
-          fontWeight={400}
-        />
+            {/* Subtitle */}
+            <BlurInText
+              text="A unified metric for neural security"
+              delay={20}
+              fontSize={22}
+              color={colors.text.muted}
+              fontWeight={400}
+            />
+          </>
+        )}
+
+        {/* ===== SCALE-FREQUENCY SECTION ===== */}
+        {showScaleFreq && (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 30,
+              opacity: sfProgress,
+              transform: `translateY(${interpolate(sfProgress, [0, 1], [30, 0])}px)`,
+            }}
+          >
+            {/* Title */}
+            <div
+              style={{
+                fontSize: 48,
+                fontWeight: 700,
+                color: '#ffffff',
+                fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
+              }}
+            >
+              Scale-Frequency Invariant
+            </div>
+
+            {/* Formula */}
+            <div
+              style={{
+                fontFamily: typography.fontFamily.mono,
+                fontSize: 36,
+                color: colors.primary.accent,
+                padding: '20px 50px',
+                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                borderRadius: 12,
+                border: `1px solid ${colors.primary.accent}44`,
+              }}
+            >
+              f × S ≈ k
+            </div>
+
+            {/* Explanation */}
+            <div
+              style={{
+                fontSize: 20,
+                color: colors.text.secondary,
+                maxWidth: 600,
+                textAlign: 'center',
+                lineHeight: 1.6,
+              }}
+            >
+              Neural patterns maintain invariant relationships across scales
+            </div>
+
+            {/* Animated visualization */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 40,
+                marginTop: 20,
+                padding: '30px 50px',
+                background: 'rgba(0,0,0,0.3)',
+                borderRadius: 16,
+                border: `1px solid ${colors.primary.accent}22`,
+              }}
+            >
+              {/* Scale value */}
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 14, color: colors.text.muted, marginBottom: 8 }}>Scale (S)</div>
+                <div
+                  style={{
+                    fontSize: 32,
+                    fontFamily: typography.fontFamily.mono,
+                    color: colors.biology.L11,
+                    fontWeight: 600,
+                  }}
+                >
+                  {scaleValue.toFixed(0)}
+                </div>
+                {/* Scale bar */}
+                <div
+                  style={{
+                    width: 120,
+                    height: 8,
+                    backgroundColor: 'rgba(255,255,255,0.1)',
+                    borderRadius: 4,
+                    marginTop: 10,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: `${(scaleValue / 1000) * 100}%`,
+                      height: '100%',
+                      backgroundColor: colors.biology.L11,
+                      borderRadius: 4,
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Multiplication symbol */}
+              <div style={{ fontSize: 36, color: colors.text.muted }}>×</div>
+
+              {/* Frequency value */}
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 14, color: colors.text.muted, marginBottom: 8 }}>Frequency (f)</div>
+                <div
+                  style={{
+                    fontSize: 32,
+                    fontFamily: typography.fontFamily.mono,
+                    color: colors.gateway.L8,
+                    fontWeight: 600,
+                  }}
+                >
+                  {freqValue.toFixed(1)} Hz
+                </div>
+                {/* Frequency bar */}
+                <div
+                  style={{
+                    width: 120,
+                    height: 8,
+                    backgroundColor: 'rgba(255,255,255,0.1)',
+                    borderRadius: 4,
+                    marginTop: 10,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: `${(freqValue / 100) * 100}%`,
+                      height: '100%',
+                      backgroundColor: colors.gateway.L8,
+                      borderRadius: 4,
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Equals symbol */}
+              <div style={{ fontSize: 36, color: colors.text.muted }}>≈</div>
+
+              {/* k constant */}
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 14, color: colors.text.muted, marginBottom: 8 }}>Constant (k)</div>
+                <div
+                  style={{
+                    fontSize: 32,
+                    fontFamily: typography.fontFamily.mono,
+                    color: colors.security.safe,
+                    fontWeight: 600,
+                  }}
+                >
+                  {kConstant.toFixed(0)}
+                </div>
+                {/* Stability indicator */}
+                <div
+                  style={{
+                    fontSize: 12,
+                    color: colors.security.safe,
+                    marginTop: 10,
+                  }}
+                >
+                  ✓ Invariant
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Coherence gauge */}
         <div
