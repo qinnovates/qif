@@ -2,6 +2,7 @@ import { Composition } from "remotion";
 import { ONIDemoVideo } from "./ONIDemoVideo";
 import { videoConfig } from "./data/oni-theme";
 import { LayersCanvasScene } from "./scenes/LayersCanvasScene";
+import { TitleSceneEnhanced } from "./scenes/TitleSceneEnhanced";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -23,11 +24,20 @@ export const RemotionRoot: React.FC = () => {
         width={videoConfig.width}
         height={videoConfig.height}
       />
-      {/* Canvas-based Layers Scene - Best of both worlds demo */}
+      {/* Canvas-based Layers Scene */}
       <Composition
         id="LayersCanvas"
         component={LayersCanvasScene}
         durationInFrames={300} // 10 seconds
+        fps={videoConfig.fps}
+        width={videoConfig.width}
+        height={videoConfig.height}
+      />
+      {/* Enhanced Title with React Bits + Canvas - BEST OF ALL WORLDS */}
+      <Composition
+        id="TitleEnhanced"
+        component={TitleSceneEnhanced}
+        durationInFrames={240} // 8 seconds
         fps={videoConfig.fps}
         width={videoConfig.width}
         height={videoConfig.height}
