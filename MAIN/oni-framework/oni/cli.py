@@ -190,13 +190,14 @@ ONI Framework v{__version__} - Quick Demo
     print("4. PRIVACY SCORING")
     print("-" * 40)
     try:
-        from oni import PrivacyScoreCalculator, ERPType
+        from oni import PrivacyScoreCalculator
 
         calculator = PrivacyScoreCalculator()
+        # Generate sample signal data
+        sample_signal = [0.1 * i for i in range(100)]
         result = calculator.calculate(
-            detected_erps=[ERPType.P300, ERPType.N170],
-            signal_snr=20.0,
-            recording_duration=60.0,
+            signal_data=sample_signal,
+            detected_erps=["P300", "N170"],
         )
         print(f"   Privacy risk score: {result.score:.2f}")
         print(f"   Interpretation: {result.interpretation}")
@@ -213,8 +214,8 @@ ONI Framework v{__version__} - Quick Demo
 
         model = KohnoThreatModel()
         for threat_type in ThreatType:
-            info = model.get_threat_info(threat_type)
-            print(f"   {threat_type.name:15} → CIA: {info['cia_property']}")
+            cia = model.security_properties[threat_type]
+            print(f"   {threat_type.name:15} → CIA: {cia}")
         print()
     except Exception as e:
         print(f"   Error: {e}")
