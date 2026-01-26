@@ -48,9 +48,12 @@
 autodidact/neuroscience-bci/
 ├── README.md                           # This file
 │
-├── visualizing-the-mind/               # 3D visualization projects (Blender, Manim)
-│   ├── blender/                        # Blender scene files and renders
-│   └── manim/                          # Manim animation scripts
+├── visualizing-the-mind/               # BCI macro-to-micro zoom animations
+│   ├── README.md                       # Project objectives and overview
+│   ├── 3D-mindmapper/                  # 3D visualization (Blender)
+│   │   └── blender/bci-zoom-3d/        # Photorealistic zoom animation
+│   └── 2D-mindmapper/                  # 2D visualization (Manim)
+│       └── manim/bci-zoom/             # Scientific dual-axis animation
 │
 └── brain-regions/                      # Anatomical brain region research
     ├── cerebral-cortex/                # Outer brain layer (higher functions)
@@ -117,7 +120,9 @@ Each brain region folder is for documenting:
 
 ## Related Projects
 
-- **Visualizations:** [visualizing-the-mind/](./visualizing-the-mind/) — Blender and Manim visualization projects
+- **Visualizations:** [visualizing-the-mind/](./visualizing-the-mind/) — BCI macro-to-micro zoom animations
+  - [3D-mindmapper/](./visualizing-the-mind/3D-mindmapper/) — Blender photorealistic rendering
+  - [2D-mindmapper/](./visualizing-the-mind/2D-mindmapper/) — Manim scientific animations
 - **Backlog:** [bci-to-neuron-zoom-rendering](../docs/visualizations/pending/bci-to-neuron-zoom-rendering/) — GitHub Pages pending visualization
 - **Video Assets:** `video/bci-zoom/` — Video project files
 - **ONI_LAYERS.md:** Biological Foundation section — How this maps to L8-L14
