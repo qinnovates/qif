@@ -16,7 +16,7 @@ ONI Academy is the educational arm of the ONI Framework project. It provides str
 
 **Why ONI Academy exists:** Neurosecurity concepts are not accessible. While building the ONI Framework, we identified a critical gap — the knowledge needed to secure BCIs is fragmented across academic papers and proprietary training. ONI Academy bridges that gap.
 
-For the full vision and detailed documentation, see [ONI_ACADEMY.md](ONI_ACADEMY.md).
+For the full vision and detailed documentation, see [ONI_ACADEMY.md](https://github.com/qikevinl/ONI/blob/main/MAIN/oni-academy/ONI_ACADEMY.md).
 
 ---
 
@@ -92,7 +92,7 @@ No installation required — explore these in your browser:
 - [ONI Layer Explorer](https://qikevinl.github.io/ONI/visualizations/02-oni-layer-explorer.html)
 - [NSAM Checkpoint Simulator](https://qikevinl.github.io/ONI/visualizations/04-nsam-checkpoint-simulator.html)
 - [Scale-Frequency Navigator](https://qikevinl.github.io/ONI/visualizations/05-scale-frequency-navigator.html)
-- [ONI Threat Matrix](https://qikevinl.github.io/ONI/visualizations/06-oni-attack-matrix.html)
+- [ONI Threat Matrix](https://qikevinl.github.io/ONI/visualizations/06-oni-threat-matrix.html)
 
 ---
 
