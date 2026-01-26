@@ -39,6 +39,19 @@ from .moabb_adapter import (
     SUPPORTED_PARADIGMS,
 )
 
+# OpenBCI hardware adapter (optional dependency - requires brainflow)
+from .openbci_adapter import (
+    OpenBCIAdapter,
+    BoardType,
+    ConnectionState,
+    BoardInfo,
+    LiveEEGSignal,
+    is_brainflow_available,
+    get_brainflow_version,
+    list_serial_ports,
+    SUPPORTED_BOARDS,
+)
+
 __all__ = [
     # Brain regions
     "BrainRegion",
@@ -67,4 +80,14 @@ __all__ = [
     "get_moabb_version",
     "AVAILABLE_DATASETS",
     "SUPPORTED_PARADIGMS",
+    # OpenBCI Hardware Adapter
+    "OpenBCIAdapter",
+    "BoardType",
+    "ConnectionState",
+    "BoardInfo",
+    "LiveEEGSignal",
+    "is_brainflow_available",
+    "get_brainflow_version",
+    "list_serial_ports",
+    "SUPPORTED_BOARDS",
 ]
