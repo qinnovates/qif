@@ -53,27 +53,25 @@ ONI_COLORS: Dict[str, str] = {
 
 # Layer-to-color mapping for ONI 14-layer model
 LAYER_COLORS: Dict[int, str] = {
-    # Silicon layers (L1-L7)
+    # Silicon layers (L1-L7) - OSI model
     1: "#1e40af",   # Physical Carrier
-    2: "#1d4ed8",   # Signal Encoding
-    3: "#2563eb",   # Channel Multiplexing
-    4: "#3b82f6",   # Error Correction
-    5: "#60a5fa",   # Session Management
-    6: "#93c5fd",   # Data Formatting
+    2: "#1d4ed8",   # Data Link (Signal Processing)
+    3: "#2563eb",   # Network (Protocol)
+    4: "#3b82f6",   # Transport
+    5: "#60a5fa",   # Session
+    6: "#93c5fd",   # Presentation
     7: "#bfdbfe",   # Application Interface
 
     # Gateway layer (L8)
-    8: "#10b981",   # Neural Gateway (bridge)
+    8: "#10b981",   # Neural Gateway (Firewall)
 
-    # Interface layers (L9-L10)
-    9: "#7c3aed",   # Ion Channel Encoding
-    10: "#8b5cf6",  # Synaptic Signaling
-
-    # Cognitive layers (L11-L14)
-    11: "#c026d3",  # Circuit Dynamics
-    12: "#db2777",  # Regional Processing
-    13: "#ec4899",  # Whole-Brain Networks
-    14: "#f472b6",  # Identity & Ethics
+    # Cognitive layers (L9-L14) - ONI Extension
+    9: "#7c3aed",   # Signal Processing (Filtering)
+    10: "#8b5cf6",  # Neural Protocol (Encoding)
+    11: "#c026d3",  # Cognitive Transport (Delivery)
+    12: "#db2777",  # Cognitive Session (Context)
+    13: "#ec4899",  # Semantic Layer (Intent)
+    14: "#f472b6",  # Identity Layer (Self)
 }
 
 # Default colorway for Plotly charts

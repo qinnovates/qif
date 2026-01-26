@@ -235,7 +235,19 @@ for layer in stack.biological_layers():
 **Layer summary:**
 - **L1-L7 (Silicon/OSI):** Standard networking layers — the computer's data movement
 - **L8 (Neural Gateway):** The critical boundary where electrodes meet neurons — this is where the firewall operates
-- **L9-L14 (Biology):** From signal processing to identity — the brain's neural processing
+- **L9-L14 (Biology):** Cognitive processing layers — from signal filtering to identity
+
+**Biology layers (L9-L14):**
+| Layer | Name | Zone | Function |
+|-------|------|------|----------|
+| L9 | Signal Processing | Filtering | Raw neural signal preprocessing |
+| L10 | Neural Protocol | Encoding | Spike patterns and neural coding |
+| L11 | Cognitive Transport | Delivery | Information routing across circuits |
+| L12 | Cognitive Session | Context | State maintenance and working memory |
+| L13 | Semantic Layer | Intent | Meaning extraction and goal representation |
+| L14 | Identity Layer | Self | Continuity of self, agency, consent |
+
+> **Note:** The biology layers (L9-L14) encapsulate everything BCI electrical stimulation cannot directly control — from molecular prerequisites (cofactors, neurotransmitter synthesis) to emergent cognition. See [ONI_LAYERS.md](ONI_LAYERS.md#biological-foundation-what-l8-encapsulates) for the Biological Foundation research.
 
 ### Validate Scale-Frequency Relationship
 
@@ -389,6 +401,7 @@ oni-framework/
 |----------|-------------|
 | [ONI Framework Wiki](https://github.com/qikevinl/ONI/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
 | [14-Layer Model Reference](https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md) | Complete layer specification with attack surfaces |
+| [Biological Foundation](https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md#biological-foundation-what-l8-encapsulates) | Research on what L8 encapsulates (neurotransmitter pathways, cofactors, time-scales) |
 | [Coherence Metric](https://github.com/qikevinl/ONI/tree/main/MAIN/publications/coherence-metric/) | Technical document on Cₛ calculation |
 | [Neural Firewall](https://github.com/qikevinl/ONI/tree/main/MAIN/publications/neural-firewall/) | Firewall architecture and decision matrix |
 | [Scale-Frequency Invariant](https://github.com/qikevinl/ONI/tree/main/MAIN/publications/scale-frequency/) | The f × S ≈ k constraint |

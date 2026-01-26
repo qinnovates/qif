@@ -424,6 +424,74 @@
       ],
       "estimated_effort": "large",
       "timeline": "external-dependent"
+    },
+    {
+      "id": "future-problem-with-bcis",
+      "title": "The Problem with BCIs: Attack Surfaces Beyond Electrical Monitoring",
+      "type": "research",
+      "status": "backlog",
+      "description": "Research and develop devices/methods that can monitor and protect neural systems at layers that current BCI electrodes cannot access. Electrodes can only interact at the millisecond-scale electrical signaling layer—they cannot detect or address molecular substrate attacks (nutritional depletion, enzymatic inhibition, receptor antagonism) or faster processes (femtosecond enzyme kinetics, nanosecond ion channel gating).",
+      "rationale": "Current BCIs have a fundamental blind spot: they monitor electrical activity but cannot detect biochemical attacks. An attacker could deplete iron (blocking dopamine synthesis), antagonize receptors (blocking neurotransmitter effects), or poison enzymes (halting production)—and the BCI would only see 'reduced signaling' without understanding the cause. This is a critical gap in neural security.",
+      "research_questions": [
+        "What sensing modalities can detect molecular-layer attacks? (spectroscopy, metabolomics, microfluidics)",
+        "Can implantable biosensors monitor cofactor levels (iron, BH4, B6) in real-time?",
+        "How can we integrate biochemical sensing with electrical BCI interfaces?",
+        "What is the minimum viable sensor array for comprehensive neural security?",
+        "Can we detect receptor binding state changes non-invasively?",
+        "What time-scale gaps exist between molecular events and electrical detection?"
+      ],
+      "key_examples": [
+        {
+          "attack": "Iron depletion",
+          "target": "Tyrosine hydroxylase in substantia nigra",
+          "effect": "Dopamine synthesis blocked",
+          "bci_detection": "Sees reduced striatal signaling, cannot identify cause"
+        },
+        {
+          "attack": "Adenosine receptor agonism",
+          "target": "A2A receptors in nucleus accumbens shell",
+          "effect": "Excessive drowsiness/sedation",
+          "bci_detection": "Sees normal firing patterns, cannot detect receptor state"
+        },
+        {
+          "attack": "B6 depletion",
+          "target": "Glutamic acid decarboxylase (GABA synthesis)",
+          "effect": "Seizures due to reduced inhibition",
+          "bci_detection": "Detects abnormal activity but not root cause"
+        }
+      ],
+      "potential_solutions": [
+        "Implantable spectroscopic sensors for cofactor detection",
+        "Microfluidic sampling for real-time metabolomics",
+        "Optogenetic reporters for neurotransmitter levels",
+        "Integrated multi-modal sensing (electrical + optical + chemical)",
+        "External wearable metabolic monitors (non-invasive biomarkers)"
+      ],
+      "references": [
+        "Matak et al. (2016) - Iron deficiency causes dopaminergic neurodegeneration (PNAS)",
+        "Lazarus et al. (2011) - Caffeine/adenosine in nucleus accumbens (J Neurosci)",
+        "Nagatsu (2016) - Tyrosine hydroxylase cofactor requirements",
+        "Thöny et al. (2000) - BH4 biosynthesis and regeneration"
+      ],
+      "deliverables": [
+        {
+          "id": "blog-problem-with-bcis",
+          "type": "blog",
+          "title": "The Problem with BCIs: Why Your Brain Implant Can't See Everything",
+          "template": "MAIN/resources/templates/BLOG_TEMPLATE.md",
+          "status": "backlog"
+        },
+        {
+          "id": "techdoc-bci-blind-spots",
+          "type": "techdoc",
+          "title": "BCI Blind Spots: Attack Surfaces Beyond Electrical Monitoring",
+          "template": "MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md",
+          "status": "backlog"
+        }
+      ],
+      "feasibility": "research-needed",
+      "estimated_effort": "large",
+      "timeline": "12-24 months"
     }
   ],
 

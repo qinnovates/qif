@@ -19,7 +19,9 @@ export const colors = {
     accentPurple: '#a855f7', // Purple accent (curiosity, creativity)
   },
 
-  // Layer colors - 14-layer model (matched to GitHub Pages)
+  // Layer colors - 14-layer model
+  // Source of truth: MAIN/resources/brand.json > layers section
+  // MUST MATCH: docs/index.html, LayerStack.tsx
   silicon: {
     L1: '#1e3a5f',  // Physical Carrier - dark blue
     L2: '#1e4d6f',  // Signal Processing
@@ -35,12 +37,12 @@ export const colors = {
   },
 
   biology: {
-    L9:  '#14532d',  // Ion Channel Encoding - dark green
-    L10: '#166534',  // Spike Train
-    L11: '#15803d',  // Neural Population
-    L12: '#16a34a',  // Circuit Dynamics
-    L13: '#22c55e',  // Cognitive Function
-    L14: '#4ade80',  // Identity & Ethics - light green
+    L9:  '#14532d',  // Signal Processing (Filtering) - dark green
+    L10: '#166534',  // Neural Protocol (Encoding)
+    L11: '#15803d',  // Cognitive Transport (Delivery)
+    L12: '#16a34a',  // Cognitive Session (Context)
+    L13: '#22c55e',  // Semantic Layer (Intent)
+    L14: '#4ade80',  // Identity Layer (Self) - light green
   },
 
   // Security states

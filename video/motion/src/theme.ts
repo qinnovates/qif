@@ -31,12 +31,12 @@ export const colors = {
   },
   gateway: '#a855f7',  // L8 - Neural Gateway (purple)
   biology: {
-    L9: '#4ade80',   // Ion Channel Encoding
-    L10: '#22c55e',  // Cellular Response
-    L11: '#16a34a',  // Network Integration
-    L12: '#15803d',  // Regional Processing
-    L13: '#166534',  // Cognitive Binding
-    L14: '#14532d',  // Identity & Ethics
+    L9: '#4ade80',   // Signal Processing (Filtering)
+    L10: '#22c55e',  // Neural Protocol (Encoding)
+    L11: '#16a34a',  // Cognitive Transport (Delivery)
+    L12: '#15803d',  // Cognitive Session (Context)
+    L13: '#166534',  // Semantic Layer (Intent)
+    L14: '#14532d',  // Identity Layer (Self)
   },
 
   // Security states

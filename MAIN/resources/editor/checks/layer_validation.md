@@ -35,13 +35,13 @@ L9-L14: Biology (Neural/cognitive - brain side)
 | L5 | Session State | Silicon | Oversees connection lifecycle |
 | L6 | Data Encoding | Silicon | Translates formats, encryption, compression |
 | L7 | Application Interface | Silicon | Provides user-accessible services and APIs |
-| L8 | Neural Gateway | Bridge | Physical boundary between digital and biological |
-| L9 | Ion Channel Encoding | Biology | Spike generation and neurotransmitter activity |
-| L10 | Oscillatory Synchronization | Biology | Temporal alignment via frequency rhythms |
-| L11 | Cognitive Session | Biology | Working memory and attentional focus |
-| L12 | Semantic Assembly | Biology | Meaning and concept formation |
-| L13 | Intent & Agency | Biology | Goal formation and decision-making |
-| L14 | Identity & Ethics | Biology | Self-concept and moral reasoning |
+| L8 | Neural Gateway | Bridge | Physical boundary between digital and biological (Firewall) |
+| L9 | Signal Processing | Biology | Filtering, amplification, digitization (Filtering) |
+| L10 | Neural Protocol | Biology | Neural data formatting, codecs (Encoding) |
+| L11 | Cognitive Transport | Biology | Reliable neural data delivery (Delivery) |
+| L12 | Cognitive Session | Biology | Context persistence, working memory (Context) |
+| L13 | Semantic Layer | Biology | Meaning construction, intent decoding (Intent) |
+| L14 | Identity Layer | Biology | Self-model, ethics, continuity of self (Self) |
 
 ---
 
@@ -110,8 +110,8 @@ L14: Application (Silicon)
 ```
 L1: Physical Carrier (Silicon)
 L7: Application Interface (Silicon)
-L9: Ion Channel Encoding (Biology)
-L14: Identity & Ethics (Biology)
+L9: Signal Processing (Biology)
+L14: Identity Layer (Biology)
 ```
 
 ### Error Type 2: OSI Names Used

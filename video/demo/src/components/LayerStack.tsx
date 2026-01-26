@@ -2,22 +2,25 @@ import React from 'react';
 import { useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
 import { colors, typography } from '../data/oni-theme';
 
-// Layer definitions matching ONI_LAYERS.md
+// Layer definitions - MUST MATCH brand.json (MAIN/resources/brand.json)
+// Source of truth: brand.json > layers section
+// L1-L7: Silicon (OSI), L8: Neural Gateway (Bridge), L9-L14: Biology (Cognitive)
+// Updated 2026-01-26: Aligned with ONI_LAYERS.md v3.0 (Biological Foundation research)
 const layers = [
-  { id: 'L14', name: 'Identity & Ethics', zone: 'biology', color: colors.biology.L14 },
-  { id: 'L13', name: 'Cognitive Function', zone: 'biology', color: colors.biology.L13 },
-  { id: 'L12', name: 'Circuit Dynamics', zone: 'biology', color: colors.biology.L12 },
-  { id: 'L11', name: 'Neural Population', zone: 'biology', color: colors.biology.L11 },
-  { id: 'L10', name: 'Spike Train', zone: 'biology', color: colors.biology.L10 },
-  { id: 'L9', name: 'Ion Channel', zone: 'biology', color: colors.biology.L9 },
-  { id: 'L8', name: 'Neural Gateway', zone: 'gateway', color: colors.gateway.L8 },
-  { id: 'L7', name: 'Application Interface', zone: 'silicon', color: colors.silicon.L7 },
-  { id: 'L6', name: 'Presentation', zone: 'silicon', color: colors.silicon.L6 },
-  { id: 'L5', name: 'Session', zone: 'silicon', color: colors.silicon.L5 },
-  { id: 'L4', name: 'Transport', zone: 'silicon', color: colors.silicon.L4 },
-  { id: 'L3', name: 'Protocol', zone: 'silicon', color: colors.silicon.L3 },
-  { id: 'L2', name: 'Signal Processing', zone: 'silicon', color: colors.silicon.L2 },
-  { id: 'L1', name: 'Physical Carrier', zone: 'silicon', color: colors.silicon.L1 },
+  { id: 'L14', name: 'Identity Layer', zoneLabel: 'Self', zone: 'biology', color: colors.biology.L14 },
+  { id: 'L13', name: 'Semantic Layer', zoneLabel: 'Intent', zone: 'biology', color: colors.biology.L13 },
+  { id: 'L12', name: 'Cognitive Session', zoneLabel: 'Context', zone: 'biology', color: colors.biology.L12 },
+  { id: 'L11', name: 'Cognitive Transport', zoneLabel: 'Delivery', zone: 'biology', color: colors.biology.L11 },
+  { id: 'L10', name: 'Neural Protocol', zoneLabel: 'Encoding', zone: 'biology', color: colors.biology.L10 },
+  { id: 'L9', name: 'Signal Processing', zoneLabel: 'Filtering', zone: 'biology', color: colors.biology.L9 },
+  { id: 'L8', name: 'Neural Gateway', zoneLabel: 'Firewall', zone: 'gateway', color: colors.gateway.L8 },
+  { id: 'L7', name: 'Application Interface', zoneLabel: 'Application', zone: 'silicon', color: colors.silicon.L7 },
+  { id: 'L6', name: 'Presentation', zoneLabel: 'Presentation', zone: 'silicon', color: colors.silicon.L6 },
+  { id: 'L5', name: 'Session', zoneLabel: 'Session', zone: 'silicon', color: colors.silicon.L5 },
+  { id: 'L4', name: 'Transport', zoneLabel: 'Transport', zone: 'silicon', color: colors.silicon.L4 },
+  { id: 'L3', name: 'Protocol', zoneLabel: 'Network', zone: 'silicon', color: colors.silicon.L3 },
+  { id: 'L2', name: 'Signal Processing', zoneLabel: 'Data Link', zone: 'silicon', color: colors.silicon.L2 },
+  { id: 'L1', name: 'Physical Carrier', zoneLabel: 'Physical', zone: 'silicon', color: colors.silicon.L1 },
 ];
 
 interface LayerStackProps {

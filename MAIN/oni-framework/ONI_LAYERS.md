@@ -13,6 +13,14 @@
   - [ONI Extension Stack — Neural & Cognitive Systems (L8-L14)](#oni-extension-stack--neural--cognitive-systems-l8-l14)
 - [Visual Summary](#visual-summary)
 - [Why This Architecture Works](#why-this-architecture-works)
+- [Biological Foundation: What L8 Encapsulates](#biological-foundation-what-l8-encapsulates)
+  - [The Molecular Substrate Hierarchy](#the-molecular-substrate-hierarchy)
+  - [Example 1: The Iron → Dopamine Chain (Detailed)](#example-1-the-iron--dopamine-chain-detailed)
+  - [Example 2: Coffee and Alertness (Common Knowledge)](#example-2-coffee-and-alertness-common-knowledge)
+  - [Neurotransmitter Systems: Cofactors and Brain Regions](#neurotransmitter-systems-cofactors-and-brain-regions)
+  - [Time-Scale Hierarchy Across All Layers](#time-scale-hierarchy-across-all-layers)
+  - [What BCI Can and Cannot Do](#what-bci-can-and-cannot-do)
+  - [Security Implications: Attack Surfaces Beyond Electrical Monitoring](#security-implications-attack-surfaces-beyond-electrical-monitoring)
 - [Threat Landscape by Layer](#threat-landscape-by-layer)
 - [External Physical Threats](#external-physical-threats)
 - [Coherence Score (Cₛ) Across Layers](#coherence-score-cₛ-across-layers)
@@ -283,6 +291,248 @@ The model works for:
 
 ---
 
+## Biological Foundation: What L8 Encapsulates
+
+A critical design principle of the ONI Framework: **L8 (Neural Gateway) encapsulates all molecular neurobiology**—just as OSI L1 (Physical) abstracts the physics of electrons in copper wire.
+
+Understanding what happens *within* L8 is essential for security because it reveals attack surfaces that **cannot be addressed by electrical monitoring alone**.
+
+### The Molecular Substrate Hierarchy
+
+Neural signaling depends on a cascade of biochemical prerequisites. Each layer must be intact for the next to function:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  MOLECULAR SUBSTRATE (Within L8 Biological Tissue)                          │
+│  ───────────────────────────────────────────────────────────────────────── │
+│                                                                             │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐ │
+│  │   DIETARY   │ →  │  TRANSPORT  │ →  │   STORAGE   │ →  │  AVAILABLE  │ │
+│  │   INTAKE    │    │  PROTEINS   │    │  PROTEINS   │    │   POOL      │ │
+│  │  (nutrients)│    │(transferrin)│    │ (ferritin)  │    │   (Fe²⁺)    │ │
+│  └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘ │
+│                                                                      ↓      │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐ │
+│  │  RECEPTOR   │ ←  │  SYNAPTIC   │ ←  │  VESICLE    │ ←  │   ENZYME    │ │
+│  │  BINDING    │    │  RELEASE    │    │  STORAGE    │    │  SYNTHESIS  │ │
+│  │ (D1,D2,etc) │    │ (exocytosis)│    │  (VMAT)     │    │   (TH+BH4)  │ │
+│  └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘ │
+│         ↓                                                                   │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │  SIGNAL TRANSDUCTION → G-proteins → Second messengers → Gene expr.  │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                                                             │
+│  ═══════════════════════════════════════════════════════════════════════   │
+│                        L8 BOUNDARY (BCI Interface)                          │
+│  ═══════════════════════════════════════════════════════════════════════   │
+│                                                                             │
+│  BCI can READ/WRITE here: Action potentials, LFPs, population activity     │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Example 1: The Iron → Dopamine Chain (Detailed)
+
+This example demonstrates why molecular dependencies matter for BCI security, including the specific brain regions involved.
+
+#### Brain Regions in the Dopamine System
+
+| Pathway | Origin | Target | Function |
+|---------|--------|--------|----------|
+| **Nigrostriatal** | Substantia Nigra pars compacta (SNc) | Dorsal Striatum (caudate, putamen) | Motor control; ~80% of brain dopamine |
+| **Mesolimbic** | Ventral Tegmental Area (VTA) | Nucleus Accumbens (NAc) | Reward, motivation, reinforcement |
+| **Mesocortical** | Ventral Tegmental Area (VTA) | Prefrontal Cortex (PFC) | Executive function, working memory |
+| **Tuberoinfundibular** | Hypothalamus | Pituitary gland | Prolactin regulation |
+
+**Reference:** Björklund, A., & Dunnett, S. B. (2007). Dopamine neuron systems in the brain: an update. *Trends in Neurosciences*, 30(5), 194-202.
+
+#### The Chain of Dependencies
+
+| Step | Component | Function | Brain Location | If Missing |
+|------|-----------|----------|----------------|------------|
+| 1 | **Dietary Iron** | Raw material | Absorbed in gut | Chain fails at start |
+| 2 | **Transferrin** | Blood transport protein | Systemic circulation | Iron cannot reach brain |
+| 3 | **Transferrin Receptor 1 (TfR1)** | Neuronal iron uptake | SNc, VTA neurons | Neurons become iron-deficient |
+| 4 | **Ferritin** | Iron storage protein | Neuronal cytoplasm | No stable Fe²⁺ reservoir |
+| 5 | **Labile Iron Pool (Fe²⁺)** | Available cofactor | Active enzyme sites | Enzymes cannot function |
+| 6 | **Tyrosine Hydroxylase (TH)** | Rate-limiting enzyme | SNc, VTA cell bodies | No L-DOPA synthesis |
+| 7 | **BH4 (Tetrahydrobiopterin)** | Essential cofactor | Enzyme active site | TH inactive even with iron |
+| 8 | **L-DOPA** | Dopamine precursor | Cytoplasm | No dopamine produced |
+| 9 | **DOPA Decarboxylase (DDC)** | Conversion enzyme | Cytoplasm | L-DOPA accumulates unused |
+| 10 | **Dopamine** | Final neurotransmitter | Vesicles → synaptic terminals | No signal to release |
+
+#### Research Evidence
+
+**Iron-Dopamine Link (PNAS, 2016):**
+
+> "Loss of transferrin receptor 1, but not loss of ferroportin, can cause neurodegeneration in a subset of dopaminergic neurons in mice... Loss of transferrin receptor caused neuronal iron deficiency and neurodegeneration with features similar to Parkinson's disease."
+
+— Matak, P., et al. (2016). Disrupted iron homeostasis causes dopaminergic neurodegeneration in mice. *PNAS*, 113(13), 3428-3435. https://doi.org/10.1073/pnas.1519473113
+
+**Tyrosine Hydroxylase Cofactors:**
+
+> "Tyrosine hydroxylase (TH), which was discovered at the National Institutes of Health (NIH) in 1964, is a tetrahydrobiopterin (BH4)-requiring monooxygenase that catalyzes the first and rate-limiting step in the biosynthesis of catecholamines... Each of the four subunits in tyrosine hydroxylase is coordinated with an iron(II) atom. If the iron is oxidized to Fe(III), the enzyme is inactivated."
+
+— Nagatsu, T. (2016). Tyrosine hydroxylase (TH), its cofactor tetrahydrobiopterin (BH4)... *J Neural Transm*, 123, 729-738. https://pubmed.ncbi.nlm.nih.gov/27491309/
+
+**Iron in Substantia Nigra:**
+
+> "The substantia nigra, where the selective loss of dopaminergic neurons occurs, is the primary region in the brain known to deposit iron. Aberrant iron concentrations have been observed... increased iron levels in the substantia nigra correlate with the severity of PD."
+
+— Zucca, F.A., et al. (2017). Iron deposition in substantia nigra. *Scientific Reports*, 7, 14721. https://doi.org/10.1038/s41598-017-14721-1
+
+#### Security Implication
+
+A nutritional depletion attack (cutting iron supply) would cause gradual dopaminergic dysfunction in the **substantia nigra** and **VTA** that a BCI would detect as "reduced signaling" in the **striatum** and **prefrontal cortex**, but could not identify the molecular cause or compensate via electrical stimulation.
+
+---
+
+### Example 2: Coffee and Alertness (Common Knowledge)
+
+A familiar example that illustrates the same molecular-before-electrical principle, showing how even everyday experiences depend on specific brain circuits.
+
+#### Brain Regions in the Adenosine/Caffeine System
+
+| Structure | Location | Role in Sleep-Wake |
+|-----------|----------|-------------------|
+| **Nucleus Accumbens (NAc) Shell** | Ventral striatum | **Primary site of caffeine action**; A2A receptors here mediate arousal |
+| **Basal Forebrain** | Rostral to hypothalamus | Adenosine accumulates here during wakefulness |
+| **Ventrolateral Preoptic Area (VLPO)** | Anterior hypothalamus | Primary sleep-promoting center (GABAergic) |
+| **Lateral Hypothalamus (LHA)** | Hypothalamus | Contains orexin/hypocretin wake-promoting neurons |
+| **Locus Coeruleus (LC)** | Brainstem (pons) | Norepinephrine arousal center |
+| **Tuberomammillary Nucleus (TMN)** | Posterior hypothalamus | Histamine arousal center |
+
+#### Mechanism
+
+```
+NORMAL SLEEP DRIVE:
+  Wakefulness → ATP breakdown → Adenosine accumulates (basal forebrain)
+      ↓
+  Adenosine binds A1/A2A receptors → Inhibits arousal circuits
+      ↓
+  NAc shell A2A activation → GABAergic output → Inhibits LHA, TMN, LC
+      ↓
+  Sleepiness increases
+
+WITH COFFEE:
+  Caffeine (adenosine receptor antagonist) → Blocks A2A receptors in NAc shell
+      ↓
+  Adenosine cannot bind → Arousal circuits disinhibited
+      ↓
+  LHA (orexin), TMN (histamine), LC (norepinephrine) remain active
+      ↓
+  Sustained wakefulness
+```
+
+#### Research Evidence
+
+**Nucleus Accumbens as Caffeine Target (Journal of Neuroscience, 2011):**
+
+> "Using selective gene deletion strategies... we reported that the A2A receptors in the shell region of the nucleus accumbens (NAc) are responsible for the effect of caffeine on wakefulness... the arousal effect of caffeine was abolished in NAc–A2AR KO mice."
+
+— Lazarus, M., et al. (2011). Arousal effect of caffeine depends on adenosine A2A receptors in the shell of the nucleus accumbens. *J Neurosci*, 31(27), 10067-10075. https://doi.org/10.1523/JNEUROSCI.6730-10.2011
+
+**Adenosine Accumulation in Basal Forebrain:**
+
+> "Continuous monitoring of adenosine levels during a sleep-wake cycle of freely moving cats showed that adenosine accumulates during prolonged wakefulness (6 h) in the basal forebrain and, to a lower degree, in the cortex."
+
+— Porkka-Heiskanen, T., et al. (1997). Adenosine: A mediator of the sleep-inducing effects of prolonged wakefulness. *Science*, 276(5316), 1265-1268.
+
+**Region Specificity:**
+
+> "Caffeine-induced arousal was not affected in rats when A2ARs were focally removed from the NAc core or other A2AR-positive areas of the basal ganglia... the area of the human brain in which caffeine acts to counteract fatigue, the shell of the NAc, is just about the astonishingly small size of a pea."
+
+— Lazarus, M., et al. (2011). *J Neurosci*, 31(27), 10067-10075.
+
+#### What a BCI Could and Could NOT Do
+
+| Observation | BCI Capability | Limitation |
+|-------------|---------------|------------|
+| Detect increased neural firing in cortex | ✅ Can detect | Cannot identify caffeine as cause |
+| Measure changed oscillation patterns | ✅ Can detect | Cannot distinguish from other arousal states |
+| Directly block adenosine receptors | ❌ Cannot | Requires caffeine molecule at A2A receptor |
+| Stimulate NAc to produce wakefulness | ⚠️ Partial | Can increase activity, but effect differs from receptor blockade |
+| Reverse adenosine binding | ❌ Cannot | Molecular process, not electrical |
+
+**The insight:** Even a simple, familiar experience like "feeling awake after coffee" involves molecular machinery in a **pea-sized region** (NAc shell) that electrical stimulation cannot replicate. A BCI can *trigger* neurons that are ready to fire, but cannot *supply* the molecular antagonist or *block* specific receptor binding.
+
+---
+
+### Neurotransmitter Systems: Cofactors and Brain Regions
+
+| System | Rate-Limiting Enzyme | Required Cofactors | Primary Brain Regions | BCI Can Trigger Release? |
+|--------|---------------------|-------------------|----------------------|-------------------------|
+| **Dopamine** | Tyrosine Hydroxylase | Fe²⁺, BH4, O₂ | SNc, VTA → Striatum, NAc, PFC | Yes, if pre-synthesized |
+| **Serotonin** | Tryptophan Hydroxylase | Fe²⁺, BH4, O₂ | Raphe nuclei → Widespread | Yes, if pre-synthesized |
+| **Norepinephrine** | Dopamine β-Hydroxylase | Cu²⁺, Ascorbate, O₂ | Locus coeruleus → Widespread | Yes, if pre-synthesized |
+| **GABA** | Glutamic Acid Decarboxylase | Pyridoxal-5'-phosphate (B6) | Cortex, basal ganglia, cerebellum | Yes, if pre-synthesized |
+| **Glutamate** | Glutaminase | Phosphate | Cortex, hippocampus, thalamus | Yes, if pre-synthesized |
+| **Acetylcholine** | Choline Acetyltransferase | Acetyl-CoA, Choline | Basal forebrain, brainstem | Yes, if pre-synthesized |
+| **Endorphins** | Prohormone Convertases | Ca²⁺-dependent proteases | Hypothalamus (arcuate), PAG | Yes, if POMC processed |
+| **Endocannabinoids** | DAGL (2-AG), NAPE-PLD (AEA) | Membrane lipid precursors | Widespread (retrograde signaling) | Partially (on-demand synthesis) |
+
+---
+
+### Time-Scale Hierarchy Across All Layers
+
+Neural processing spans **15+ orders of magnitude** in time—from femtoseconds to decades:
+
+| Time Scale | Duration | Process | ONI Layer | Brain Example | BCI Access |
+|------------|----------|---------|-----------|---------------|------------|
+| **Femtoseconds** | 10⁻¹⁵ s | Electron transfer in enzymes | Within L8 | Fe²⁺ oxidation in TH | ❌ None |
+| **Picoseconds** | 10⁻¹² s | Molecular vibrations | Within L8 | BH4 conformational change | ❌ None |
+| **Nanoseconds** | 10⁻⁹ s | Ion channel gating | Within L8 | Na⁺ channel activation | ❌ None |
+| **Microseconds** | 10⁻⁶ s | Vesicle fusion, NT release | L8 boundary | Dopamine release at striatal synapse | ⚠️ Indirect |
+| **Milliseconds** | 10⁻³ s | Action potentials | L8-L9 | SNc neuron spike | ✅ Direct |
+| **Tens of ms** | 10⁻² s | Synaptic integration | L9 | Striatal MSN integration | ✅ Direct |
+| **Hundreds of ms** | 10⁻¹ s | Sensory processing | L9-L10 | Visual cortex response | ✅ Direct |
+| **Seconds** | 10⁰ s | Working memory | L10-L11 | PFC sustained activity | ✅ Direct |
+| **Minutes** | 10² s | Short-term plasticity | L11-L12 | Hippocampal STD/STF | ✅ Direct |
+| **Hours** | 10⁴ s | LTP, memory consolidation | L12-L13 | Hippocampus → Cortex transfer | ⚠️ Indirect |
+| **Days** | 10⁵ s | Synaptic remodeling | L13 | Dendritic spine changes | ⚠️ Indirect |
+| **Weeks-Months** | 10⁶-⁷ s | Structural plasticity | L13-L14 | Motor cortex reorganization | ⚠️ Indirect |
+| **Years-Lifetime** | 10⁸+ s | Identity formation | L14 | Autobiographical memory networks | ❌ Read-only |
+
+**The Speed Boundary:** BCIs operate effectively in the **milliseconds-to-seconds** range (action potentials, LFPs, population dynamics). Faster processes (molecular) and slower processes (plasticity, identity) are largely inaccessible to direct electrical intervention.
+
+---
+
+### What BCI Can and Cannot Do
+
+| Capability | BCI Direct | BCI Indirect | Requires Pharmacology |
+|------------|-----------|--------------|----------------------|
+| **Detect action potentials** | ✅ | — | — |
+| **Trigger action potentials** | ✅ | — | — |
+| **Cause neurotransmitter release** | — | ✅ (via AP→Ca²⁺) | — |
+| **Synthesize neurotransmitters** | ❌ | ❌ | ✅ Precursors/cofactors |
+| **Block specific receptors** | ❌ | ❌ | ✅ Antagonists |
+| **Activate specific receptors** | ❌ | ❌ | ✅ Agonists |
+| **Supply missing cofactors (Fe²⁺, BH4, B6)** | ❌ | ❌ | ✅ Supplements |
+| **Read population activity** | ✅ | — | — |
+| **Decode cognitive state** | — | ✅ (inference) | — |
+| **Modify gene expression** | ❌ | ⚠️ (via sustained activity) | ✅ Direct |
+| **Alter synaptic strength** | — | ✅ (plasticity protocols) | ✅ Direct |
+
+---
+
+### Security Implications: Attack Surfaces Beyond Electrical Monitoring
+
+Understanding the molecular substrate reveals attack vectors that **L8 electrical monitoring alone cannot detect**:
+
+| Attack Type | Target | Brain Region Affected | Detection by BCI | Required Defense |
+|-------------|--------|----------------------|------------------|------------------|
+| **Iron depletion** | TfR1, Ferritin | SNc, VTA | ⚠️ Sees reduced striatal DA | Metabolic monitoring |
+| **BH4 inhibition** | GTP cyclohydrolase | All catecholamine neurons | ⚠️ Sees reduced NT globally | Pterin level assays |
+| **B6 depletion** | GAD (GABA synthesis) | Cortex, basal ganglia | ⚠️ Sees reduced inhibition | Vitamin monitoring |
+| **Receptor antagonism** | D1/D2 in striatum | Motor, reward circuits | ❌ Sees normal release, no effect | Receptor occupancy imaging |
+| **Adenosine agonism** | A2A in NAc shell | Arousal circuits | ❌ Sees normal firing, increased sleep | Sleep architecture analysis |
+| **Precursor depletion** | Tyrosine, tryptophan | SNc, VTA, raphe | ⚠️ Delayed detection | Amino acid monitoring |
+
+**Conclusion:** Comprehensive BCI security requires integration with biochemical monitoring systems—electrical signals alone provide an incomplete picture of neural health and potential manipulation.
+
+---
+
 ## Threat Landscape by Layer
 
 | Layer | Primary Threats | Defense Strategy |
@@ -397,13 +647,120 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 ---
 
+## Layer Definition File Locations
+
+> **CRITICAL:** When updating layer names, zones, or definitions, ALL files below must be updated to maintain consistency.
+
+### Source of Truth Hierarchy
+
+| Priority | File | Purpose | Update When |
+|----------|------|---------|-------------|
+| **1** | `MAIN/oni-framework/ONI_LAYERS.md` | Authoritative reference | Layer definitions change |
+| **2** | `MAIN/resources/brand.json` | Machine-readable source | Any layer name/zone change |
+
+### Consumer Files (Must Match Source of Truth)
+
+| File | Type | Contains |
+|------|------|----------|
+| `docs/index.html` | HTML | GitHub Pages visualization (14-layer animation) |
+| `video/demo/src/components/LayerStack.tsx` | React/Remotion | Demo video layer stack component |
+| `video/demo/src/data/oni-theme.ts` | TypeScript | Video theme colors and layer comments |
+| `video/motion/src/theme.ts` | TypeScript | Motion Canvas video theme |
+| `MAIN/tara-nsec-platform/tara_mvp/visualization/themes/oni_theme.py` | Python | TARA dashboard visualization |
+| `MAIN/resources/editor/checks/layer_validation.md` | Markdown | Editor Agent validation rules |
+| `MAIN/oni-framework/oni/layers.py` | Python | ONI Framework Python API |
+
+### Current Layer Mapping (v3.0)
+
+| Layer | Name | Zone Label | Domain | OSI Parallel |
+|-------|------|------------|--------|--------------|
+| L1 | Physical Carrier | Physical | Silicon | Physical |
+| L2 | Signal Processing | Data Link | Silicon | Data Link |
+| L3 | Protocol | Network | Silicon | Network |
+| L4 | Transport | Transport | Silicon | Transport |
+| L5 | Session | Session | Silicon | Session |
+| L6 | Presentation | Presentation | Silicon | Presentation |
+| L7 | Application Interface | Application | Silicon | Application |
+| **L8** | **Neural Gateway** | **Firewall** | **Bridge** | — |
+| L9 | Signal Processing | Filtering | Biology | Data Link |
+| L10 | Neural Protocol | Encoding | Biology | Network |
+| L11 | Cognitive Transport | Delivery | Biology | Transport |
+| L12 | Cognitive Session | Context | Biology | Session |
+| L13 | Semantic Layer | Intent | Biology | Presentation |
+| L14 | Identity Layer | Self | Biology | Application |
+
+### Biological Foundation Mapping
+
+The Biology layers (L9-L14) process signals that originate from molecular and cellular processes encapsulated within L8. Key mappings:
+
+| Neurotransmitter System | Key Brain Regions | Primary ONI Layer |
+|------------------------|-------------------|-------------------|
+| Dopamine | SNc, VTA → Striatum, NAc, PFC | L13 (Semantic - reward, motivation) |
+| Serotonin | Raphe nuclei → Widespread | L12-L14 (mood, cognition) |
+| Norepinephrine | Locus coeruleus → Widespread | L11-L13 (arousal, attention) |
+| GABA | Cortex, basal ganglia | L9-L12 (inhibition, filtering) |
+| Glutamate | Cortex, hippocampus | L9-L12 (excitation, encoding) |
+| Adenosine | NAc shell, basal forebrain | L11-L12 (sleep pressure, context) |
+
+### Update Protocol
+
+When layer definitions change:
+
+1. **Update ONI_LAYERS.md** (this file) with new definitions
+2. **Update brand.json** with machine-readable changes
+3. **Run verification:**
+   ```bash
+   grep -rn "L9.*Signal Processing\|L10.*Neural Protocol" MAIN/
+   grep -rn "L9.*Ion Channel\|L10.*Spike Train" MAIN/  # Should return 0 results
+   ```
+4. **Update all consumer files** listed above
+5. **Update CLAUDE.md** instructions if workflow changes
+6. **Commit with clear message** noting layer changes
+
+---
+
 ## References
 
+### Standards & Guidelines
 - OSI Model: ISO/IEC 7498-1
 - Medical Device Cybersecurity: FDA Guidance 2023
 - BCI Security: [ONI Framework Publications](../publications/0-oni-framework/)
 - Coherence Metric: [Technical Document](../publications/coherence-metric/)
 - Neural Firewall: [Technical Document](../publications/neural-firewall/)
+
+### Neuroscience Research (Biological Foundation Section)
+
+**Dopamine & Iron:**
+- Matak, P., et al. (2016). Disrupted iron homeostasis causes dopaminergic neurodegeneration in mice. *PNAS*, 113(13), 3428-3435. https://doi.org/10.1073/pnas.1519473113
+- Nagatsu, T. (2016). Tyrosine hydroxylase (TH), its cofactor tetrahydrobiopterin (BH4), other catecholamine-related enzymes... *J Neural Transm*, 123, 729-738. https://pubmed.ncbi.nlm.nih.gov/27491309/
+- Zucca, F.A., et al. (2017). Iron deposition in substantia nigra. *Scientific Reports*, 7, 14721. https://doi.org/10.1038/s41598-017-14721-1
+- Björklund, A., & Dunnett, S. B. (2007). Dopamine neuron systems in the brain: an update. *Trends in Neurosciences*, 30(5), 194-202.
+
+**Adenosine & Caffeine:**
+- Lazarus, M., et al. (2011). Arousal effect of caffeine depends on adenosine A2A receptors in the shell of the nucleus accumbens. *J Neurosci*, 31(27), 10067-10075. https://doi.org/10.1523/JNEUROSCI.6730-10.2011
+- Porkka-Heiskanen, T., et al. (1997). Adenosine: A mediator of the sleep-inducing effects of prolonged wakefulness. *Science*, 276(5316), 1265-1268.
+- Huang, Z.L., et al. (2005). Adenosine A2A, but not A1, receptors mediate the arousal effect of caffeine. *Nat Neurosci*, 8, 858-859.
+
+**BH4 & Neurotransmitter Synthesis:**
+- Werner, E.R., et al. (2011). Tetrahydrobiopterin: biochemistry and pathophysiology. *Biochem J*, 438(3), 397-414.
+- Thöny, B., et al. (2000). Tetrahydrobiopterin biosynthesis, regeneration and functions. *Biochem J*, 347, 1-16.
+
+**Synaptic Transmission & Calcium:**
+- Südhof, T.C. (2012). Calcium control of neurotransmitter release. *Cold Spring Harb Perspect Biol*, 4(1), a011353. https://pmc.ncbi.nlm.nih.gov/articles/PMC3249630/
+- Katz, B., & Miledi, R. (1967). The timing of calcium action during neuromuscular transmission. *J Physiol*, 189(3), 535-544.
+
+### Visual Implementations
+
+These implementations render the 14-layer model and must stay synchronized with this document:
+
+| Implementation | Location | Purpose |
+|----------------|----------|---------|
+| **brand.json** | [`MAIN/resources/brand.json`](../resources/brand.json) | Single source of truth for layer data (names, colors, zones) |
+| **Video Animation** | [`video/demo/src/components/LayerStack.tsx`](../../video/demo/src/components/LayerStack.tsx) | Remotion video layer stack with cascade animation |
+| **GitHub Pages** | [`docs/index.html`](../../docs/index.html) | Website scroll-reveal animation with L8 expansion effect |
+| **Python API** | [`oni/layers.py`](oni/layers.py) | Programmatic layer access, attack surfaces, defenses |
+
+> **Sync Protocol:** When updating layer names or structure, update `brand.json` first, then propagate to all consumers listed above.
 
 ---
 
@@ -411,6 +768,7 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 3.0 | 2026-01-26 | **Major addition**: Biological Foundation section with molecular substrate hierarchy, time-scale analysis (femtoseconds to lifetime), detailed examples (Iron→Dopamine with SNc/VTA/Striatum, Caffeine→Adenosine with NAc shell), BCI capabilities vs limitations, research citations |
 | 2.2 | 2026-01-25 | Added bidirectional BCI security: stimulation safety bounds, WRITE direction threats |
 | 2.1 | 2026-01-24 | Fixed L9-L11 domain labels: Silicon → Biology (L9+ is neural side of bridge) |
 | 2.0 | 2026-01-22 | Major revision: L1-L7 now pure OSI, L8-L14 neural extension |
@@ -420,4 +778,4 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 *This document is the authoritative reference for ONI layer definitions. All other documentation should reference this file.*
 
-*Last Updated: 2026-01-25*
+*Last Updated: 2026-01-26*

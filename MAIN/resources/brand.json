@@ -20,6 +20,29 @@
     "description": "A neural security stack for BCI security monitoring, simulation, and attack testing. Real-time security analysis for brain-computer interfaces.",
     "version": "0.8.1"
   },
+  "layers": {
+    "_comment": "Single source of truth for 14-layer ONI model. L1-L7 Silicon, L8 Gateway, L9-L14 Biology (hourglass model)",
+    "silicon": [
+      { "id": "L1", "name": "Physical Carrier", "zone": "Physical", "color": "#1e3a5f" },
+      { "id": "L2", "name": "Signal Processing", "zone": "Data Link", "color": "#1e4d6f" },
+      { "id": "L3", "name": "Protocol", "zone": "Network", "color": "#1e5f7f" },
+      { "id": "L4", "name": "Transport", "zone": "Transport", "color": "#1e6f8f" },
+      { "id": "L5", "name": "Session", "zone": "Session", "color": "#1e7f9f" },
+      { "id": "L6", "name": "Presentation", "zone": "Presentation", "color": "#1e8faf" },
+      { "id": "L7", "name": "Application Interface", "zone": "Application", "color": "#2d9fbf" }
+    ],
+    "gateway": [
+      { "id": "L8", "name": "Neural Gateway", "zone": "Firewall", "color": "#d97706", "highlight": true }
+    ],
+    "biology": [
+      { "id": "L9", "name": "Signal Processing", "zone": "Filtering", "color": "#14532d" },
+      { "id": "L10", "name": "Neural Protocol", "zone": "Encoding", "color": "#166534" },
+      { "id": "L11", "name": "Cognitive Transport", "zone": "Delivery", "color": "#15803d" },
+      { "id": "L12", "name": "Cognitive Session", "zone": "Context", "color": "#16a34a" },
+      { "id": "L13", "name": "Semantic Layer", "zone": "Intent", "color": "#22c55e" },
+      { "id": "L14", "name": "Identity Layer", "zone": "Self", "color": "#4ade80" }
+    ]
+  },
   "stats": {
     "_comment": "Manual stats only. Auto-updating stats (commits, tools) are fetched via GitHub API in docs/index.html",
     "security_layers": 14,
@@ -33,8 +56,18 @@
       "MAIN/oni-framework/oni/brand.py",
       "MAIN/tara-nsec-platform/tara_mvp/_brand.py",
       "MAIN/oni-academy/oni_academy/_brand.py",
-      "docs/index.html"
+      "docs/index.html",
+      "video/demo/src/data/oni-theme.ts",
+      "video/demo/src/components/LayerStack.tsx",
+      "video/motion/src/theme.ts",
+      "MAIN/tara-nsec-platform/tara_mvp/visualization/themes/oni_theme.py",
+      "MAIN/resources/editor/checks/layer_validation.md"
     ],
-    "note": "Single source of truth for all ONI project branding and stats"
+    "layer_documentation": {
+      "authoritative_reference": "MAIN/oni-framework/ONI_LAYERS.md",
+      "biological_foundation": "MAIN/oni-framework/ONI_LAYERS.md#biological-foundation-what-l8-encapsulates",
+      "time_scale_hierarchy": "MAIN/oni-framework/ONI_LAYERS.md#time-scale-hierarchy-across-all-layers"
+    },
+    "note": "Single source of truth for all ONI project branding, stats, and 14-layer model definitions"
   }
 }
