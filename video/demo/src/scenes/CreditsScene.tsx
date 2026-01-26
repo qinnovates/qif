@@ -159,9 +159,9 @@ export const CreditsScene: React.FC = () => {
                     transform: `translateY(${interpolate(Math.max(0, becauseProgress), [0, 1], [30, 0])}px)`,
                   }}
                 >
-                  Because the most important connections
+                  Because life's most important connections
                   <br />
-                  <span style={{ color: colors.primary.accent, fontWeight: 500 }}>
+                  <span style={{ color: colors.text.primary, fontWeight: 700 }}>
                     deserve the most thought.
                   </span>
                 </div>

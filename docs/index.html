@@ -770,6 +770,28 @@
             50% { transform: scale(1.5); opacity: 0.5; }
         }
 
+        /* Text reveal animation - left to right */
+        @keyframes text-reveal {
+            from { max-width: 0; }
+            to { max-width: 100%; }
+        }
+
+        .text-reveal {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 0;
+            vertical-align: bottom;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-reveal.animate {
+            animation: text-reveal 1.2s ease-out forwards;
+        }
+
         /* Button hover glow */
         .btn-primary {
             position: relative;
@@ -1365,7 +1387,7 @@
                 <h2>Mission</h2>
             </div>
             <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border-left: 3px solid var(--accent-blue); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; text-align: left;">
-                <p id="mission-text" style="font-size: 1.15rem; color: var(--text-primary); font-weight: 500; line-height: 1.6; margin: 0;">The power of mind is our frontier. We're making sure it's protected from day one with a universal, open standard that leaves no brain behind. Because important connections deserve the most thought.</p>
+                <p id="mission-text" style="font-size: 1.15rem; color: var(--text-primary); font-weight: 500; line-height: 1.6; margin: 0;">The power of mind is our frontier. We're making sure it's protected from day one with a universal, open standard that leaves no brain behind. Because important connections <span class="text-reveal">deserve the most thought.</span></p>
             </div>
         </div>
     </section>

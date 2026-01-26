@@ -8,22 +8,30 @@ import { AbsoluteFill, useCurrentFrame, spring, useVideoConfig, interpolate } fr
 import { colors, typography } from '../data/oni-theme';
 
 // Layer definitions - ordered L1 to L14 for animation
+// Gradients and colors matched to GitHub Pages (docs/index.html)
 const layers = [
-  { id: 'L1', name: 'Physical Carrier', zone: 'silicon', color: colors.silicon.L1, osi: 'Physical' },
-  { id: 'L2', name: 'Signal Processing', zone: 'silicon', color: colors.silicon.L2, osi: 'Data Link' },
-  { id: 'L3', name: 'Protocol', zone: 'silicon', color: colors.silicon.L3, osi: 'Network' },
-  { id: 'L4', name: 'Transport', zone: 'silicon', color: colors.silicon.L4, osi: 'Transport' },
-  { id: 'L5', name: 'Session', zone: 'silicon', color: colors.silicon.L5, osi: 'Session' },
-  { id: 'L6', name: 'Presentation', zone: 'silicon', color: colors.silicon.L6, osi: 'Presentation' },
-  { id: 'L7', name: 'Application Interface', zone: 'silicon', color: colors.silicon.L7, osi: 'Application' },
-  { id: 'L8', name: 'Neural Gateway', zone: 'gateway', color: colors.gateway.L8, osi: null },
-  { id: 'L9', name: 'Ion Channel Encoding', zone: 'biology', color: colors.biology.L9, osi: null },
-  { id: 'L10', name: 'Spike Train', zone: 'biology', color: colors.biology.L10, osi: null },
-  { id: 'L11', name: 'Neural Population', zone: 'biology', color: colors.biology.L11, osi: null },
-  { id: 'L12', name: 'Circuit Dynamics', zone: 'biology', color: colors.biology.L12, osi: null },
-  { id: 'L13', name: 'Cognitive Function', zone: 'biology', color: colors.biology.L13, osi: null },
-  { id: 'L14', name: 'Identity & Ethics', zone: 'biology', color: colors.biology.L14, osi: null },
+  { id: 'L1', name: 'Physical Carrier', zone: 'silicon', background: 'linear-gradient(135deg, #1e3a5f, #2d4a6f)', glow: '#60a5fa', osi: 'Physical' },
+  { id: 'L2', name: 'Signal Processing', zone: 'silicon', background: 'linear-gradient(135deg, #1e4d6f, #2d5d7f)', glow: '#60a5fa', osi: 'Data Link' },
+  { id: 'L3', name: 'Protocol', zone: 'silicon', background: 'linear-gradient(135deg, #1e5f7f, #2d6f8f)', glow: '#60a5fa', osi: 'Network' },
+  { id: 'L4', name: 'Transport', zone: 'silicon', background: 'linear-gradient(135deg, #1e6f8f, #2d7f9f)', glow: '#60a5fa', osi: 'Transport' },
+  { id: 'L5', name: 'Session', zone: 'silicon', background: 'linear-gradient(135deg, #1e7f9f, #2d8faf)', glow: '#60a5fa', osi: 'Session' },
+  { id: 'L6', name: 'Presentation', zone: 'silicon', background: 'linear-gradient(135deg, #1e8faf, #3d9fbf)', glow: '#60a5fa', osi: 'Presentation' },
+  { id: 'L7', name: 'Application Interface', zone: 'silicon', background: 'linear-gradient(135deg, #2d9fbf, #4dafcf)', glow: '#60a5fa', osi: 'Application' },
+  { id: 'L8', name: 'Neural Gateway', zone: 'gateway', background: 'linear-gradient(135deg, #b45309, #d97706, #f59e0b)', glow: '#ff9632', osi: null },
+  { id: 'L9', name: 'Ion Channel Encoding', zone: 'biology', background: 'linear-gradient(135deg, #14532d, #166534)', glow: '#4ade80', osi: null },
+  { id: 'L10', name: 'Spike Train', zone: 'biology', background: 'linear-gradient(135deg, #166534, #15803d)', glow: '#4ade80', osi: null },
+  { id: 'L11', name: 'Neural Population', zone: 'biology', background: 'linear-gradient(135deg, #15803d, #16a34a)', glow: '#4ade80', osi: null },
+  { id: 'L12', name: 'Circuit Dynamics', zone: 'biology', background: 'linear-gradient(135deg, #16a34a, #22c55e)', glow: '#4ade80', osi: null },
+  { id: 'L13', name: 'Cognitive Function', zone: 'biology', background: 'linear-gradient(135deg, #22c55e, #4ade80)', glow: '#4ade80', osi: null },
+  { id: 'L14', name: 'Identity & Ethics', zone: 'biology', background: 'linear-gradient(135deg, #4ade80, #86efac)', glow: '#4ade80', osi: null },
 ];
+
+// Zone label colors matched to GitHub Pages
+const zoneColors = {
+  silicon: '#60a5fa',
+  gateway: '#ff9632',
+  biology: '#4ade80',
+};
 
 export const LayersScene: React.FC = () => {
   const frame = useCurrentFrame();
@@ -205,9 +213,9 @@ export const LayersScene: React.FC = () => {
               // Glow effect
               let boxShadow = 'none';
               if (isCurrentLayer && layer.zone === 'gateway') {
-                boxShadow = `0 0 ${40 * l8GlowIntensity}px ${colors.gateway.L8}, 0 0 ${80 * l8GlowIntensity}px ${colors.gateway.L8}66`;
+                boxShadow = `0 0 ${40 * l8GlowIntensity}px ${layer.glow}, 0 0 ${80 * l8GlowIntensity}px ${layer.glow}66`;
               } else if (isCurrentLayer) {
-                boxShadow = `0 0 25px ${layer.color}88`;
+                boxShadow = `0 0 25px ${layer.glow}88`;
               }
 
               // Dimming for non-current layers
@@ -277,7 +285,7 @@ export const LayersScene: React.FC = () => {
                     style={{
                       width: layerWidth,
                       height: layerHeight,
-                      backgroundColor: layer.color,
+                      background: layer.background,
                       borderRadius: 10,
                       display: 'flex',
                       alignItems: 'center',

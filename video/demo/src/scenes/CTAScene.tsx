@@ -7,7 +7,7 @@ import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate } from 'remotion';
 import { FloatingParticles } from '../components/Particles';
 import { NeuralFlow } from '../components/NeuralFlow';
-import { LettersPullUp, BlurInText, TypingText } from '../components/TextAnimations';
+import { LettersPullUp, BlurInText } from '../components/TextAnimations';
 import { colors, typography } from '../data/oni-theme';
 
 export const CTAScene: React.FC = () => {
@@ -196,14 +196,16 @@ export const CTAScene: React.FC = () => {
             }}
           >
             <span style={{ color: colors.security.safe }}>$ </span>
-            <TypingText
-              text={pipCommand}
-              delay={typingDelay}
-              fontSize={22}
-              color={colors.text.primary}
-              typingSpeed={2}
-              showCursor={true}
-            />
+            <span style={{ color: colors.text.primary }}>{currentText}</span>
+            <span
+              style={{
+                color: colors.text.primary,
+                opacity: Math.sin(frame * 0.15) > 0 ? 1 : 0,
+                marginLeft: 2,
+              }}
+            >
+              |
+            </span>
           </div>
         </div>
 
@@ -226,22 +228,23 @@ export const CTAScene: React.FC = () => {
           <div
             style={{
               padding: '22px 48px',
-              background: `linear-gradient(135deg, ${colors.primary.accent} 0%, ${colors.primary.light} 100%)`,
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(220,220,225,0.9) 100%)',
               borderRadius: 14,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: 14,
-              boxShadow: `0 0 40px ${colors.primary.accent}44`,
+              boxShadow: '0 0 40px rgba(255,255,255,0.15)',
+              border: '1px solid rgba(255,255,255,0.2)',
             }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2C6.48 2 2 6.48 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12C22 6.48 17.52 2 12 2Z" fill={colors.primary.dark} />
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12C22 6.48 17.52 2 12 2Z" fill="#1a1a2e" />
             </svg>
             <span
               style={{
                 fontSize: 18,
-                color: colors.primary.dark,
+                color: '#1a1a2e',
                 fontWeight: 600,
                 letterSpacing: '-0.01em',
               }}

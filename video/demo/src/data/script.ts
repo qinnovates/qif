@@ -262,7 +262,7 @@ export const script: ScriptLine[] = [
   },
   {
     scene: 'credits',
-    text: "Because the most important connections deserve the most thought.",
+    text: "Because life's most important connections deserve the most thought.",
     startFrame: 6630,
     endFrame: 6810,
   },
