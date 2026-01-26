@@ -1,13 +1,26 @@
-# Brain Anatomy Research
+# Neuroscience & BCI Research
 
-> **Purpose:** Document research, questions, and learnings about brain structure and function as it relates to BCI interfaces and neurosecurity.
+> **Purpose:** Personal research and learning repository for neuroscience concepts I need to understand to build the ONI Framework. This is where I figure out things I don't know but need to know.
+
+**This is NOT polished documentation.** It's a working knowledge base for building understanding of the biological substrate that BCIs interface with.
+
+---
+
+## Table of Contents
+
+1. [Folder Structure](#folder-structure)
+2. [Purpose of Each Folder](#purpose-of-each-folder)
+3. [Research Documents](#research-documents)
+4. [Key Questions](#key-questions-this-research-aims-to-answer)
+5. [Related Projects](#related-projects)
+6. [Adding Research](#adding-research)
 
 ---
 
 ## Folder Structure
 
 ```
-brain-anatomy/
+neuroscience-bci/
 ├── README.md                           # This file
 ├── Research-BCI_Mouse_Movement.md      # How BCIs enable cursor/keyboard control
 │
@@ -74,8 +87,10 @@ Each brain region folder is for documenting:
 
 ## Related Projects
 
-- **Backlog:** [bci-macro-to-micro-visualization](../../project/KANBAN.md) — Blender animation from brain → neurons → molecules
-- **Video Assets:** `oni/video/bci-zoom/` — Visualization project files
+- **Backlog:** [bci-to-neuron-zoom-rendering](../docs/visualizations/pending/bci-to-neuron-zoom-rendering/) — Blender animation from brain → neurons → molecules
+- **Video Assets:** `video/bci-zoom/` — Visualization project files
+- **ONI_LAYERS.md:** Biological Foundation section — How this maps to L8-L14
+- **oni/neuromapping.py:** Python API for brain region → layer mappings
 
 ---
 
