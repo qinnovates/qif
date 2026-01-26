@@ -281,6 +281,7 @@ ONI/
     ├── publications/            # Research content
     │   ├── 0-oni-framework/     # Base/foundational content
     │   ├── coherence-metric/
+    │   ├── detection-theory/    # Detection algorithms, privacy-preserving ML
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
     │   ├── quantum-encryption/
@@ -470,6 +471,14 @@ Cross-scale neural patterns, frequency invariants, and information compression.
 | [Blog-Scale_Frequency](MAIN/publications/scale-frequency/Blog-Scale_Frequency.md) | *From millisecond spikes to lifetime memories.* |
 | [TechDoc-Scale_Frequency](MAIN/publications/scale-frequency/TechDoc-Scale_Frequency.md) | *Mathematical Foundations for Hierarchical Neural Processing in the ONI Framework.* |
 
+### 🎯 Detection Theory — [Overview](MAIN/publications/detection-theory/)
+
+Mathematical frameworks for threat detection in neural systems, including signature-based, anomaly-based, and behavioral detection with privacy-preserving implementations.
+
+| Document | Summary |
+|----------|----------|
+| [TechDoc-Detection_Theory](MAIN/publications/detection-theory/TechDoc-Detection_Theory.md) | *Mathematical Framework for Neural Signal Threat Detection with differential privacy, federated learning, and secure multi-party computation.* |
+
 ---
 
 ## About the Author
@@ -530,5 +539,5 @@ Apache License 2.0 - See [LICENSE](LICENSE)
 ---
 
 *Auto-published from research pipeline*
-*Last update: 2026-01-25*
-*Documents: 16 | Topics: 6 | Python Packages: oni-framework v0.2.0, oni-tara v0.8.0*
+*Last update: 2026-01-26*
+*Documents: 17 | Topics: 7 | Python Packages: oni-framework v0.2.0, oni-tara v0.8.0*

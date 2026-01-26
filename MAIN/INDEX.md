@@ -31,6 +31,7 @@ This index connects all research topics, maps dependencies, and provides navigat
 | [Neural Firewall](publications/neural-firewall/) | Zero-trust security at L8 | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) |
 | [Neural Ransomware](publications/neural-ransomware/) | Threat analysis & defense | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) |
 | [Quantum Encryption](publications/quantum-encryption/) | Quantum threats, QKD, TTT, QPUFs | [Blog-QSec](publications/quantum-encryption/Blog-Quantum_Security.md) · [Blog-QKeys](publications/quantum-encryption/Blog-Quantum_Keys.md) · [Blog-TTT](publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md) · [TechDoc-QEnc](publications/quantum-encryption/TechDoc-Quantum_Encryption.md) · [TechDoc-TTT](publications/quantum-encryption/TechDoc-Tunneling_Traversal_Time.md) |
+| [Detection Theory](publications/detection-theory/) | Mathematical detection algorithms & privacy-preserving ML | [TechDoc](publications/detection-theory/TechDoc-Detection_Theory.md) |
 
 ---
 
@@ -127,8 +128,9 @@ See [RELATED_WORK.md](RELATED_WORK.md#moabb-mother-of-all-bci-benchmarks) for ci
 2. **Scale-Frequency** → Mathematical invariants (f × S ≈ k)
 3. **Coherence Metric** → Signal validation (Cₛ formula)
 4. **Neural Firewall** → Security architecture (zero-trust at L8)
-5. **Neural Ransomware** → Threat landscape
-6. **Quantum Encryption** → Quantum threats, QKD, liminal phase security, QPUFs
+5. **Detection Theory** → Threat detection algorithms, privacy-preserving ML
+6. **Neural Ransomware** → Threat landscape
+7. **Quantum Encryption** → Quantum threats, QKD, liminal phase security, QPUFs
 
 ---
 
@@ -150,15 +152,18 @@ See [RELATED_WORK.md](RELATED_WORK.md#moabb-mother-of-all-bci-benchmarks) for ci
             │                     │                      │
             │                     └──────────┬───────────┘
             │                                │
-            ▼                                ▼
-   ┌─────────────────────────┐    ┌─────────────────────┐
-   │   QUANTUM ENCRYPTION    │    │  NEURAL RANSOMWARE  │
-   │ HNDL, QKD, TTT, QPUFs   │    │   Threat modeling   │
-   └─────────────────────────┘    └──────────┬──────────┘
-                                             │
-                    ┌────────────────────────┴────────────────────────┐
-                    │                                                  │
-                    ▼                                                  ▼
+            │                     ┌──────────┴──────────┐
+            │                     │                     │
+            ▼                     ▼                     ▼
+   ┌─────────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+   │  QUANTUM ENCRYPTION │ │DETECTION THEORY │ │NEURAL RANSOMWARE│
+   │ HNDL, QKD, TTT      │ │ Threat detection│ │ Threat modeling │
+   └─────────────────────┘ │ Privacy-pres. ML│ └────────┬────────┘
+                           └────────┬────────┘          │
+                                    │                   │
+                    ┌───────────────┴───────────────────┘
+                    │
+                    ▼
    ┌────────────────────────────────────┐        ┌────────────────────────────┐
    │           oni-framework            │        │          oni-tara          │
    │    Core library (pip install)      │        │  Security Operations (SOC) │
@@ -190,6 +195,7 @@ See [RELATED_WORK.md](RELATED_WORK.md#moabb-mother-of-all-bci-benchmarks) for ci
 | [Neural Firewall](publications/neural-firewall/) | Zero-trust security at the neural gateway (L8) | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) | Published |
 | [Neural Ransomware](publications/neural-ransomware/) | Threat analysis and defensive architectures | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) | Published |
 | [Quantum Encryption](publications/quantum-encryption/) | Quantum threats, QKD, liminal phase security, QPUFs | [Blog-QSec](publications/quantum-encryption/Blog-Quantum_Security.md) · [Blog-QKeys](publications/quantum-encryption/Blog-Quantum_Keys.md) · [Blog-TTT](publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md) · [TechDoc-QEnc](publications/quantum-encryption/TechDoc-Quantum_Encryption.md) · [TechDoc-TTT](publications/quantum-encryption/TechDoc-Tunneling_Traversal_Time.md) | Published |
+| [Detection Theory](publications/detection-theory/) | Mathematical frameworks for threat detection, anomaly detection, privacy-preserving ML | [TechDoc](publications/detection-theory/TechDoc-Detection_Theory.md) | Published |
 
 ---
 
@@ -197,14 +203,15 @@ See [RELATED_WORK.md](RELATED_WORK.md#moabb-mother-of-all-bci-benchmarks) for ci
 
 Shows which topics reference which. Use this to understand conceptual dependencies.
 
-|                    | ONI Framework | Coherence | Scale-Freq | Firewall | Ransomware | Quantum Enc |
-|--------------------|:-------------:|:---------:|:----------:|:--------:|:----------:|:-----------:|
-| **ONI Framework**  | —             | ●         | ●          | ●        | ●          | ●           |
-| **Coherence**      | ◄             | —         | ○          | ●        | ●          | ●           |
-| **Scale-Frequency**| ◄             | ○         | —          | ○        | ○          | ●           |
-| **Firewall**       | ◄             | ◄         | ○          | —        | ●          | ○           |
-| **Ransomware**     | ◄             | ◄         | ○          | ◄        | —          | ○           |
-| **Quantum Enc**    | ◄             | ◄         | ◄          | ○        | ○          | —           |
+|                    | ONI Framework | Coherence | Scale-Freq | Firewall | Ransomware | Quantum Enc | Detection |
+|--------------------|:-------------:|:---------:|:----------:|:--------:|:----------:|:-----------:|:---------:|
+| **ONI Framework**  | —             | ●         | ●          | ●        | ●          | ●           | ●         |
+| **Coherence**      | ◄             | —         | ○          | ●        | ●          | ●           | ●         |
+| **Scale-Frequency**| ◄             | ○         | —          | ○        | ○          | ●           | ○         |
+| **Firewall**       | ◄             | ◄         | ○          | —        | ●          | ○           | ●         |
+| **Ransomware**     | ◄             | ◄         | ○          | ◄        | —          | ○           | ○         |
+| **Quantum Enc**    | ◄             | ◄         | ◄          | ○        | ○          | —           | ○         |
+| **Detection**      | ◄             | ◄         | ○          | ◄        | ○          | ○           | —         |
 
 **Legend:** ● = references this topic | ◄ = referenced by this topic | ○ = related concept
 
@@ -467,6 +474,7 @@ MAIN/
 ├── publications/               # Research content
 │   ├── 0-oni-framework/
 │   ├── coherence-metric/
+│   ├── detection-theory/       # **NEW** — Detection algorithms, privacy-preserving ML
 │   ├── neural-firewall/
 │   ├── neural-ransomware/
 │   ├── quantum-encryption/
@@ -486,10 +494,10 @@ MAIN/
 
 | Metric | Count |
 |--------|-------|
-| Total Topics | 6 |
-| Published Documents | 14 |
+| Total Topics | 7 |
+| Published Documents | 15 |
 | Blog Posts | 8 |
-| Technical Documents | 6 |
+| Technical Documents | 7 |
 | Python Packages | oni-framework v0.2.0, oni-tara v0.8.0 |
 | Unit Tests | 182 (77 + 105) |
 | CI/CD Workflows | 3 (tests, publish, security) |
