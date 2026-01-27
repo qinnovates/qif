@@ -80,7 +80,7 @@ jobs:
               with open("MAIN/INDEX.md", "r") as f:
                   current_index = f.read()[:2000]  # First 2000 chars for context
 
-          prompt = f"""Based on this repository structure, generate a TLDR.md file.
+          prompt = f"""Based on this repository structure, generate a GLOSSARY.md file.
 
           Current structure:
           {structure}
@@ -109,7 +109,7 @@ jobs:
 
           content = response.choices[0].message.content
 
-          with open("TLDR.md", "w") as f:
+          with open("GLOSSARY.md", "w") as f:
               f.write(content)
 
           print("Generated index successfully")
@@ -133,7 +133,7 @@ jobs:
             This PR was automatically created by the `auto-index.yml` workflow.
 
             **Changes:**
-            - Updated `TLDR.md` with current repository structure
+            - Updated `GLOSSARY.md` with current repository structure
 
             **Generated using:** GitHub Models (gpt-4o-mini)
             **Triggered by:** `${{ github.event_name }}`
@@ -144,4 +144,4 @@ jobs:
             documentation
             automated
           add-paths: |
-            TLDR.md
+            GLOSSARY.md

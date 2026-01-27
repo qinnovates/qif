@@ -181,22 +181,25 @@ jobs:
             fi
           fi
 
-  # Optional: Secret scanning with additional tools
-  trufflehog-scan:
-    name: TruffleHog Deep Scan
-    runs-on: ubuntu-latest
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: TruffleHog scan
-        uses: trufflesecurity/trufflehog@main
-        with:
-          path: ./
-          base: ""
-          extra_args: --only-verified
-        continue-on-error: true
+  # TruffleHog job removed - requires third-party action permissions
+  # The custom audit script in .github/security-audit/scripts/audit.py
+  # provides equivalent secret scanning functionality
+  #
+  # To re-enable TruffleHog:
+  # 1. Go to Settings > Actions > General > Actions permissions
+  # 2. Allow "Actions from any repository" or add trufflesecurity to allowed list
+  # 3. Uncomment the job below
+  #
+  # trufflehog-scan:
+  #   name: TruffleHog Deep Scan
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: trufflesecurity/trufflehog@main
+  #       with:
+  #         path: ./
+  #         extra_args: --only-verified
+  #       continue-on-error: true

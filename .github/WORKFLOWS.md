@@ -17,7 +17,7 @@
 | [Publish to PyPI](#publish-to-pypi) | Release | Build and publish packages |
 | [Accessibility](#accessibility-check) | After publish | WCAG 2.1 AA compliance |
 | [Sync Brand](#sync-brand-to-docs) | brand.json change | Sync brand values to README |
-| [Auto Index](#auto-generate-index) | MAIN/ changes | Generate TLDR.md via AI |
+| [Auto Index](#auto-generate-index) | MAIN/ changes | Generate GLOSSARY.md via AI |
 | [Dependabot Auto-Merge](#dependabot-auto-merge) | Dependabot PRs | Auto-merge patch/minor updates |
 
 ---
@@ -71,7 +71,7 @@ Deep scan for secrets, API keys, and PII in code.
 | Setting | Value |
 |---------|-------|
 | **Trigger** | Push/PR to `main`/`develop`, weekly (Sunday midnight UTC) |
-| **Tools** | Custom audit script, TruffleHog |
+| **Tools** | Custom audit script (TruffleHog disabled — requires third-party action permissions) |
 | **Output** | SARIF report uploaded to GitHub Security tab |
 
 **Features:**
@@ -154,13 +154,13 @@ Syncs brand.json values to README.md.
 ### Auto Generate Index
 **File:** `auto-index.yml`
 
-Generates `TLDR.md` using AI based on repository structure.
+Generates `GLOSSARY.md` using AI based on repository structure.
 
 | Setting | Value |
 |---------|-------|
 | **Trigger** | Push to `main` (MAIN/** or autodidact/** changes), manual |
 | **AI Model** | gpt-4o-mini via GitHub Models |
-| **Output** | `TLDR.md` |
+| **Output** | `GLOSSARY.md` |
 
 **Process:**
 1. Generates file tree of repository

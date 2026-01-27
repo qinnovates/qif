@@ -169,7 +169,7 @@ The GitHub Action (`/.github/workflows/security-audit.yml`) provides:
 - **PR Comments**: Posts audit results as PR comments
 - **SARIF Upload**: Uploads results to GitHub Advanced Security
 - **Artifacts**: Stores detailed results for 30 days
-- **TruffleHog Integration**: Optional deep scanning with TruffleHog (scheduled/manual)
+- **TruffleHog Integration**: Disabled (requires third-party action permissions — see workflow for re-enable instructions)
 
 ### Manual Trigger
 
