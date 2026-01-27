@@ -1,107 +1,206 @@
 /**
- * Title Scene - Apple-level restraint
- * Pure. Minimal. Confident.
+ * Title Scene - Retro meets Future
+ * "The future we were promised, finally delivered."
  *
- * Design system:
- * - Base unit: 180px (ONI type size)
- * - Spacing: 180 × 0.3 = 54px
- * - Tagline: 180 ÷ 5 = 36px (5:1 ratio)
- * - Line: 2px weight, 120px wide (type height × 0.67)
+ * Inspired by: Bland (retro stripes) + Starcloud (space frontier)
+ * Result: Neural signal stripe + Earth horizon + void
  */
 
 import React from 'react';
-import { AbsoluteFill, useCurrentFrame, interpolate } from 'remotion';
+import { AbsoluteFill, useCurrentFrame, interpolate, random } from 'remotion';
+
+// Generate consistent stars
+const generateStars = (count: number, seed: string) => {
+  return Array.from({ length: count }, (_, i) => ({
+    x: random(`${seed}-x-${i}`) * 100,
+    y: random(`${seed}-y-${i}`) * 70, // Keep stars in upper 70%
+    size: random(`${seed}-size-${i}`) * 1.5 + 0.5,
+    opacity: random(`${seed}-opacity-${i}`) * 0.6 + 0.2,
+  }));
+};
+
+const stars = generateStars(80, 'oni-stars');
 
 export const TitleScene: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // Apple's signature ease - glacial, inevitable
-  const appleEase = (t: number) => {
-    // Quart ease-out: slow start, graceful settle
-    return 1 - Math.pow(1 - t, 4);
-  };
+  // Apple ease - glacial, inevitable
+  const appleEase = (t: number) => 1 - Math.pow(1 - t, 4);
 
   // === TIMING (at 30fps) ===
-  // ONI: 0-120 frames (4 seconds) - the hero moment
-  // Hold: 120-160 frames (1.3 seconds) - let it breathe
-  // Line: 160-220 frames (2 seconds) - deliberate draw
-  // Tagline: 200-260 frames (2 seconds, slight overlap)
+  // Stars: 0-60 frames - fade in the void
+  // ONI: 40-160 frames (4 seconds) - hero emerges
+  // Stripe: 180-280 frames - the signature draws
+  // Tagline: 260-320 frames
 
-  // ONI fade - 4 seconds, from void
-  const oniRaw = interpolate(frame, [0, 120], [0, 1], {
+  // Stars fade in
+  const starsOpacity = interpolate(frame, [0, 60], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  // Earth horizon glow
+  const horizonOpacity = interpolate(frame, [20, 80], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  // ONI fade
+  const oniRaw = interpolate(frame, [40, 160], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
   const oniOpacity = appleEase(oniRaw);
-  const oniY = interpolate(oniOpacity, [0, 1], [30, 0]);
+  const oniY = interpolate(oniOpacity, [0, 1], [40, 0]);
 
-  // Line draw - after the hold
-  const lineRaw = interpolate(frame, [160, 220], [0, 1], {
+  // Neural stripe draws from left to right
+  const stripeRaw = interpolate(frame, [180, 280], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const lineProgress = appleEase(lineRaw);
+  const stripeProgress = appleEase(stripeRaw);
 
-  // Tagline - overlaps slightly with line finish
-  const taglineRaw = interpolate(frame, [200, 260], [0, 1], {
+  // Tagline
+  const taglineRaw = interpolate(frame, [260, 320], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
   const taglineOpacity = appleEase(taglineRaw);
-  const taglineY = interpolate(taglineOpacity, [0, 1], [16, 0]);
+  const taglineY = interpolate(taglineOpacity, [0, 1], [20, 0]);
+
+  // Subtle star twinkle
+  const twinkle = (seed: number) => {
+    return 0.7 + 0.3 * Math.sin(frame * 0.05 + seed * 10);
+  };
 
   return (
     <AbsoluteFill
       style={{
         backgroundColor: '#000000',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+        overflow: 'hidden',
       }}
     >
-      {/* ONI - The mark. Nothing else. */}
+      {/* Stars - subtle depth */}
       <div
         style={{
-          fontSize: 180,
-          fontWeight: 500,
-          fontFamily: "'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif",
-          letterSpacing: '0.12em',
-          color: '#ffffff',
-          opacity: oniOpacity,
-          transform: `translateY(${oniY}px)`,
+          position: 'absolute',
+          inset: 0,
+          opacity: starsOpacity * 0.7,
         }}
       >
-        ONI
+        {stars.map((star, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: star.size,
+              height: star.size,
+              borderRadius: '50%',
+              backgroundColor: '#ffffff',
+              opacity: star.opacity * twinkle(i),
+            }}
+          />
+        ))}
       </div>
 
-      {/* Thin line - 2px, draws from center */}
+      {/* Earth horizon glow - atmospheric blue line at bottom */}
       <div
         style={{
-          width: 120,
-          height: 2,
-          backgroundColor: '#ffffff',
-          marginTop: 54,
-          marginBottom: 54,
-          opacity: lineProgress,
-          transform: `scaleX(${lineProgress})`,
-          transformOrigin: 'center',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 200,
+          background: `linear-gradient(to top,
+            rgba(30, 100, 180, 0.15) 0%,
+            rgba(30, 140, 220, 0.08) 30%,
+            transparent 100%
+          )`,
+          opacity: horizonOpacity,
         }}
       />
 
-      {/* Tagline - one statement */}
+      {/* Thin atmospheric line */}
       <div
         style={{
-          fontSize: 36,
-          fontWeight: 300,
-          fontFamily: "'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif",
-          letterSpacing: '0.02em',
-          color: '#ffffff',
-          opacity: taglineOpacity,
-          transform: `translateY(${taglineY}px)`,
+          position: 'absolute',
+          bottom: 80,
+          left: 0,
+          right: 0,
+          height: 1,
+          background: `linear-gradient(90deg,
+            transparent 0%,
+            rgba(100, 180, 255, 0.3) 20%,
+            rgba(100, 180, 255, 0.5) 50%,
+            rgba(100, 180, 255, 0.3) 80%,
+            transparent 100%
+          )`,
+          opacity: horizonOpacity,
+        }}
+      />
+
+      {/* Content container */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        The mind is the last frontier worth protecting.
+        {/* ONI - Bold, warm, confident */}
+        <div
+          style={{
+            fontSize: 200,
+            fontWeight: 600,
+            fontFamily: "'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif",
+            letterSpacing: '0.1em',
+            color: '#ffffff',
+            opacity: oniOpacity,
+            transform: `translateY(${oniY}px)`,
+          }}
+        >
+          ONI
+        </div>
+
+        {/* Neural stripe - the signature */}
+        <div
+          style={{
+            width: 400,
+            height: 4,
+            marginTop: 48,
+            marginBottom: 48,
+            borderRadius: 2,
+            background: `linear-gradient(90deg,
+              #0a2463 0%,
+              #1e5aa8 25%,
+              #00b4d8 50%,
+              #48cae4 75%,
+              #ffffff 100%
+            )`,
+            opacity: stripeProgress,
+            clipPath: `inset(0 ${(1 - stripeProgress) * 100}% 0 0)`,
+          }}
+        />
+
+        {/* Tagline */}
+        <div
+          style={{
+            fontSize: 32,
+            fontWeight: 300,
+            fontFamily: "'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif",
+            letterSpacing: '0.03em',
+            color: '#ffffff',
+            opacity: taglineOpacity,
+            transform: `translateY(${taglineY}px)`,
+          }}
+        >
+          The mind is the last frontier worth protecting.
+        </div>
       </div>
     </AbsoluteFill>
   );
