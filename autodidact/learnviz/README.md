@@ -138,30 +138,68 @@ Pattern-based classification determines the best visualization approach:
 | `action_potential` | Neuron membrane depolarization wave, ion channels, voltage graph |
 | `synapse` | Vesicle release, neurotransmitter diffusion, receptor binding |
 
-### Usage
+### Quick Start
 
 ```bash
 cd autodidact/learnviz
 
-# Generate visualization code
+# Install dependencies
+pip install -r requirements.txt
+brew install ffmpeg  # macOS (or apt install ffmpeg on Linux)
+
+# Launch Web UI (easiest way to use)
+python learnviz.py --ui
+# Opens http://localhost:8501 in your browser
+```
+
+### Web UI
+
+The easiest way to use LearnViz is through the local web interface:
+
+```bash
+python learnviz.py --ui
+```
+
+Features:
+- No coding required - just type your concept
+- Real-time analysis and template matching
+- One-click video generation with narration
+- Download video, code, and audio files
+- 100% local - your data never leaves your machine
+
+### Command Line Usage
+
+```bash
+# Generate visualization code only
 python learnviz.py "Explain how binary search works"
 
 # Generate and render to video
 python learnviz.py "Bubble sort algorithm" --render
 
-# Specify output format
-python learnviz.py "Pythagorean theorem" --render --format gif
-
-# Use custom parameters
-python learnviz.py "Binary search" --params '{"target": 15, "array": [2,4,6,8,10,12,14,16]}'
+# Full pipeline: video + narration + combine
+python learnviz.py "Synaptic transmission" --render --narration --tts edge-tts
 
 # Neuroscience visualizations
-python learnviz.py "How an action potential propagates along a neuron" --render
-python learnviz.py "Synaptic transmission between neurons" --render
+python learnviz.py "How an action potential propagates" --render --tts edge-tts
+python learnviz.py "Synaptic transmission between neurons" --render --tts edge-tts
+
+# Generate narration only (no video)
+python learnviz.py "Action potential" --tts-only --tts edge-tts
+
+# Specify output format and quality
+python learnviz.py "Pythagorean theorem" --render --format gif --quality h
 
 # Interactive mode (refine plan before generation)
 python learnviz.py "Tree traversal" --interactive
 ```
+
+### TTS Engines
+
+| Engine | Quality | Requires Internet | Install |
+|--------|---------|-------------------|---------|
+| `edge-tts` | Best | Yes | `pip install edge-tts` |
+| `gtts` | Good | Yes | `pip install gtts` |
+| `pyttsx3` | Basic | No | `pip install pyttsx3` |
 
 ---
 

@@ -31,6 +31,34 @@ OUTPUT_DIR = Path(__file__).parent / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 
+def launch_ui():
+    """Launch the Streamlit web UI."""
+    import subprocess
+    import sys
+
+    ui_path = Path(__file__).parent / "ui.py"
+
+    if not ui_path.exists():
+        print("Error: ui.py not found")
+        sys.exit(1)
+
+    print("Launching LearnViz Web UI...")
+    print("Open http://localhost:8501 in your browser")
+    print("Press Ctrl+C to stop\n")
+
+    try:
+        subprocess.run(
+            [sys.executable, "-m", "streamlit", "run", str(ui_path),
+             "--server.headless", "true"],
+            cwd=str(ui_path.parent)
+        )
+    except KeyboardInterrupt:
+        print("\nUI stopped.")
+    except FileNotFoundError:
+        print("Streamlit not found. Install with: pip install streamlit")
+        sys.exit(1)
+
+
 def print_banner():
     """Print the LearnViz banner."""
     banner = """
@@ -86,6 +114,64 @@ def check_dependencies():
         print()
 
     return len(missing) == 0
+
+
+def combine_video_audio(video_path: str, audio_path: str, output_path: str = None) -> str:
+    """
+    Combine video and audio into a single file.
+    Extends video (holds last frame) if audio is longer.
+
+    Returns path to combined video.
+    """
+    import subprocess
+
+    if output_path is None:
+        output_path = video_path.replace(".mp4", "_narrated.mp4")
+
+    # Get durations
+    def get_duration(path):
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", path],
+            capture_output=True, text=True
+        )
+        return float(result.stdout.strip())
+
+    video_duration = get_duration(video_path)
+    audio_duration = get_duration(audio_path)
+
+    # Calculate padding needed
+    extra_time = max(0, audio_duration - video_duration + 1)
+
+    if extra_time > 0:
+        # Extend video with last frame
+        cmd = [
+            "ffmpeg", "-y",
+            "-i", video_path,
+            "-i", audio_path,
+            "-filter_complex", f"[0:v]tpad=stop_mode=clone:stop_duration={extra_time}[v]",
+            "-map", "[v]", "-map", "1:a",
+            "-c:v", "libx264", "-c:a", "aac",
+            "-shortest", output_path
+        ]
+    else:
+        # Simple combine
+        cmd = [
+            "ffmpeg", "-y",
+            "-i", video_path,
+            "-i", audio_path,
+            "-c:v", "copy", "-c:a", "aac",
+            "-map", "0:v:0", "-map", "1:a:0",
+            "-shortest", output_path
+        ]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+    if result.returncode != 0:
+        print(f"FFmpeg error: {result.stderr}")
+        return None
+
+    return output_path
 
 
 def render_manim(code_path: str, output_format: str = "mp4", quality: str = "l") -> str:
@@ -298,8 +384,18 @@ Examples:
         action="store_true",
         help="Only generate narration/TTS, skip video generation"
     )
+    parser.add_argument(
+        "--ui",
+        action="store_true",
+        help="Launch the web UI (requires streamlit)"
+    )
 
     args = parser.parse_args()
+
+    # Launch UI if requested
+    if args.ui:
+        launch_ui()
+        return
 
     # List templates
     if args.list_templates:
@@ -402,8 +498,10 @@ Examples:
 
             if result:
                 print(f"\nRendered: {result}")
+                rendered_video_path = result
             else:
                 print("\nRender failed. Check the generated code.")
+                rendered_video_path = None
 
     elif not args.tts_only:
         print(f"\nEngine '{plan.engine.value}' code generation not yet implemented.")
@@ -457,6 +555,22 @@ Examples:
                 audio_path = tts.generate(script, filename=audio_filename)
                 if audio_path:
                     print(f"Audio saved: {audio_path}")
+
+                    # Auto-combine video and audio if both exist
+                    if args.render and 'rendered_video_path' in dir() and rendered_video_path:
+                        print(f"\n{'=' * 60}")
+                        print("COMBINING VIDEO + AUDIO")
+                        print(f"{'=' * 60}")
+
+                        combined_path = combine_video_audio(
+                            rendered_video_path,
+                            str(audio_path),
+                            str(OUTPUT_DIR / generate_filename(args.concept, "mp4").replace(".mp4", "_narrated.mp4"))
+                        )
+                        if combined_path:
+                            print(f"Combined video saved: {combined_path}")
+                        else:
+                            print("Failed to combine video and audio. Is ffmpeg installed?")
                 else:
                     print("TTS generation failed. Check that the TTS engine is installed.")
 
