@@ -21,13 +21,22 @@ from pathlib import Path
 from dataclasses import dataclass
 from typing import Optional, List, Dict, Any
 
-# Add LearnViz to path
-LEARNVIZ_PATH = Path(__file__).parent.parent.parent / "learnviz"
-if LEARNVIZ_PATH.exists():
-    sys.path.insert(0, str(LEARNVIZ_PATH))
+# Try to import learnviz (installed as package or from path)
+LEARNVIZ_AVAILABLE = False
+try:
+    # First try direct import (when installed as package)
+    import learnviz
     LEARNVIZ_AVAILABLE = True
-else:
-    LEARNVIZ_AVAILABLE = False
+except ImportError:
+    # Fall back to path-based import (development mode)
+    LEARNVIZ_PATH = Path(__file__).parent.parent.parent / "learnviz"
+    if LEARNVIZ_PATH.exists():
+        sys.path.insert(0, str(LEARNVIZ_PATH))
+        try:
+            import learnviz
+            LEARNVIZ_AVAILABLE = True
+        except ImportError:
+            pass
 
 
 @dataclass
@@ -57,8 +66,8 @@ def check_learnviz() -> bool:
         return False
 
     try:
-        from analyzer import analyze
-        from generators.manim_gen import generate_manim_code
+        from learnviz.analyzer import analyze
+        from learnviz.generators.manim_gen import generate_manim_code
         return True
     except ImportError:
         return False
@@ -155,9 +164,9 @@ def visualize(
         )
 
     try:
-        from analyzer import analyze
-        from generators.manim_gen import generate_manim_code, TEMPLATES
-        from generators.narration import ScriptGenerator, TTSGenerator
+        from learnviz.analyzer import analyze
+        from learnviz.generators.manim_gen import generate_manim_code, TEMPLATES
+        from learnviz.generators.narration import ScriptGenerator, TTSGenerator
 
         # Analyze concept
         plan = analyze(concept)
@@ -169,7 +178,7 @@ def visualize(
         # Generate code
         if use_ollama and (plan.template is None or plan.template not in TEMPLATES):
             try:
-                from generators.ollama_gen import (
+                from learnviz.generators.ollama_gen import (
                     generate_with_ollama, OllamaConfig, fix_common_errors,
                     check_ollama_available
                 )
@@ -283,7 +292,7 @@ def _generate_narration(
 ) -> Optional[Path]:
     """Generate narration audio."""
     try:
-        from generators.narration import ScriptGenerator, TTSGenerator
+        from learnviz.generators.narration import ScriptGenerator, TTSGenerator
 
         script = ScriptGenerator.generate_script(template)
         tts = TTSGenerator(engine=tts_engine, output_dir=str(output_dir))
