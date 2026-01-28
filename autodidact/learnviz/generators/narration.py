@@ -64,6 +64,85 @@ class ScriptGenerator:
 
     # Templates for different concept types
     TEMPLATES = {
+        "motor_cortex_bci": {
+            "intro": {
+                "text": "Let's explore how brain-computer interfaces decode your motor intentions. "
+                        "This technology allows paralyzed patients to control robotic arms with their thoughts.",
+                "duration": 6.0
+            },
+            "brain_overview": {
+                "text": "The primary motor cortex, or M1, is located in the precentral gyrus. "
+                        "It contains a 'motor map' called the homunculus, where different areas control "
+                        "different body parts. The hand area is particularly large and well-studied.",
+                "duration": 8.0
+            },
+            "electrode_array": {
+                "text": "BCIs use electrode arrays, like the Utah array with 96 tiny electrodes. "
+                        "These are implanted directly into the motor cortex, where they can record "
+                        "electrical signals from thousands of nearby neurons.",
+                "duration": 7.0
+            },
+            "neural_signals": {
+                "text": "Each electrode picks up 'spikes' - brief electrical impulses when neurons fire. "
+                        "Different neurons fire at different rates depending on what movement you're "
+                        "thinking about. This is the raw data BCIs decode.",
+                "duration": 7.0
+            },
+            "population_coding": {
+                "text": "Here's the key insight: each neuron has a 'preferred direction' - it fires "
+                        "most strongly when you intend to move in that direction. By combining signals "
+                        "from many neurons, we get a 'population vector' pointing in your intended direction.",
+                "duration": 8.0
+            },
+            "bci_decoding": {
+                "text": "The decoder uses machine learning to translate these neural patterns into "
+                        "device commands. When you think 'move right', the population of M1 neurons "
+                        "creates a pattern that the decoder recognizes and converts to cursor movement.",
+                "duration": 7.0
+            },
+            "conclusion": {
+                "text": "This is how people with paralysis can control robotic arms, computer cursors, "
+                        "and even type on keyboards - just by thinking about movement. The technology "
+                        "continues to improve, with higher electrode counts and better algorithms.",
+                "duration": 7.0
+            }
+        },
+        "neurotransmitter": {
+            "intro": {
+                "text": "Neurotransmitters are the brain's chemical messengers. "
+                        "They transmit signals between neurons and regulate everything from mood "
+                        "to movement to memory. Let's explore three major systems.",
+                "duration": 6.0
+            },
+            "dopamine": {
+                "text": "Dopamine is the reward and motivation neurotransmitter. It's produced in "
+                        "the VTA and substantia nigra, deep in the midbrain. Dopamine drives you "
+                        "to seek rewards and is crucial for motor control. Too little causes Parkinson's; "
+                        "too much activity is linked to addiction and schizophrenia.",
+                "duration": 9.0
+            },
+            "serotonin": {
+                "text": "Serotonin regulates mood, sleep, and appetite. It comes from the raphe nuclei "
+                        "in the brainstem and projects throughout the entire brain. Low serotonin is "
+                        "associated with depression and anxiety. Most antidepressants work by increasing "
+                        "serotonin availability.",
+                "duration": 8.0
+            },
+            "norepinephrine": {
+                "text": "Norepinephrine controls alertness and the stress response. The locus coeruleus, "
+                        "a tiny cluster of neurons in the brainstem, sends norepinephrine everywhere. "
+                        "It triggers fight-or-flight responses: increased heart rate, heightened focus, "
+                        "and mobilized energy. Dysregulation is linked to PTSD and ADHD.",
+                "duration": 9.0
+            },
+            "conclusion": {
+                "text": "These three systems don't work in isolation - they interact constantly. "
+                        "Dopamine and serotonin balance reward-seeking with contentment. Norepinephrine "
+                        "modulates both based on environmental demands. Understanding these systems "
+                        "is key to treating mental health conditions.",
+                "duration": 8.0
+            }
+        },
         "action_potential": {
             "intro": {
                 "text": "Let's explore how neurons transmit electrical signals through action potentials. "

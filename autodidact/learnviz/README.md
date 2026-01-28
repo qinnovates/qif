@@ -10,124 +10,25 @@ An AI-powered, local-first pipeline that transforms concepts into educational vi
 
 LearnViz generates educational visualizations from natural language concept descriptions. Unlike static educational content, LearnViz aims to become **adaptive** — learning how you learn and adjusting its output accordingly.
 
-### The Problem
-
-Traditional educational visualizations are one-size-fits-all:
-- Same pacing for everyone (too fast or too slow)
-- Same visual style (some learn better with color, others with motion)
-- Same level of detail (experts get bored, beginners get lost)
-- No memory of what you already know
-- Requires internet / cloud services
-
-### The Solution
-
-LearnViz runs locally, enabling:
-- **Personalized pacing** based on your comprehension speed
-- **Adaptive complexity** that matches your current understanding
-- **Style preferences** (high contrast, animation speed, narration)
-- **Learning history** that builds on what you already know
-- **Privacy** — all data stays on your machine
-
 ---
 
-## Architecture
+## Current Capabilities (v0.2)
 
-### Current Implementation (v0.1)
+### What Works NOW
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    LEARNVIZ PIPELINE (v0.1)                     │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│   [Concept Description]                                         │
-│          │                                                      │
-│          ▼                                                      │
-│   ┌──────────────┐                                              │
-│   │   ANALYZER   │ ← Pattern-based classification               │
-│   │              │   Determines: type, engine, template         │
-│   └──────┬───────┘                                              │
-│          │                                                      │
-│          ▼                                                      │
-│   ┌──────────────┐                                              │
-│   │  GENERATOR   │ ← Template-based code generation             │
-│   │   (Manim)    │   Outputs: Python visualization script       │
-│   └──────┬───────┘                                              │
-│          │                                                      │
-│          ▼                                                      │
-│   ┌──────────────┐                                              │
-│   │   RENDERER   │ ← Manim render engine                        │
-│   │              │   Outputs: MP4/GIF video                     │
-│   └─────────────┘                                               │
-│                                                                 │
-│   [100% Local - No cloud required]                              │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+| Feature | Status | Description |
+|---------|--------|-------------|
+| **Template-based Visualization** | ✅ Working | Pre-built animations for common concepts |
+| **Concept Classification** | ✅ Working | Pattern matching to identify concept type |
+| **Manim Rendering** | ✅ Working | Generate and render educational videos |
+| **Voice Narration** | ✅ Working | TTS with edge-tts, gtts, or pyttsx3 |
+| **Video + Audio Combining** | ✅ Working | Automatic merge with ffmpeg |
+| **Web UI** | ✅ Working | Local Streamlit interface |
+| **Ollama Integration** | ✅ Working | Custom AI-generated visualizations |
 
-### Future Vision (v1.0)
+### Available Templates
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                 ADAPTIVE LEARNVIZ (v1.0 Vision)                 │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│   [Concept + Learner Profile]                                   │
-│          │                                                      │
-│          ▼                                                      │
-│   ┌──────────────┐     ┌──────────────┐                         │
-│   │   ANALYZER   │ ←── │   LEARNER    │ ← Tracks comprehension  │
-│   │   + Context  │     │   PROFILE    │   pace, style prefs     │
-│   └──────┬───────┘     └──────────────┘                         │
-│          │                    ▲                                 │
-│          ▼                    │                                 │
-│   ┌──────────────┐            │                                 │
-│   │  ADAPTIVE    │ ← Adjusts: pacing, complexity, style         │
-│   │  GENERATOR   │   Uses: local LLM for custom scenes          │
-│   └──────┬───────┘            │                                 │
-│          │                    │                                 │
-│          ▼                    │                                 │
-│   ┌──────────────┐            │                                 │
-│   │  INTERACTIVE │ ← Pause, rewind, ask questions               │
-│   │   RENDERER   │   Feedback loop → profile update             │
-│   └──────┬───────┘            │                                 │
-│          │                    │                                 │
-│          └────────────────────┘                                 │
-│                                                                 │
-│   [Local-First: All data stays on your machine]                 │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Initial Design Implementation (v0.1)
-
-### What's Built
-
-| Component | File | Status | Description |
-|-----------|------|--------|-------------|
-| **Concept Analyzer** | `analyzer.py` | ✅ Complete | Classifies concepts by type (math, physics, algorithm, biology, etc.) |
-| **Engine Selector** | `analyzer.py` | ✅ Complete | Maps concept types to optimal rendering engines |
-| **Manim Generator** | `generators/manim_gen.py` | ✅ Complete | Generates Manim code from templates |
-| **CLI Orchestrator** | `learnviz.py` | ✅ Complete | End-to-end pipeline with render support |
-| **Template Library** | `generators/manim_gen.py` | ✅ 6 templates | Binary search, sorting, Pythagorean, tree traversal, action potential, synapse |
-
-### Concept Classification
-
-Pattern-based classification determines the best visualization approach:
-
-| Category | Examples | Engine | Why |
-|----------|----------|--------|-----|
-| **Mathematical** | Pythagorean theorem, derivatives, matrices | Manim | LaTeX, geometric precision |
-| **Physics** | Gravity, waves, forces, momentum | Manim | Physics primitives, parametric |
-| **Algorithms** | Sorting, searching, recursion | Manim | Step-by-step animation |
-| **Data Structures** | Trees, graphs, arrays | Manim | Node/edge visualization |
-| **Biology** | Action potentials, synapses, neurons, DNA | Manim | Scientific animation, temporal sequences |
-| **Statistics** | Charts, distributions, trends | Remotion | Data-driven, templated |
-| **Timelines** | History, processes, workflows | Remotion | Component model |
-| **Networks** | Graphs, connections, flows | D3.js | Force layouts |
-
-### Current Templates
+These concepts have **high-quality, tested templates**:
 
 | Template | What It Visualizes |
 |----------|-------------------|
@@ -135,65 +36,159 @@ Pattern-based classification determines the best visualization approach:
 | `sorting` | Bubble/selection/insertion sort with bar chart representation |
 | `pythagorean` | Theorem proof with squares on triangle sides |
 | `tree_traversal` | Inorder/preorder/postorder with visit order display |
-| `action_potential` | Neuron membrane depolarization wave, ion channels, voltage graph |
+| `action_potential` | Neuron membrane depolarization, ion channels, voltage graph |
 | `synapse` | Vesicle release, neurotransmitter diffusion, receptor binding |
+| `motor_cortex_bci` | Electrode arrays, population coding, neural decoding |
+| `neurotransmitter` | Dopamine, serotonin, norepinephrine pathways |
 
-### Quick Start
+### Ollama Custom Generation
+
+For concepts **without templates**, you can use a local LLM:
+
+```bash
+# Install Ollama first: https://ollama.ai
+ollama pull llama3.2
+
+# Generate custom visualization
+python learnviz.py "How does TCP/IP work" --ollama --render
+python learnviz.py "Explain photosynthesis" --ollama --ollama-model codellama --render
+```
+
+**Note:** Ollama-generated code may require manual fixes. Template-based visualizations are more reliable.
+
+---
+
+## NOT Yet Implemented (Future Work)
+
+| Feature | Status | Target Version |
+|---------|--------|----------------|
+| **Learner Profiles** | 🔲 Planned | v0.4 |
+| **Adaptive Pacing** | 🔲 Planned | v0.4 |
+| **Interactive Mode** | 🔲 Planned | v0.5 |
+| **Remotion Generator** | 🔲 Planned | v0.3 |
+| **D3.js Generator** | 🔲 Planned | v0.3 |
+| **Knowledge Graph** | 🔲 Planned | v0.4 |
+| **Quiz Checkpoints** | 🔲 Planned | v0.5 |
+| **Multi-language Support** | 🔲 Planned | v0.6 |
+
+---
+
+## Quick Start
+
+### Installation
 
 ```bash
 cd autodidact/learnviz
 
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
-brew install ffmpeg  # macOS (or apt install ffmpeg on Linux)
 
-# Launch Web UI (easiest way to use)
-python learnviz.py --ui
-# Opens http://localhost:8501 in your browser
+# Install ffmpeg (required for video+audio)
+brew install ffmpeg  # macOS
+# or: apt install ffmpeg  # Linux
+
+# Optional: Install Ollama for custom AI generation
+# Download from https://ollama.ai
+ollama pull llama3.2
 ```
 
-### Web UI
-
-The easiest way to use LearnViz is through the local web interface:
+### Web UI (Recommended)
 
 ```bash
 python learnviz.py --ui
+# Opens http://localhost:8501 (or next available port)
 ```
 
-Features:
-- No coding required - just type your concept
-- Real-time analysis and template matching
-- One-click video generation with narration
-- Download video, code, and audio files
-- 100% local - your data never leaves your machine
-
-### Command Line Usage
+### Command Line
 
 ```bash
-# Generate visualization code only
+# Basic: Generate code only
 python learnviz.py "Explain how binary search works"
 
-# Generate and render to video
-python learnviz.py "Bubble sort algorithm" --render
+# Full pipeline: Video + narration
+python learnviz.py "Synaptic transmission" --render --tts edge-tts
 
-# Full pipeline: video + narration + combine
-python learnviz.py "Synaptic transmission" --render --narration --tts edge-tts
+# Custom AI generation (requires Ollama)
+python learnviz.py "How does a compiler work" --ollama --render
 
-# Neuroscience visualizations
-python learnviz.py "How an action potential propagates" --render --tts edge-tts
-python learnviz.py "Synaptic transmission between neurons" --render --tts edge-tts
+# List available templates
+python learnviz.py --list-templates
 
-# Generate narration only (no video)
-python learnviz.py "Action potential" --tts-only --tts edge-tts
-
-# Specify output format and quality
-python learnviz.py "Pythagorean theorem" --render --format gif --quality h
-
-# Interactive mode (refine plan before generation)
-python learnviz.py "Tree traversal" --interactive
+# Ollama setup help
+python learnviz.py --ollama-setup
 ```
 
-### TTS Engines
+### CLI Options
+
+| Flag | Description |
+|------|-------------|
+| `--render` | Render video after generating code |
+| `--tts ENGINE` | Add voice narration (edge-tts, gtts, pyttsx3) |
+| `--ollama` | Use Ollama for custom AI generation |
+| `--ollama-model MODEL` | Specify Ollama model (default: llama3.2) |
+| `--format FORMAT` | Output format: mp4 or gif |
+| `--quality QUALITY` | Render quality: l, m, h, k |
+| `--ui` | Launch web interface |
+| `--interactive` | Refine plan before generation |
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    LEARNVIZ PIPELINE (v0.2)                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   [User: "Explain binary search"]                               │
+│          │                                                      │
+│          ▼                                                      │
+│   ┌──────────────┐                                              │
+│   │   ANALYZER   │ ← Pattern matching (no AI needed)            │
+│   │              │   Outputs: type, complexity, template        │
+│   └──────┬───────┘                                              │
+│          │                                                      │
+│          ▼                                                      │
+│   ┌──────────────┐     ┌──────────────┐                         │
+│   │  GENERATOR   │ ←── │   OLLAMA     │ ← For custom concepts   │
+│   │  (Templates) │     │   (Optional) │   (local LLM)           │
+│   └──────┬───────┘     └──────────────┘                         │
+│          │                                                      │
+│          ▼                                                      │
+│   ┌──────────────┐                                              │
+│   │    MANIM     │ ← Local render                               │
+│   │   RENDERER   │   Outputs: MP4/GIF                           │
+│   └──────┬───────┘                                              │
+│          │                                                      │
+│          ▼                                                      │
+│   ┌──────────────┐                                              │
+│   │     TTS      │ ← Voice narration                            │
+│   │  + FFMPEG    │   Outputs: MP4 with audio                    │
+│   └─────────────┘                                               │
+│                                                                 │
+│   [100% Local - No cloud required*]                             │
+│   *edge-tts requires internet for voice synthesis               │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## How It Works (No Claude Required)
+
+LearnViz runs **entirely locally** without any cloud AI services:
+
+1. **Pattern Matching** (`analyzer.py`): Regex-based classification determines concept type
+2. **Template Selection**: Maps concept to pre-built Manim templates
+3. **Code Generation**: Fills template parameters OR uses local Ollama LLM
+4. **Rendering**: Manim renders Python code to video locally
+5. **Narration**: TTS generates audio, ffmpeg combines with video
+
+**Users don't need Claude Code, OpenAI, or any API keys.**
+
+---
+
+## TTS Engines
 
 | Engine | Quality | Requires Internet | Install |
 |--------|---------|-------------------|---------|
@@ -203,258 +198,91 @@ python learnviz.py "Tree traversal" --interactive
 
 ---
 
-## Future Implementation Goals
-
-### Phase 1: Expanded Content (v0.2)
-
-**Goal:** More templates, more rendering engines
-
-| Feature | Priority |
-|---------|----------|
-| Graph algorithms (BFS, DFS, Dijkstra, A*) | High |
-| Linked list operations (insert, delete, reverse) | High |
-| Recursion visualization (call stack, tree unfolding) | High |
-| Remotion generator (data-driven charts, timelines) | Medium |
-| D3.js generator (interactive web visualizations) | Medium |
-| Physics simulations (projectile motion, waves) | Medium |
-
-### Phase 2: LLM Integration (v0.3)
-
-**Goal:** Generate custom visualizations for any concept
-
-| Feature | Priority |
-|---------|----------|
-| Custom scene generation (LLM writes Manim code) | High |
-| Explanation synthesis (auto-generate narration) | High |
-| Concept decomposition (break complex → visual scenes) | High |
-| Error correction (LLM fixes render errors) | Medium |
-
-**Local LLM options:** Ollama, LM Studio, llama.cpp
-
-### Phase 3: Learner Profiles (v0.4) ⭐ Core Vision
-
-**Goal:** Visualizations that adapt to YOU
-
-| Feature | Description |
-|---------|-------------|
-| **Learning style detection** | Visual/auditory/kinesthetic preferences |
-| **Pace tracking** | How fast you comprehend new concepts |
-| **Knowledge graph** | What you already know (skip repetition) |
-| **Difficulty calibration** | Adjust complexity to your level |
-| **Preference memory** | Animation speed, colors, narration |
-
-**Proposed Learner Profile Schema:**
-```json
-{
-  "learner_id": "local_user",
-  "preferences": {
-    "animation_speed": 1.0,
-    "color_scheme": "high_contrast",
-    "narration": true,
-    "pause_on_key_points": true,
-    "detail_level": "moderate"
-  },
-  "pace": {
-    "concepts_per_session": 3,
-    "avg_rewatch_count": 1.2,
-    "preferred_duration": "5-10min",
-    "comprehension_curve": [0.6, 0.75, 0.85, 0.92]
-  },
-  "knowledge_graph": {
-    "mastered": ["binary_search", "arrays", "loops"],
-    "learning": ["recursion", "trees"],
-    "unexplored": ["graphs", "dynamic_programming"]
-  },
-  "learning_style": {
-    "visual": 0.8,
-    "verbal": 0.5,
-    "sequential": 0.7,
-    "global": 0.4
-  },
-  "history": [
-    {
-      "concept": "binary_search",
-      "date": "2026-01-28",
-      "duration": 180,
-      "rewinds": 2,
-      "comprehension_score": 0.9
-    }
-  ]
-}
-```
-
-**Adaptation Examples:**
-
-| If learner profile shows... | Then LearnViz will... |
-|----------------------------|----------------------|
-| High rewind count on recursion | Add more step-by-step breakdown |
-| Fast pace on math concepts | Skip basic derivations |
-| Preference for visual over verbal | Reduce text, increase diagrams |
-| Already mastered arrays | Skip array intro in sorting viz |
-| Struggles with abstract concepts | Add concrete examples first |
-
-### Phase 4: Interactive Mode (v0.5)
-
-**Goal:** Two-way learning experience
-
-| Feature | Description |
-|---------|-------------|
-| **Pause and explain** | Click any element for deeper explanation |
-| **Rewind with context** | "Go back to where you explained X" |
-| **Ask questions** | "Why did we eliminate the left half?" |
-| **Quiz checkpoints** | "Before we continue, predict what happens next" |
-| **Branching paths** | "Want the simple or detailed version?" |
-
-### Phase 5: Multi-Modal Output (v0.6)
-
-**Goal:** Right format for the right context
-
-| Format | Use Case | Status |
-|--------|----------|--------|
-| Video (MP4/GIF) | Standard sharing | ✅ Done |
-| Interactive web | Exploration, Q&A | Planned |
-| Slides (PDF) | Presentations | Planned |
-| Audio narration | Accessibility, multitasking | Planned |
-| AR/VR export | Spatial learning for 3D | Future |
-
-### Phase 6: Community Templates (v1.0)
-
-**Goal:** Learn from others (opt-in, privacy-preserving)
-
-| Feature | Description |
-|---------|-------------|
-| Template sharing | Community-contributed visualizations |
-| Difficulty ratings | Crowdsourced complexity calibration |
-| Aggregate insights | "Most learners pause here" |
-| **Privacy-first** | No personal data leaves device |
-
----
-
-## Design Principles
-
-### 1. Local-First
-
-All computation and data stays on your machine:
-- ✅ No cloud dependency for rendering
-- ✅ Learner profiles stored locally (SQLite)
-- ✅ Works offline
-- ✅ You own your learning data
-
-### 2. Adaptive by Default
-
-Every visualization adapts to:
-- Your current knowledge level
-- Your preferred learning pace
-- Your visual/cognitive style
-- What you've already learned
-
-### 3. Transparent Generation
-
-The pipeline is explainable:
-- Why was this template chosen?
-- What assumptions were made?
-- How can you override decisions?
-
-### 4. Incremental Complexity
-
-```
-v0.1: Static templates         ← We are here
-v0.2: More templates
-v0.3: LLM-generated custom scenes
-v0.4: Learner-aware adaptation ← Core vision
-v0.5: Interactive two-way learning
-v1.0: Full adaptive engine
-```
-
----
-
-## Technical Requirements
-
-### Current (v0.1)
-
-```bash
-# Python dependencies
-pip install manim
-
-# Verify installation
-manim --version  # Should show 0.19+
-```
-
-### Future (v0.4+)
-
-```bash
-# Learner profiles
-pip install sqlite3
-
-# Local LLM (choose one)
-# Option A: Ollama
-brew install ollama && ollama pull llama2
-
-# Option B: LM Studio
-# Download from https://lmstudio.ai/
-
-# Voice/narration
-pip install gtts pyttsx3
-
-# Additional render engines
-npm install -g @remotion/cli
-npm install d3 puppeteer
-```
-
----
-
 ## File Structure
 
 ```
-autodidact/learnviz/
-├── README.md                 # This file - vision and roadmap
+learnviz/
+├── README.md                 # This file
 ├── learnviz.py               # Main CLI orchestrator
-├── analyzer.py               # Concept classification engine
-├── .gitignore                # Excludes render artifacts
+├── analyzer.py               # Concept classification (pattern matching)
+├── ui.py                     # Streamlit web interface
+├── requirements.txt          # Python dependencies
 │
-├── generators/               # Code generators by engine
+├── generators/
 │   ├── __init__.py
-│   ├── manim_gen.py          # ✅ Manim template generator
-│   ├── remotion_gen.py       # 🔲 (Planned) React video generator
-│   └── d3_gen.py             # 🔲 (Planned) D3.js generator
+│   ├── manim_gen.py          # Template-based Manim generator
+│   ├── narration.py          # TTS script generation
+│   └── ollama_gen.py         # Ollama LLM integration
 │
-├── profiles/                 # 🔲 (Planned) Learner profiles
-│   └── learner.db            # SQLite database
-│
-├── output/                   # Generated visualization code
-│   └── *.py                  # Manim scripts
-│
-└── media/                    # (gitignored) Render artifacts
-    └── videos/               # Rendered MP4/GIF files
+├── output/                   # Generated code and audio
+└── media/                    # Rendered videos (gitignored)
 ```
 
 ---
 
-## Research Foundations
+## Roadmap
 
-LearnViz draws inspiration from:
+### v0.2 (Current)
+- ✅ Template-based visualization
+- ✅ Ollama integration for custom concepts
+- ✅ Voice narration pipeline
+- ✅ Web UI
 
-| Theory | Application in LearnViz |
-|--------|------------------------|
-| **Spaced Repetition** | Adaptive timing based on retention curves |
-| **Zone of Proximal Development** | Complexity matching to current ability |
-| **Multimedia Learning Theory** | Cognitive load optimization |
-| **Learning Styles (VARK)** | Visual/auditory/kinesthetic adaptation |
-| **Mastery Learning** | Don't proceed until current concept is solid |
+### v0.3 (Next)
+- 🔲 More templates (graphs, recursion, linked lists)
+- 🔲 Remotion generator (React-based video)
+- 🔲 D3.js generator (interactive web)
+- 🔲 Improved Ollama prompts
+
+### v0.4 (Core Vision)
+- 🔲 **Learner Profiles** - Track your learning style
+- 🔲 **Adaptive Pacing** - Adjust to your speed
+- 🔲 **Knowledge Graph** - Remember what you know
+- 🔲 **Difficulty Calibration** - Match your level
+
+### v0.5
+- 🔲 Interactive mode (pause, rewind, ask questions)
+- 🔲 Quiz checkpoints
+- 🔲 Branching paths
+
+### v1.0
+- 🔲 Full adaptive learning engine
+- 🔲 Community templates (opt-in)
+- 🔲 Multi-language support
 
 ---
 
-## Version History
+## Limitations
 
-| Version | Date | Milestone |
-|---------|------|-----------|
-| **0.1.0** | 2026-01-28 | Initial: analyzer, Manim generator, CLI, 4 templates |
-| **0.1.1** | 2026-01-28 | Neuroscience templates: action potential, synapse; enhanced biology classification |
-| 0.2.0 | TBD | Expanded templates (graphs, recursion, linked lists) |
-| 0.3.0 | TBD | LLM integration for custom generation |
-| **0.4.0** | TBD | **Learner profiles and adaptive pacing** |
-| 0.5.0 | TBD | Interactive mode with Q&A |
-| 1.0.0 | TBD | Full adaptive learning engine |
+### Current Limitations
+
+1. **Template Coverage**: Only ~10 templates available. Concepts without templates get generic or AI-generated visualizations.
+
+2. **Ollama Quality**: AI-generated code may have errors and require manual fixes. Templates are more reliable.
+
+3. **No Adaptation Yet**: The system doesn't learn your preferences or adjust to your pace (planned for v0.4).
+
+4. **Manim Only**: Currently only generates Manim visualizations. D3.js and Remotion planned for v0.3.
+
+5. **English Only**: Narration and templates are English-only.
+
+### What This Is NOT
+
+- ❌ Not a replacement for human teachers
+- ❌ Not connected to any cloud AI (unless you count edge-tts)
+- ❌ Not tracking your data (100% local)
+- ❌ Not generating perfect code every time (especially with Ollama)
+
+---
+
+## Contributing
+
+Contributions welcome! Priority areas:
+
+1. **New Templates**: Add visualizations for more concepts
+2. **Ollama Prompts**: Improve code generation quality
+3. **Bug Fixes**: Especially in Manim rendering edge cases
+4. **Documentation**: Examples, tutorials, translations
 
 ---
 
@@ -462,9 +290,9 @@ LearnViz draws inspiration from:
 
 Built on:
 - [Manim Community](https://www.manim.community/) — Mathematical animations
-- [3Blue1Brown](https://www.3blue1brown.com/) — Inspiration for visual math
-- [Remotion](https://www.remotion.dev/) — React-based video (planned)
-- [D3.js](https://d3js.org/) — Data visualization (planned)
+- [Ollama](https://ollama.ai/) — Local LLM inference
+- [Streamlit](https://streamlit.io/) — Web interface
+- [edge-tts](https://github.com/rany2/edge-tts) — Text-to-speech
 
 ---
 

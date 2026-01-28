@@ -24,6 +24,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 from analyzer import analyze, VisualizationPlan, Engine
 from generators.manim_gen import generate_manim_code, TEMPLATES
 from generators.narration import ScriptGenerator, TTSGenerator, NarrationScript
+from generators.ollama_gen import (
+    generate_with_ollama, check_ollama_available, get_available_models,
+    OllamaConfig, print_setup_instructions, fix_common_errors
+)
 
 
 # Output directory
@@ -35,6 +39,8 @@ def launch_ui():
     """Launch the Streamlit web UI."""
     import subprocess
     import sys
+    import webbrowser
+    import time
 
     ui_path = Path(__file__).parent / "ui.py"
 
@@ -43,13 +49,16 @@ def launch_ui():
         sys.exit(1)
 
     print("Launching LearnViz Web UI...")
-    print("Open http://localhost:8501 in your browser")
+    print("The browser should open automatically.")
+    print("If not, check the terminal output for the URL (usually http://localhost:8501)")
     print("Press Ctrl+C to stop\n")
 
     try:
+        # Run with browser auto-open
         subprocess.run(
             [sys.executable, "-m", "streamlit", "run", str(ui_path),
-             "--server.headless", "true"],
+             "--server.headless", "false",
+             "--browser.gatherUsageStats", "false"],
             cwd=str(ui_path.parent)
         )
     except KeyboardInterrupt:
@@ -220,14 +229,26 @@ def render_manim(code_path: str, output_format: str = "mp4", quality: str = "l")
 
     print(result.stdout)
 
-    # Find output file
-    media_dir = Path("media/videos") / Path(code_path).stem / f"{quality}80p15"
+    # Find output file - quality maps to resolution
+    quality_map = {"l": "480p15", "m": "720p30", "h": "1080p60", "k": "2160p60"}
+    res_dir = quality_map.get(quality, "480p15")
+
+    media_dir = Path("media/videos") / Path(code_path).stem / res_dir
     if output_format == "gif":
         media_dir = Path("media/videos") / Path(code_path).stem / "images"
 
     if media_dir.exists():
         files = list(media_dir.glob(f"*.{output_format}"))
         if files:
+            return str(files[0])
+
+    # Fallback: search recursively for any matching file
+    search_base = Path("media/videos") / Path(code_path).stem
+    if search_base.exists():
+        files = list(search_base.rglob(f"*.{output_format}"))
+        if files:
+            # Return the most recently modified file
+            files.sort(key=lambda f: f.stat().st_mtime, reverse=True)
             return str(files[0])
 
     return None
@@ -318,6 +339,8 @@ Examples:
 
     parser.add_argument(
         "concept",
+        nargs="?",  # Make optional for --ui mode
+        default="",
         help="Concept description to visualize"
     )
     parser.add_argument(
@@ -389,12 +412,35 @@ Examples:
         action="store_true",
         help="Launch the web UI (requires streamlit)"
     )
+    parser.add_argument(
+        "--ollama",
+        action="store_true",
+        help="Use Ollama LLM to generate custom visualization (for concepts without templates)"
+    )
+    parser.add_argument(
+        "--ollama-model",
+        default="llama3.2",
+        help="Ollama model to use (default: llama3.2). Run 'ollama list' to see available models"
+    )
+    parser.add_argument(
+        "--ollama-setup",
+        action="store_true",
+        help="Show Ollama setup instructions"
+    )
 
     args = parser.parse_args()
 
     # Launch UI if requested
     if args.ui:
         launch_ui()
+        return
+
+    # Show Ollama setup instructions
+    if args.ollama_setup:
+        print_setup_instructions()
+        if check_ollama_available():
+            models = get_available_models()
+            print(f"\n✓ Ollama is running. Available models: {', '.join(models) if models else 'None'}")
         return
 
     # List templates
@@ -405,6 +451,10 @@ Examples:
             print(f"  {name:20} - {template.description}")
         print()
         return
+
+    # Require concept for non-UI/non-list modes
+    if not args.concept:
+        parser.error("concept is required (unless using --ui or --list-templates)")
 
     print_banner()
 
@@ -465,11 +515,46 @@ Examples:
 
     # Currently only Manim is fully implemented
     if plan.engine == Engine.MANIM and not args.tts_only:
-        code = generate_manim_code(
-            plan.to_dict(),
-            template_name=plan.template,
-            params=params
-        )
+        # Decide whether to use Ollama or template-based generation
+        use_ollama = args.ollama or (plan.template is None and args.ollama)
+
+        # If no template and user didn't explicitly request Ollama, suggest it
+        if plan.template is None and not args.ollama:
+            print(f"\n  Note: No template matched. Using generic visualization.")
+            print(f"        For custom AI-generated visualization, add --ollama flag")
+
+        if use_ollama:
+            print(f"\n  Using Ollama ({args.ollama_model}) for custom generation...")
+
+            if not check_ollama_available():
+                print("\n  Ollama is not available. Run --ollama-setup for instructions.")
+                print("  Falling back to template-based generation.\n")
+                code = generate_manim_code(
+                    plan.to_dict(),
+                    template_name=plan.template,
+                    params=params
+                )
+            else:
+                config = OllamaConfig(model=args.ollama_model)
+                code = generate_with_ollama(args.concept, plan.to_dict(), config)
+
+                if code is None:
+                    print("  Ollama generation failed. Falling back to template.\n")
+                    code = generate_manim_code(
+                        plan.to_dict(),
+                        template_name=plan.template,
+                        params=params
+                    )
+                else:
+                    # Apply fixes for common LLM errors
+                    code = fix_common_errors(code)
+                    print("  Custom visualization generated!")
+        else:
+            code = generate_manim_code(
+                plan.to_dict(),
+                template_name=plan.template,
+                params=params
+            )
 
         # Save code
         filename = args.output or generate_filename(args.concept, "py")

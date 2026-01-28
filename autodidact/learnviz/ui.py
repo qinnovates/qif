@@ -23,6 +23,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 from analyzer import analyze, Engine, ConceptType
 from generators.manim_gen import generate_manim_code, TEMPLATES
 from generators.narration import ScriptGenerator, TTSGenerator
+from generators.ollama_gen import (
+    check_ollama_available, get_available_models, generate_with_ollama,
+    OllamaConfig, fix_common_errors
+)
 
 
 # Page config
@@ -106,6 +110,9 @@ def check_dependencies():
         deps['pyttsx3'] = True
     except ImportError:
         deps['pyttsx3'] = False
+
+    # Check Ollama
+    deps['ollama'] = check_ollama_available()
 
     return deps
 
@@ -237,6 +244,28 @@ def main():
 
         st.divider()
 
+        # Ollama for custom concepts
+        st.subheader("AI Generation (Ollama)")
+        if deps['ollama']:
+            use_ollama = st.checkbox(
+                "Use AI for custom concepts",
+                value=False,
+                help="Use local LLM to generate visualizations for concepts without templates"
+            )
+            if use_ollama:
+                ollama_models = get_available_models()
+                if ollama_models:
+                    ollama_model = st.selectbox("Model", options=ollama_models)
+                else:
+                    ollama_model = "llama3.2"
+                    st.warning("No models found. Run: `ollama pull llama3.2`")
+        else:
+            use_ollama = False
+            ollama_model = None
+            st.info("Ollama not installed. [Get Ollama](https://ollama.ai) for custom AI-generated visualizations.")
+
+        st.divider()
+
         # Templates
         st.subheader("Available Templates")
         template_list = list(set(TEMPLATES.keys()) - {"search_visual", "sort_visual", "proof_steps", "neuron_structure"})
@@ -305,8 +334,18 @@ def main():
             plan = analyze(concept)
             progress.progress(10, text="Generating visualization code...")
 
-            # Generate code
-            code = generate_manim_code(plan.to_dict(), template_name=plan.template, params={})
+            # Generate code - use Ollama if enabled and no template matches
+            if use_ollama and (plan.template is None or plan.template not in TEMPLATES):
+                progress.progress(15, text=f"Using AI ({ollama_model}) to generate custom visualization...")
+                config = OllamaConfig(model=ollama_model)
+                code = generate_with_ollama(concept, plan.to_dict(), config)
+                if code:
+                    code = fix_common_errors(code)
+                else:
+                    st.warning("AI generation failed, using template fallback")
+                    code = generate_manim_code(plan.to_dict(), template_name=plan.template, params={})
+            else:
+                code = generate_manim_code(plan.to_dict(), template_name=plan.template, params={})
 
             code_path = tmpdir / "scene.py"
             with open(code_path, "w") as f:

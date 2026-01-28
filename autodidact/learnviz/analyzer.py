@@ -160,6 +160,10 @@ TEMPLATE_PATTERNS = {
     "action_potential": [r"\baction potential\b", r"\bdepolarization\b", r"\bspike\b", r"\bfiring\b", r"\bmembrane potential\b"],
     "synapse": [r"\bsynaptic\b", r"\bsynapse\b", r"\bneurotransmitter\b", r"\bvesicle\b"],
     "neuron_structure": [r"\bneuron\b", r"\baxon\b", r"\bdendrite\b", r"\bmyelin\b"],
+    # BCI and motor cortex
+    "motor_cortex_bci": [r"\bmotor cortex\b", r"\bM1\b", r"\bbci\b", r"\bbrain.computer\b", r"\bneural decoding\b", r"\belectrode\b", r"\butah array\b", r"\bpopulation coding\b", r"\bpopulation vector\b"],
+    # Neurotransmitter systems
+    "neurotransmitter": [r"\bneurotransmitter\b", r"\bdopamine\b", r"\bserotonin\b", r"\bnorepinephrine\b", r"\bVTA\b", r"\braphe\b", r"\blocus coeruleus\b", r"\breward\b", r"\bmonoamine\b"],
 }
 
 
