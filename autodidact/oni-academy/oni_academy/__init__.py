@@ -52,10 +52,43 @@ def get_course(name: str) -> dict:
     return courses.get(name, {})
 
 
+# Visualization integration (LearnViz)
+try:
+    from .visualization import (
+        visualize,
+        list_templates,
+        get_module_concepts,
+        visualize_module,
+        VisualizationResult,
+        check_learnviz,
+    )
+    LEARNVIZ_AVAILABLE = check_learnviz()
+except ImportError:
+    LEARNVIZ_AVAILABLE = False
+
+    def visualize(*args, **kwargs):
+        raise ImportError("LearnViz not available. Install dependencies: pip install manim")
+
+    def list_templates():
+        return {}
+
+    def get_module_concepts(module_name):
+        return []
+
+    def visualize_module(*args, **kwargs):
+        return []
+
+
 __all__ = [
     "__version__",
     "__name_full__",
     "__tagline__",
     "list_modules",
     "get_course",
+    # Visualization
+    "visualize",
+    "list_templates",
+    "get_module_concepts",
+    "visualize_module",
+    "LEARNVIZ_AVAILABLE",
 ]
