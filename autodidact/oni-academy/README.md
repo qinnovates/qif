@@ -52,9 +52,52 @@ print(intro['title'])
 ### CLI
 
 ```bash
-oni-academy list          # List available modules
-oni-academy info intro    # Get module information
-oni-academy ui            # Launch interactive UI
+oni-academy list                    # List available modules
+oni-academy info intro              # Get module information
+oni-academy templates               # List visualization templates
+oni-academy visualize "binary search" --render  # Generate visualization
+oni-academy ui                      # Launch LearnViz web interface
+```
+
+### Visualization API
+
+```python
+from oni_academy import visualize, list_templates
+
+# Generate a visualization
+result = visualize("How does an action potential work?")
+print(result.code)        # Generated Manim code
+print(result.template)    # Template used (e.g., "action_potential")
+
+# With video rendering
+result = visualize(
+    "binary search algorithm",
+    render=True,
+    narration=True,
+    output_dir="./videos"
+)
+print(result.video_path)  # Path to rendered video
+```
+
+---
+
+## LearnViz Integration
+
+ONI Academy includes **LearnViz**, an AI-powered visualization engine that generates educational animations from natural language:
+
+| Feature | Description |
+|---------|-------------|
+| **8 Built-in Templates** | Binary search, sorting, trees, action potential, synapse, motor cortex BCI, neurotransmitters |
+| **Voice Narration** | TTS with edge-tts, gtts, or pyttsx3 |
+| **Ollama Support** | Custom AI-generated visualizations for concepts without templates |
+| **Web UI** | Local Streamlit interface for interactive use |
+
+```bash
+# Install with visualization support
+pip install oni-academy[full]
+
+# Generate visualization with narration
+oni-academy visualize "synaptic transmission" --render --narration
 ```
 
 ---

@@ -66,11 +66,14 @@ This isn't AI replacing learning — it's AI **enabling** self-directed learning
 
 **Purpose:** Generate educational visualizations that adapt to individual learning behaviors.
 
-**Current (v0.1):**
+**Current (v0.2):**
 - Concept → Code → Video pipeline
 - Pattern-based concept classification
-- 4 Manim templates (binary search, sorting, Pythagorean, trees)
+- 8 Manim templates (binary search, sorting, Pythagorean, trees, action potential, synapse, motor cortex BCI, neurotransmitters)
 - Local rendering with Manim
+- Voice narration (edge-tts, gtts, pyttsx3)
+- Ollama integration for custom AI-generated visualizations
+- Web UI (Streamlit)
 
 **Future (v0.4+):**
 - Learner profiles with style/pace tracking
