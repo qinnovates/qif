@@ -28,6 +28,8 @@
 | **Project Management** | `MAIN/project/PROJECT_MANAGEMENT.md` | **Master PM doc — scope, risks, priorities, metrics** |
 | **Kanban Board** | `MAIN/project/KANBAN.md` | **Visual task board — status at a glance** |
 | **prd.json** | `MAIN/project/prd.json` | **Task tracker with exit conditions** |
+| **Video Production** | `video/demo/CLAUDE.md` | **Remotion video production pipeline & audio sync** |
+| **Sound Design** | `MAIN/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md` | **Audio psychology & specs** |
 | This File | `CLAUDE.md` | Claude-specific instructions |
 
 ### Naming Convention: INDEX.md vs README.md
@@ -145,7 +147,22 @@ ONI/
         ├── workflows/                  # Workflow strategies and documentation
         │   ├── RESEARCH_INTEGRATION_WORKFLOW.md   # Academic research → ONI pipeline
         │   └── VISUALIZATION_AS_CODE_STRATEGY.md  # Remotion/programmatic viz
+        ├── sound-engineering/          # Audio design documentation
+        │   └── ONI_VIDEO_SOUND_DESIGN.md  # Sound psychology & specs
         └── images/                     # ONI diagrams
+
+video/                                  # Video production (Remotion)
+├── demo/                               # ONI Demo Video
+│   ├── CLAUDE.md                       # Video production instructions
+│   ├── SESSION_NOTES.md                # Production session history
+│   ├── public/audio/                   # All audio files (voiceovers, SFX)
+│   └── src/
+│       ├── ONIDemoVideo.tsx            # Main composition
+│       ├── data/
+│       │   ├── oni-theme.ts            # Config, colors, timestamps
+│       │   └── script.ts               # Voiceover text/timing
+│       ├── scenes/                     # Scene components
+│       └── components/                 # Shared components
 ```
 
 ---

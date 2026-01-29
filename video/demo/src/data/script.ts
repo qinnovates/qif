@@ -1,9 +1,11 @@
 /**
  * ONI Framework Demo Video Script
- * ~400 words, 3:30 runtime
+ * SYNCED TO VIDEO TIMESTAMPS - Total: 3:30 (6300 frames @ 30fps)
  *
- * For ElevenLabs generation, use voice: "Adam" (authoritative) or "Rachel" (professional)
- * Request word-level timestamps for precise sync
+ * Voice: ElevenLabs "Jay Wayne - Wise University Professor"
+ * Voice ID: 8Ln42OXYupYsag45MAUy
+ * Duration: ~3:11
+ * Last Updated: 2026-01-29
  */
 
 export interface ScriptLine {
@@ -11,319 +13,353 @@ export interface ScriptLine {
   startFrame: number;
   endFrame: number;
   scene: string;
+  startTime: string; // MM:SS for reference
 }
 
 export const script: ScriptLine[] = [
-  // Scene 0: Cold Open (0:00-0:08)
+  // ═══════════════════════════════════════════════════════════════
+  // COLD OPEN: 0:00-0:08 (frames 0-240)
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'coldOpen',
-    text: "Brain-computer interfaces are no longer science fiction.",
+    text: "The next era of computing won't happen on a screen.",
     startFrame: 0,
     endFrame: 120,
+    startTime: '0:00',
   },
   {
     scene: 'coldOpen',
-    text: "They're in operating rooms. They're in research labs. They're coming to consumers.",
+    text: "It will happen inside your mind.",
     startFrame: 120,
     endFrame: 240,
+    startTime: '0:04',
   },
 
-  // Scene 1: Title (0:08-0:15)
+  // ═══════════════════════════════════════════════════════════════
+  // TITLE: 0:08-0:15 (frames 240-450)
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'title',
-    text: "But who's protecting the most sensitive data in existence?",
+    text: "Brain-computer interfaces are here. But who protects your thoughts?",
     startFrame: 240,
-    endFrame: 360,
-  },
-  {
-    scene: 'title',
-    text: "Your thoughts.",
-    startFrame: 360,
     endFrame: 450,
+    startTime: '0:08',
   },
 
-  // Scene 2: Problem (0:15-0:40)
+  // ═══════════════════════════════════════════════════════════════
+  // PROBLEM: 0:15-0:40 (frames 450-1200)
+  // SYNCED TO VISUAL PHASES in ProblemScene.tsx
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'problem',
-    text: "Today's brain-computer interfaces lack standardized security frameworks.",
-    startFrame: 450,
+    // Visual: "Brain-computer interfaces are here." + "FDA approved. In clinical trials. Shipping to consumers."
+    text: "Brain-computer interfaces are here. FDA approved. In clinical trials. Shipping to consumers.",
+    startFrame: 470,  // Phase 1 starts at scene-relative frame 20
     endFrame: 570,
+    startTime: '0:15',
   },
   {
     scene: 'problem',
-    text: "There's no OSI model for neural interfaces.",
+    // Visual: "Neurosecurity today is..."
+    text: "But neurosecurity today is...",
     startFrame: 570,
-    endFrame: 690,
+    endFrame: 670,
+    startTime: '0:19',
   },
   {
     scene: 'problem',
-    text: "No common language between neuroscientists, engineers, and security researchers.",
-    startFrame: 690,
-    endFrame: 870,
+    // Visual: "Fragmented." (delay 0) "Complex." (delay 35) "Inaccessible." (delay 70)
+    // Speak slowly to match staggered visual reveal
+    text: "Fragmented. Complex. Inaccessible.",
+    startFrame: 670,
+    endFrame: 850,
+    startTime: '0:22',
   },
   {
     scene: 'problem',
+    // Visual: "Until now." (big, center screen)
     text: "Until now.",
     startFrame: 870,
     endFrame: 960,
+    startTime: '0:29',
   },
   {
     scene: 'problem',
-    text: "Introducing ONI—the Open Neurosecurity Interoperability.",
-    startFrame: 960,
-    endFrame: 1140,
+    // Visual: "Introducing" + "ONI Framework" with animated gradient
+    text: "Introducing ONI. The Open Neurosecurity Interoperability framework.",
+    startFrame: 990,
+    endFrame: 1100,
+    startTime: '0:33',
   },
   {
     scene: 'problem',
-    text: "The first BCI framework built security-first from the ground up.",
-    startFrame: 1140,
-    endFrame: 1320,
-  },
-  {
-    scene: 'problem',
-    text: "Privacy-native. Your thoughts stay yours—by design, not by promise.",
-    startFrame: 1320,
-    endFrame: 1500,
-  },
-  {
-    scene: 'problem',
-    text: "The OSI model the neural era has been waiting for.",
-    startFrame: 1500,
-    endFrame: 1680,
+    // Visual: Typing effect "A unified neurosecurity stack for the next era of computing"
+    text: "A unified neurosecurity stack for the next era of computing.",
+    startFrame: 1100,
+    endFrame: 1200,
+    startTime: '0:36',
   },
 
-  // Scene 3: 14-Layer Model (0:56-1:36)
+  // ═══════════════════════════════════════════════════════════════
+  // LAYERS: 0:40-1:20 (frames 1200-2400)
+  // SYNCED TO VISUAL PHASES in ONILayersAnimation.tsx
+  // Phase 1: 0-150 (intro), Phase 2: 150-450 (L1-L7), Phase 3: 450-750 (L8)
+  // Phase 4: 750-1050 (L9-L14), Phase 5: 1050-1200 (full stack)
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'layers',
-    text: "ONI defines fourteen layers spanning silicon to synapse.",
-    startFrame: 1680,
-    endFrame: 1830,
+    // Visual: "14 layers spanning silicon to synapse" (Phase 1: frames 1200-1350)
+    text: "Fourteen layers spanning silicon to synapse.",
+    startFrame: 1200,
+    endFrame: 1350,
+    startTime: '0:40',
   },
   {
     scene: 'layers',
-    text: "Layers one through seven mirror the classical OSI model—physical signals, protocols, transport, and application interfaces.",
-    startFrame: 1830,
-    endFrame: 2130,
+    // Visual: L1-L7 silicon layers revealing with OSI labels (Phase 2: frames 1350-1650)
+    text: "Layers one through seven extend the classical OSI model. Physical signals, protocols, transport, applications.",
+    startFrame: 1350,
+    endFrame: 1620,
+    startTime: '0:45',
   },
   {
     scene: 'layers',
-    text: "But here's where ONI goes further.",
-    startFrame: 2130,
-    endFrame: 2250,
+    // Transition to L8
+    text: "But here's where everything changes.",
+    startFrame: 1620,
+    endFrame: 1700,
+    startTime: '0:54',
   },
   {
     scene: 'layers',
-    text: "Layer eight is the Neural Gateway—the critical bridge where silicon meets synapse.",
-    startFrame: 2250,
-    endFrame: 2490,
+    // Visual: L8 zooms in, glows amber (Phase 3 start: frame 1650)
+    text: "Layer Eight. The Neural Gateway.",
+    startFrame: 1700,
+    endFrame: 1820,
+    startTime: '0:56',
   },
   {
     scene: 'layers',
-    text: "This is where traditional security ends and neurosecurity begins.",
-    startFrame: 2490,
-    endFrame: 2670,
+    // Visual: "The critical bridge between machine and mind" text appears below L8
+    text: "The critical bridge between machine and mind. Where cybersecurity ends, and neurosecurity begins.",
+    startFrame: 1820,
+    endFrame: 1980,
+    startTime: '1:00',
   },
   {
     scene: 'layers',
-    text: "Layers nine through fourteen map the biological stack—from ion channels to spike trains, neural populations, circuit dynamics, cognitive function, and ultimately, identity.",
-    startFrame: 2670,
-    endFrame: 2880,
+    // Visual: L9-L14 biology layers revealing (Phase 4: frames 1950-2250)
+    text: "Layers nine through fourteen map the living brain. Ion channels, spike trains, neural populations, cognitive function, and identity.",
+    startFrame: 1980,
+    endFrame: 2280,
+    startTime: '1:06',
+  },
+  {
+    scene: 'layers',
+    // Visual: Full stack view (Phase 5: frames 2250-2400)
+    text: "The complete ONI stack. From silicon to self.",
+    startFrame: 2280,
+    endFrame: 2400,
+    startTime: '1:16',
   },
 
-  // Scene 4: Coherence Metric (1:36-2:16)
+  // ═══════════════════════════════════════════════════════════════
+  // COHERENCE: 1:20-1:50 (frames 2400-3300)
+  // SYNCED TO VISUAL PHASES in CoherenceScene.tsx
+  // Phase 1: 0-280 (intro), Phase 2: 280-500 (threshold demo), Phase 3: 500+ (scale-freq)
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'coherence',
-    text: "But how do you measure neural security?",
-    startFrame: 2880,
-    endFrame: 3000,
+    // Visual: "The Coherence Score" title with animated gauge building up
+    text: "The Coherence Score. A unified metric for neural security.",
+    startFrame: 2400,
+    endFrame: 2550,
+    startTime: '1:20',
   },
   {
     scene: 'coherence',
-    text: "ONI introduces the Coherence Score—a unified metric combining phase variance, timing precision, and frequency stability.",
-    startFrame: 3000,
-    endFrame: 3240,
+    // Visual: Component cards appear (σ²φ, σ²τ, σ²γ)
+    text: "Phase variance. Timing variance. Frequency variance.",
+    startFrame: 2550,
+    endFrame: 2700,
+    startTime: '1:25',
   },
   {
     scene: 'coherence',
-    text: "When coherence drops below threshold, automated defense mechanisms activate.",
-    startFrame: 3240,
-    endFrame: 3420,
+    // Visual: "When coherence drops below threshold..." + gauge drops + breach alert
+    text: "When coherence drops below threshold, defenses activate instantly.",
+    startFrame: 2700,
+    endFrame: 2900,
+    startTime: '1:30',
   },
   {
     scene: 'coherence',
-    text: "Whether it's MRI interference, electromagnetic disruption, or a malicious injection attack—the system responds instantly.",
-    startFrame: 3420,
-    endFrame: 3660,
+    // Visual: Attack types appear (MRI, Injection) and recovery
+    text: "MRI interference. Injection attacks. Detected and neutralized.",
+    startFrame: 2900,
+    endFrame: 3100,
+    startTime: '1:36',
   },
   {
     scene: 'coherence',
-    text: "And the Scale-Frequency Invariant ensures neural patterns maintain constant relationships across all scales.",
-    startFrame: 3660,
-    endFrame: 3900,
-  },
-  {
-    scene: 'coherence',
-    text: "As scale increases, frequency decreases proportionally. The product remains invariant—a fingerprint of healthy neural activity.",
-    startFrame: 3900,
-    endFrame: 4140,
+    // Visual: Scale-Frequency section with formula
+    text: "The scale-frequency invariant ensures neural patterns stay consistent across all scales.",
+    startFrame: 3100,
+    endFrame: 3300,
+    startTime: '1:43',
   },
 
-  // Scene 5: TARA Stack (2:16-2:56)
+  // ═══════════════════════════════════════════════════════════════
+  // TARA: 1:50-2:25 (frames 3300-4350)
+  // SYNCED TO VISUAL PHASES in TARAScene.tsx
+  // Phase 1: 0-500 (TARA intro + features), Phase 2: 500+ (anomaly detection)
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'tara',
-    text: "For security professionals, there's TARA—the Telemetry Analysis and Response Automation stack.",
-    startFrame: 4140,
-    endFrame: 4380,
+    // Visual: "TARA" title + "Telemetry Analysis & Response Automation" + brain viz
+    text: "For security teams, there's TARA. Telemetry Analysis and Response Automation.",
+    startFrame: 3300,
+    endFrame: 3550,
+    startTime: '1:50',
   },
   {
     scene: 'tara',
-    text: "Real-time brain topology visualization.",
-    startFrame: 4380,
-    endFrame: 4530,
+    // Visual: Feature cards appear (Brain Topology, Attack Simulator, NSAM Monitor)
+    text: "Brain topology. Attack simulation. Real-time monitoring.",
+    startFrame: 3550,
+    endFrame: 3750,
+    startTime: '1:58',
   },
   {
     scene: 'tara',
-    text: "Attack simulation across all fourteen layers.",
-    startFrame: 4530,
-    endFrame: 4710,
+    // Visual: Privacy-First card appears with lock-in-shield icon
+    text: "Privacy-first by design. Only coherence scores are transmitted. Raw neural data never leaves your device.",
+    startFrame: 3750,
+    endFrame: 4000,
+    startTime: '2:05',
   },
   {
     scene: 'tara',
-    text: "Neural Signal Assurance Monitoring that flags anomalies before they become breaches.",
-    startFrame: 4710,
-    endFrame: 4920,
-  },
-  {
-    scene: 'tara',
-    text: "And here's what makes it different: TARA never sees your raw neural data.",
-    startFrame: 4920,
-    endFrame: 5130,
-  },
-  {
-    scene: 'tara',
-    text: "Only mathematical scores—coherence values, deltas, and deviations. Your thoughts stay on your device.",
-    startFrame: 5130,
-    endFrame: 5400,
+    // Visual: "How TARA Detects Threats" title + statistical visualization
+    text: "How does TARA detect threats? Statistical baselines. Z-score thresholds. Automated response in milliseconds.",
+    startFrame: 4000,
+    endFrame: 4350,
+    startTime: '2:13',
   },
 
-  // Scene 6: Academic Foundation (3:00-3:31)
+  // ═══════════════════════════════════════════════════════════════
+  // ACADEMIC: 2:25-2:50 (frames 4350-5100)
+  // Research foundation and audience (shortened for timing)
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'academic',
-    text: "ONI isn't built in a vacuum.",
-    startFrame: 5400,
-    endFrame: 5520,
+    text: "Built on peer-reviewed research. Grounded in Shannon's information theory.",
+    startFrame: 4350,
+    endFrame: 4600,
+    startTime: '2:25',
   },
   {
     scene: 'academic',
-    text: "It extends the threat models of Kohno and colleagues at the University of Washington.",
-    startFrame: 5520,
-    endFrame: 5760,
+    text: "Every formula documented. Every claim cited. Open source and verifiable.",
+    startFrame: 4600,
+    endFrame: 4850,
+    startTime: '2:33',
   },
   {
     scene: 'academic',
-    text: "It incorporates neurosecurity research from Columbia, Yale, and the Graz BCI Lab.",
-    startFrame: 5760,
-    endFrame: 6030,
-  },
-  {
-    scene: 'academic',
-    text: "Every claim is cited. Every formula is documented.",
-    startFrame: 6030,
-    endFrame: 6180,
-  },
-  {
-    scene: 'academic',
-    text: "Built for researchers, developers, regulators, security teams...",
-    startFrame: 6180,
-    endFrame: 6360,
-  },
-  {
-    scene: 'academic',
-    // NOTE: This line should have slow pan-in animation with WHITE TEXT for dramatic emphasis
-    text: "...and you.",
-    startFrame: 6360,
-    endFrame: 6600, // Extended for dramatic effect
+    text: "Built for researchers. Developers. Regulators. And you.",
+    startFrame: 4850,
+    endFrame: 5100,
+    startTime: '2:41',
   },
 
-  // Scene 7: Call to Action (3:30-3:50)
+  // ═══════════════════════════════════════════════════════════════
+  // CTA: 2:50-3:15 (frames 5100-5850)
+  // Call to action
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'cta',
-    text: "Ready to secure the neural frontier?",
-    startFrame: 6300,
-    endFrame: 6450,
+    text: "The neural frontier is here. The only question is, who secures it?",
+    startFrame: 5100,
+    endFrame: 5340,
+    startTime: '2:50',
   },
   {
     scene: 'cta',
-    text: "Install ONI with a single command.",
-    startFrame: 6450,
-    endFrame: 6600,
+    text: "The standard is being written. Researchers, builders, visionaries.",
+    startFrame: 5340,
+    endFrame: 5550,
+    startTime: '2:58',
   },
   {
     scene: 'cta',
-    text: "pip install oni-framework, oni-tara, or oni-academy",
-    startFrame: 6600,
-    endFrame: 6780,
-  },
-  {
-    scene: 'cta',
-    text: "Join us in building the security standards for brain-computer interfaces.",
-    startFrame: 6780,
-    endFrame: 6990,
+    text: "Let's write it together. Join us in building the security standards for brain-computer interfaces.",
+    startFrame: 5550,
+    endFrame: 5850,
+    startTime: '3:05',
   },
 
-  // Scene 8: Credits (3:53-4:23) - Powerful closing with dynamic waves
+  // ═══════════════════════════════════════════════════════════════
+  // CREDITS: 3:09-3:34 (frames 5670-6420) - extended for finale
+  // SYNCED TO VISUAL PHASES in CreditsScene.tsx
+  // ═══════════════════════════════════════════════════════════════
   {
     scene: 'credits',
-    text: "Your mind.",
-    startFrame: 6990,
-    endFrame: 7080,
+    // Visual: "Your Mind. Your Privacy. Our Future." in white
+    text: "Your mind. Your privacy. Our future.",
+    startFrame: 5670,
+    endFrame: 5820,
+    startTime: '3:09',
   },
   {
     scene: 'credits',
-    text: "Your privacy.",
-    startFrame: 7080,
-    endFrame: 7170,
+    // Visual: "ONI. The bridge between worlds." (transition)
+    text: "ONI. The bridge between worlds.",
+    startFrame: 5820,
+    endFrame: 5970,
+    startTime: '3:14',
   },
   {
     scene: 'credits',
-    text: "Our future.",
-    startFrame: 7170,
-    endFrame: 7260,
+    // Visual: "Because only life's most important connections deserve the most thought."
+    text: "Because only life's most important connections deserve the most thought.",
+    startFrame: 5970,
+    endFrame: 6130,
+    startTime: '3:19',
   },
   {
     scene: 'credits',
-    text: "Because life's most important connections deserve the most thought.",
-    startFrame: 7260,
-    endFrame: 7470,
+    // Visual: "Welcome to" + "The OSI of Mind" door opening effect
+    // Voice: Female British (Lily) - strong, protective, intelligent
+    text: "Welcome to the OSI of Mind. This is ONI. The future of neural security starts now.",
+    startFrame: 6130,
+    endFrame: 6335,
+    startTime: '3:24',
   },
-  {
-    scene: 'credits',
-    text: "Welcome to the OSI of Mind.",
-    startFrame: 7470,
-    endFrame: 7710,
-  },
+  // Orchestrated closing: ding (6340) → ding2 (6370) → chime (6395-6420)
 ];
 
-// Full script as single text for voiceover generation
+// Full script for voiceover generation
 export const fullScript = script.map(line => line.text).join(' ');
 
-// Word count: ~480 words
-// Estimated read time at 110 WPM: ~4:23 (fits 4:23 with natural pacing)
-// Final frame: 7710 = 4:17 at 30fps
-//
-// ANIMATION NOTES:
-// - Scene 2 (Problem): NEW selling points phase after "ONI Framework" intro
-//   - Universal, Secure by Design, Biodigital Ready - staggered reveal
-// - Scene 4 (Coherence): Show threshold trigger → defense mechanism activation
-//   - Visual: Gauge drops below threshold → shield/alert animation
-//   - Examples: MRI interference, electromagnetic disruption, injection attacks
-// - Scene 4 (Scale-Frequency): Animated visualization of f × S ≈ k
-//   - Scale bar grows (10→1000), Frequency shrinks (100→1 Hz), k stays ~1000
-// - Scene 5 (TARA): NEW - Privacy-preserving monitoring explanation
-//   - Visual: Shield icon with lock, "RAW → Cₛ ONLY" transformation
-//   - Show: Raw data stays local, only scores transmitted
-//   - Add "Privacy-First" feature card to TARAScene
-// - Scene 6 ("...and you"): SLOW PAN-IN with WHITE TEXT and glow for emphasis
-// - Scene 7 (CTA): Cycling pip install animation (framework → tara → academy)
-// - Scene 8 (Credits): Dynamic circular wave animation on "Welcome to" finale
-// - Cold Open: Wave grid fades in 5 seconds before transition for continuity
+// Scene-by-scene script for segmented generation
+export const sceneScripts = {
+  coldOpen: script.filter(l => l.scene === 'coldOpen').map(l => l.text).join(' '),
+  title: script.filter(l => l.scene === 'title').map(l => l.text).join(' '),
+  problem: script.filter(l => l.scene === 'problem').map(l => l.text).join(' '),
+  layers: script.filter(l => l.scene === 'layers').map(l => l.text).join(' '),
+  coherence: script.filter(l => l.scene === 'coherence').map(l => l.text).join(' '),
+  tara: script.filter(l => l.scene === 'tara').map(l => l.text).join(' '),
+  academic: script.filter(l => l.scene === 'academic').map(l => l.text).join(' '),
+  cta: script.filter(l => l.scene === 'cta').map(l => l.text).join(' '),
+  credits: script.filter(l => l.scene === 'credits').map(l => l.text).join(' '),
+};
+
+// Metadata
+export const scriptMeta = {
+  totalDuration: '3:30',
+  totalFrames: 6300,
+  fps: 30,
+  wordCount: fullScript.split(' ').length,
+  sceneCount: 9,
+};

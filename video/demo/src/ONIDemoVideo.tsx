@@ -118,15 +118,26 @@ export const ONIDemoVideo: React.FC = () => {
       <Sequence from={layers.start} durationInFrames={layers.end - layers.start}>
         <LayersScene />
       </Sequence>
+      {/* Layers voiceover with fade-out to prevent bleed into coherence */}
       <Sequence from={layers.start} durationInFrames={layers.end - layers.start}>
-        <Audio src={staticFile("audio/vo-layers.mp3")} />
+        <Audio
+          src={staticFile("audio/vo-layers.mp3")}
+          volume={(f) => {
+            const duration = layers.end - layers.start;
+            return interpolate(f, [duration - 30, duration], [1, 0], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            });
+          }}
+        />
       </Sequence>
 
       {/* Scene 4: Coherence Metric (1:20-1:50) */}
       <Sequence from={coherence.start} durationInFrames={coherence.end - coherence.start}>
         <CoherenceScene />
       </Sequence>
-      <Sequence from={coherence.start} durationInFrames={coherence.end - coherence.start}>
+      {/* Voiceover starts 1s after scene to create breathing room */}
+      <Sequence from={coherence.start + 30} durationInFrames={coherence.end - coherence.start - 30}>
         <Audio src={staticFile("audio/vo-coherence.mp3")} />
       </Sequence>
 
@@ -154,7 +165,7 @@ export const ONIDemoVideo: React.FC = () => {
         <Audio src={staticFile("audio/vo-cta.mp3")} />
       </Sequence>
 
-      {/* Scene 8: Credits (3:15-3:30) */}
+      {/* Scene 8: Credits (3:09-3:34) */}
       <Sequence from={credits.start} durationInFrames={credits.end - credits.start}>
         <CreditsScene />
       </Sequence>
@@ -162,6 +173,101 @@ export const ONIDemoVideo: React.FC = () => {
         <Audio src={staticFile("audio/vo-credits.mp3")} />
         {/* Wind through open door - bright morning, new beginnings */}
         <Audio src={staticFile("audio/wind-door-morning.mp3")} volume={0.5} />
+      </Sequence>
+
+      {/* Finale Sound Effects - Door opening moment (frame 400 relative to credits) */}
+      {/* Ascending chord - starts when door begins to open */}
+      <Sequence from={credits.start + 395}>
+        <Audio
+          src={staticFile("audio/finale-ascend.mp3")}
+          volume={(f) => interpolate(f, [0, 15, 60, 90], [0, 0.4, 0.4, 0], {
+            extrapolateRight: "clamp",
+          })}
+        />
+      </Sequence>
+
+      {/* Shimmering bells - layers in as door opens wider */}
+      <Sequence from={credits.start + 420}>
+        <Audio
+          src={staticFile("audio/finale-shimmer.mp3")}
+          volume={(f) => interpolate(f, [0, 20, 80, 120], [0, 0.35, 0.25, 0], {
+            extrapolateRight: "clamp",
+          })}
+        />
+      </Sequence>
+
+      {/* Female British voiceover - "Welcome to the OSI of Mind... This is ONI..." */}
+      {/* Starts when "Welcome to" text appears (frame 460) */}
+      <Sequence from={credits.start + 460}>
+        <Audio
+          src={staticFile("audio/vo-finale-lily.mp3")}
+          volume={0.85}
+        />
+      </Sequence>
+
+      {/* ═══ Orchestrated Closing Sequence ═══ */}
+      {/* Mirrors the intro's 4th → 5th → Major progression */}
+      {/* Voiceover ends at ~frame 665, then the closing begins */}
+
+      {/* Ding tone 1 - Perfect 4th, signals closing */}
+      <Sequence from={credits.start + 670}>
+        <Audio src={staticFile("audio/ding-tone.mp3")} volume={0.55} />
+      </Sequence>
+
+      {/* Ding tone 2 - Perfect 5th, builds to resolution */}
+      <Sequence from={credits.start + 700}>
+        <Audio src={staticFile("audio/ding-tone-2.mp3")} volume={0.5} />
+      </Sequence>
+
+      {/* Boot chime - Major resolution, final closure */}
+      <Sequence from={credits.start + 725}>
+        <Audio
+          src={staticFile("audio/boot-chime.mp3")}
+          volume={(f) => interpolate(f, [0, 30, 60, 90], [0, 0.6, 0.5, 0], {
+            extrapolateRight: "clamp",
+          })}
+        />
+      </Sequence>
+
+      {/* ═══ Ambient + Pulse Reprise - Bookends the video ═══ */}
+      {/* Same ambient + pulse from intro returns, creating satisfying closure */}
+
+      {/* Ambient tech atmosphere - fades in after chime */}
+      <Sequence from={credits.start + 760} durationInFrames={credits.end - credits.start - 760}>
+        <Audio
+          src={staticFile("audio/ambient-tech.mp3")}
+          volume={(f) => {
+            const duration = credits.end - credits.start - 760;
+            return interpolate(
+              f,
+              [0, 60, duration - 90, duration],
+              [0, 0.30, 0.30, 0],
+              { extrapolateRight: "clamp" }
+            );
+          }}
+        />
+      </Sequence>
+
+      {/* Curiosity pulse - the 60 BPM heartbeat returns */}
+      <Sequence from={credits.start + 780} durationInFrames={credits.end - credits.start - 780}>
+        <Audio
+          src={staticFile("audio/curiosity-pulse.mp3")}
+          volume={(f) => {
+            const duration = credits.end - credits.start - 780;
+            return interpolate(
+              f,
+              [0, 45, duration - 90, duration],
+              [0, 0.5, 0.5, 0],
+              { extrapolateRight: "clamp" }
+            );
+          }}
+        />
+      </Sequence>
+
+      {/* ═══ Final CTA at 3:44 ═══ */}
+      {/* "So... what are you waiting for?" - then 10s ambient, then cut */}
+      <Sequence from={credits.start + 1050}>
+        <Audio src={staticFile("audio/vo-finale-cta.mp3")} volume={0.9} />
       </Sequence>
 
       {/* Persistent watermark - © 2026 Kevin Qi • ONI Neural Security Stack™ */}

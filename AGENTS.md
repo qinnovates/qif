@@ -2,8 +2,8 @@
 
 > **Purpose:** Persistent learnings from Ralph Loop iterations. AI agents read this file at the start of each session to benefit from discovered patterns, gotchas, and conventions.
 
-**Last Updated:** 2026-01-28
-**Loop Iterations:** 16
+**Last Updated:** 2026-01-29
+**Loop Iterations:** 17
 
 ---
 
@@ -15,6 +15,7 @@
 
 | Workstream | Status | Last Activity | Notes |
 |------------|--------|---------------|-------|
+| **ONI Demo Video** | COMPLETE | 2026-01-29 | v1.0 complete, 3:56 duration, all voiceovers + sound design |
 | **ONI Academy** | Active | 2026-01-28 | v0.2.0 published to PyPI, LearnViz integration complete |
 | **GitHub Pages** | Active | 2026-01-28 | Wave background added to viz page, nav renamed to "ONI Search WIP" |
 | **TARA Stack** | Stable | 2026-01-26 | v0.8.1 on PyPI, WCAG compliant |
@@ -38,6 +39,15 @@
 | — | — | No pending items |
 
 ### Recent Session Context
+
+**2026-01-29 Session:**
+- COMPLETED ONI Demo Video v1.0 (3:56 duration, 7080 frames @ 30fps)
+- Generated all voiceovers with ElevenLabs (Jay Wayne + Lily voices)
+- Created complete sound design with psychology-backed audio
+- Implemented voice-reactive waves in credits scene
+- Created video production CLAUDE.md with sync guidelines
+- Documented all audio files and voice configurations
+- Key files: `video/demo/CLAUDE.md`, `video/demo/SESSION_NOTES.md`, `MAIN/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md`
 
 **2026-01-28 Session:**
 - Fixed oni-academy imports (LEARNVIZ_AVAILABLE = True when installed from PyPI)
@@ -93,6 +103,11 @@
 | 2026-01-26 | **Centralized PM hub created** | `project/README.md` dashboard with progress bars, metrics, quick links. Single entry point for all PM docs. |
 | 2026-01-26 | **TARA renamed: Platform → Stack** | "TARA Stack" aligns with monitoring/telemetry naming conventions (ELK Stack, TICK Stack). Updated brand.json + 14 files. QA pipeline now detects stale brand references. |
 | 2026-01-26 | **QA pipeline created** | `qa.yml` workflow validates: brand consistency, Python imports, formula notation, documentation links, HTML security (CSP/SRI). Runs on PRs, pushes, and weekly. |
+| 2026-01-29 | **Video production pipeline documented** | Complete CLAUDE.md for video work: frame-based timing, voiceover sync strategy, audio layering rules, visual-audio phase matching. See `video/demo/CLAUDE.md`. |
+| 2026-01-29 | **ElevenLabs voice settings learned** | Bold voice: low stability (0.35), high style (0.6). Encouraging: medium stability (0.45), medium style (0.5). Standard narration: stability 0.5, style 0.5. |
+| 2026-01-29 | **Audio bookend effect discovered** | Reusing intro sounds (ambient, pulse) at the end creates satisfying closure via musical "recapitulation" principle. |
+| 2026-01-29 | **Harmonic progression 4th→5th→Major** | Used at intro and closing. Creates tension-resolution arc. Ding (4th) = question, Ding2 (5th) = answer coming, Chime (Major) = resolution. |
+| 2026-01-29 | **Voice-reactive visuals pattern** | Calculate voice intensity based on frame timing (when voice is active), apply to scale transform for z-axis depth effect. See `CreditsScene.tsx`. |
 
 ### Patterns Established
 
@@ -103,6 +118,9 @@
 - **Dependabot Grouping:** Group minor/patch updates together to reduce PR noise while catching security issues
 - **Post-Publish Validation:** Accessibility checks run after PyPI publish (workflow_run trigger), not on every commit — ensures release quality without blocking development
 - **PM Dashboard Pattern:** Create README.md in project folders with progress bars and metrics at top, quick links to detailed docs below — single entry point for navigation
+- **Video Frame-Time Sync:** All timing in Remotion uses frames (30fps). Convert: `frame = seconds * 30`. Scene timestamps define boundaries; voiceovers sync via Sequence `from` offsets.
+- **Audio Layering:** Voiceover 85-100%, SFX 40-60%, Ambient 25-40%. Duck ambient by 25% during voiceover.
+- **Voice Settings Dial:** Lower stability = more dramatic/bold. Higher stability = more warm/encouraging. Style parameter adds expressiveness.
 
 ### Gotchas Avoided
 
@@ -115,6 +133,10 @@
 - **⚠️ SRI hashes must be verified when adding CDN libraries** — Calculate hash with `curl -s URL | openssl dgst -sha384 -binary | openssl base64 -A`. Wrong hash = browser blocks script = black screen. Symptom: page loads but content invisible, animations don't work.
 - **Relative links in README.md break on PyPI** — PyPI renders README standalone; use absolute GitHub URLs for cross-file links.
 - **Brand renames require updating 14+ files** — brand.json is source of truth, but Python fallbacks (_brand.py), docs, video scripts, and visualizations all have hardcoded references. QA pipeline now catches stale references.
+- **Video-Audio Sync:** Always measure actual audio duration with ffprobe before setting frame timing. Generated audio may be shorter/longer than expected.
+- **Fade audio at scene boundaries** — Without fade-out, audio bleeds into next scene. Use `interpolate(f, [duration-30, duration], [1, 0])` for 1-second fade.
+- **Voice iterations required** — "Bold" vs "encouraging" voice settings produce very different results. User may need 2-3 iterations to find the right tone.
+- **Complex visual effects may be rejected** — User rejected black hole collapse effect ("too dark") and spiral graphics ("bad"). Simpler approaches often work better.
 
 ---
 
