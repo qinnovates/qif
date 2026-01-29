@@ -1,6 +1,6 @@
 # ONI Framework
 
-*The OSI of Mind*
+*The OSI of Mind:*
 Life's most important connections deserve the best thought.
 
 ---
@@ -9,7 +9,7 @@ Life's most important connections deserve the best thought.
 
 One framework to understand, build, and secure brain-computer interfaces. Open. Accessible. Universal.
 
-> **Brand Reference:** [`MAIN/resources/brand/brand.json`](MAIN/resources/brand/brand.json) — Single source of truth for project naming and identity
+
 
 ---
 
