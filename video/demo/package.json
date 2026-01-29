@@ -7,7 +7,7 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "generate-audio": "ts-node scripts/generate-audio.ts",
+    "voiceover": "ts-node scripts/generate-voiceover.ts",
     "render": "remotion render ONIDemoVideo out/ONI-Demo-1080p.mp4",
     "render:720": "remotion render ONIDemoVideo out/ONI-Demo-720p.mp4 --scale=0.67"
   },

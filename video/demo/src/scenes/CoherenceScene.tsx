@@ -11,24 +11,33 @@ import { NeuralFlow } from '../components/NeuralFlow';
 import { LettersPullUp, BlurInText } from '../components/TextAnimations';
 import { colors, typography } from '../data/oni-theme';
 
+// Threshold value for defense activation
+const COHERENCE_THRESHOLD = 0.65;
+
 export const CoherenceScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Phase timing - Coherence first, then Scale-Frequency
-  const showCoherence = frame < 500;
+  // Phase timing - Coherence intro, threshold demo, then Scale-Frequency
+  const showCoherenceIntro = frame < 280;
+  const showThresholdDemo = frame >= 280 && frame < 500;
   const showScaleFreq = frame >= 500;
+  const showCoherence = frame < 500;
 
-  // Animate coherence value over time
+  // Animate coherence value over time - NOW INCLUDES A DROP BELOW THRESHOLD
   const coherenceValue = interpolate(
     frame,
-    [0, 250, 400, 500],
-    [0.35, 0.78, 0.92, 0.88],
+    [0, 150, 280, 320, 360, 420, 500],
+    [0.35, 0.82, 0.85, 0.45, 0.42, 0.78, 0.88], // Drops to 0.45 at frame 320
     { extrapolateRight: 'clamp' }
   );
 
-  // Show interactive demo hint (during coherence phase)
-  const showDemo = frame > 350 && frame < 480;
+  // Detect threshold breach
+  const isBelowThreshold = coherenceValue < COHERENCE_THRESHOLD;
+  const breachStarted = frame >= 300 && frame < 400;
+
+  // Show interactive demo hint (during coherence phase, before threshold demo)
+  const showDemo = frame > 200 && frame < 270;
 
   // Fade out coherence elements when transitioning to scale-frequency
   const coherenceFadeOut = interpolate(frame, [480, 520], [1, 0], {
@@ -87,7 +96,7 @@ export const CoherenceScene: React.FC = () => {
         }}
       >
         {/* ===== COHERENCE SECTION ===== */}
-        {showCoherence && (
+        {showCoherenceIntro && (
           <>
             {/* Title with letter animation */}
             <LettersPullUp
@@ -107,6 +116,42 @@ export const CoherenceScene: React.FC = () => {
               fontWeight={400}
             />
           </>
+        )}
+
+        {/* Threshold Demo Title */}
+        {showThresholdDemo && (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 140,
+              left: 0,
+              right: 0,
+              textAlign: 'center',
+              opacity: interpolate(frame - 280, [0, 30], [0, 1], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+              }) * coherenceFadeOut,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 24,
+                color: colors.text.secondary,
+                fontWeight: 500,
+              }}
+            >
+              When coherence drops below threshold...
+            </div>
+            <div
+              style={{
+                fontSize: 18,
+                color: colors.text.muted,
+                marginTop: 8,
+              }}
+            >
+              automated defense mechanisms activate instantly
+            </div>
+          </div>
         )}
 
         {/* ===== SCALE-FREQUENCY SECTION ===== */}
@@ -278,11 +323,11 @@ export const CoherenceScene: React.FC = () => {
           </div>
         )}
 
-        {/* Coherence gauge - only during coherence phase */}
+        {/* Coherence gauge - during coherence intro and threshold demo */}
         {showCoherence && (
           <div
             style={{
-              marginTop: 20,
+              marginTop: showThresholdDemo ? 180 : 20,
               opacity: interpolate(frame, [40, 80], [0, 1], {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
@@ -290,15 +335,26 @@ export const CoherenceScene: React.FC = () => {
               transform: `scale(${interpolate(frame, [40, 80], [0.9, 1], {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
-              })})`,
+              })}) ${showThresholdDemo ? 'scale(0.85)' : ''}`,
+              // Add red glow when below threshold
+              filter: isBelowThreshold
+                ? `drop-shadow(0 0 30px ${colors.security.danger}66)`
+                : 'none',
+              transition: 'filter 0.3s ease',
             }}
           >
-            <CoherenceGauge value={coherenceValue} showFormula={true} animated={true} />
+            <CoherenceGauge
+              value={coherenceValue}
+              showFormula={!showThresholdDemo}
+              animated={true}
+              showThreshold={showThresholdDemo}
+              threshold={COHERENCE_THRESHOLD}
+            />
           </div>
         )}
 
         {/* Component explanation cards - matching formula: e^(−(σ²φ + σ²τ + σ²γ)) */}
-        {showCoherence && (
+        {showCoherenceIntro && (
           <div
             style={{
               display: 'flex',
@@ -386,12 +442,12 @@ export const CoherenceScene: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               gap: 14,
-              opacity: interpolate(frame - 350, [0, 30], [0, 1], {
+              opacity: interpolate(frame - 200, [0, 30], [0, 1], {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
               }) * coherenceFadeOut,
               transform: `translateY(${interpolate(
-                frame - 350,
+                frame - 200,
                 [0, 30],
                 [20, 0],
                 { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
@@ -419,6 +475,228 @@ export const CoherenceScene: React.FC = () => {
             >
               Interactive Playground →
             </span>
+          </div>
+        )}
+
+        {/* ===== THRESHOLD DEFENSE VISUALIZATION ===== */}
+        {showThresholdDemo && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 80,
+              left: 0,
+              right: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              opacity: interpolate(frame - 280, [0, 30], [0, 1], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+              }) * coherenceFadeOut,
+            }}
+          >
+            {/* Threshold Alert Header */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                padding: '14px 32px',
+                background: isBelowThreshold
+                  ? `${colors.security.danger}22`
+                  : `${colors.security.safe}15`,
+                borderRadius: 12,
+                border: `2px solid ${isBelowThreshold ? colors.security.danger : colors.security.safe}`,
+                transition: 'all 0.3s ease',
+              }}
+            >
+              {/* Shield icon */}
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {isBelowThreshold ? (
+                  // Alert shield - breach detected
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 2L20 6V11C20 16 16 20 12 21C8 20 4 16 4 11V6L12 2Z"
+                      stroke={colors.security.danger}
+                      strokeWidth="2"
+                      fill={`${colors.security.danger}33`}
+                    />
+                    <path
+                      d="M12 8V12M12 16H12.01"
+                      stroke={colors.security.danger}
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                ) : (
+                  // Check shield - secure
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 2L20 6V11C20 16 16 20 12 21C8 20 4 16 4 11V6L12 2Z"
+                      stroke={colors.security.safe}
+                      strokeWidth="2"
+                      fill={`${colors.security.safe}33`}
+                    />
+                    <path
+                      d="M9 12L11 14L15 10"
+                      stroke={colors.security.safe}
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+              </div>
+
+              {/* Status text */}
+              <div>
+                <div
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 700,
+                    color: isBelowThreshold ? colors.security.danger : colors.security.safe,
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {isBelowThreshold ? '⚠️ THRESHOLD BREACH' : '✓ SYSTEM NOMINAL'}
+                </div>
+                <div
+                  style={{
+                    fontSize: 14,
+                    color: colors.text.muted,
+                    marginTop: 2,
+                  }}
+                >
+                  Threshold: Cₛ ≥ {COHERENCE_THRESHOLD.toFixed(2)} | Current: {coherenceValue.toFixed(2)}
+                </div>
+              </div>
+
+              {/* Animated pulse when breached */}
+              {isBelowThreshold && (
+                <div
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: '50%',
+                    background: colors.security.danger,
+                    boxShadow: `0 0 ${20 + Math.sin(frame * 0.3) * 10}px ${colors.security.danger}`,
+                    animation: 'pulse 0.5s infinite',
+                  }}
+                />
+              )}
+            </div>
+
+            {/* Attack Type Indicator - shows during breach */}
+            {breachStarted && (
+              <div
+                style={{
+                  marginTop: 20,
+                  display: 'flex',
+                  gap: 16,
+                  opacity: interpolate(frame - 310, [0, 20], [0, 1], {
+                    extrapolateLeft: 'clamp',
+                    extrapolateRight: 'clamp',
+                  }),
+                }}
+              >
+                {[
+                  { type: 'MRI Interference', icon: '🧲', active: frame >= 310 && frame < 340 },
+                  { type: 'EM Disruption', icon: '⚡', active: frame >= 340 && frame < 370 },
+                  { type: 'Injection Attack', icon: '💉', active: frame >= 370 },
+                ].map((attack, i) => (
+                  <div
+                    key={attack.type}
+                    style={{
+                      padding: '12px 20px',
+                      background: attack.active
+                        ? `${colors.security.danger}33`
+                        : 'rgba(255,255,255,0.05)',
+                      borderRadius: 10,
+                      border: `1px solid ${attack.active ? colors.security.danger : 'rgba(255,255,255,0.1)'}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      transform: `scale(${attack.active ? 1.05 : 1})`,
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    <span style={{ fontSize: 20 }}>{attack.icon}</span>
+                    <span
+                      style={{
+                        fontSize: 14,
+                        color: attack.active ? colors.security.danger : colors.text.muted,
+                        fontWeight: attack.active ? 600 : 400,
+                      }}
+                    >
+                      {attack.type}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Defense Activation Message */}
+            {isBelowThreshold && (
+              <div
+                style={{
+                  marginTop: 24,
+                  padding: '16px 28px',
+                  background: `linear-gradient(135deg, ${colors.security.danger}22 0%, ${colors.primary.accentPurple}22 100%)`,
+                  borderRadius: 12,
+                  border: `1px solid ${colors.security.danger}44`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 14,
+                  opacity: interpolate(frame - 325, [0, 20], [0, 1], {
+                    extrapolateLeft: 'clamp',
+                    extrapolateRight: 'clamp',
+                  }),
+                }}
+              >
+                <div
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: colors.security.warning,
+                    boxShadow: `0 0 10px ${colors.security.warning}`,
+                  }}
+                />
+                <span style={{ fontSize: 16, color: colors.text.primary, fontWeight: 500 }}>
+                  Automated defense mechanisms{' '}
+                  <span style={{ color: colors.security.warning, fontWeight: 700 }}>ACTIVATED</span>
+                </span>
+              </div>
+            )}
+
+            {/* Recovery indicator */}
+            {frame >= 400 && frame < 480 && (
+              <div
+                style={{
+                  marginTop: 20,
+                  padding: '14px 24px',
+                  background: `${colors.security.safe}15`,
+                  borderRadius: 10,
+                  border: `1px solid ${colors.security.safe}44`,
+                  opacity: interpolate(frame - 400, [0, 20], [0, 1], {
+                    extrapolateLeft: 'clamp',
+                    extrapolateRight: 'clamp',
+                  }),
+                }}
+              >
+                <span style={{ fontSize: 15, color: colors.security.safe, fontWeight: 500 }}>
+                  ✓ Threat neutralized — Coherence restored to {coherenceValue.toFixed(2)}
+                </span>
+              </div>
+            )}
           </div>
         )}
 

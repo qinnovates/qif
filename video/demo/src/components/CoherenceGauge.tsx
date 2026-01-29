@@ -6,12 +6,16 @@ interface CoherenceGaugeProps {
   value?: number; // 0-1
   showFormula?: boolean;
   animated?: boolean;
+  showThreshold?: boolean;
+  threshold?: number;
 }
 
 export const CoherenceGauge: React.FC<CoherenceGaugeProps> = ({
   value = 0.85,
   showFormula = true,
   animated = true,
+  showThreshold = false,
+  threshold = 0.65,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -100,7 +104,7 @@ export const CoherenceGauge: React.FC<CoherenceGaugeProps> = ({
             height: gaugeHeight,
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             borderRadius: gaugeHeight / 2,
-            overflow: 'hidden',
+            overflow: 'visible',
             position: 'relative',
           }}
         >
@@ -115,6 +119,38 @@ export const CoherenceGauge: React.FC<CoherenceGaugeProps> = ({
               transition: 'background-color 0.3s ease',
             }}
           />
+
+          {/* Threshold line */}
+          {showThreshold && (
+            <div
+              style={{
+                position: 'absolute',
+                left: `${threshold * 100}%`,
+                top: -8,
+                bottom: -8,
+                width: 3,
+                backgroundColor: colors.security.warning,
+                borderRadius: 2,
+                boxShadow: `0 0 8px ${colors.security.warning}`,
+              }}
+            >
+              {/* Threshold label */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: -24,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  fontSize: 11,
+                  color: colors.security.warning,
+                  whiteSpace: 'nowrap',
+                  fontFamily: typography.fontFamily.mono,
+                }}
+              >
+                {(threshold * 100).toFixed(0)}%
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Value */}

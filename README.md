@@ -46,6 +46,7 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 | Start Here | Purpose |
 |------------|---------|
 | **[Live Demo](https://qikevinl.github.io/ONI/)** | **Interactive visualizations** — animated, dynamic exploration of the framework |
+| **[Watch Demo Video](https://qikevinl.github.io/ONI/video/ONI-Demo-720p.mp4)** | **3:56 overview video** — the complete ONI story from BCIs to neural security |
 | **[MAIN/](MAIN/)** | All research content — publications, visualizations, resources |
 | **[INDEX.md](MAIN/INDEX.md)** | **Main Wiki** — central hub for navigation, dependencies, cross-references, roadmap |
 | **[autodidact/](autodidact/)** | **Learn ONI** — educational ecosystem (ONI Academy, LearnViz, research notes) |

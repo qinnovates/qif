@@ -2,8 +2,8 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 2.3
-**Last Updated:** 2026-01-26
+**Version:** 2.4
+**Last Updated:** 2026-01-29
 **Status:** Active Development
 
 ---
@@ -309,6 +309,17 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 |----------|---------|
 | [RESEARCH_INTEGRATION_WORKFLOW.md](resources/workflows/RESEARCH_INTEGRATION_WORKFLOW.md) | **Academic research → ONI integration pipeline** |
 | [VISUALIZATION_AS_CODE_STRATEGY.md](resources/workflows/VISUALIZATION_AS_CODE_STRATEGY.md) | Remotion-based programmatic visualization strategy |
+
+### Video Production
+
+| Resource | Purpose |
+|----------|---------|
+| [video/demo/CLAUDE.md](../video/demo/CLAUDE.md) | **Video production pipeline** — frame timing, voiceover sync, audio layering |
+| [ONI_VIDEO_SOUND_DESIGN.md](resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md) | **Sound design documentation** — audio psychology, voice configs, harmonic theory |
+| [video/demo/SESSION_NOTES.md](../video/demo/SESSION_NOTES.md) | Production session history and voice settings reference |
+| **[Watch Demo Video](https://qikevinl.github.io/ONI/video/ONI-Demo-720p.mp4)** | **3:56 overview video** — the complete ONI story |
+
+**Video Tech Stack:** Remotion (React) + ElevenLabs (voices) + psychology-backed sound design
 
 ### Editor Agent (Quality & Sync)
 
