@@ -9,7 +9,7 @@ Life's most important connections deserve the best thought.
 
 One framework to understand, build, and secure brain-computer interfaces. Open. Accessible. Universal.
 
-
+> The OSI model was built before networking was figured out. The periodic table left gaps for elements not yet discovered. ONI follows the same principle — a living framework that organizes what we know, highlights what we don't, and evolves as discovery fills in the gaps. [Read the full vision →](ABOUT.md#the-vision)
 
 ---
 
@@ -782,5 +782,5 @@ Apache License 2.0 - See [LICENSE](LICENSE)
 ---
 
 *Auto-published from research pipeline*
-*Last update: 2026-01-29*
+*Last update: 2026-01-30*
 *Documents: 20 | Topics: 8 | Python Packages: oni-framework v0.2.0, oni-tara v0.8.0*

@@ -30,6 +30,31 @@ The ONI Framework is the culmination of that mindset—a living research effort 
 
 Our minds deserve the same security architecture we've built for our networks. This is that architecture.
 
+## The Vision
+
+In the 1970s, computer networks were fragmented — every manufacturer had its own proprietary system, and none of them could talk to each other. International teams spent 18 months debating how to organize network communication. Some proposed 5 layers, some 6, some 7. Charles Bachman provided the architectural vision that broke the deadlock: 7 layers, flexible enough to encompass every competing approach. That became the OSI model — the foundation the entire internet is built on.
+
+They didn't wait until networking was "figured out." They built the framework while the technology was still evolving, and it shaped everything that followed.
+
+The same pattern appears in chemistry. When Francis Venable published *The Development of the Periodic Law* in 1896, only about 78 elements were known. Noble gases hadn't been discovered yet. The book documents how the periodic table went through dozens of visual representations — circles, spirals, waves, towers — before arriving at the rectangular grid even children explore today. Mendeleev didn't just organize what was known — he left gaps for what wasn't. Those gaps predicted elements that were later discovered.
+
+ONI follows the same principle. There are unknowns in neuroscience today — and that frontier is being challenged every day. Like the OSI model and the periodic table, ONI is a living framework: organizing what we know, highlighting what we don't, evolving as discovery fills in the gaps. From these foundations: limitless possibilities — security integration, automated signal detection through TARA, and directions we haven't yet imagined.
+
+> *"The universe is change; our life is what our thoughts make it."*
+> — Marcus Aurelius, *Meditations* 4.3
+
+This is why I want to expand this work — collaborating with academics, researchers, and neuroscientists to refine the ONI layers and establish ethical guidelines for where technology should and shouldn't intervene, for medical and safety reasons. This is a conversation I cannot have alone.
+
+## Bigger Than Me
+
+What began as a solo project has grown into something far bigger than I ever imagined. I'm merely a small piece in the wonders that are larger — a calculated drop that creates forward momentum, a ripple that builds into a wave to shape the trajectory of tomorrow.
+
+All it takes is one small action to create a reaction.
+
+But there are no waves without the pool of knowledge — the researchers, neuroscientists, and engineers whose work makes the water deep enough to carry them. The wave is metaphorical: research with the brightest minds, pooled together to make tomorrow better, together today.
+
+Because only the most important things in life require the utmost thought, and *"our life is what our thoughts make it."*
+
 ---
 
 **Let's Make Tomorrow Better, Together Today.**
