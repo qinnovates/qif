@@ -2,7 +2,7 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 2.4
+**Version:** 2.5
 **Last Updated:** 2026-01-29
 **Status:** Active Development
 
@@ -247,11 +247,12 @@ The ONI Framework extends the classical OSI model with 7 additional layers for n
 
 ---
 
-## Visualizations
+## Visualizations & Documentation
 
 | Project | Description |
 |---------|-------------|
 | [Visualizations](../docs/visualizations/README.md) | Interactive web apps for ONI concepts (6 demos) |
+| [Documentation Hub](../docs/documentation/) | Complete documentation index — 50+ documents across 9 categories |
 
 ---
 
@@ -275,6 +276,13 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 ---
 
 ## Resources
+
+### Reference Documents
+
+| Document | Purpose |
+|----------|---------|
+| **[EXTERNAL_TOOLS.md](resources/EXTERNAL_TOOLS.md)** | **External Tools & Libraries** — BrainFlow, MNE-Python, MOABB, SciPy, hardware targets, and every dependency ONI uses |
+| **[TechDoc-Equations_Reference.md](publications/mathematical-foundations/TechDoc-Equations_Reference.md)** | **Equations catalog** — 14 equations from Maxwell to Cₛ(S), with status and physics chain |
 
 ### Templates
 
@@ -484,20 +492,23 @@ MAIN/
 │   └── visualizations/         # Interactive HTML demos (6 apps)
 │
 ├── publications/               # Research content
-│   ├── 0-oni-framework/
+│   ├── 0-oni-framework/        # Whitepaper + core framework docs
 │   ├── coherence-metric/
-│   ├── detection-theory/       # **NEW** — Detection algorithms, privacy-preserving ML
+│   ├── detection-theory/       # Detection algorithms, privacy-preserving ML
+│   ├── mathematical-foundations/  # Equations reference, audit, corrected physics
 │   ├── neural-firewall/
 │   ├── neural-ransomware/
 │   ├── quantum-encryption/
 │   └── scale-frequency/
 │
 └── resources/                  # Templates, pipeline, editor
+    ├── EXTERNAL_TOOLS.md       # External tools & libraries reference
     ├── agents/                 # PM Agent instructions
     ├── editor/                 # Editor Agent checks
     ├── images/                 # ONI diagrams and visualizations
     ├── templates/
-    └── pipeline/               # Research monitoring
+    ├── pipeline/               # Research monitoring
+    └── workflows/              # Research integration, Visualization as Code
 ```
 
 ---
@@ -506,10 +517,11 @@ MAIN/
 
 | Metric | Count |
 |--------|-------|
-| Total Topics | 7 |
-| Published Documents | 15 |
+| Total Topics | 8 |
+| Published Documents | 20 |
 | Blog Posts | 8 |
-| Technical Documents | 7 |
+| Technical Documents | 11 |
+| Whitepaper | 1 |
 | Python Packages | oni-framework v0.2.0, oni-tara v0.8.0 |
 | Unit Tests | 182 (77 + 105) |
 | CI/CD Workflows | 3 (tests, publish, security) |

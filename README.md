@@ -57,6 +57,8 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 | **[autodidact/](autodidact/)** | **Learn ONI** — educational ecosystem (ONI Academy, LearnViz, research notes) |
 | **[GLOSSARY.md](GLOSSARY.md)** | **Quick Summary** — auto-generated index with folder descriptions (AI-powered) |
 | **[Read the Whitepaper](https://qikevinl.github.io/ONI/whitepaper/)** | **Flagship document** — the complete ONI Framework overview with 8 figures |
+| **[External Tools & Libraries](MAIN/resources/EXTERNAL_TOOLS.md)** | **Tools catalog** — BrainFlow, MNE-Python, MOABB, SciPy, hardware targets |
+| **[Documentation Hub](https://qikevinl.github.io/ONI/documentation/)** | **Complete docs index** — 50+ documents organized into 9 categories |
 | **This README** | Public overview — key concepts, quick reference |
 
 > **GLOSSARY.md** is auto-generated when changes are pushed to `MAIN/` or `autodidact/`. Uses GitHub Models (GPT-4o-mini) to summarize the repository structure. Updates are submitted as PRs for review before merging.
@@ -321,15 +323,17 @@ ONI/
     │   └── visualizations/      # Interactive HTML demos (6 apps)
     │
     ├── publications/            # Research content
-    │   ├── 0-oni-framework/     # Base/foundational content
+    │   ├── 0-oni-framework/     # Base/foundational content + whitepaper
     │   ├── coherence-metric/
     │   ├── detection-theory/    # Detection algorithms, privacy-preserving ML
+    │   ├── mathematical-foundations/  # Equations reference, mathematical audit, corrected physics
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
     │   ├── quantum-encryption/
     │   └── scale-frequency/
     │
     └── resources/               # Infrastructure
+        ├── EXTERNAL_TOOLS.md    # External tools & libraries reference
         ├── brand/               # Brand configuration (CODEOWNERS protected)
         │   ├── brand.json       # Single source of truth for naming, versions
         │   └── sync_brand.py    # Syncs brand.json → README.md
@@ -779,4 +783,4 @@ Apache License 2.0 - See [LICENSE](LICENSE)
 
 *Auto-published from research pipeline*
 *Last update: 2026-01-29*
-*Documents: 21 | Topics: 8 | Python Packages: oni-framework v0.2.0, oni-tara v0.8.0*
+*Documents: 20 | Topics: 8 | Python Packages: oni-framework v0.2.0, oni-tara v0.8.0*
