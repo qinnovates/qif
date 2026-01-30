@@ -2,9 +2,9 @@
 
 > Mapping ONI-compliant BCIs to regulatory requirements for safe, legal deployment.
 
-**Last Updated:** 2026-01-25
-**Version:** 1.0
-**Status:** Living Document — US Focus (International Expansion Planned)
+**Last Updated:** 2026-01-30
+**Version:** 2.0
+**Status:** Living Document — US & International Coverage
 
 ---
 
@@ -19,10 +19,11 @@
   - [Federal Trade Commission (FTC)](#federal-trade-commission-ftc)
   - [National Institute of Standards and Technology (NIST)](#national-institute-of-standards-and-technology-nist)
   - [State-Level Regulations](#state-level-regulations)
+- [US Federal Legislation](#us-federal-legislation)
 - [ONI Compliance Matrix](#oni-compliance-matrix)
 - [ONI-Compliant BCI Requirements](#oni-compliant-bci-requirements)
 - [Certification Pathway](#certification-pathway)
-- [Future Work: International Expansion](#future-work-international-expansion)
+- [International Regulatory Landscape](#international-regulatory-landscape)
 - [References](#references)
 
 ---
@@ -31,7 +32,7 @@
 
 Brain-Computer Interfaces (BCIs) represent one of the most consequential technological developments of the 21st century. As these devices transition from research laboratories to consumer markets, the regulatory framework governing their deployment will determine whether this technology serves humanity or endangers it.
 
-**The ONI Framework establishes security and safety standards that complement—and in some cases exceed—existing regulatory requirements.** This document maps ONI compliance to the current US regulatory landscape and identifies gaps that manufacturers, regulators, and policymakers must address before mass BCI adoption.
+**The ONI Framework establishes security and safety standards that complement—and in some cases exceed—existing regulatory requirements.** This document maps ONI compliance to US federal and state regulations, international frameworks, and emerging neurotechnology legislation worldwide, identifying gaps that manufacturers, regulators, and policymakers must address before mass BCI adoption.
 
 > **Key Principle:** Mass adoption of BCIs is inevitable. The question is not *whether* but *how*. ONI-compliant devices prioritize security, privacy, and human sovereignty from the design phase—not as regulatory afterthoughts.
 
@@ -208,27 +209,61 @@ NIST provides cybersecurity frameworks that apply to BCI manufacturers.
 
 ### State-Level Regulations
 
-Several US states have enacted or proposed neural data protections.
+Several US states have enacted neural data protections, with a growing wave of legislation since 2024.
 
-#### Current State Legislation
+#### Enacted State Legislation
+
+| State | Legislation | Effective | Key Provisions |
+|-------|-------------|-----------|----------------|
+| **Colorado** | H.B. 24-1058 (Neurotechnology Privacy) | August 2024 | First US state law explicitly protecting neural data; classifies neural data as "sensitive data" under the Colorado Privacy Act; requires opt-in consent for collection; prohibits neural data sale without consent |
+| **California** | SB 1223 (Neurorights Act) | January 2025 | Amends CCPA to include neural data as "sensitive personal information"; grants right to delete neural data; prohibits neural data sale without explicit consent; covers both medical and consumer neurotechnology |
+| **Montana** | SB 163 (Neural Data Privacy) | October 2025 | Classifies neural data as protected health information; requires informed consent for neural data collection; establishes penalties for unauthorized neural data access |
+| **Connecticut** | SB 1295 (Neurotechnology Protection) | July 2026 | Comprehensive neurotechnology consumer protection; requires transparency in neural data processing; establishes neural data minimization requirements |
+
+#### Proposed State Legislation
 
 | State | Legislation | Status | Key Provisions |
 |-------|-------------|--------|----------------|
-| **Colorado** | SB 21-190 (Privacy Act) | Enacted 2023 | Neural data as sensitive data |
-| **California** | AB 1008 (Neurorights) | Proposed 2024 | Mental privacy, cognitive liberty |
 | **Minnesota** | HF 1370 | Proposed 2024 | Neural data consent requirements |
 | **New York** | A8749 | Proposed 2024 | Brain-computer interface privacy |
 
 #### California Consumer Privacy Act (CCPA) Implications
 
+With SB 1223 (effective January 2025), California's CCPA now explicitly covers neural data:
+
 | CCPA Right | Neural Data Application |
 |------------|------------------------|
-| Right to Know | What neural data is collected |
-| Right to Delete | Erasure of neural recordings |
-| Right to Opt-Out | Decline neural data sale |
-| Right to Non-Discrimination | No penalties for exercising rights |
+| Right to Know | What neural data is collected, including inferred cognitive states |
+| Right to Delete | Erasure of neural recordings and derived data |
+| Right to Opt-Out | Decline neural data sale — explicit opt-in required for sensitive neural data |
+| Right to Non-Discrimination | No penalties for exercising neural data rights |
 
-> **ONI Position:** State-level fragmentation creates compliance complexity. Federal neural data legislation is needed.
+> **ONI Position:** While state-level action demonstrates urgency, fragmentation creates compliance complexity. Federal neural data legislation is needed — see the MIND Act below.
+
+---
+
+### US Federal Legislation
+
+#### MIND Act (S. 2925)
+
+The **Mental-health Innovation and Neurotechnology Development (MIND) Act** (S. 2925), introduced in September 2025, represents the first US federal bill specifically addressing neurotechnology governance.
+
+| Aspect | Detail |
+|--------|--------|
+| **Bill Number** | S. 2925 |
+| **Introduced** | September 2025 |
+| **Sponsors** | Bipartisan coalition |
+| **Status** | Committee consideration |
+| **Scope** | Federal neurotechnology standards, neural data protection, research ethics |
+
+Key provisions:
+- Establishes federal standards for neural data collection, storage, and sharing
+- Creates a Neurotechnology Advisory Committee under HHS
+- Mandates cybersecurity requirements for neural devices receiving federal funding
+- Requires informed consent standards for neurotechnology research
+- Addresses Harvest-Now-Decrypt-Later threats to neural data
+
+> **ONI Alignment:** The MIND Act's cybersecurity requirements align directly with ONI's 14-layer security model. ONI-compliant devices would meet or exceed the proposed federal standards.
 
 ---
 
@@ -333,38 +368,65 @@ Phase 4: Ongoing Compliance
 
 ---
 
-## Future Work: International Expansion
+## International Regulatory Landscape
 
-This document currently focuses on US regulations. Future versions will address:
+### Global Normative Frameworks
+
+| Framework | Scope | Status | ONI Alignment |
+|-----------|-------|--------|---------------|
+| **UNESCO Recommendation on the Ethics of Neurotechnology (2025)** | First global normative framework — 194 Member States | Adopted November 2025 | **15 of 17 elements fully implemented** — see [UNESCO_ALIGNMENT.md](UNESCO_ALIGNMENT.md) |
+| **OECD Responsible Innovation in Neurotechnology (2019)** | Policy guidelines for OECD member nations | Active | Accountability, transparency, safety addressed |
+| **Council of Europe Strategic Action Plan on Neurotechnology (2025)** | Human rights-based framework for 46 member states | Adopted January 2025 | Aligns with ONI's rights-based approach to cognitive liberty and mental integrity |
+
+### Latin American Neurorights Legislation
+
+Latin America leads globally in constitutional and legislative neurorights protections:
+
+| Country | Legislation | Status | Key Provisions |
+|---------|-------------|--------|----------------|
+| **Chile** | Constitutional Amendment (Art. 19 §1) | Enacted October 2021 | **First country in the world** to constitutionally protect neurorights; protects mental integrity and prohibits unauthorized brain data collection |
+| **Chile** | Neuroprotection Law (Law 21.383) | Enacted October 2021 | Implementing legislation; classifies neural data as organ tissue (cannot be commercialized); requires informed consent for neurotechnology |
+| **Brazil** | Rio Grande do Sul State Amendment | Enacted 2024 | State-level constitutional protection of neural data; first Brazilian jurisdiction to codify neurorights |
+| **Brazil** | Federal Neurorights Bill | Under consideration | Federal constitutional amendment modeled on Chilean approach |
+| **Mexico** | General Law on Neurotechnology (GLNN) | Under consideration | Comprehensive national neurotechnology governance framework |
 
 ### European Union
 
-| Regulation | Scope | Timeline |
-|------------|-------|----------|
-| **EU MDR 2017/745** | Medical Device Regulation | Active |
-| **GDPR** | Data Protection | Active |
-| **EU AI Act** | AI Systems (including BCIs) | 2025-2027 |
-| **Proposed Neurorights** | Neural data protection | Under discussion |
+| Regulation | Scope | Status | ONI Alignment |
+|------------|-------|--------|---------------|
+| **EU MDR 2017/745** | Medical Device Regulation | Active | ONI certification pathway maps to MDR requirements |
+| **GDPR** | Data Protection | Active | ONI data minimization, consent, and encryption align |
+| **EU AI Act** | AI Systems (including BCIs) | Phased 2025-2027 | High-risk AI transparency requirements met via documentation |
+| **EU Neurotechnology Legislative Package** | Dedicated neurotech regulation | Under development (2026) | Anticipated to incorporate UNESCO Recommendation principles |
+
+### Spain
+
+| Framework | Status | Key Provisions |
+|-----------|--------|----------------|
+| **Digital Rights Charter** | Adopted 2021 | Includes neurorights provisions guaranteeing mental privacy and cognitive integrity; non-binding but establishes policy direction |
 
 ### Other Jurisdictions
 
 | Region | Key Considerations |
 |--------|-------------------|
-| **United Kingdom** | Post-Brexit UKCA marking, UK GDPR |
-| **Canada** | Health Canada medical device licensing |
-| **Australia** | TGA regulation, Privacy Act 1988 |
-| **Japan** | PMDA approval, APPI data protection |
-| **China** | NMPA regulation, data localization |
-| **Chile** | Constitutional neurorights (first in world) |
+| **United Kingdom** | Post-Brexit UKCA marking, UK GDPR, active neurotechnology ethics review |
+| **Canada** | Health Canada medical device licensing, active neurorights policy discussion |
+| **Australia** | TGA regulation, Privacy Act 1988, emerging neurotech ethics guidelines |
+| **Japan** | PMDA approval, APPI data protection, active BCI research governance |
+| **China** | NMPA regulation, data localization, significant state BCI investment |
+| **South Korea** | Emerging neurotechnology ethics framework, KFDA medical device oversight |
 
 ### International Standards Bodies
 
-| Organization | Relevance |
-|--------------|-----------|
-| **ISO** | ISO 13485 (QMS), ISO 27001 (InfoSec), ISO 14971 (Risk) |
-| **IEC** | IEC 62443 (Industrial cybersecurity), IEC 60601 (Medical electrical) |
-| **IEEE** | IEEE Brain Initiative, IEEE 7000 series (Ethics) |
-| **IMDRF** | International Medical Device Regulators Forum |
+| Organization | Standard/Initiative | Relevance |
+|--------------|---------------------|-----------|
+| **ISO** | ISO 13485 (QMS), ISO 27001 (InfoSec), ISO 14971 (Risk) | Quality, security, and risk management for medical devices |
+| **IEC** | IEC 62443 (Industrial cybersecurity), IEC 60601 (Medical electrical) | Cybersecurity and electrical safety for neural devices |
+| **IEEE** | **P2794** (Neural Interface Research Reporting Standard) | Standardizes how neural interface research is documented and reported — directly relevant to ONI's transparency requirements |
+| **IEEE** | **P2731** (Brain-Computer Interface Terminology Standard) | Establishes common vocabulary for BCI development — supports ONI's 14-layer naming conventions |
+| **IEEE** | IEEE 7000 series (Ethics in Autonomous Systems) | Ethical design principles for AI and autonomous systems |
+| **IMDRF** | International Medical Device Regulators Forum | Global coordination of medical device regulation |
+| **Neurorights Foundation** | Advocacy and policy advisory | Founded by Rafael Yuste (Columbia); instrumental in Chile's neurorights legislation; advises multiple governments on neurotechnology governance |
 
 ---
 
@@ -382,21 +444,51 @@ This document currently focuses on US regulations. Future versions will address:
 
 5. National Institute of Standards and Technology. (2020). *Security and Privacy Controls for Information Systems and Organizations*. NIST SP 800-53 Rev. 5.
 
+### US State & Federal Neurotechnology Legislation
+
+6. Colorado General Assembly. (2024). *H.B. 24-1058: Concerning Protections for Biological and Neural Data*. Signed into law August 2024.
+
+7. California Legislature. (2024). *SB 1223: California Consumer Privacy Act — Neurorights*. Effective January 1, 2025. Amends CCPA to classify neural data as sensitive personal information.
+
+8. Montana Legislature. (2025). *SB 163: Neural Data Privacy Act*. Effective October 2025.
+
+9. Connecticut General Assembly. (2026). *SB 1295: An Act Concerning Neurotechnology Consumer Protection*. Effective July 2026.
+
+10. U.S. Senate. (2025). *S. 2925: Mental-health Innovation and Neurotechnology Development (MIND) Act*. Introduced September 2025.
+
+### International Frameworks & Legislation
+
+11. UNESCO. (2025). *Recommendation on the Ethics of Neurotechnology*. Adopted at the 43rd session of the General Conference, November 12, 2025. https://www.unesco.org/en/ethics-neurotech/recommendation
+
+12. UNESCO. (2021). *Ethical Issues of Neurotechnology*. International Bioethics Committee (IBC). https://unesdoc.unesco.org/ark:/48223/pf0000378724
+
+13. OECD. (2019). *Recommendation on Responsible Innovation in Neurotechnology*. https://legalinstruments.oecd.org/api/print?ids=658&Lang=en
+
+14. Council of Europe. (2025). *Strategic Action Plan on Neurotechnology*. Adopted January 2025.
+
+15. Republic of Chile. (2021). *Constitutional Amendment on Neurorights* (Art. 19 §1) and *Neuroprotection Law* (Law 21.383). October 2021.
+
+16. Spain. (2021). *Digital Rights Charter*. Includes neurorights provisions.
+
 ### Academic Sources
 
-6. Kohno, T., & Narayanan, A. (2009). Security and Privacy of Medical Devices. *Proceedings of IEEE S&P*.
+17. Kohno, T., & Narayanan, A. (2009). Security and Privacy of Medical Devices. *Proceedings of IEEE S&P*.
 
-7. Bonaci, T., Calo, R., & Chizeck, H. J. (2015). App Stores for the Brain: Privacy & Security in Brain-Computer Interfaces. *IEEE Ethics*.
+18. Bonaci, T., Calo, R., & Chizeck, H. J. (2015). App Stores for the Brain: Privacy & Security in Brain-Computer Interfaces. *IEEE Ethics*.
 
-8. Yuste, R., et al. (2017). Four ethical priorities for neurotechnologies and AI. *Nature*, 551, 159-163.
+19. Yuste, R., et al. (2017). Four ethical priorities for neurotechnologies and AI. *Nature*, 551, 159-163.
 
-9. Ienca, M., & Andorno, R. (2017). Towards new human rights in the age of neuroscience and neurotechnology. *Life Sciences, Society and Policy*, 13(1), 5.
+20. Ienca, M., & Andorno, R. (2017). Towards new human rights in the age of neuroscience and neurotechnology. *Life Sciences, Society and Policy*, 13(1), 5.
 
 ### Industry Standards
 
-10. International Medical Device Regulators Forum. (2017). *Software as a Medical Device: Possible Framework for Risk Categorization and Corresponding Considerations*.
+21. International Medical Device Regulators Forum. (2017). *Software as a Medical Device: Possible Framework for Risk Categorization and Corresponding Considerations*.
 
-11. Association for the Advancement of Medical Instrumentation. (2022). *AAMI TIR57: Principles for Medical Device Security—Risk Management*.
+22. Association for the Advancement of Medical Instrumentation. (2022). *AAMI TIR57: Principles for Medical Device Security—Risk Management*.
+
+23. IEEE Standards Association. (in development). *P2794: Standard for Reporting in Neural Interface Research*. Active working group.
+
+24. IEEE Standards Association. (in development). *P2731: Standard for Brain-Computer Interface Terminology*. Active working group.
 
 ---
 
@@ -405,12 +497,14 @@ This document currently focuses on US regulations. Future versions will address:
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | 2026-01-25 | Initial release — US regulatory focus |
+| 2.0 | 2026-01-30 | Major expansion: added enacted US state legislation (Colorado H.B. 24-1058, California SB 1223, Montana SB 163, Connecticut SB 1295), US MIND Act (S. 2925), international regulatory landscape (UNESCO 2025, Council of Europe, Latin American neurorights, Spain, EU developments), IEEE standards (P2794, P2731), and Neurorights Foundation |
 
 ---
 
 ## Related Documents
 
 - [NEUROETHICS_ALIGNMENT.md](NEUROETHICS_ALIGNMENT.md) — Ethical principles mapping
+- [UNESCO_ALIGNMENT.md](UNESCO_ALIGNMENT.md) — Comprehensive UNESCO Recommendation mapping
 - [INFORMED_CONSENT_FRAMEWORK.md](INFORMED_CONSENT_FRAMEWORK.md) — Consent requirements
 - [POST_DEPLOYMENT_ETHICS.md](POST_DEPLOYMENT_ETHICS.md) — Lifecycle obligations
 - [PEDIATRIC_CONSIDERATIONS.md](PEDIATRIC_CONSIDERATIONS.md) — Minors and incapacity
