@@ -24,20 +24,38 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 24px;
             z-index: 101;
-            background: linear-gradient(90deg, #58a6ff 0%, #f0883e 50%, #3fb950 100%);
-            opacity: 0.5;
+            background: linear-gradient(180deg, rgba(13, 17, 23, 0.7) 0%, transparent 100%);
             cursor: pointer;
-            transition: opacity 0.2s, height 0.2s;
-        }
-        #header-reveal:hover {
-            opacity: 1;
-            height: 6px;
-        }
-        #header-reveal.header-visible {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
             opacity: 0;
             pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        #header-reveal.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #header-reveal .reveal-tab {
+            margin-top: 0;
+            padding: 2px 16px 4px;
+            background: rgba(33, 38, 45, 0.85);
+            border: 1px solid #30363d;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            font-size: 10px;
+            color: #8b949e;
+            letter-spacing: 0.06em;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: color 0.2s, background 0.2s;
+        }
+        #header-reveal:hover .reveal-tab {
+            color: #c9d1d9;
+            background: rgba(33, 38, 45, 0.95);
         }
 
         /* Header */
@@ -1015,7 +1033,7 @@
         /* Scenario Bar */
         #scenario-bar {
             position: fixed;
-            top: 8px;
+            top: 80px;
             transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             left: 0;
             right: 0;
@@ -1226,7 +1244,9 @@
     </div>
 
     <!-- Header reveal bar -->
-    <div id="header-reveal" onclick="showHeader()"></div>
+    <div id="header-reveal" onclick="showHeader()">
+        <span class="reveal-tab">&#9662; Menu</span>
+    </div>
 
     <!-- Header -->
     <header id="header">
@@ -3470,34 +3490,34 @@
     (function() {
         var header = document.getElementById('header');
         var revealBar = document.getElementById('header-reveal');
+        var scenarioBar = document.getElementById('scenario-bar');
         var hideTimer = null;
         var headerVisible = true;
-
-        var scenarioBar = document.getElementById('scenario-bar');
+        var active = false; // only start auto-hiding after a view is launched
 
         function collapseHeader() {
-            if (!headerVisible) return;
-            // Don't hide on landing screen
+            if (!headerVisible || !active) return;
             if (document.body.classList.contains('view-landing')) return;
             headerVisible = false;
             header.classList.add('header-collapsed');
-            revealBar.classList.remove('header-visible');
+            revealBar.classList.add('visible');
             if (scenarioBar) scenarioBar.style.top = '8px';
         }
 
         function showHeader() {
             headerVisible = true;
             header.classList.remove('header-collapsed');
-            revealBar.classList.add('header-visible');
-            // Push scenario bar below header
-            if (scenarioBar) scenarioBar.style.top = header.offsetHeight + 'px';
+            revealBar.classList.remove('visible');
+            if (active && scenarioBar) scenarioBar.style.top = header.offsetHeight + 'px';
             resetHideTimer();
         }
         window.showHeader = showHeader;
 
         function resetHideTimer() {
             clearTimeout(hideTimer);
-            hideTimer = setTimeout(collapseHeader, 3000);
+            if (active) {
+                hideTimer = setTimeout(collapseHeader, 4000);
+            }
         }
 
         // Hover on header keeps it open
@@ -3516,34 +3536,23 @@
 
         // Moving mouse near top of screen shows header
         document.addEventListener('mousemove', function(e) {
-            if (e.clientY < 8 && !headerVisible) {
+            if (e.clientY < 12 && !headerVisible && active) {
                 showHeader();
             }
         });
 
-        // Collapse header instantly (no animation) when a view is launched
-        function collapseInstant() {
-            headerVisible = false;
-            header.style.transition = 'none';
-            header.classList.add('header-collapsed');
-            revealBar.classList.remove('header-visible');
-            // Re-enable transition after a frame
-            requestAnimationFrame(function() {
-                requestAnimationFrame(function() {
-                    header.style.transition = '';
-                });
-            });
-        }
-
+        // Header starts visible when a view is launched, then auto-hides after 4s
         var origLaunchView = window.launchView;
         window.launchView = function(view) {
             origLaunchView(view);
-            collapseInstant();
+            active = true;
+            showHeader();
         };
         var origLaunchScenario = window.launchScenario;
         window.launchScenario = function() {
             origLaunchScenario();
-            collapseInstant();
+            active = true;
+            showHeader();
         };
     })();
     </script>
