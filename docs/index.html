@@ -1976,6 +1976,86 @@
                 shellUniforms.push(u);
             });
 
+            // Laser-etched frosted glass labels for each layer disc
+            var labelMeshes = [];
+            var labelNames = {
+                L1:'Physical Carrier', L2:'Signal Processing', L3:'Protocol',
+                L4:'Transport', L5:'Session', L6:'Presentation', L7:'Application Interface',
+                L8:'Neural Gateway',
+                L9:'Signal Processing', L10:'Neural Protocol', L11:'Cognitive Transport',
+                L12:'Cognitive Session', L13:'Semantic Layer', L14:'Identity Layer'
+            };
+            var labelDomains = {
+                silicon:'OSI', gateway:'Bridge', biology:'Neural'
+            };
+            activeLayers.forEach(function(layer, i) {
+                var canvas = document.createElement('canvas');
+                canvas.width = 1024; canvas.height = 1024;
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, 1024, 1024);
+
+                var name = labelNames[layer.id] || layer.id;
+                var domain = labelDomains[layer.zone] || '';
+                var line1 = layer.id + '  ·  ' + name;
+                var line2 = domain;
+
+                // Frosted etch: multiple blur passes for soft glow
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                // Pass 1: wide glow (frosted halo)
+                ctx.shadowColor = 'rgba(255,255,255,0.3)';
+                ctx.shadowBlur = 30;
+                ctx.fillStyle = 'rgba(255,255,255,0.12)';
+                ctx.font = '600 64px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                ctx.fillText(line1, 512, 460);
+                ctx.font = '400 40px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                ctx.fillText(line2, 512, 540);
+
+                // Pass 2: medium glow
+                ctx.shadowBlur = 12;
+                ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                ctx.font = '600 64px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                ctx.fillText(line1, 512, 460);
+                ctx.font = '400 40px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                ctx.fillText(line2, 512, 540);
+
+                // Pass 3: sharp etched text
+                ctx.shadowColor = 'rgba(255,255,255,0.5)';
+                ctx.shadowBlur = 3;
+                ctx.fillStyle = 'rgba(255,255,255,0.45)';
+                ctx.font = '600 64px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                ctx.fillText(line1, 512, 460);
+                ctx.font = '400 40px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                ctx.fillText(line2, 512, 540);
+
+                // Thin horizontal etch line
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = 'rgba(255,255,255,0.2)';
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(340, 500);
+                ctx.lineTo(684, 500);
+                ctx.stroke();
+
+                var texture = new THREE.CanvasTexture(canvas);
+                texture.needsUpdate = true;
+
+                var labelGeo = new THREE.PlaneGeometry(2, 2);
+                var labelMat = new THREE.MeshBasicMaterial({
+                    map: texture,
+                    transparent: true,
+                    opacity: 0,
+                    depthWrite: false,
+                    side: THREE.DoubleSide,
+                });
+                var lm = new THREE.Mesh(labelGeo, labelMat);
+                lm.renderOrder = 10;
+                parallaxGroup.add(lm);
+                labelMeshes.push(lm);
+            });
+
             // Wireframe overlays
             var wireIndices = isMobile ? [0,3,5,7] : [0,3,6,7,10,13];
             var wireGeo = new THREE.IcosahedronGeometry(1, 2);
@@ -2380,16 +2460,28 @@
                 for (var fi = 0; fi < shellFaceCamera.length; fi++) {
                     if (shellFaceCamera[fi] > maxFace) maxFace = shellFaceCamera[fi];
                 }
-                var pullDampen = 1 - maxFace * 0.95; // smooth dampening as layer pulls out
+                var pullDampen = 1 - maxFace; // full stop rotation when layer is pulled out
                 var rotSpeed = 0.002 * (1 - effectiveMorph * 0.6) * pullDampen;
                 autoRotateGroup.rotation.y += rotSpeed;
                 autoRotateGroup.rotation.x = Math.sin(t*0.15)*0.08 * (1 - effectiveMorph * 0.8) * pullDampen;
+
+                // When layer is pulled out, lerp group rotations toward zero to kill drift
+                if (maxFace > 0.3) {
+                    var resetLerp = maxFace * 0.08;
+                    autoRotateGroup.rotation.y *= (1 - resetLerp);
+                    autoRotateGroup.rotation.x *= (1 - resetLerp);
+                }
 
                 // Mouse parallax (near-zero when layer pulled out)
                 if (!isMobile) {
                     var parallaxStr = (1 - effectiveMorph * 0.7) * pullDampen;
                     parallaxGroup.rotation.x += (mouseY*0.2*parallaxStr - parallaxGroup.rotation.x)*0.04;
                     parallaxGroup.rotation.y += (mouseX*0.3*parallaxStr - parallaxGroup.rotation.y)*0.04;
+                    // Also reset parallax rotation when pulled out
+                    if (maxFace > 0.3) {
+                        parallaxGroup.rotation.x *= (1 - maxFace * 0.1);
+                        parallaxGroup.rotation.y *= (1 - maxFace * 0.1);
+                    }
                 }
 
                 // Brain pulse — dissolve early so it's gone before layers separate
@@ -2439,13 +2531,21 @@
                     var scaleLerp = (scaleTarget > shellScaleMultipliers[i]) ? 0.1 : 0.12;
                     shellScaleMultipliers[i] += (scaleTarget - shellScaleMultipliers[i]) * scaleLerp;
 
-                    // Lerp Z pull-out (smooth out, snappy return)
-                    var zLerp = (targetZ > shellZOffsets[i]) ? 0.07 : 0.11;
+                    // Phase 1: Z pull-out (fastest — starts immediately)
+                    var zLerp = (targetZ > shellZOffsets[i]) ? 0.12 : 0.14;
                     shellZOffsets[i] += (targetZ - shellZOffsets[i]) * zLerp;
 
-                    // Lerp face-camera (slow engage, quick disengage)
-                    var faceLerp = (targetFace > shellFaceCamera[i]) ? 0.05 : 0.09;
-                    shellFaceCamera[i] += (targetFace - shellFaceCamera[i]) * faceLerp;
+                    // How far along is the Z pull-out? (0→1)
+                    var zProgress = (targetZ > 0.1) ? Math.min(1, shellZOffsets[i] / targetZ) : (1 - Math.min(1, shellZOffsets[i] / 0.5));
+
+                    // Phase 2: Y centering — gates on Z being >40% done
+                    var yGate = Math.max(0, (zProgress - 0.4) / 0.6);
+
+                    // Phase 3: Face-camera tilt — gates on Z being >50% done
+                    var faceGate = Math.max(0, (zProgress - 0.5) / 0.5);
+                    var gatedFace = targetFace * faceGate;
+                    var faceLerp = (gatedFace > shellFaceCamera[i]) ? 0.12 : 0.15;
+                    shellFaceCamera[i] += (gatedFace - shellFaceCamera[i]) * faceLerp;
 
                     if (mp < 0.01) {
                         // Pure sphere mode
@@ -2455,11 +2555,19 @@
                     } else {
                         // Morphing: flatten Y, separate positions
                         var sm = shellScaleMultipliers[i];
-                        var scaleXZ = origR * breathing * sm;
+                        var stackScaleXZ = origR * breathing * sm;
 
-                        // Disc gets slightly thicker when pulled out (Jenga block depth)
-                        var pullThick = 1 + shellFaceCamera[i] * 2.5;
-                        var scaleY = origR * breathing * (1 - mp * 0.92) * pullThick;
+                        // Uniform pull-out size: 50% of screen height
+                        var camDist = camera.position.z - shellZOffsets[i];
+                        var visibleH = 2 * camDist * Math.tan(Math.PI * 20 / 180);
+                        var pullOutSize = visibleH * 0.25; // radius = half of 50% screen
+                        var faceAmt = shellFaceCamera[i];
+                        var scaleXZ = stackScaleXZ + (pullOutSize - stackScaleXZ) * faceAmt;
+
+                        // ScaleY: thin disc in stack → full circle when pulled out
+                        var discScaleY = origR * breathing * (1 - mp * 0.92); // thin disc (~8%)
+                        var circleScaleY = scaleXZ; // match XZ for perfect circle
+                        var scaleY = discScaleY + (circleScaleY - discScaleY) * faceAmt;
 
                         // Stack position: evenly distribute layers vertically
                         var totalLayers = activeLayers.length;
@@ -2478,19 +2586,19 @@
 
                         var baseY = stackY * mp;
 
-                        // Y centering: lerp active layer toward camera center (Y=0)
-                        var targetYCenter = (i === activeLayerIndex && mp > 0.5) ? -baseY * 0.85 : 0;
-                        shellYOffsets[i] += (targetYCenter - shellYOffsets[i]) * 0.07;
+                        // Y centering: snap disc to exact screen center (match actual camera Y)
+                        var targetYCenter = (i === activeLayerIndex && mp > 0.5) ? (camera.position.y - baseY) : 0;
+                        shellYOffsets[i] += (targetYCenter - shellYOffsets[i]) * 0.2;
 
                         mesh.scale.set(scaleXZ, scaleY, scaleXZ);
                         mesh.position.y = baseY + shellYOffsets[i];
                         mesh.position.z = shellZOffsets[i];
 
-                        // Face camera: counter-rotate against parent group rotations
-                        var faceAmt = shellFaceCamera[i];
+                        // Face camera: tilt 90° on X to show circle face + counter-rotate
                         if (faceAmt > 0.01) {
+                            var tiltX = Math.PI * 0.5 * faceAmt; // 0→90° tilt to face camera
+                            mesh.rotation.x = tiltX + (-autoRotateGroup.rotation.x - parallaxGroup.rotation.x) * faceAmt;
                             mesh.rotation.y = (-autoRotateGroup.rotation.y - parallaxGroup.rotation.y) * faceAmt;
-                            mesh.rotation.x = (-autoRotateGroup.rotation.x - parallaxGroup.rotation.x) * faceAmt;
                         } else {
                             mesh.rotation.set(0, 0, 0);
                         }
@@ -2504,6 +2612,28 @@
                         var glowLerp = (glowTarget > shellUniforms[i].uActiveGlow.value) ? 0.03 : 0.06;
                         shellUniforms[i].uActiveGlow.value +=
                             (glowTarget - shellUniforms[i].uActiveGlow.value) * glowLerp;
+
+                        // Position laser-etched label to match disc
+                        var lm = labelMeshes[i];
+                        lm.position.x = mesh.position.x;
+                        lm.position.y = mesh.position.y + 0.03;
+                        lm.position.z = mesh.position.z;
+                        // Offset -PI/2 on X so plane lies in XZ (flat on disc surface)
+                        lm.rotation.x = mesh.rotation.x - Math.PI * 0.5;
+                        lm.rotation.y = mesh.rotation.y;
+                        lm.rotation.z = mesh.rotation.z;
+                        // Scale label to fit inside disc
+                        var labelScale = scaleXZ * 0.82;
+                        lm.scale.set(labelScale, labelScale, 1);
+                        // Fade in with cubic ease — text appears after disc mostly faces camera
+                        var labelOpacity = Math.pow(Math.max(0, faceAmt - 0.3) / 0.7, 2.5) * 0.85;
+                        lm.material.opacity = labelOpacity;
+                    }
+
+                    // Hide labels in sphere mode
+                    if (mp < 0.01) {
+                        var lm = labelMeshes[i];
+                        lm.material.opacity = 0;
                     }
                 });
 
