@@ -229,19 +229,26 @@ ONI builds directly on pioneering research from leading institutions in BCI secu
 
 🎯 **[Explore Interactive Gap Analysis →](https://qikevinl.github.io/ONI/visualizations/03-academic-alignment.html)**
 
-### TARA - Neural Security Research Platform
+### TARA — Adaptive Neural Threat Detection
 
 [![PyPI version](https://badge.fury.io/py/oni-tara.svg)](https://badge.fury.io/py/oni-tara)
 [![Tests](https://github.com/qikevinl/ONI/actions/workflows/tests.yml/badge.svg)](https://github.com/qikevinl/ONI/actions/workflows/tests.yml)
 [![Security](https://github.com/qikevinl/ONI/actions/workflows/security.yml/badge.svg)](https://github.com/qikevinl/ONI/actions/workflows/security.yml)
 
-**TARA** (Telemetry Analysis & Response Automation) is a research and development platform for BCI security analysis — neural network simulation, attack pattern testing, and real-time monitoring aligned with the ONI 14-layer model.
+**TARA** (Telemetry Analysis & Response Automation) learns an individual's unique neural baseline — then detects, in real time, when something deviates from it. Using entropy-based coherence scoring (Cₛ), ML-trained behavioral models, and a 7-layer neural firewall (L8–L14), TARA can identify signal injection, neural ransomware, cognitive eavesdropping, and other BCI attack patterns *before they reach the brain*.
 
-> **Status: Research tool — not production software.** TARA is intended for security researchers exploring BCI threat models, not for use in clinical or production BCI systems.
+**Core capabilities:**
+- **Personalized baselining** — trains on an individual's neural patterns to distinguish normal variance from anomalous signals
+- **Real-time anomaly detection** — NSAM (Neural Signal Assurance Monitoring) continuously validates signal integrity across all ONI layers
+- **Attack simulation & testing** — comprehensive attack library (ransomware, DoS, gateway bypass) tested against real EEG data via MOABB
+- **7-layer neural firewall** — bidirectional signal validation at the silicon-biology boundary with stimulation safety bounds
+- **Neurosecurity integration** — implements Kohno (2009) threat taxonomy and Bonaci et al. (2015) BCI privacy filtering
+
+> **Pre-clinical research tool.** TARA demonstrates that principled neural security is technically achievable. It is designed for security researchers and academic collaboration, not yet deployed in clinical BCI systems.
 
 ```bash
 pip install oni-tara[full]  # Full installation with UI and simulation
-tara ui                     # Launch the research dashboard
+tara ui                     # Launch the dashboard
 ```
 
 **Full documentation:** [MAIN/tara-nsec-platform/README.md](MAIN/tara-nsec-platform/README.md)
