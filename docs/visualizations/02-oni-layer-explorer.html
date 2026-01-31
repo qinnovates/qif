@@ -537,10 +537,9 @@
                 biologicalExample: "Like how nerve fibers (axons) physically carry electrical impulses. The myelin sheath is nature's 'shielding' that prevents signal crosstalk — BCIs need equivalent RF isolation.",
                 networkExample: "Ethernet cables, WiFi radio waves, fiber optic light pulses. The physical substrate that actually moves the bits — copper wire or electromagnetic waves.",
                 attacks: [
-                    "RF jamming / denial of service",
-                    "BlueBorne-style Bluetooth exploits",
-                    "Side-channel attacks via EM emissions",
-                    "Power analysis attacks on implant"
+                    { id: 'T1.1', name: 'EM Side-Channel Capture', tactic: 'Reconnaissance' },
+                    { id: 'T1.2', name: 'Signal Injection', tactic: 'Initial Access' },
+                    { id: 'T1.3', name: 'Hardware Implant', tactic: 'Persistence' },
                 ],
                 defenses: [
                     "Frequency hopping spread spectrum (FHSS)",
@@ -562,10 +561,8 @@
                 biologicalExample: "Like the synapse between neurons. Each synapse reliably transfers a signal packet (neurotransmitters) from one neuron to the next, with mechanisms to prevent overflow (reuptake).",
                 networkExample: "Ethernet frames with MAC addresses. WiFi 802.11 frame headers. The 'envelope' that wraps your data with source/destination addresses and error-checking codes.",
                 attacks: [
-                    "MAC spoofing to impersonate legitimate device",
-                    "Frame injection with malicious payloads",
-                    "Replay attacks with captured valid frames",
-                    "Desynchronization to corrupt data streams"
+                    { id: 'T2.1', name: 'MAC Spoofing', tactic: 'Initial Access' },
+                    { id: 'T2.2', name: 'Frame Injection', tactic: 'Execution' },
                 ],
                 defenses: [
                     "Cryptographic frame authentication (HMAC)",
@@ -587,10 +584,8 @@
                 biologicalExample: "Like the brain's connectome — the map of all neural pathways. Signals are routed from visual cortex to motor cortex via specific white matter tracts, just as packets route via specific network paths.",
                 networkExample: "IP addresses (192.168.1.100), routers that forward packets, traceroute showing the path. The GPS of the internet that gets packets to the right destination across networks.",
                 attacks: [
-                    "IP spoofing to mask attack origin",
-                    "Route hijacking (BGP attacks)",
-                    "ICMP flood attacks for DoS",
-                    "Man-in-the-middle via ARP poisoning"
+                    { id: 'T3.1', name: 'Route Hijacking', tactic: 'Collection' },
+                    { id: 'T3.2', name: 'IP Spoofing', tactic: 'Defense Evasion' },
                 ],
                 defenses: [
                     "IPsec for authenticated, encrypted packets",
@@ -612,10 +607,8 @@
                 biologicalExample: "Like the brain's error-correction mechanisms. When a motor command doesn't produce expected feedback, the cerebellum adjusts and 'retransmits' — similar to TCP's acknowledgment and retry.",
                 networkExample: "TCP port 443 (HTTPS), UDP port 53 (DNS). Ports are like apartment numbers in a building — they route traffic to the right application on a device.",
                 attacks: [
-                    "SYN flood attacks exhaust connection resources",
-                    "Session hijacking via sequence prediction",
-                    "Port scanning to discover services",
-                    "TCP reset attacks to terminate connections"
+                    { id: 'T4.1', name: 'Neural DoS', tactic: 'Impact' },
+                    { id: 'T4.2', name: 'Stream Injection', tactic: 'Execution' },
                 ],
                 defenses: [
                     "TLS 1.3 encryption for all BCI traffic",
@@ -637,10 +630,8 @@
                 biologicalExample: "Like the brain's attention/vigilance systems. The reticular activating system maintains 'sessions' of consciousness, suspending them during sleep and resuming on waking.",
                 networkExample: "Login sessions on websites, SSH connections, VPN tunnels. When you 'stay logged in' to a site, that's session management keeping your authenticated state.",
                 attacks: [
-                    "Session fixation (forcing known session ID)",
-                    "Session token theft via XSS or sniffing",
-                    "Replay attacks using captured tokens",
-                    "Session timeout manipulation"
+                    { id: 'T5.1', name: 'BCI Session Hijacking', tactic: 'Credential Access' },
+                    { id: 'T5.2', name: 'Neural Replay Attack', tactic: 'Initial Access' },
                 ],
                 defenses: [
                     "Cryptographically random session tokens",
@@ -662,10 +653,8 @@
                 biologicalExample: "Like sensory processing areas. The visual cortex doesn't receive raw photon data — it receives encoded signals from the retina. The brain has its own 'presentation layer' converting raw stimuli to usable representations.",
                 networkExample: "HTTPS encryption (TLS), JPEG image compression, UTF-8 text encoding. The layer that makes data readable by converting between formats and protecting content.",
                 attacks: [
-                    "Padding oracle attacks on encryption",
-                    "Encoding exploits (buffer overflows)",
-                    "Protocol downgrade attacks (force weak crypto)",
-                    "Compression side-channel attacks (CRIME/BREACH)"
+                    { id: 'T6.1', name: 'Encryption Downgrade', tactic: 'Defense Evasion' },
+                    { id: 'T6.2', name: 'Neural Format Exploit', tactic: 'Execution' },
                 ],
                 defenses: [
                     "AES-256-GCM authenticated encryption",
@@ -687,10 +676,10 @@
                 biologicalExample: "Like the prefrontal cortex's executive functions — the 'user interface' of the brain that consciously perceives and decides. The application layer is what the user actually experiences.",
                 networkExample: "Web browsers, email clients, Slack, Zoom. The applications you actually use — they sit on top of all the lower layers that handle the complex networking details.",
                 attacks: [
-                    "API injection attacks (SQL, command)",
-                    "Buffer overflow in BCI parsing code",
-                    "Logic flaws allowing privilege escalation",
-                    "Malicious firmware updates"
+                    { id: 'T7.1', name: 'BCI API Exploitation', tactic: 'Initial Access' },
+                    { id: 'T7.2', name: 'Neural Command Injection', tactic: 'Execution' },
+                    { id: 'T7.3', name: 'Brain Spyware', tactic: 'Collection' },
+                    { id: 'T7.4', name: 'Firmware Privilege Escalation', tactic: 'Privilege Escalation' },
                 ],
                 defenses: [
                     "Strict input validation on all API endpoints",
@@ -712,10 +701,10 @@
                 biologicalExample: "Like the blood-brain barrier (BBB). The BBB strictly controls what molecules can enter the brain from the bloodstream — a biological firewall protecting the CNS from pathogens and toxins.",
                 networkExample: "Like a corporate firewall or DMZ. All traffic between internal network (brain) and external network (BCI device) must pass through this checkpoint for inspection.",
                 attacks: [
-                    "Bypass attacks circumventing security checks",
-                    "Direct signal injection at electrode site",
-                    "Unauthorized write access to neural tissue",
-                    "Exploitation of trust establishment protocols"
+                    { id: 'T8.1', name: 'Gateway Bypass', tactic: 'Defense Evasion' },
+                    { id: 'T8.2', name: 'NSAM Baseline Poisoning', tactic: 'Persistence' },
+                    { id: 'T8.3', name: 'Coherence Metric Spoofing', tactic: 'Defense Evasion' },
+                    { id: 'T8.4', name: 'Bidirectional Channel Exploit', tactic: 'Lateral Movement' },
                 ],
                 defenses: [
                     "ONI Firewall with Coherence validation (Cₛ)",
@@ -737,10 +726,10 @@
                 biologicalExample: "Like the cochlea in hearing. Raw sound waves are filtered by frequency (tonotopic organization), amplified by outer hair cells, and converted to neural signals by inner hair cells — biological signal processing.",
                 networkExample: "Like a network interface card (NIC) that receives raw electrical signals, filters noise, and produces clean digital packets for the operating system to process.",
                 attacks: [
-                    "Filter manipulation to hide attack signals",
-                    "Amplifier saturation attacks (overload inputs)",
-                    "Spike sorting confusion (misclassify neurons)",
-                    "Noise injection to degrade signal-to-noise ratio"
+                    { id: 'T9.1', name: 'Sensory Overload', tactic: 'Impact' },
+                    { id: 'T9.2', name: 'Neural Filter Bypass', tactic: 'Defense Evasion' },
+                    { id: 'T9.3', name: 'Neural Topology Scanning', tactic: 'Reconnaissance' },
+                    { id: 'T9.4', name: 'Neural Jamming', tactic: 'Impact' },
                 ],
                 defenses: [
                     "Hardware-level signal authentication",
@@ -762,10 +751,10 @@
                 biologicalExample: "Like neural coding in the brain. Neurons use rate coding (firing frequency), temporal coding (precise spike timing), and population coding (patterns across many neurons) — nature's data protocols.",
                 networkExample: "Like HTTP, MQTT, or gRPC protocols. They define the 'language' that applications use to exchange structured data — request/response formats, data types, error codes.",
                 attacks: [
-                    "Protocol manipulation to inject false neural data",
-                    "Schema exploitation (malformed data attacks)",
-                    "Feature vector poisoning (adversarial ML)",
-                    "Codec vulnerabilities (buffer overflows)"
+                    { id: 'T10.1', name: 'Spike Timing Attack', tactic: 'Execution' },
+                    { id: 'T10.2', name: 'False Rate Pattern Injection', tactic: 'Impact' },
+                    { id: 'T10.3', name: 'Neural Codec Interception', tactic: 'Collection' },
+                    { id: 'T10.4', name: 'Neural Spoofing', tactic: 'Defense Evasion' },
                 ],
                 defenses: [
                     "Schema validation with strict type checking",
@@ -787,10 +776,10 @@
                 biologicalExample: "Like white matter tracts connecting brain regions. The arcuate fasciculus reliably transports language information from Wernicke's to Broca's area — a biological cognitive transport pathway.",
                 networkExample: "Like TCP for thoughts. Ensures that complex multi-part cognitive states are delivered completely and in order, with retransmission if parts are lost or corrupted.",
                 attacks: [
-                    "Cognitive state corruption during transmission",
-                    "Replay of old cognitive states (memory injection)",
-                    "Man-in-the-middle on cognitive channels",
-                    "Integrity check bypass attacks"
+                    { id: 'T11.1', name: 'Neural Pathway Hijack', tactic: 'Lateral Movement' },
+                    { id: 'T11.2', name: 'Synaptic Timing Disruption', tactic: 'Impact' },
+                    { id: 'T11.3', name: 'Memory Trace Interception', tactic: 'Collection' },
+                    { id: 'T11.4', name: 'Neural Selective Forwarding', tactic: 'Execution' },
                 ],
                 defenses: [
                     "End-to-end encryption of cognitive data",
@@ -806,16 +795,16 @@
                 name: "Cognitive Session",
                 domain: "Cognitive",
                 domainLabel: "Mind & Identity",
-                domainColor: "#ec4899",
+                domainColor: "#8b5cf6",
                 function: "Context persistence, working memory windows, and attention management. Maintains the 'mental workspace' for ongoing cognitive tasks — what you're currently thinking about, attending to, and holding in mind.",
                 capacity: "~4 items (chunks) simultaneously per Miller's Law. Decay over 15-30 seconds without rehearsal. Modulated by theta oscillations (4-8 Hz) for encoding, gamma (30-100 Hz) for active maintenance.",
                 biologicalExample: "The prefrontal cortex's working memory system. Dorsolateral PFC maintains items 'online' through sustained neural firing. The central executive allocates attention — this IS the cognitive session.",
                 networkExample: "Like a web session with cookies. The server remembers your state (shopping cart, login) across multiple requests. Cognitive sessions maintain your mental state across moments.",
                 attacks: [
-                    "Context hijacking (inject false context)",
-                    "Attention redirection attacks (distraction)",
-                    "Working memory overflow (cognitive DoS)",
-                    "Session state corruption or theft"
+                    { id: 'T12.1', name: 'Working Memory Poisoning', tactic: 'Impact' },
+                    { id: 'T12.2', name: 'Attention Capture Attack', tactic: 'Collection' },
+                    { id: 'T12.3', name: 'P300 Interrogation', tactic: 'Credential Access' },
+                    { id: 'T12.4', name: 'Cognitive State Spoofing', tactic: 'Defense Evasion' },
                 ],
                 defenses: [
                     "Context integrity verification against baseline",
@@ -831,16 +820,16 @@
                 name: "Semantic",
                 domain: "Cognitive",
                 domainLabel: "Mind & Identity",
-                domainColor: "#ec4899",
+                domainColor: "#8b5cf6",
                 function: "Meaning construction, goal formation, agency, and intent decoding. Where neural signals become thoughts and decisions. The layer that interprets what you WANT to do and why — your conscious intentions.",
                 capacity: "Minutes to hours timescale for goal persistence. Distributed across association cortex, prefrontal decision networks, and temporal semantic stores. Slower than perceptual processing but more stable.",
                 biologicalExample: "The ventromedial prefrontal cortex (vmPFC) for value-based decisions. Temporal lobe semantic networks for meaning. The 'interpreter' module that Gazzaniga identified in split-brain patients.",
                 networkExample: "Like the application business logic layer. Raw data has been parsed and validated — now the system must decide what it MEANS and what action to take based on business rules.",
                 attacks: [
-                    "Intent manipulation (alter what you decide)",
-                    "Goal hijacking (redirect your objectives)",
-                    "Semantic confusion (scramble meaning)",
-                    "False meaning injection (make you believe lies)"
+                    { id: 'T13.1', name: 'Semantic Interference', tactic: 'Impact' },
+                    { id: 'T13.2', name: 'Intent Subversion', tactic: 'Execution' },
+                    { id: 'T13.3', name: 'Thought Decoding', tactic: 'Collection' },
+                    { id: 'T13.4', name: 'Neural Sinkhole', tactic: 'Lateral Movement' },
                 ],
                 defenses: [
                     "Intent verification against behavioral baseline",
@@ -856,16 +845,17 @@
                 name: "Identity",
                 domain: "Cognitive",
                 domainLabel: "Mind & Identity",
-                domainColor: "#ec4899",
+                domainColor: "#8b5cf6",
                 function: "Self-model, moral reasoning, long-term coherence, and continuity of self. The 'crown jewel' of neural security — who you fundamentally ARE. Your personality, values, autobiographical narrative, and sense of continuous existence.",
                 capacity: "Days to lifetime timescale. Emerges from integration across all lower layers. Default mode network activity during rest. Highly distributed — no single 'identity neuron' but a pattern across the whole brain.",
                 biologicalExample: "The default mode network (DMN): medial prefrontal cortex, posterior cingulate, angular gyrus. Active during self-reflection, autobiographical memory, and imagining the future. Disrupted in depersonalization disorders.",
                 networkExample: "Like the root CA certificate in a PKI system. Everything else derives trust from this foundation. If the root is compromised, nothing in the system can be trusted anymore.",
                 attacks: [
-                    "Gradual personality drift via subtle stimulation",
-                    "Value system manipulation (change what you believe)",
-                    "Autobiographical memory corruption (edit your past)",
-                    "Identity fragmentation (dissociation induction)"
+                    { id: 'T14.1', name: 'Identity Fragmentation', tactic: 'Impact' },
+                    { id: 'T14.2', name: 'Agency Manipulation', tactic: 'Impact' },
+                    { id: 'T14.3', name: 'Self-Model Corruption', tactic: 'Persistence' },
+                    { id: 'T14.4', name: 'Brainprint Theft', tactic: 'Credential Access' },
+                    { id: 'T14.5', name: 'Neural Sybil Attack', tactic: 'Defense Evasion' },
                 ],
                 defenses: [
                     "Long-term baseline tracking ('identity signature')",
@@ -922,7 +912,7 @@
                             Attack Surfaces
                         </div>
                         <ul class="attack-list">
-                            ${layer.attacks.map(a => `<li>${a}</li>`).join('')}
+                            ${layer.attacks.map(a => `<li><strong>${a.id}</strong> ${a.name} <span style="color:#8b949e;font-size:11px">(${a.tactic})</span></li>`).join('')}
                         </ul>
                     </div>
 

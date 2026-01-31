@@ -1341,11 +1341,7 @@
                 <p class="hero-tagline" data-aos="fade-up" data-aos-delay="300"><em>"The OSI of Mind"</em></p>
                 <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="350">A 14-layer reference model for brain-computer interface security and neuroethics</p>
 
-                <p class="hero-desc" data-aos="fade-up" data-aos-delay="400">
-                    Just as the OSI model standardized how computers communicate over networks, ONI proposes a layered model for how brain-computer interfaces should be secured &mdash; from the physical electrode to cognitive identity. Independent research by Kevin Qi. Open-source. Inviting scrutiny.
-                </p>
-
-                <div data-aos="fade-up" data-aos-delay="450">
+                <div data-aos="fade-up" data-aos-delay="400">
                     <span class="status-badge">Status: Independent Research &mdash; Pre-Peer-Review</span>
                 </div>
 
@@ -1359,9 +1355,9 @@
                 </div>
 
                 <div class="layer-pills" data-aos="fade-up" data-aos-delay="600">
-                    <span class="pill pill-silicon">L1-L7 Silicon</span>
-                    <span class="pill pill-bridge">L8 Neural Gateway</span>
-                    <span class="pill pill-biology">L9-L14 Biology</span>
+                    <a href="#install" class="pill pill-silicon" style="text-decoration: none; cursor: pointer;">L1-L7 Silicon</a>
+                    <a href="#install" class="pill pill-bridge" style="text-decoration: none; cursor: pointer;">L8 Neural Gateway</a>
+                    <a href="#install" class="pill pill-biology" style="text-decoration: none; cursor: pointer;">L9-L14 Biology</a>
                 </div>
             </div>
 
@@ -1384,26 +1380,38 @@
         </div>
     </section>
 
-    <!-- Slogan Banner -->
-    <div style="text-align: center; padding: 3rem 2rem;">
-        <p id="slogan-text" style="font-size: 0.75rem; font-style: italic; color: var(--text-secondary); font-weight: 300; letter-spacing: 0.02em; transition: none;">Only life's most important connections deserve the most thought.</p>
-    </div>
-
-    <!-- Research Mission Section -->
+    <!-- The Problem Section (was Research Mission) -->
     <section class="section" id="research-mission" style="padding: 4rem 2rem;">
         <div style="max-width: 900px; margin: 0 auto;">
             <div class="section-header" data-aos="fade-up">
-                <h2>Research Mission</h2>
-                <p>Why neuroethics needs engineering — and why it can't wait</p>
+                <h2>BCIs Are Here. Security Standards Aren't.</h2>
             </div>
-            <div data-aos="fade-up" data-aos-delay="200" style="line-height: 1.8; color: var(--text-secondary); font-size: 1.05rem;">
-                <p style="margin-bottom: 1.25rem;">Brain-computer interfaces are being implanted in humans today. Neuralink, BrainGate, and dozens of clinical trials are creating direct connections between silicon and neural tissue — yet no universal security standard exists to protect the people who depend on them.</p>
-                <p style="margin-bottom: 1.25rem;">Neuroethical principles like <strong style="color: var(--text-primary);">cognitive liberty</strong>, <strong style="color: var(--text-primary);">mental privacy</strong>, <strong style="color: var(--text-primary);">mental integrity</strong>, and <strong style="color: var(--text-primary);">psychological continuity</strong> remain largely theoretical. ONI translates these principles into testable, implementable security controls — mapped across 14 layers, grounded in established physics, and aligned with UNESCO, FDA, and emerging neurorights legislation.</p>
-                <p style="margin-bottom: 1.25rem;">The OSI model was built before networking was figured out. The periodic table left gaps for elements not yet discovered. ONI follows the same principle — organizing what we know, highlighting what we don't, and evolving as discovery fills in the gaps.</p>
-                <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-                    <a href="https://github.com/qikevinl/ONI/blob/main/ABOUT.md" class="btn btn-secondary" style="font-size: 0.9rem;">About the Researcher</a>
-                    <a href="#research-statement" class="btn btn-secondary" style="font-size: 0.9rem;">Research Statement</a>
-                </div>
+            <p data-aos="fade-up" data-aos-delay="100" style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; text-align: center;">Brain-computer interfaces are being implanted in humans today — yet no universal security standard exists to protect the people who depend on them.</p>
+
+            <div data-aos="fade-up" data-aos-delay="200" style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 700px; margin: 0 auto;">
+                <details class="oni-details">
+                    <summary>The Gap</summary>
+                    <div class="details-content">
+                        <p>Neuralink, BrainGate, and dozens of clinical trials are creating direct connections between silicon and neural tissue. Neuroethical principles like <strong style="color: var(--text-primary);">cognitive liberty</strong>, <strong style="color: var(--text-primary);">mental privacy</strong>, <strong style="color: var(--text-primary);">mental integrity</strong>, and <strong style="color: var(--text-primary);">psychological continuity</strong> remain largely theoretical — with no engineering framework to enforce them.</p>
+                    </div>
+                </details>
+                <details class="oni-details">
+                    <summary>What's At Stake</summary>
+                    <div class="details-content">
+                        <p>ONI translates these principles into testable, implementable security controls — mapped across 14 layers, grounded in established physics, and aligned with UNESCO, FDA, and emerging neurorights legislation.</p>
+                    </div>
+                </details>
+                <details class="oni-details">
+                    <summary>Why Now</summary>
+                    <div class="details-content">
+                        <p>The OSI model was built before networking was figured out. The periodic table left gaps for elements not yet discovered. ONI follows the same principle — organizing what we know, highlighting what we don't, and evolving as discovery fills in the gaps.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center;" data-aos="fade-up" data-aos-delay="300">
+                <a href="https://github.com/qikevinl/ONI/blob/main/ABOUT.md" class="btn btn-secondary" style="font-size: 0.9rem;">About the Researcher</a>
+                <a href="#research-statement" class="btn btn-secondary" style="font-size: 0.9rem;">Research Statement</a>
             </div>
         </div>
     </section>
@@ -1563,251 +1571,201 @@
 
     </section>
 
-    <!-- Governance & Ethics Section (Elevated) -->
-    <section class="section" id="governance" style="padding: 4rem 2rem;">
+    <!-- Explore & Learn — Tabbed Interface (merges Governance, Academic, Interactive Learning) -->
+    <section class="section" id="explore" style="padding: 4rem 2rem;">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section-header" data-aos="fade-up">
-                <h2>Governance & Ethics</h2>
-                <p>Neuroethical principles as foundational constraints — not afterthoughts</p>
+                <h2>Explore & Learn</h2>
+                <p>Interactive tools, ethical foundations, and the academic research behind ONI</p>
             </div>
-            <div class="resources-grid" data-aos="fade-up" data-aos-delay="200">
-                <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/NEUROETHICS_ALIGNMENT.md" class="resource-card">
-                    <div class="icon" style="background: var(--accent-emerald);"><span>E</span></div>
-                    <div>
-                        <h4>Neuroethics Alignment</h4>
-                        <p>Maps ONI to neuroethics principles — Ienca & Andorno's four neurorights, Yuste's five neurorights.</p>
+
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="tab-nav" id="exploreTabNav">
+                    <button class="tab-btn active" data-tab="tools">Interactive Tools</button>
+                    <button class="tab-btn" data-tab="ethics">Ethics & Governance</button>
+                    <button class="tab-btn" data-tab="academic">Academic Foundation</button>
+                </div>
+
+                <!-- Tools Tab -->
+                <div class="tab-panel active" id="tab-tools">
+                    <div class="viz-grid">
+                        <a href="visualizations/01-coherence-metric-playground.html" class="viz-card">
+                            <div class="viz-preview">
+                                <svg viewBox="0 0 200 100">
+                                    <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00d4ff"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs>
+                                    <path d="M10 50 Q30 20 50 50 T90 50 T130 50 T170 50 T190 50" stroke="url(#grad1)" stroke-width="3" fill="none"/>
+                                    <circle cx="100" cy="50" r="20" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+                                    <text x="100" y="55" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="bold">0.87</text>
+                                </svg>
+                            </div>
+                            <div class="viz-content">
+                                <span class="label" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">Core Concept</span>
+                                <h4>Coherence Metric Playground</h4>
+                                <p>Calculate Cₛ = e^(−(σ²φ + σ²τ + σ²γ)) in real-time.</p>
+                            </div>
+                        </a>
+                        <a href="visualizations/02-oni-layer-explorer.html" class="viz-card">
+                            <div class="viz-preview">
+                                <svg viewBox="0 0 200 100">
+                                    <rect x="30" y="10" width="140" height="12" rx="2" fill="#3b82f6" opacity="0.6"/>
+                                    <rect x="30" y="25" width="140" height="12" rx="2" fill="#3b82f6" opacity="0.5"/>
+                                    <rect x="30" y="40" width="140" height="12" rx="2" fill="#8b5cf6" opacity="0.7"/>
+                                    <rect x="30" y="55" width="140" height="12" rx="2" fill="#8b5cf6" opacity="0.6"/>
+                                    <rect x="30" y="70" width="140" height="12" rx="2" fill="#ec4899" opacity="0.8"/>
+                                    <rect x="30" y="85" width="140" height="12" rx="2" fill="#ec4899" opacity="0.7"/>
+                                </svg>
+                            </div>
+                            <div class="viz-content">
+                                <span class="label" style="background: rgba(139, 92, 246, 0.15); color: #a78bfa;">Architecture</span>
+                                <h4>ONI Layer Explorer</h4>
+                                <p>Navigate all 14 layers from physical transmission to cognitive identity.</p>
+                            </div>
+                        </a>
+                        <a href="visualizations/04-nsam-checkpoint-simulator.html" class="viz-card">
+                            <div class="viz-preview">
+                                <svg viewBox="0 0 200 100">
+                                    <circle cx="40" cy="50" r="15" fill="#10b981"/><circle cx="80" cy="50" r="15" fill="#10b981"/>
+                                    <circle cx="120" cy="50" r="15" fill="#f59e0b"/><circle cx="160" cy="50" r="15" fill="#1e293b" stroke="#64748b"/>
+                                    <text x="40" y="54" text-anchor="middle" fill="white" font-size="10">1</text>
+                                    <text x="80" y="54" text-anchor="middle" fill="white" font-size="10">2</text>
+                                    <text x="120" y="54" text-anchor="middle" fill="white" font-size="10">3</text>
+                                    <text x="160" y="54" text-anchor="middle" fill="#64748b" font-size="10">4</text>
+                                </svg>
+                            </div>
+                            <div class="viz-content">
+                                <span class="label" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">Interactive</span>
+                                <h4>NSAM Checkpoint Simulator</h4>
+                                <p>Become the Neural Signal Assurance Model. Analyze signals and protect the brain.</p>
+                            </div>
+                        </a>
+                        <a href="visualizations/05-scale-frequency-navigator.html" class="viz-card">
+                            <div class="viz-preview">
+                                <svg viewBox="0 0 200 100">
+                                    <rect x="20" y="20" width="160" height="60" rx="4" fill="#0a0e17" stroke="#1e293b"/>
+                                    <path d="M30 50 Q50 30 70 50 T110 50 T150 50 T170 50" stroke="#ec4899" stroke-width="2" fill="none" opacity="0.5"/>
+                                    <path d="M30 50 Q40 40 50 50 T70 50 T90 50 T110 50 T130 50 T150 50 T170 50" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="viz-content">
+                                <span class="label" style="background: rgba(236, 72, 153, 0.15); color: #f472b6;">Explore</span>
+                                <h4>Scale-Frequency Navigator</h4>
+                                <p>From femtoseconds to years. Explore neural patterns across temporal scales.</p>
+                            </div>
+                        </a>
+                        <a href="visualizations/06-oni-threat-matrix.html" class="viz-card">
+                            <div class="viz-preview">
+                                <svg viewBox="0 0 200 100">
+                                    <defs><linearGradient id="threatGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#3b82f6"/><stop offset="50%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#ef4444"/></linearGradient></defs>
+                                    <rect x="15" y="15" width="170" height="14" rx="2" fill="url(#threatGrad)" opacity="0.8"/>
+                                    <rect x="15" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+                                    <rect x="40" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#6366f1" stroke-width="1"/>
+                                    <rect x="65" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#8b5cf6" stroke-width="1"/>
+                                    <rect x="90" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+                                    <rect x="115" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#d946ef" stroke-width="1"/>
+                                    <rect x="140" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#ec4899" stroke-width="1"/>
+                                    <rect x="165" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+                                </svg>
+                            </div>
+                            <div class="viz-content">
+                                <span class="label" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">Security</span>
+                                <h4>ONI Threat Matrix</h4>
+                                <p>Neural threat framework. 10 tactics, 46 techniques mapped to ONI layers.</p>
+                            </div>
+                        </a>
+                        <a href="visualizations/03-academic-alignment.html" class="viz-card">
+                            <div class="viz-preview">
+                                <svg viewBox="0 0 200 100">
+                                    <circle cx="60" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
+                                    <circle cx="100" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
+                                    <circle cx="140" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
+                                    <text x="100" y="54" text-anchor="middle" fill="#10b981" font-size="8">ONI</text>
+                                </svg>
+                            </div>
+                            <div class="viz-content">
+                                <span class="label" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">Research</span>
+                                <h4>Academic Research Alignment</h4>
+                                <p>Built on peer-reviewed research from 12+ universities.</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/UNESCO_ALIGNMENT.md" class="resource-card">
-                    <div class="icon" style="background: var(--accent-emerald);"><span>UN</span></div>
-                    <div>
-                        <h4>UNESCO Alignment</h4>
-                        <p>UNESCO Recommendation on Ethics of Neurotechnology (2025) — 15 of 17 elements addressed.</p>
+                </div>
+
+                <!-- Ethics & Governance Tab -->
+                <div class="tab-panel" id="tab-ethics">
+                    <div class="resources-grid" id="governance">
+                        <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/NEUROETHICS_ALIGNMENT.md" class="resource-card">
+                            <div class="icon" style="background: var(--accent-emerald);"><span>E</span></div>
+                            <div>
+                                <h4>Neuroethics Alignment</h4>
+                                <p>Maps ONI to neuroethics principles — Ienca & Andorno's four neurorights, Yuste's five neurorights.</p>
+                            </div>
+                        </a>
+                        <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/UNESCO_ALIGNMENT.md" class="resource-card">
+                            <div class="icon" style="background: var(--accent-emerald);"><span>UN</span></div>
+                            <div>
+                                <h4>UNESCO Alignment</h4>
+                                <p>UNESCO Recommendation on Ethics of Neurotechnology (2025) — 15 of 17 elements addressed.</p>
+                            </div>
+                        </a>
+                        <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/REGULATORY_COMPLIANCE.md" class="resource-card">
+                            <div class="icon" style="background: var(--accent-amber);"><span>RC</span></div>
+                            <div>
+                                <h4>Regulatory Compliance</h4>
+                                <p>FDA, HIPAA, NIST, state neurorights laws, MIND Act, UNESCO, Chile, EU mapping.</p>
+                            </div>
+                        </a>
+                        <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md" class="resource-card">
+                            <div class="icon" style="background: var(--accent-cyan);"><span>IC</span></div>
+                            <div>
+                                <h4>Informed Consent Framework</h4>
+                                <p>Continuous consent architecture for BCIs — capacity assessment, pediatric considerations.</p>
+                            </div>
+                        </a>
+                        <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/TRANSPARENCY.md" class="resource-card">
+                            <div class="icon" style="background: var(--accent-pink);"><span>T</span></div>
+                            <div>
+                                <h4>Transparency Statement</h4>
+                                <p>Human-AI collaboration audit trail. How this framework was built.</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/REGULATORY_COMPLIANCE.md" class="resource-card">
-                    <div class="icon" style="background: var(--accent-amber);"><span>RC</span></div>
-                    <div>
-                        <h4>Regulatory Compliance</h4>
-                        <p>FDA, HIPAA, NIST, state neurorights laws, MIND Act, UNESCO, Chile, EU mapping.</p>
+                </div>
+
+                <!-- Academic Foundation Tab -->
+                <div class="tab-panel" id="tab-academic">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Columbia University</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Rafael Yuste — NeuroRights Foundation, Five Neurorights framework</p>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: Framework-wide design principles</p>
+                        </div>
+                        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">University of Washington</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Tadayoshi Kohno — coined "neurosecurity," CIA threat model for BCIs</p>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: NeurosecurityFirewall, BCIAnonymizer</p>
+                        </div>
+                        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Yale Digital Ethics Center</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Luciano Floridi — Cyber Risks to Next-Gen BCIs (2025)</p>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: Threat model methodology, L8 design</p>
+                        </div>
+                        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">ETH Zurich / TU Munich</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Marcello Ienca — Four Neurorights (2017), cognitive liberty</p>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: L14 Identity layer design</p>
+                        </div>
+                        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Harvard Bioethics</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Gabriel Lázaro-Muñoz — DBS ethics, neural data privacy</p>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: Privacy scoring, vulnerable populations</p>
+                        </div>
                     </div>
-                </a>
-                <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md" class="resource-card">
-                    <div class="icon" style="background: var(--accent-cyan);"><span>IC</span></div>
-                    <div>
-                        <h4>Informed Consent Framework</h4>
-                        <p>Continuous consent architecture for BCIs — capacity assessment, pediatric considerations.</p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/ACADEMIC_LANDSCAPE.md" class="btn btn-secondary" style="font-size: 0.9rem;">Full Academic Landscape</a>
+                        <a href="visualizations/03-academic-alignment.html" class="btn btn-secondary" style="font-size: 0.9rem; margin-left: 1rem;">Interactive Gap Analysis</a>
                     </div>
-                </a>
-                <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/governance/TRANSPARENCY.md" class="resource-card">
-                    <div class="icon" style="background: var(--accent-pink);"><span>T</span></div>
-                    <div>
-                        <h4>Transparency Statement</h4>
-                        <p>Human-AI collaboration audit trail. How this framework was built.</p>
-                    </div>
-                </a>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Academic Alignment Section -->
-    <section class="section" id="academic" style="background: var(--bg-secondary); margin: 0; max-width: 100%; padding: 4rem 2rem;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Academic Alignment</h2>
-                <p>Building on foundational research from leading institutions</p>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;" data-aos="fade-up" data-aos-delay="200">
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
-                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Columbia University</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Rafael Yuste — NeuroRights Foundation, Five Neurorights framework</p>
-                    <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: Framework-wide design principles</p>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
-                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">University of Washington</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Tadayoshi Kohno — coined "neurosecurity," CIA threat model for BCIs</p>
-                    <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: NeurosecurityFirewall, BCIAnonymizer</p>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
-                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Yale Digital Ethics Center</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Luciano Floridi — Cyber Risks to Next-Gen BCIs (2025)</p>
-                    <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: Threat model methodology, L8 design</p>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
-                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">ETH Zurich / TU Munich</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Marcello Ienca — Four Neurorights (2017), cognitive liberty</p>
-                    <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: L14 Identity layer design</p>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
-                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Harvard Bioethics</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Gabriel Lázaro-Muñoz — DBS ethics, neural data privacy</p>
-                    <p style="color: var(--text-muted); font-size: 0.8rem;">ONI: Privacy scoring, vulnerable populations</p>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 2rem;" data-aos="fade-up" data-aos-delay="300">
-                <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/ACADEMIC_LANDSCAPE.md" class="btn btn-secondary" style="font-size: 0.9rem;">Full Academic Landscape</a>
-                <a href="visualizations/03-academic-alignment.html" class="btn btn-secondary" style="font-size: 0.9rem; margin-left: 1rem;">Interactive Gap Analysis</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="explore">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Interactive Learning</h2>
-            <p>These demos introduce ONI's multi-modal approach to <a href="https://github.com/qikevinl/ONI/blob/main/autodidact/oni-academy/ONI_ACADEMY.md" style="color: var(--accent-cyan);">neurosecurity</a>.</p>
-        </div>
-
-        <div class="viz-grid">
-            <!-- Coherence Metric Playground -->
-            <a href="visualizations/01-coherence-metric-playground.html" class="viz-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="viz-preview">
-                    <svg viewBox="0 0 200 100">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#00d4ff"/>
-                                <stop offset="100%" style="stop-color:#8b5cf6"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M10 50 Q30 20 50 50 T90 50 T130 50 T170 50 T190 50" stroke="url(#grad1)" stroke-width="3" fill="none"/>
-                        <circle cx="100" cy="50" r="20" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
-                        <text x="100" y="55" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="bold">0.87</text>
-                    </svg>
-                </div>
-                <div class="viz-content">
-                    <span class="label" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">Core Concept</span>
-                    <h4>Coherence Metric Playground</h4>
-                    <p>Calculate Cₛ = e^(−(σ²φ + σ²τ + σ²γ)) in real-time. See how variance components affect signal trust scores.</p>
-                </div>
-            </a>
-
-            <!-- ONI Layer Explorer -->
-            <a href="visualizations/02-oni-layer-explorer.html" class="viz-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="viz-preview">
-                    <svg viewBox="0 0 200 100">
-                        <rect x="30" y="10" width="140" height="12" rx="2" fill="#3b82f6" opacity="0.6"/>
-                        <rect x="30" y="25" width="140" height="12" rx="2" fill="#3b82f6" opacity="0.5"/>
-                        <rect x="30" y="40" width="140" height="12" rx="2" fill="#8b5cf6" opacity="0.7"/>
-                        <rect x="30" y="55" width="140" height="12" rx="2" fill="#8b5cf6" opacity="0.6"/>
-                        <rect x="30" y="70" width="140" height="12" rx="2" fill="#ec4899" opacity="0.8"/>
-                        <rect x="30" y="85" width="140" height="12" rx="2" fill="#ec4899" opacity="0.7"/>
-                        <text x="20" y="50" fill="#64748b" font-size="8">14</text>
-                        <text x="175" y="50" fill="#64748b" font-size="8">1</text>
-                    </svg>
-                </div>
-                <div class="viz-content">
-                    <span class="label" style="background: rgba(139, 92, 246, 0.15); color: #a78bfa;">Architecture</span>
-                    <h4>ONI Layer Explorer</h4>
-                    <p>Navigate all 14 layers from physical transmission to cognitive identity.</p>
-                </div>
-            </a>
-
-            <!-- NSAM Checkpoint Simulator -->
-            <a href="visualizations/04-nsam-checkpoint-simulator.html" class="viz-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="viz-preview">
-                    <svg viewBox="0 0 200 100">
-                        <circle cx="40" cy="50" r="15" fill="#10b981"/>
-                        <circle cx="80" cy="50" r="15" fill="#10b981"/>
-                        <circle cx="120" cy="50" r="15" fill="#f59e0b"/>
-                        <circle cx="160" cy="50" r="15" fill="#1e293b" stroke="#64748b"/>
-                        <text x="40" y="54" text-anchor="middle" fill="white" font-size="10">1</text>
-                        <text x="80" y="54" text-anchor="middle" fill="white" font-size="10">2</text>
-                        <text x="120" y="54" text-anchor="middle" fill="white" font-size="10">3</text>
-                        <text x="160" y="54" text-anchor="middle" fill="#64748b" font-size="10">4</text>
-                        <line x1="55" y1="50" x2="65" y2="50" stroke="#10b981" stroke-width="2"/>
-                        <line x1="95" y1="50" x2="105" y2="50" stroke="#10b981" stroke-width="2"/>
-                        <line x1="135" y1="50" x2="145" y2="50" stroke="#64748b" stroke-width="2"/>
-                    </svg>
-                </div>
-                <div class="viz-content">
-                    <span class="label" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">Interactive</span>
-                    <h4>NSAM Checkpoint Simulator</h4>
-                    <p>Become the Neural Signal Assurance Model. Analyze signals and protect the brain.</p>
-                </div>
-            </a>
-
-            <!-- Scale-Frequency Navigator -->
-            <a href="visualizations/05-scale-frequency-navigator.html" class="viz-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="viz-preview">
-                    <svg viewBox="0 0 200 100">
-                        <rect x="20" y="20" width="160" height="60" rx="4" fill="#0a0e17" stroke="#1e293b"/>
-                        <path d="M30 50 Q50 30 70 50 T110 50 T150 50 T170 50" stroke="#ec4899" stroke-width="2" fill="none" opacity="0.5"/>
-                        <path d="M30 50 Q40 40 50 50 T70 50 T90 50 T110 50 T130 50 T150 50 T170 50" stroke="#8b5cf6" stroke-width="2" fill="none"/>
-                        <text x="30" y="90" fill="#64748b" font-size="8">1ms</text>
-                        <text x="90" y="90" fill="#64748b" font-size="8">1s</text>
-                        <text x="150" y="90" fill="#64748b" font-size="8">1hr</text>
-                    </svg>
-                </div>
-                <div class="viz-content">
-                    <span class="label" style="background: rgba(236, 72, 153, 0.15); color: #f472b6;">Explore</span>
-                    <h4>Scale-Frequency Navigator</h4>
-                    <p>From femtoseconds to years. Explore neural patterns across temporal scales.</p>
-                </div>
-            </a>
-
-            <!-- ONI Threat Matrix -->
-            <a href="visualizations/06-oni-threat-matrix.html" class="viz-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="viz-preview">
-                    <svg viewBox="0 0 200 100">
-                        <!-- Clean MITRE-style matrix grid -->
-                        <defs>
-                            <linearGradient id="threatGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#3b82f6"/>
-                                <stop offset="50%" style="stop-color:#8b5cf6"/>
-                                <stop offset="100%" style="stop-color:#ef4444"/>
-                            </linearGradient>
-                        </defs>
-                        <!-- Header row with gradient -->
-                        <rect x="15" y="15" width="170" height="14" rx="2" fill="url(#threatGrad)" opacity="0.8"/>
-                        <!-- Grid cells - 10 tactics -->
-                        <rect x="15" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
-                        <rect x="40" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#6366f1" stroke-width="1"/>
-                        <rect x="65" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#8b5cf6" stroke-width="1"/>
-                        <rect x="90" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
-                        <rect x="115" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#d946ef" stroke-width="1"/>
-                        <rect x="140" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#ec4899" stroke-width="1"/>
-                        <rect x="165" y="32" width="22" height="50" rx="2" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
-                        <!-- Technique indicators -->
-                        <circle cx="26" cy="42" r="3" fill="#3b82f6"/>
-                        <circle cx="26" cy="52" r="3" fill="#3b82f6" opacity="0.6"/>
-                        <circle cx="51" cy="42" r="3" fill="#6366f1"/>
-                        <circle cx="76" cy="42" r="3" fill="#8b5cf6"/>
-                        <circle cx="76" cy="52" r="3" fill="#8b5cf6" opacity="0.6"/>
-                        <circle cx="101" cy="42" r="3" fill="#a855f7"/>
-                        <circle cx="126" cy="42" r="3" fill="#d946ef"/>
-                        <circle cx="151" cy="42" r="3" fill="#ec4899"/>
-                        <circle cx="151" cy="52" r="3" fill="#ec4899" opacity="0.6"/>
-                        <circle cx="176" cy="42" r="3" fill="#ef4444"/>
-                        <circle cx="176" cy="52" r="3" fill="#ef4444" opacity="0.6"/>
-                        <circle cx="176" cy="62" r="3" fill="#ef4444" opacity="0.4"/>
-                        <text x="100" y="94" text-anchor="middle" fill="#64748b" font-size="7">7 TACTICS × 21 TECHNIQUES</text>
-                    </svg>
-                </div>
-                <div class="viz-content">
-                    <span class="label" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">Security</span>
-                    <h4>ONI Threat Matrix</h4>
-                    <p>Neural threat framework. 10 tactics, 46 techniques mapped to ONI layers.</p>
-                </div>
-            </a>
-
-            <!-- Academic Research Alignment -->
-            <a href="visualizations/03-academic-alignment.html" class="viz-card" data-aos="fade-up" data-aos-delay="600">
-                <div class="viz-preview">
-                    <svg viewBox="0 0 200 100">
-                        <circle cx="60" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
-                        <circle cx="100" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
-                        <circle cx="140" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
-                        <text x="60" y="54" text-anchor="middle" fill="#10b981" font-size="8">Kohno</text>
-                        <text x="100" y="54" text-anchor="middle" fill="#10b981" font-size="8">ONI</text>
-                        <text x="140" y="54" text-anchor="middle" fill="#10b981" font-size="8">Bonaci</text>
-                        <text x="100" y="90" text-anchor="middle" fill="#64748b" font-size="7">12+ Universities</text>
-                    </svg>
-                </div>
-                <div class="viz-content">
-                    <span class="label" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">Research</span>
-                    <h4>Academic Research Alignment</h4>
-                    <p>Built on peer-reviewed research from 12+ universities. Explore the scientific foundation.</p>
-                </div>
-            </a>
         </div>
     </section>
 
@@ -1912,6 +1870,9 @@
 
                 <h3 style="color: var(--accent-cyan); margin-bottom: 1rem; font-size: 1.1rem;">WHAT I'M LOOKING FOR</h3>
                 <p style="margin-bottom: 1.5rem;">Academic mentorship and collaboration. Peer review of the ONI framework's assumptions. Integration with empirical neuroscience research. Guidance on bridging independent research into institutional work.</p>
+
+                <h3 style="color: var(--accent-cyan); margin-bottom: 1rem; font-size: 1.1rem;">A NOTE ON TERMINOLOGY</h3>
+                <p style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">Foundational research in this space — Kohno (2009), Bonaci (2015), and others — established the term <em>"BCI security."</em> ONI honors that terminology when referencing their work. Moving forward, ONI uses <strong style="color: var(--text-secondary);">neurosecurity</strong> as the broader discipline name. "BCI security" is anchored to today's hardware — electrodes, implants, computers. But the threats ONI models (cognitive manipulation, identity fragmentation, semantic interference at L11–L14) aren't limited to computer interfaces. Future interfaces may be biological, chemical, optical, or technologies that don't exist yet. <em>Neurosecurity</em> protects the neural system itself, regardless of what interfaces with it.</p>
 
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <a href="https://github.com/qikevinl/ONI/blob/main/ABOUT.md" class="btn btn-secondary" style="font-size: 0.9rem;">Read the Full Story</a>
@@ -2030,7 +1991,7 @@
                 <div class="icon" style="background: var(--accent-amber);"><span>R</span></div>
                 <div>
                     <h4>Related Work</h4>
-                    <p>Prior neurosecurity research. Kohno, Bonaci, and foundational contributions.</p>
+                    <p>Prior BCI security research. Kohno, Bonaci, and foundational contributions.</p>
                 </div>
             </a>
 
