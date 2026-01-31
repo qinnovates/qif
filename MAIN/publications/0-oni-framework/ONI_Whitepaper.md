@@ -3,7 +3,7 @@
 ## The OSI of Mind: Why Brain-Computer Interfaces Need a Universal Security Standard
 
 **Kevin L. Qi**
-Independent Researcher | qikevinl@github
+qikevinl@github
 
 *Version 1.1 — January 2026*
 
@@ -38,7 +38,7 @@ In 1983, the International Organization for Standardization published the OSI mo
 
 Forty years later, networks have reached a new endpoint: the human brain.
 
-Neuralink has implanted its N1 chip in human patients. Synchron's Stentrode is in clinical trials. Blackrock Neurotech's Utah arrays have been recording neural signals for over a decade. The FDA has cleared brain-computer interfaces as Class III medical devices. The technology is no longer theoretical — it's surgical.
+Neuralink has implanted its N1 chip in human patients. Synchron's Stentrode is in clinical trials. Blackrock Neurotech's Utah arrays have been recording neural signals for over a decade. The FDA classifies brain-computer interfaces as Class III medical devices, and multiple companies have received Breakthrough Device Designation for clinical trials. The technology is no longer theoretical — it's surgical.
 
 **But there is no OSI model for the brain.**
 
@@ -132,7 +132,7 @@ ONI provides that same shared vocabulary for the brain. It doesn't prescribe imp
 
 But ONI has an advantage that OSI never had: **hindsight.**
 
-The OSI model was invented in 1983 — before the first major computer virus (Brain, 1986), before the Morris worm (1988), before ransomware, before zero-day markets, before nation-state cyber operations. Security was never part of the original design. It was bolted on after the fact, layer by painful layer — SSL in 1995, IPsec in 1998, WPA2 in 2004, TLS 1.3 in 2018 — each one a response to an attack that the original model never anticipated. The internet was built open and trusting, and the security community has spent four decades trying to retrofit protections onto a foundation that was never designed for them.
+The OSI model was invented in 1983 — before the first major computer virus (Brain, 1986), before the Morris worm (1988), before ransomware, before zero-day markets, before nation-state cyber operations. Security was never part of the original design. It was bolted on after the fact, layer by painful layer — SSL in 1995, IPsec in 1998, WPA2 in 2004, TLS 1.3 in 2018 — each one addressing a security gap that the original model never accounted for. The internet was built open and trusting, and the security community has spent four decades trying to retrofit protections onto a foundation that was never designed for them.
 
 We don't have to repeat that mistake. The cybersecurity industry has accumulated decades of hard-won knowledge: zero-trust architecture, defense-in-depth, secure-by-design principles, threat modeling methodologies, incident response frameworks, and the painful economics of "bolt-on" vs. "built-in" security. ONI incorporates all of this from day one. The Coherence Metric, the Neural Firewall, the layer-aware threat model — these aren't afterthoughts. They are foundational. Every layer of the ONI Framework was designed with security as a first-class constraint, not a feature to be added later.
 
@@ -150,9 +150,9 @@ History teaches a consistent lesson: security standards adopted *after* exploita
 
 | Domain | Pre-Standard Cost | Post-Standard Cost | Catalyst for Standard |
 |--------|------------------|--------------------|----------------------|
-| Internet (pre-TLS) | $0 (no encryption) | $3.86M avg breach (IBM, 2023) | E-commerce fraud epidemic |
+| Internet (pre-TLS) | $0 (no encryption) | $4.45M avg breach (IBM, 2023) | E-commerce fraud epidemic |
 | Medical devices (pre-FDA guidance) | Minimal security spend | $10M+ per recall | Pacemaker vulnerability demos (2012–2017) |
-| Industrial control (pre-IEC 62443) | $0 (air-gapped assumption) | $1B+ (Colonial Pipeline) | Critical infrastructure attacks |
+| Industrial control (pre-IEC 62443) | $0 (air-gapped assumption) | $4.4M ransom + massive economic disruption (Colonial Pipeline, 2021) | Critical infrastructure attacks |
 | **BCIs (today)** | **Minimal — no standard exists** | **Unknown — but the stakes are human** | **?** |
 
 The pattern is clear: every connected system eventually gets attacked. The question isn't whether neural interfaces will be targeted, but whether defenses will be in place when they are.
@@ -259,7 +259,7 @@ The framework applies to any neural system — from rodent models to primate stu
 
 How do you know a neural signal is trustworthy?
 
-Traditional cybersecurity authenticates the *source* of a message. But in the neural domain, source authentication alone is insufficient. A signal might come from a legitimate device yet carry corrupted content. The brain has no native mechanism to distinguish endogenous signals from exogenous ones — if a signal's amplitude, frequency, and timing fall within biological norms, the brain processes it as real.
+Traditional cybersecurity authenticates the *source* of a message. But in the neural domain, source authentication alone is insufficient. A signal might come from a legitimate device yet carry corrupted content. The brain has no dedicated mechanism for tagging signals as endogenous vs. exogenous at the level of individual spikes or oscillatory cycles — if a signal's amplitude, frequency, and timing fall within biological norms, downstream circuits will process it as real.
 
 We need a metric that examines the *signal itself*.
 
@@ -331,7 +331,7 @@ Where:
 - **S** = spatial scale (meters)
 - **k** = constant (~1-100 m·Hz for mammalian neural systems)
 
-This holds across **six orders of magnitude** in both frequency and spatial scale.
+This holds across orders of magnitude in both frequency and spatial scale.
 
 ### 7.2 The Evidence
 
@@ -341,9 +341,9 @@ This holds across **six orders of magnitude** in both frequency and spatial scal
 | Action potential | 500 Hz | 1 μm | 5 × 10⁻⁴ |
 | Gamma oscillation | 40 Hz | 2.5 cm | 1 |
 | Alpha rhythm | 10 Hz | 10 cm | 1 |
-| Working memory | 0.1 Hz | 15 cm | 0.015 |
+| Theta rhythm (working memory) | 6 Hz | 8 cm | 0.48 |
 
-The product f × S clusters within just **3 orders of magnitude** despite each variable spanning 6+ orders.
+The product f × S clusters within a narrower range than either variable alone — spanning roughly 5 orders of magnitude despite frequency spanning 4+ orders and spatial scale spanning 7+ orders.
 
 ### 7.3 Why This Matters for Security
 
@@ -360,7 +360,7 @@ A firewall that only monitors at one timescale will miss attacks at other timesc
 
 ![Figure 4: Scale-Frequency Invariant](figures/fig4_scale_frequency.png)
 
-*Figure 7. The Scale-Frequency Invariant on a log-log plot. Each data point represents a distinct neural processing level, from ion channels (top-left) to working memory (bottom-right). Despite spanning 6 orders of magnitude in both frequency and spatial scale, all points fall within a narrow band defined by f × S ≈ k. The dashed lines show constant f×S products. This invariant emerges from the physics of axonal conduction.*
+*Figure 7. The Scale-Frequency Invariant on a log-log plot. Each data point represents a distinct neural processing level, from ion channels (top-left) to theta-band working memory networks (bottom-right). Despite spanning multiple orders of magnitude in both frequency and spatial scale, all points fall within a band consistent with f × S ≈ k. The dashed lines show constant f×S products. This invariant emerges from the physics of axonal conduction.*
 
 ### 7.4 Physical Derivation
 
@@ -403,11 +403,11 @@ The unified metric is grounded in a chain of established physics, each equation 
 | Equation | Formula | What It Governs | ONI Application |
 |----------|---------|-----------------|-----------------|
 | **Maxwell (quasi-static)** | ∇·(σ∇V) = Iₛ | Electric field propagation through tissue; at BCI frequencies (<10 kHz), displacement current is negligible — fields are quasi-static, not propagating waves | L1 signal physics, volume conduction model, why wavefront visualization is pedagogical (not literal) |
-| **Boltzmann distribution** | P ∝ e^(−E/kT) | Probability of a state at energy E; governs ion channel gating, thermal noise floor, and statistical mechanics of neural populations | Cₛ metric form — e^(−σ²) IS a Boltzmann factor where variance plays the role of energy |
+| **Boltzmann distribution** | P ∝ e^(−E/kT) | Probability of a state at energy E; governs ion channel gating, thermal noise floor, and statistical mechanics of neural populations | Cₛ metric form — e^(−σ²) has the mathematical form of a Boltzmann factor, where variance plays an analogous role to energy |
 | **Nernst equation** | E = (RT/zF) ln([ion]out/[ion]in) | Equilibrium potential for each ion species across the neural membrane; derives from Maxwell + Boltzmann | Resting potential (−70 mV), action potential thresholds — the voltage baselines that BCI signals must respect |
 | **Nernst-Planck** | J = −D∇c − (zF/RT)Dc∇V | Ion flux under both concentration gradient and electric field; combines diffusion with electrostatic drift | Ion transport across membranes — the actual current carriers in neural tissue (Na⁺, K⁺, Ca²⁺, Cl⁻) |
 | **Einstein diffusion** | D = kT/(6πηr) | Diffusion coefficient for particles in fluid; governs neurotransmitter transport across the ~20-40 nm synaptic cleft | L9-L10 biology layers — chemical signaling speed and reliability at synapses |
-| **Hodgkin-Huxley** | C_m(dV/dt) = −Σ gᵢmʰ(V − Eᵢ) + I_ext | Action potential dynamics; uses Boltzmann gating variables (m, h, n) with Nernst reversal potentials | Signal generation model — what authentic neural signals look like, providing the baseline for coherence scoring |
+| **Hodgkin-Huxley** | C_m(dV/dt) = −Σ gᵢmᵖhᵍ(V − Eᵢ) + I_ext | Action potential dynamics; uses Boltzmann gating variables (m, h, n) with Nernst reversal potentials | Signal generation model — what authentic neural signals look like, providing the baseline for coherence scoring |
 | **Cole-Cole model** | ε*(ω) = ε_∞ + Σ Δεᵢ/(1+(jωτᵢ)^(1−αᵢ)) | Frequency-dependent dielectric properties of tissue; four dispersions (α, β, δ, γ) across the spectrum | Dispersion correction for f × S ≈ k; determines v(f) and therefore the weighting function w(f, S) |
 | **Fourier Transform** | X(f) = ∫ x(t)e^(−i2πft) dt | Decomposes any signal into frequency components, each with amplitude, frequency, and phase | Core analysis tool — breaks incoming signals into the components that Cₛ(S) evaluates |
 
@@ -465,7 +465,7 @@ The layer-aware coherence metric is a **proposed theoretical framework** — des
 1. **Calibrate w(f, S)** — Fit weighting parameters (α, δ) to real BCI data (e.g., PhysioNet EEG datasets)
 2. **Validate per-layer scales** — Confirm spatial scale assignments using empirical neural recordings at each processing level
 3. **Dispersion correction** — Compute layer-specific k(f) using Cole-Cole parameters for human neural tissue (Gabriel et al., 1996)
-4. **Computational cost** — Profile real-time Cₛ(S) computation to verify it fits within the <370 μs latency budget
+4. **Computational cost** — Profile real-time Cₛ(S) computation to verify it fits within the ≤370 μs latency budget
 
 > **Deep dive:** See the complete equations reference and physical derivation chain in [TechDoc-Equations_Reference.md](../mathematical-foundations/TechDoc-Equations_Reference.md), and the mathematical audit in [TechDoc-Mathematical_Audit.md](../mathematical-foundations/TechDoc-Mathematical_Audit.md).
 
@@ -486,7 +486,7 @@ The Neural Firewall operates at L8 — the Neural Gateway. It implements Zero-Tr
 | Pattern Matcher | Detect attack signatures | 0.8 mW | <50 μs |
 | Coherence Calculator | Compute Cₛ in real-time | 1.0 mW | <200 μs |
 | Decision Logic | Accept/reject/flag | 0.2 mW | <10 μs |
-| **Total** | | **2.8 mW** | **<370 μs** |
+| **Total** | | **2.8 mW** | **≤370 μs** |
 
 At 2.8 mW total, this is designed to fit within the tight power budgets of implantable BCIs (typically 5–25 mW total device power depending on architecture).
 
@@ -597,10 +597,10 @@ A growing wave of state legislation now explicitly protects neural data — vali
 
 | State | Legislation | Status | Key Provision |
 |-------|-------------|--------|---------------|
-| Colorado | H.B. 24-1058 | Enacted Aug 2024 | First US state law classifying neural data as sensitive data |
+| Colorado | H.B. 24-1058 | Effective Aug 2024 | First US state law classifying neural data as sensitive data |
 | California | SB 1223 | Effective Jan 2025 | Amends CCPA to include neural data as sensitive personal information |
 | Montana | SB 163 | Effective Oct 2025 | Classifies neural data as protected health information |
-| Connecticut | SB 1295 | Effective Jul 2026 | Comprehensive neurotechnology consumer protection |
+| Connecticut | SB 1295 | Effective Jul 2026 | Broadens sensitive data protections to include neural data |
 
 #### International Frameworks
 
@@ -797,7 +797,7 @@ This roadmap is aspirational, not guaranteed. But the pattern is clear: every tr
 
 40. Republic of Chile. (2021). *Constitutional Amendment on Neurorights* (Art. 19 §1) and *Neuroprotection Law* (Law 21.383).
 
-41. U.S. Senate. (2025). *S. 2925: Mental-health Innovation and Neurotechnology Development (MIND) Act*. Introduced September 2025.
+41. U.S. Senate. (2025). *S. 2925: Management of Individuals' Neural Data (MIND) Act of 2025*. Introduced September 2025.
 
 42. National Institute of Standards and Technology. (2024). *Cybersecurity Framework 2.0*. NIST CSF 2.0.
 

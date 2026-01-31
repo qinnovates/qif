@@ -424,7 +424,7 @@
         <div class="badge">ONI Whitepaper v1.0</div>
         <h1><span>ONI</span> Framework Whitepaper</h1>
         <p class="subtitle">The OSI of Mind: Why Brain-Computer Interfaces Need a Universal Security Standard</p>
-        <p class="meta"><strong>Kevin L. Qi</strong> &middot; Independent Researcher &middot; January 2026</p>
+        <p class="meta"><strong>Kevin L. Qi</strong> &middot; January 2026</p>
     </header>
 
     <div class="epigraph">
@@ -439,7 +439,7 @@
 
         <p>Forty years later, networks have reached a new endpoint: the human brain.</p>
 
-        <p>Neuralink has implanted its N1 chip in human patients. Synchron's Stentrode is in clinical trials. Blackrock Neurotech's Utah arrays have been recording neural signals for over a decade. The FDA has cleared brain-computer interfaces as Class III medical devices. The technology is no longer theoretical — it's surgical.</p>
+        <p>Neuralink has implanted its N1 chip in human patients. Synchron's Stentrode is in clinical trials. Blackrock Neurotech's Utah arrays have been recording neural signals for over a decade. The FDA classifies brain-computer interfaces as Class III medical devices, and multiple companies have received Breakthrough Device Designation for clinical trials. The technology is no longer theoretical — it's surgical.</p>
 
         <div class="highlight-box">
             <p><strong>But there is no OSI model for the brain.</strong></p>
@@ -548,7 +548,7 @@ WRITE PATH: Cloud → Wireless RX → Validation → Electrical Stimulation → 
 
         <p>But ONI has an advantage that OSI never had: <strong>hindsight.</strong></p>
 
-        <p>The OSI model was invented in 1983 — before the first major computer virus (Brain, 1986), before the Morris worm (1988), before ransomware, before zero-day markets, before nation-state cyber operations. Security was never part of the original design. It was bolted on after the fact, layer by painful layer — SSL in 1995, IPsec in 1998, WPA2 in 2004, TLS 1.3 in 2018 — each one a response to an attack that the original model never anticipated. The internet was built open and trusting, and the security community has spent four decades trying to retrofit protections onto a foundation that was never designed for them.</p>
+        <p>The OSI model was invented in 1983 — before the first major computer virus (Brain, 1986), before the Morris worm (1988), before ransomware, before zero-day markets, before nation-state cyber operations. Security was never part of the original design. It was bolted on after the fact, layer by painful layer — SSL in 1995, IPsec in 1998, WPA2 in 2004, TLS 1.3 in 2018 — each one addressing a security gap that the original model never accounted for. The internet was built open and trusting, and the security community has spent four decades trying to retrofit protections onto a foundation that was never designed for them.</p>
 
         <p>We don't have to repeat that mistake. The cybersecurity industry has accumulated decades of hard-won knowledge: zero-trust architecture, defense-in-depth, secure-by-design principles, threat modeling methodologies, incident response frameworks, and the painful economics of "bolt-on" vs. "built-in" security. ONI incorporates all of this from day one. The Coherence Metric, the Neural Firewall, the layer-aware threat model — these aren't afterthoughts. They are foundational. Every layer of the ONI Framework was designed with security as a first-class constraint, not a feature to be added later.</p>
 
@@ -572,9 +572,9 @@ WRITE PATH: Cloud → Wireless RX → Validation → Electrical Stimulation → 
         <table>
             <thead><tr><th>Domain</th><th>Pre-Standard Cost</th><th>Post-Standard Cost</th><th>Catalyst</th></tr></thead>
             <tbody>
-                <tr><td>Internet (pre-TLS)</td><td>$0 (no encryption)</td><td>$3.86M avg breach</td><td>E-commerce fraud</td></tr>
+                <tr><td>Internet (pre-TLS)</td><td>$0 (no encryption)</td><td>$4.45M avg breach</td><td>E-commerce fraud</td></tr>
                 <tr><td>Medical devices</td><td>Minimal security</td><td>$10M+ per recall</td><td>Pacemaker vulnerability demos (2012–2017)</td></tr>
-                <tr><td>Industrial control</td><td>$0 (air-gapped)</td><td>$1B+ (Colonial Pipeline)</td><td>Critical infrastructure attacks</td></tr>
+                <tr><td>Industrial control</td><td>$0 (air-gapped)</td><td>$4.4M ransom + massive disruption (Colonial Pipeline)</td><td>Critical infrastructure attacks</td></tr>
                 <tr><td><strong>BCIs (today)</strong></td><td><strong>No standard exists</strong></td><td><strong>Unknown — stakes are human</strong></td><td><strong>?</strong></td></tr>
             </tbody>
         </table>
@@ -689,7 +689,7 @@ WRITE PATH: Cloud → Wireless RX → Validation → Electrical Stimulation → 
         <h3>6.1 The Core Question</h3>
         <p>How do you know a neural signal is trustworthy?</p>
 
-        <p>Traditional cybersecurity authenticates the <em>source</em> of a message. But in the neural domain, source authentication alone is insufficient. The brain has no native mechanism to distinguish endogenous signals from exogenous ones — if a signal's amplitude, frequency, and timing fall within biological norms, the brain processes it as real.</p>
+        <p>Traditional cybersecurity authenticates the <em>source</em> of a message. But in the neural domain, source authentication alone is insufficient. The brain has no dedicated mechanism for tagging signals as endogenous vs. exogenous at the level of individual spikes or oscillatory cycles — if a signal's amplitude, frequency, and timing fall within biological norms, downstream circuits will process it as real.</p>
 
         <p>We need a metric that examines the <em>signal itself</em>.</p>
 
@@ -758,7 +758,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             <li><strong>S</strong> = spatial scale (meters)</li>
             <li><strong>k</strong> = constant (~1-100 m·Hz for mammalian neural systems)</li>
         </ul>
-        <p>This holds across <strong>six orders of magnitude</strong> in both frequency and spatial scale.</p>
+        <p>This holds across orders of magnitude in both frequency and spatial scale.</p>
 
         <h3>7.2 The Evidence</h3>
 
@@ -769,7 +769,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
                 <tr><td>Action potential</td><td>500 Hz</td><td>1 μm</td><td>5 × 10⁻⁴</td></tr>
                 <tr><td>Gamma oscillation</td><td>40 Hz</td><td>2.5 cm</td><td>1</td></tr>
                 <tr><td>Alpha rhythm</td><td>10 Hz</td><td>10 cm</td><td>1</td></tr>
-                <tr><td>Working memory</td><td>0.1 Hz</td><td>15 cm</td><td>0.015</td></tr>
+                <tr><td>Theta rhythm (working memory)</td><td>6 Hz</td><td>8 cm</td><td>0.48</td></tr>
             </tbody>
         </table>
 
@@ -789,7 +789,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
 
         <figure class="figure">
             <img src="figures/fig4_scale_frequency.png" alt="Scale-Frequency Invariant">
-            <figcaption>Figure 7. The Scale-Frequency Invariant on a log-log plot. Despite spanning 6 orders of magnitude, all points fall within a narrow band defined by f × S ≈ k. This invariant emerges from the physics of axonal conduction.</figcaption>
+            <figcaption>Figure 7. The Scale-Frequency Invariant on a log-log plot. Despite spanning multiple orders of magnitude in both frequency and spatial scale, all points fall within a band consistent with f × S ≈ k. This invariant emerges from the physics of axonal conduction.</figcaption>
         </figure>
 
         <h3>7.4 Physical Derivation</h3>
@@ -829,7 +829,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             <thead><tr><th>Equation</th><th>Formula</th><th>What It Governs</th><th>ONI Application</th></tr></thead>
             <tbody>
                 <tr><td><strong>Maxwell (quasi-static)</strong></td><td>∇·(σ∇V) = I<sub>s</sub></td><td>Electric field propagation through tissue; at BCI frequencies (&lt;10 kHz), fields are quasi-static</td><td>L1 signal physics, volume conduction model</td></tr>
-                <tr><td><strong>Boltzmann distribution</strong></td><td>P ∝ e<sup>−E/kT</sup></td><td>Probability of a state at energy E; governs ion channel gating and thermal noise</td><td>C<sub>s</sub> metric form — e<sup>−σ²</sup> IS a Boltzmann factor</td></tr>
+                <tr><td><strong>Boltzmann distribution</strong></td><td>P ∝ e<sup>−E/kT</sup></td><td>Probability of a state at energy E; governs ion channel gating and thermal noise</td><td>C<sub>s</sub> metric form — e<sup>−σ²</sup> has the mathematical form of a Boltzmann factor</td></tr>
                 <tr><td><strong>Nernst equation</strong></td><td>E = (RT/zF) ln([ion]<sub>out</sub>/[ion]<sub>in</sub>)</td><td>Equilibrium potential for each ion species across the membrane</td><td>Resting potential (−70 mV), action potential thresholds</td></tr>
                 <tr><td><strong>Nernst-Planck</strong></td><td>J = −D∇c − (zF/RT)Dc∇V</td><td>Ion flux under concentration gradient and electric field</td><td>Ion transport — the actual current carriers (Na⁺, K⁺, Ca²⁺, Cl⁻)</td></tr>
                 <tr><td><strong>Einstein diffusion</strong></td><td>D = kT/(6πηr)</td><td>Diffusion coefficient for neurotransmitter transport across synaptic cleft</td><td>L9-L10 biology layers — chemical signaling</td></tr>
@@ -875,7 +875,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             <li>Calibrate w(f, S) — fit weighting parameters to real BCI data (e.g., PhysioNet EEG datasets)</li>
             <li>Validate per-layer spatial scales using empirical neural recordings</li>
             <li>Compute layer-specific k(f) using Cole-Cole parameters (Gabriel et al., 1996)</li>
-            <li>Profile real-time C<sub>s</sub>(S) computation to verify it fits within the &lt;370 μs latency budget</li>
+            <li>Profile real-time C<sub>s</sub>(S) computation to verify it fits within the ≤370 μs latency budget</li>
         </ol>
 
         <blockquote><p><strong>Deep dive:</strong> See the complete equations reference in <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/publications/mathematical-foundations/TechDoc-Equations_Reference.md">TechDoc-Equations_Reference</a> and the <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md">Mathematical Audit</a>.</p></blockquote>
@@ -896,7 +896,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
                 <tr><td>Pattern Matcher</td><td>Detect attack signatures</td><td>0.8 mW</td><td>&lt;50 μs</td></tr>
                 <tr><td>Coherence Calculator</td><td>Compute C<sub>s</sub> in real-time</td><td>1.0 mW</td><td>&lt;200 μs</td></tr>
                 <tr><td>Decision Logic</td><td>Accept/reject/flag</td><td>0.2 mW</td><td>&lt;10 μs</td></tr>
-                <tr><td><strong>Total</strong></td><td></td><td><strong>2.8 mW</strong></td><td><strong>&lt;370 μs</strong></td></tr>
+                <tr><td><strong>Total</strong></td><td></td><td><strong>2.8 mW</strong></td><td><strong>≤370 μs</strong></td></tr>
             </tbody>
         </table>
 
