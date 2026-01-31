@@ -1,6 +1,6 @@
 # ONI Visualizations
 
-Programmatic video generation for the ONI Neural Security Framework using [Remotion](https://remotion.dev/).
+Programmatic video generation for the ONI Neuroassurance Framework using [Remotion](https://remotion.dev/).
 
 ## Purpose
 
@@ -113,4 +113,4 @@ Rendered videos can be embedded in the ONI documentation:
 
 ---
 
-*Part of the ONI Neural Security Framework*
+*Part of the ONI Neuroassurance Framework*

@@ -2,7 +2,7 @@
 
 > From right triangles to Fourier transforms — and why it all matters for brain-computer interface security.
 
-*A visual mathematics primer for the ONI Neural Security Stack*
+*A visual mathematics primer for the ONI Neuroassurance Stack*
 
 ---
 
