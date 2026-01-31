@@ -9,7 +9,7 @@ qikevinl@github
 
 ---
 
-> "The mind is the last frontier of privacy. Once it's breached, there's no firewall, no patch, no undo."
+> "The most important connections require the best thought."
 
 ---
 
@@ -711,7 +711,7 @@ ONI is an open research framework today. The long-term vision is formal standard
 
 This roadmap is aspirational, not guaranteed. But the pattern is clear: every transformative technology eventually requires formal standardization, and the organizations that propose the initial framework shape the standards that follow. ONI's goal is to be that initial framework for neurosecurity.
 
-**The mind is the last frontier. We're making sure it's protected from day one.**
+**The most important connections require the best thought.**
 
 ---
 
