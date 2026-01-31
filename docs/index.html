@@ -1766,14 +1766,16 @@
             gatewayLight.position.set(0, 0, 3);
             scene.add(gatewayLight);
 
-            // Fresnel Shader
+            // Fresnel Shader (with outer glow + electric pool effect)
             var fresnelVert = [
                 'varying vec3 vNormal;',
                 'varying vec3 vViewPos;',
+                'varying vec3 vWorldPos;',
                 'void main() {',
                 '  vNormal = normalize(normalMatrix * normal);',
                 '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
                 '  vViewPos = -mv.xyz;',
+                '  vWorldPos = (modelMatrix * vec4(position, 1.0)).xyz;',
                 '  gl_Position = projectionMatrix * mv;',
                 '}'
             ].join('\n');
@@ -1784,25 +1786,41 @@
                 'uniform float uFresnelPower;',
                 'uniform float uGlowIntensity;',
                 'uniform float uTime;',
+                'uniform float uActiveGlow;',
                 'varying vec3 vNormal;',
                 'varying vec3 vViewPos;',
+                'varying vec3 vWorldPos;',
                 'void main() {',
                 '  vec3 vd = normalize(vViewPos);',
                 '  float fresnel = pow(1.0 - abs(dot(vd, vNormal)), uFresnelPower);',
                 '  float shimmer = 1.0 + 0.08 * sin(uTime * 2.0 + vNormal.x * 12.0);',
-                '  float alpha = fresnel * uOpacity * shimmer;',
-                '  vec3 col = uColor * (1.0 + fresnel * uGlowIntensity);',
+                '',
+                '  // Calm electric pool ripple (when active)',
+                '  float ripple1 = sin(vWorldPos.x * 4.0 + uTime * 0.8) * cos(vWorldPos.z * 3.5 + uTime * 0.6);',
+                '  float ripple2 = sin(vWorldPos.x * 6.0 - uTime * 0.5 + 1.7) * cos(vWorldPos.z * 5.0 + uTime * 0.4);',
+                '  float poolEffect = 0.5 + 0.3 * ripple1 + 0.2 * ripple2;',
+                '  float electricPool = mix(1.0, poolEffect * 1.4 + 0.3, uActiveGlow);',
+                '',
+                '  // White outer glow (edge bloom)',
+                '  float outerGlow = pow(fresnel, 1.2) * uActiveGlow;',
+                '  vec3 glowColor = mix(uColor, vec3(1.0), outerGlow * 0.6);',
+                '',
+                '  float alpha = fresnel * uOpacity * shimmer * electricPool;',
+                '  alpha += outerGlow * 0.35;',
+                '  vec3 col = glowColor * (1.0 + fresnel * uGlowIntensity + outerGlow * 1.5);',
                 '  gl_FragColor = vec4(col, alpha);',
                 '}'
             ].join('\n');
 
-            // Gateway Shader
+            // Gateway Shader (with outer glow + electric pool effect)
             var gatewayFrag = [
                 'uniform vec3 uColor;',
                 'uniform float uOpacity;',
                 'uniform float uTime;',
+                'uniform float uActiveGlow;',
                 'varying vec3 vNormal;',
                 'varying vec3 vViewPos;',
+                'varying vec3 vWorldPos;',
                 'void main() {',
                 '  vec3 vd = normalize(vViewPos);',
                 '  float fresnel = pow(1.0 - abs(dot(vd, vNormal)), 2.5);',
@@ -1810,8 +1828,21 @@
                 '  float energy = fresnel * pulse;',
                 '  float scan = 0.5 + 0.5 * sin(vNormal.y * 20.0 + uTime * 4.0);',
                 '  energy += scan * 0.15 * fresnel;',
-                '  vec3 col = uColor * (1.0 + energy * 2.0);',
-                '  gl_FragColor = vec4(col, energy * uOpacity);',
+                '',
+                '  // Calm electric pool (gateway version — warmer, slower)',
+                '  float ripple1 = sin(vWorldPos.x * 3.0 + uTime * 0.6) * cos(vWorldPos.z * 2.5 + uTime * 0.4);',
+                '  float ripple2 = sin(vWorldPos.x * 5.0 - uTime * 0.35 + 2.1) * cos(vWorldPos.z * 4.0 + uTime * 0.3);',
+                '  float poolEffect = 0.5 + 0.3 * ripple1 + 0.2 * ripple2;',
+                '  float electricPool = mix(1.0, poolEffect * 1.6 + 0.2, uActiveGlow);',
+                '',
+                '  // White outer glow',
+                '  float outerGlow = pow(fresnel, 1.0) * uActiveGlow;',
+                '  vec3 glowColor = mix(uColor, vec3(1.0, 0.95, 0.85), outerGlow * 0.5);',
+                '',
+                '  energy *= electricPool;',
+                '  energy += outerGlow * 0.4;',
+                '  vec3 col = glowColor * (1.0 + energy * 2.0 + outerGlow * 2.0);',
+                '  gl_FragColor = vec4(col, energy * uOpacity + outerGlow * 0.3);',
                 '}'
             ].join('\n');
 
@@ -1847,7 +1878,8 @@
                     uOpacity: { value: isGW ? 0.7 : 0.45 },
                     uFresnelPower: { value: layer.fp },
                     uGlowIntensity: { value: isGW ? 2.5 : 1.2 },
-                    uTime: { value: 0 }
+                    uTime: { value: 0 },
+                    uActiveGlow: { value: 0.0 }
                 };
                 var mat = new THREE.ShaderMaterial({
                     uniforms: u,
@@ -2287,6 +2319,12 @@
                         // Opacity lerp
                         shellUniforms[i].uOpacity.value +=
                             (targetOpacity - shellUniforms[i].uOpacity.value) * 0.05;
+
+                        // Active glow lerp (slow ramp up, gentle decay)
+                        var glowTarget = (i === activeLayerIndex) ? 1.0 : 0.0;
+                        var glowLerp = (glowTarget > shellUniforms[i].uActiveGlow.value) ? 0.03 : 0.06;
+                        shellUniforms[i].uActiveGlow.value +=
+                            (glowTarget - shellUniforms[i].uActiveGlow.value) * glowLerp;
                     }
                 });
 
