@@ -9,7 +9,7 @@ qikevinl@github
 
 ---
 
-> "The most important connections require the best thought."
+> "Life's most important connections deserve the most thought."
 
 ---
 
@@ -711,7 +711,7 @@ ONI is an open research framework today. The long-term vision is formal standard
 
 This roadmap is aspirational, not guaranteed. But the pattern is clear: every transformative technology eventually requires formal standardization, and the organizations that propose the initial framework shape the standards that follow. ONI's goal is to be that initial framework for neurosecurity.
 
-**The most important connections require the best thought.**
+**Life's most important connections deserve the most thought.**
 
 ---
 
