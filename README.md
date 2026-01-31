@@ -5,9 +5,11 @@ Life's most important connections deserve the best thought.
 
 ---
 
+## Why Neuroethics Needs Engineering
+
 **ONI** (Open Neurosecurity Interoperability) — a unified 14-layer model extending OSI into the biological domain.
 
-One framework to understand, build, and secure brain-computer interfaces. Open. Accessible. Universal.
+Brain-computer interfaces are being implanted in humans today. Neuralink, BrainGate, and dozens of clinical trials are creating direct connections between silicon and neural tissue — yet no universal security standard exists to protect the people who depend on them. ONI translates neuroethical principles — cognitive liberty, mental privacy, mental integrity, psychological continuity — into testable, implementable security controls.
 
 > The OSI model was built before networking was figured out. The periodic table left gaps for elements not yet discovered. ONI follows the same principle — a living framework that organizes what we know, highlights what we don't, and evolves as discovery fills in the gaps. [Read the full vision →](ABOUT.md#the-vision)
 
@@ -15,16 +17,17 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 
 ## Table of Contents
 
-- [Navigation](#navigation)
+- [Why Neuroethics Needs Engineering](#why-neuroethics-needs-engineering)
+- [Governance & Ethics](#governance--ethics)
 - [Privacy & Ethics Statement](#privacy--ethics-statement)
-  - [Transparency & Ethics](#transparency--ethics)
-- [Python Library](#python-library)
-- [Repository Structure](#repository-structure)
 - [Objective](#objective)
 - [Key Components](#key-components)
   - [The 14-Layer ONI Model](#the-14-layer-oni-model)
   - [The Coherence Metric](#the-coherence-metric)
   - [Neural Signal Assurance Model (NSAM)](#neural-signal-assurance-model-nsam)
+- [Navigation](#navigation)
+- [Python Library & Tools](#python-library--tools)
+- [Repository Structure](#repository-structure)
 - [Quick Reference](#quick-reference)
   - [Attack Surfaces by Layer](#attack-surfaces-by-layer)
   - [Hardware Constraints](#hardware-constraints-neuralink-n1-reference)
@@ -46,37 +49,12 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 
 ---
 
-## Navigation
+## Governance & Ethics
 
-| Start Here | Purpose |
-|------------|---------|
-| **[Live Demo](https://qikevinl.github.io/ONI/)** | **Interactive visualizations** — animated, dynamic exploration of the framework |
-| **[Watch Demo Video](https://qikevinl.github.io/ONI/video/ONI-Demo-720p.mp4)** | **3:56 overview video** — the complete ONI story from BCIs to neural security |
-| **[MAIN/](MAIN/)** | All research content — publications, visualizations, resources |
-| **[INDEX.md](MAIN/INDEX.md)** | **Main Wiki** — central hub for navigation, dependencies, cross-references, roadmap |
-| **[autodidact/](autodidact/)** | **Learn ONI** — educational ecosystem (ONI Academy, LearnViz, research notes) |
-| **[GLOSSARY.md](GLOSSARY.md)** | **Quick Summary** — auto-generated index with folder descriptions (AI-powered) |
-| **[Read the Whitepaper](https://qikevinl.github.io/ONI/whitepaper/)** | **Flagship document** — the complete ONI Framework overview with 8 figures |
-| **[External Tools & Libraries](MAIN/resources/EXTERNAL_TOOLS.md)** | **Tools catalog** — BrainFlow, MNE-Python, MOABB, SciPy, hardware targets |
-| **[Documentation Hub](https://qikevinl.github.io/ONI/documentation/)** | **Complete docs index** — 50+ documents organized into 9 categories |
-| **This README** | Public overview — key concepts, quick reference |
-
-> **GLOSSARY.md** is auto-generated when changes are pushed to `MAIN/` or `autodidact/`. Uses GitHub Models (GPT-4o-mini) to summarize the repository structure. Updates are submitted as PRs for review before merging.
-
-### Security & Maintenance
-
-| Feature | Description |
-|---------|-------------|
-| **Dependabot** | Automated weekly security updates for all dependencies |
-| **CI/CD** | GitHub Actions for tests (Python 3.9-3.12) and security scanning |
-| **CDN Libraries** | GitHub Pages uses CDN-hosted AOS.js — auto-updated, no maintenance |
-
-### Governance & Ethics
+The ONI Framework was designed with neuroethical principles as foundational constraints, not afterthoughts. These documents demonstrate how the framework translates ethical principles into technical controls.
 
 | Document | Purpose |
 |----------|---------|
-| **[DATA_POLICY_FAQ.md](MAIN/governance/DATA_POLICY_FAQ.md)** | **FAQ & Data Policy** — privacy, anonymization, user rights, known vulnerabilities |
-| **[TRANSPARENCY.md](MAIN/governance/TRANSPARENCY.md)** | Human-AI collaboration audit trail — documents cognitive boundary, HITL methodology |
 | **[NEUROETHICS_ALIGNMENT.md](MAIN/governance/NEUROETHICS_ALIGNMENT.md)** | Maps framework components to neuroethics principles (Ienca & Andorno, Yuste et al.) |
 | **[UNESCO_ALIGNMENT.md](MAIN/governance/UNESCO_ALIGNMENT.md)** | **UNESCO Recommendation on Ethics of Neurotechnology (2025)** — 15 of 17 elements implemented |
 | **[REGULATORY_COMPLIANCE.md](MAIN/governance/REGULATORY_COMPLIANCE.md)** | **US & international regulatory mapping** — FDA, HIPAA, NIST, state neurorights, MIND Act, UNESCO, Chile, EU |
@@ -84,17 +62,10 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 | **[POST_DEPLOYMENT_ETHICS.md](MAIN/governance/POST_DEPLOYMENT_ETHICS.md)** | Device lifecycle obligations — maintenance, abandonment prevention, post-trial access |
 | **[PEDIATRIC_CONSIDERATIONS.md](MAIN/governance/PEDIATRIC_CONSIDERATIONS.md)** | Guidelines for minors and individuals with limited capacity |
 | **[ACCESSIBILITY.md](MAIN/governance/ACCESSIBILITY.md)** | Accessibility standards and compliance for ONI tools and documentation |
+| **[DATA_POLICY_FAQ.md](MAIN/governance/DATA_POLICY_FAQ.md)** | **FAQ & Data Policy** — privacy, anonymization, user rights, known vulnerabilities |
+| **[TRANSPARENCY.md](MAIN/governance/TRANSPARENCY.md)** | Human-AI collaboration audit trail — documents cognitive boundary, HITL methodology |
 | **[RELATED_WORK.md](MAIN/RELATED_WORK.md)** | Prior BCI security research — acknowledges foundational work, positions ONI contribution |
 | **[ACADEMIC_LANDSCAPE.md](MAIN/ACADEMIC_LANDSCAPE.md)** | Research landscape — top universities, key researchers, collaboration opportunities |
-
-### Naming Convention
-
-| File | Location | Purpose |
-|------|----------|---------|
-| `INDEX.md` | `MAIN/` only | **Main wiki hub** — the single source of truth for navigation |
-| `README.md` | Each topic folder | **Topic overview** — auto-rendered by GitHub when browsing folders |
-
-**For deep exploration:** Each topic folder contains a `README.md` with summaries, dependencies, and related topics.
 
 ---
 
@@ -108,7 +79,41 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 
 ---
 
-## Python Library
+## Navigation
+
+| Start Here | Purpose |
+|------------|---------|
+| **[Live Demo](https://qikevinl.github.io/ONI/)** | **Interactive visualizations** — animated, dynamic exploration of the framework |
+| **[Watch Demo Video](https://qikevinl.github.io/ONI/video/ONI-Demo-720p.mp4)** | **3:56 overview video** — the complete ONI story from BCIs to neural security |
+| **[Read the Whitepaper](https://qikevinl.github.io/ONI/whitepaper/)** | **Flagship document** — the complete ONI Framework overview with 8 figures |
+| **[Documentation Hub](https://qikevinl.github.io/ONI/documentation/)** | **Complete docs index** — 50+ documents organized into 9 categories |
+| **[MAIN/](MAIN/)** | All research content — publications, visualizations, resources |
+| **[INDEX.md](MAIN/INDEX.md)** | **Main Wiki** — central hub for navigation, dependencies, cross-references, roadmap |
+| **[GLOSSARY.md](GLOSSARY.md)** | **Quick Summary** — auto-generated index with folder descriptions (AI-powered) |
+| **[External Tools & Libraries](MAIN/resources/EXTERNAL_TOOLS.md)** | **Tools catalog** — BrainFlow, MNE-Python, MOABB, SciPy, hardware targets |
+
+> **GLOSSARY.md** is auto-generated when changes are pushed to `MAIN/` or `autodidact/`. Uses GitHub Models (GPT-4o-mini) to summarize the repository structure. Updates are submitted as PRs for review before merging.
+
+### Security & Maintenance
+
+| Feature | Description |
+|---------|-------------|
+| **Dependabot** | Automated weekly security updates for all dependencies |
+| **CI/CD** | GitHub Actions for tests (Python 3.9-3.12) and security scanning |
+| **CDN Libraries** | GitHub Pages uses CDN-hosted AOS.js — auto-updated, no maintenance |
+
+### Naming Convention
+
+| File | Location | Purpose |
+|------|----------|---------|
+| `INDEX.md` | `MAIN/` only | **Main wiki hub** — the single source of truth for navigation |
+| `README.md` | Each topic folder | **Topic overview** — auto-rendered by GitHub when browsing folders |
+
+**For deep exploration:** Each topic folder contains a `README.md` with summaries, dependencies, and related topics.
+
+---
+
+## Python Library & Tools
 
 [![PyPI version](https://badge.fury.io/py/oni-framework.svg)](https://badge.fury.io/py/oni-framework)
 [![Tests](https://github.com/qikevinl/ONI/actions/workflows/tests.yml/badge.svg)](https://github.com/qikevinl/ONI/actions/workflows/tests.yml)

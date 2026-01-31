@@ -36,7 +36,9 @@ In the 1970s, computer networks were fragmented — every manufacturer had its o
 
 They didn't wait until networking was "figured out." They built the framework while the technology was still evolving, and it shaped everything that followed.
 
-The same pattern appears in chemistry. When Francis Venable published *The Development of the Periodic Law* in 1896, only about 78 elements were known. Noble gases hadn't been discovered yet. The book documents how the periodic table went through dozens of visual representations — circles, spirals, waves, towers — before arriving at the rectangular grid even children explore today. Mendeleev didn't just organize what was known — he left gaps for what wasn't. Those gaps predicted elements that were later discovered.
+When I was in Istanbul, I found a hidden gem — the oldest bookstore in the city. Inside, I discovered a copy of *The Development of the Periodic Law*, published in 1896 by F.P. Venable, Ph.D., Professor at the University of North Carolina. It only contained the original periodic elements — about 78 known at the time, before the discovery of noble gases. The book documents how the periodic table went through dozens of visual representations — circles, spirals, waves, towers — before arriving at the rectangular grid even children explore today. Mendeleev didn't just organize what was known — he left gaps for what wasn't. Those gaps predicted elements that were later discovered.
+
+I carried an entire stack of books through Istanbul, to Morocco, and back home — like a father gripping onto their child with all their might through foreign territory. Airport security at every stop questioned why I had them. That journey fueled something in me: a hunger for yesterday to act as the foundation for tomorrow.
 
 ONI follows the same principle. There are unknowns in neuroscience today — and that frontier is being challenged every day. Like the OSI model and the periodic table, ONI is a living framework: organizing what we know, highlighting what we don't, evolving as discovery fills in the gaps. From these foundations: limitless possibilities — security integration, automated signal detection through TARA, and directions we haven't yet imagined.
 
@@ -47,9 +49,11 @@ This is why I want to expand this work — collaborating with academics, researc
 
 ## Bigger Than Me
 
-What began as a solo project has grown into something far bigger than I ever imagined. I'm merely a small piece in the wonders that are larger — a calculated drop that creates forward momentum, a ripple that builds into a wave to shape the trajectory of tomorrow.
+What began as a solo project to delve into my unknowns has taken form into something bigger than what I originally envisioned. I'm merely a small piece in the wonders that are larger than I can currently comprehend — and that's why I can't do it alone. I need more exploration, more academics to fill in the gaps and help us closer to a safer, more secure future. A world where we, and the visionaries of tomorrow, have the tools that not only safeguard them but add value and allow them to explore their inner hearts to the truest potential.
 
-All it takes is one small action to create a reaction.
+This project started from my heart, and to the mind.
+
+I'm a calculated drop that creates forward momentum — a ripple that builds into a wave to shape the trajectory of tomorrow. All it takes is one small action to create a reaction.
 
 But there are no waves without the pool of knowledge — the researchers, neuroscientists, and engineers whose work makes the water deep enough to carry them. The wave is metaphorical: research with the brightest minds, pooled together to make tomorrow better, together today.
 
