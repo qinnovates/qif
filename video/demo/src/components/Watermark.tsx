@@ -31,10 +31,9 @@ interface WatermarkProps {
 /**
  * Watermark component for ONI demo videos
  *
- * Displays: "© 2026 Kevin Qi • ONI Neural Security Stack™"
+ * Displays: "© 2026 Kevin Qi • ONI Neuroassurance Stack"
  *
  * - Copyright (©) protects the video content itself
- * - Trademark (™) protects the brand name
  */
 export const Watermark: React.FC<WatermarkProps> = ({
   position = "bottom-right",
@@ -105,7 +104,7 @@ export const Watermark: React.FC<WatermarkProps> = ({
           letterSpacing: "0.02em",
         }}
       >
-        ONI Neural Security Stack™
+        ONI Neuroassurance Stack
       </span>
     </div>
   );

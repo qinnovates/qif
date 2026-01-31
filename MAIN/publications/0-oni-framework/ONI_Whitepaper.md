@@ -45,7 +45,7 @@ No standardized framework tells engineers which layer an attack targets, which s
 
 The ONI Framework — **Open Neurosecurity Interoperability** — fills this gap.
 
-> *"Only life's most important connections deserve the most thought."™*
+> *"Only life's most important connections deserve the most thought."*
 
 This whitepaper presents the ONI Framework: a 14-layer reference architecture that extends OSI into biological territory, providing the security industry with a structured, mathematically grounded, and regulation-ready model for protecting the bio-digital boundary.
 
@@ -765,7 +765,7 @@ The author wishes to acknowledge the support of colleagues and mentors in the de
 
 ---
 
-*© 2026 Kevin Qi. ONI Neural Security Stack™*
+*© 2026 Kevin Qi. ONI Neuroassurance Stack*
 *Open source under Apache 2.0 License*
 
 ---
