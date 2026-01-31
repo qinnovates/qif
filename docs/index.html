@@ -444,168 +444,83 @@
         }
 
         /* ============================================
-           SCENE 3: THE FRAMEWORK (Sticky Scroll)
+           SCENE 3: THE FRAMEWORK (Scroll-driven 3D)
            ============================================ */
         #scene-framework {
             position: relative;
             z-index: 1;
-            background: var(--bg-deep);
+            background: transparent;
         }
 
-        .framework-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            min-height: 100vh;
+        .framework-scroll-track {
+            position: relative;
         }
 
-        .framework-text-track {
-            padding: 6rem 0;
+        .layer-trigger {
+            height: 28vh;
+            position: relative;
         }
 
-        .framework-panel {
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 2rem 0;
+        .layer-trigger[data-layer="L8"] {
+            height: 40vh;
         }
 
-        .framework-panel.layer-panel {
-            min-height: 25vh;
+        .framework-intro-trigger,
+        .framework-closing-trigger {
+            height: 50vh;
+            position: relative;
         }
 
-        .framework-panel.layer-panel[data-layer="L8"] {
-            min-height: 35vh;
-        }
-
-        .framework-panel.closing-panel {
-            min-height: 50vh;
-        }
-
-        .framework-panel h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.01em;
-        }
-
-        .framework-panel p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-            max-width: 480px;
-        }
-
-        .framework-panel .formula {
-            font-family: 'Inter', monospace;
-            font-size: 1.1rem;
-            color: var(--accent-amber);
-            background: rgba(245, 158, 11, 0.08);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-
-        .framework-panel .zone-accent {
-            display: inline-block;
-            padding: 0.2rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .zone-accent.silicon { background: rgba(59,130,246,0.12); color: #60a5fa; }
-        .zone-accent.gateway { background: rgba(245,158,11,0.12); color: #fbbf24; }
-        .zone-accent.biology { background: rgba(16,185,129,0.12); color: #34d399; }
-
-        .layer-header {
+        /* Floating layer label HUD */
+        .layer-hud {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-bottom: 0.75rem;
+            padding: 0.6rem 1.4rem;
+            background: rgba(10, 15, 30, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
-        .layer-badge {
+        .layer-hud.visible {
+            opacity: 1;
+        }
+
+        .layer-hud-badge {
             display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.05em;
             flex-shrink: 0;
         }
-        .layer-badge.silicon { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
-        .layer-badge.gateway { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
-        .layer-badge.biology { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+        .layer-hud-badge.silicon { background: rgba(59,130,246,0.2); color: var(--accent-blue); }
+        .layer-hud-badge.gateway { background: rgba(245,158,11,0.2); color: var(--accent-amber); }
+        .layer-hud-badge.biology { background: rgba(16,185,129,0.2); color: var(--accent-green); }
 
-        .layer-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .layer-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            max-width: 440px;
-        }
-
-        .layer-context {
-            margin-top: 0.75rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .context-tag {
-            font-size: 0.7rem;
+        .layer-hud-name {
+            font-size: 1rem;
             font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            border-radius: 100px;
-            letter-spacing: 0.03em;
+            color: var(--text-primary);
+            white-space: nowrap;
         }
-        .context-tag.osi { background: rgba(59,130,246,0.1); color: var(--accent-blue); border: 1px solid rgba(59,130,246,0.2); }
-        .context-tag.novel { background: rgba(139,92,246,0.1); color: var(--accent-purple); border: 1px solid rgba(139,92,246,0.2); }
 
-        .context-example {
-            font-size: 0.8rem;
+        .layer-hud-zone {
+            font-size: 0.7rem;
             color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .framework-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: gap 0.2s;
-        }
-
-        .framework-link:hover { gap: 0.75rem; }
-
-        .framework-3d-pin {
-            position: sticky;
-            top: 80px;
-            height: calc(100vh - 100px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #framework-stack-canvas {
-            width: 100%;
-            height: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         /* ============================================
@@ -1163,14 +1078,9 @@
            RESPONSIVE
            ============================================ */
         @media (max-width: 1024px) {
-            .framework-container {
-                grid-template-columns: 1fr;
-            }
-            .framework-3d-pin {
-                position: relative;
-                top: auto;
-                height: 60vh;
-                order: -1;
+            .layer-hud {
+                bottom: 2rem;
+                padding: 0.5rem 1.2rem;
             }
         }
 
@@ -1296,138 +1206,40 @@
     </section>
 
     <!-- =============================================
-         SCENE 3: THE FRAMEWORK (Sticky Scroll)
+         SCENE 3: THE FRAMEWORK (Scroll-driven 3D)
          ============================================= -->
     <section id="scene-framework" class="scene">
-        <div class="scene-inner">
-            <div class="framework-container">
-                <div class="framework-text-track">
-                    <!-- Overview Panel -->
-                    <div class="framework-panel" data-zone="all">
-                        <div class="section-label">The Framework</div>
-                        <h3>14 layers.<br>From silicon to self.</h3>
-                        <p>ONI extends the OSI model beyond Layer 7 into the biological domain. Seven silicon layers handle traditional digital security. A Neural Gateway bridges machine and mind. Six biological layers map the neural processing pipeline from ion channels to identity.</p>
-                    </div>
+        <div class="framework-scroll-track">
+            <!-- Intro trigger -->
+            <div class="framework-intro-trigger" data-zone="all"></div>
 
-                    <!-- L1-L7: Silicon Layers -->
-                    <div class="framework-panel layer-panel" data-layer="L1" data-zone="silicon">
-                        <div class="layer-header">
-                            <span class="layer-badge silicon">L1</span>
-                            <span class="layer-name">Physical Carrier</span>
-                        </div>
-                    </div>
+            <!-- Layer triggers (invisible scroll regions) -->
+            <div class="layer-trigger layer-panel" data-layer="L1" data-zone="silicon"></div>
+            <div class="layer-trigger layer-panel" data-layer="L2" data-zone="silicon"></div>
+            <div class="layer-trigger layer-panel" data-layer="L3" data-zone="silicon"></div>
+            <div class="layer-trigger layer-panel" data-layer="L4" data-zone="silicon"></div>
+            <div class="layer-trigger layer-panel" data-layer="L5" data-zone="silicon"></div>
+            <div class="layer-trigger layer-panel" data-layer="L6" data-zone="silicon"></div>
+            <div class="layer-trigger layer-panel" data-layer="L7" data-zone="silicon"></div>
+            <div class="layer-trigger layer-panel" data-layer="L8" data-zone="gateway"></div>
+            <div class="layer-trigger layer-panel" data-layer="L9" data-zone="biology"></div>
+            <div class="layer-trigger layer-panel" data-layer="L10" data-zone="biology"></div>
+            <div class="layer-trigger layer-panel" data-layer="L11" data-zone="biology"></div>
+            <div class="layer-trigger layer-panel" data-layer="L12" data-zone="biology"></div>
+            <div class="layer-trigger layer-panel" data-layer="L13" data-zone="biology"></div>
+            <div class="layer-trigger layer-panel" data-layer="L14" data-zone="biology"></div>
 
-                    <div class="framework-panel layer-panel" data-layer="L2" data-zone="silicon">
-                        <div class="layer-header">
-                            <span class="layer-badge silicon">L2</span>
-                            <span class="layer-name">Signal Processing</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L3" data-zone="silicon">
-                        <div class="layer-header">
-                            <span class="layer-badge silicon">L3</span>
-                            <span class="layer-name">Protocol</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L4" data-zone="silicon">
-                        <div class="layer-header">
-                            <span class="layer-badge silicon">L4</span>
-                            <span class="layer-name">Transport</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L5" data-zone="silicon">
-                        <div class="layer-header">
-                            <span class="layer-badge silicon">L5</span>
-                            <span class="layer-name">Session</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L6" data-zone="silicon">
-                        <div class="layer-header">
-                            <span class="layer-badge silicon">L6</span>
-                            <span class="layer-name">Presentation</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L7" data-zone="silicon">
-                        <div class="layer-header">
-                            <span class="layer-badge silicon">L7</span>
-                            <span class="layer-name">Application Interface</span>
-                        </div>
-                    </div>
-
-                    <!-- L8: Neural Gateway -->
-                    <div class="framework-panel layer-panel" data-layer="L8" data-zone="gateway">
-                        <div class="layer-header">
-                            <span class="layer-badge gateway">L8</span>
-                            <span class="layer-name">Neural Gateway</span>
-                        </div>
-                    </div>
-
-                    <!-- L9-L14: Biology Layers -->
-                    <div class="framework-panel layer-panel" data-layer="L9" data-zone="biology">
-                        <div class="layer-header">
-                            <span class="layer-badge biology">L9</span>
-                            <span class="layer-name">Signal Processing</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L10" data-zone="biology">
-                        <div class="layer-header">
-                            <span class="layer-badge biology">L10</span>
-                            <span class="layer-name">Neural Protocol</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L11" data-zone="biology">
-                        <div class="layer-header">
-                            <span class="layer-badge biology">L11</span>
-                            <span class="layer-name">Cognitive Transport</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L12" data-zone="biology">
-                        <div class="layer-header">
-                            <span class="layer-badge biology">L12</span>
-                            <span class="layer-name">Cognitive Session</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L13" data-zone="biology">
-                        <div class="layer-header">
-                            <span class="layer-badge biology">L13</span>
-                            <span class="layer-name">Semantic Layer</span>
-                        </div>
-                    </div>
-
-                    <div class="framework-panel layer-panel" data-layer="L14" data-zone="biology">
-                        <div class="layer-header">
-                            <span class="layer-badge biology">L14</span>
-                            <span class="layer-name">Identity Layer</span>
-                        </div>
-                    </div>
-
-                    <!-- Closing Panel: Threat Mapping -->
-                    <div class="framework-panel closing-panel" data-zone="all">
-                        <h3>46 threat signatures mapped.</h3>
-                        <p>Every layer has been threat-modeled. From physical EM capture at L1 to brainprint theft at L14, the ONI framework provides a taxonomy of neural attack vectors &mdash; each with detection strategies and mitigation paths.</p>
-                        <a href="visualizations/06-oni-threat-matrix.html" class="framework-link">
-                            Explore the Threat Matrix
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 3D Stack (pinned) -->
-                <div class="framework-3d-pin">
-                    <canvas id="framework-stack-canvas"></canvas>
-                </div>
-            </div>
+            <!-- Closing trigger -->
+            <div class="framework-closing-trigger" data-zone="all"></div>
         </div>
     </section>
+
+    <!-- Layer HUD (floating label) -->
+    <div class="layer-hud" id="layer-hud">
+        <span class="layer-hud-badge" id="layer-hud-badge"></span>
+        <span class="layer-hud-name" id="layer-hud-name"></span>
+        <span class="layer-hud-zone" id="layer-hud-zone"></span>
+    </div>
 
     <!-- =============================================
          SCENE 4: THE PROOF
@@ -2288,17 +2100,46 @@
             });
 
             // =============================================
-            // PER-LAYER SCROLL TRACKING
+            // PER-LAYER SCROLL TRACKING + HUD
             // =============================================
-            var activeLayerIndex = -1; // -1 = no specific layer active (overview/closing)
+            var activeLayerIndex = -1;
             var activeZone = 'all';
             var layerPanels = document.querySelectorAll('.layer-panel');
+
+            // HUD elements
+            var layerHud = document.getElementById('layer-hud');
+            var layerHudBadge = document.getElementById('layer-hud-badge');
+            var layerHudName = document.getElementById('layer-hud-name');
+            var layerHudZone = document.getElementById('layer-hud-zone');
+
+            // Layer name lookup
+            var layerNames = {
+                L1:'Physical Carrier', L2:'Signal Processing', L3:'Protocol',
+                L4:'Transport', L5:'Session', L6:'Presentation', L7:'Application Interface',
+                L8:'Neural Gateway',
+                L9:'Signal Processing', L10:'Neural Protocol', L11:'Cognitive Transport',
+                L12:'Cognitive Session', L13:'Semantic Layer', L14:'Identity Layer'
+            };
+            var zoneLabels = { silicon:'Silicon', gateway:'Gateway', biology:'Biology' };
 
             // Build a mapping from layer ID (L1-L14) to shell index
             var layerIdToShellIndex = {};
             activeLayers.forEach(function(layer, idx) {
                 layerIdToShellIndex[layer.id] = idx;
             });
+
+            function updateHud(lid, zone) {
+                if (!layerHud) return;
+                if (lid && layerNames[lid]) {
+                    layerHudBadge.textContent = lid;
+                    layerHudBadge.className = 'layer-hud-badge ' + zone;
+                    layerHudName.textContent = layerNames[lid];
+                    layerHudZone.textContent = zoneLabels[zone] || '';
+                    layerHud.classList.add('visible');
+                } else {
+                    layerHud.classList.remove('visible');
+                }
+            }
 
             layerPanels.forEach(function(panel) {
                 ScrollTrigger.create({
@@ -2309,24 +2150,26 @@
                         var lid = panel.dataset.layer;
                         activeLayerIndex = (lid && layerIdToShellIndex[lid] !== undefined) ? layerIdToShellIndex[lid] : -1;
                         activeZone = panel.dataset.zone || 'all';
+                        updateHud(lid, activeZone);
                     },
                     onEnterBack: function() {
                         var lid = panel.dataset.layer;
                         activeLayerIndex = (lid && layerIdToShellIndex[lid] !== undefined) ? layerIdToShellIndex[lid] : -1;
                         activeZone = panel.dataset.zone || 'all';
+                        updateHud(lid, activeZone);
                     }
                 });
             });
 
-            // Also track non-layer panels (overview, closing) to reset activeLayerIndex
-            var nonLayerPanels = document.querySelectorAll('.framework-panel:not(.layer-panel)');
-            nonLayerPanels.forEach(function(panel) {
+            // Track intro/closing triggers to reset
+            var resetTriggers = document.querySelectorAll('.framework-intro-trigger, .framework-closing-trigger');
+            resetTriggers.forEach(function(panel) {
                 ScrollTrigger.create({
                     trigger: panel,
                     start: 'top 60%',
                     end: 'bottom 40%',
-                    onEnter: function() { activeLayerIndex = -1; activeZone = panel.dataset.zone || 'all'; },
-                    onEnterBack: function() { activeLayerIndex = -1; activeZone = panel.dataset.zone || 'all'; }
+                    onEnter: function() { activeLayerIndex = -1; activeZone = 'all'; updateHud(null); },
+                    onEnterBack: function() { activeLayerIndex = -1; activeZone = 'all'; updateHud(null); }
                 });
             });
 
@@ -2467,99 +2310,7 @@
             animate();
         }
 
-        // =============================================
-        // FRAMEWORK STACK CANVAS (2D Fallback for mobile)
-        // =============================================
-        var stackCanvas = document.getElementById('framework-stack-canvas');
-        if (stackCanvas && window.innerWidth <= 1024) {
-            initStackCanvas();
-        }
-
-        function initStackCanvas() {
-            var ctx = stackCanvas.getContext('2d');
-            var dpr = Math.min(window.devicePixelRatio, 2);
-
-            function resize() {
-                var rect = stackCanvas.parentElement.getBoundingClientRect();
-                stackCanvas.width = rect.width * dpr;
-                stackCanvas.height = rect.height * dpr;
-                stackCanvas.style.width = rect.width + 'px';
-                stackCanvas.style.height = rect.height + 'px';
-                ctx.scale(dpr, dpr);
-                draw();
-            }
-
-            var layers = [
-                { id:'L1',  name:'Physical Carrier',    zone:'silicon',  color:'#2563eb' },
-                { id:'L2',  name:'Signal Processing',   zone:'silicon',  color:'#2d6fde' },
-                { id:'L3',  name:'Protocol',            zone:'silicon',  color:'#3378d6' },
-                { id:'L4',  name:'Transport',           zone:'silicon',  color:'#3982cf' },
-                { id:'L5',  name:'Session',             zone:'silicon',  color:'#448fc8' },
-                { id:'L6',  name:'Presentation',        zone:'silicon',  color:'#4f9cc1' },
-                { id:'L7',  name:'Application',         zone:'silicon',  color:'#60a5fa' },
-                { id:'L8',  name:'Neural Gateway',      zone:'gateway',  color:'#f59e0b' },
-                { id:'L9',  name:'Signal Processing',   zone:'biology',  color:'#059669' },
-                { id:'L10', name:'Neural Protocol',     zone:'biology',  color:'#10b981' },
-                { id:'L11', name:'Cognitive Transport',  zone:'biology',  color:'#34d399' },
-                { id:'L12', name:'Cognitive Session',    zone:'biology',  color:'#818cf8' },
-                { id:'L13', name:'Semantic Layer',       zone:'biology',  color:'#a78bfa' },
-                { id:'L14', name:'Identity Layer',       zone:'biology',  color:'#ec4899' },
-            ];
-
-            function draw() {
-                var w = stackCanvas.width / (Math.min(window.devicePixelRatio, 2));
-                var h = stackCanvas.height / (Math.min(window.devicePixelRatio, 2));
-                ctx.clearRect(0, 0, w, h);
-
-                var barH = 32;
-                var gap = 4;
-                var totalH = layers.length * (barH + gap) - gap;
-                var startY = (h - totalH) / 2;
-                var maxW = w * 0.8;
-                var minW = w * 0.35;
-
-                layers.forEach(function(layer, i) {
-                    var y = startY + i * (barH + gap);
-                    // Hourglass width: wide at top and bottom, narrow at middle
-                    var mid = 7; // L8 index
-                    var dist = Math.abs(i - mid);
-                    var maxDist = 7;
-                    var widthRatio = 0.5 + 0.5 * (dist / maxDist);
-                    var barW = minW + (maxW - minW) * widthRatio;
-                    var x = (w - barW) / 2;
-
-                    // Gateway special
-                    if (layer.zone === 'gateway') {
-                        barW = maxW * 0.6;
-                        x = (w - barW) / 2;
-                        y -= 4;
-
-                        ctx.shadowColor = 'rgba(245, 158, 11, 0.4)';
-                        ctx.shadowBlur = 20;
-                    }
-
-                    ctx.fillStyle = layer.color;
-                    ctx.globalAlpha = layer.zone === 'gateway' ? 0.9 : 0.6;
-                    ctx.beginPath();
-                    ctx.roundRect(x, y, barW, barH, 6);
-                    ctx.fill();
-                    ctx.globalAlpha = 1;
-                    ctx.shadowBlur = 0;
-
-                    // Labels
-                    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-                    ctx.font = '600 11px Inter, sans-serif';
-                    ctx.fillText(layer.id, x + 10, y + barH/2 + 4);
-
-                    ctx.fillStyle = 'rgba(255,255,255,0.6)';
-                    ctx.font = '400 10px Inter, sans-serif';
-                    ctx.fillText(layer.name, x + 40, y + barH/2 + 4);
-                });
-            }
-
-            resize();
-            window.addEventListener('resize', resize);
-        }
+        // (2D fallback canvas removed — framework is now scroll-driven 3D only)
 
         // =============================================
         // BRAND.JSON LOADER
