@@ -83,7 +83,7 @@
            ============================================ */
         nav {
             position: fixed;
-            top: 0;
+            top: 34px;
             left: 0;
             right: 0;
             z-index: 1000;
@@ -1466,6 +1466,13 @@
     </style>
 </head>
 <body>
+
+    <!-- =============================================
+         CONSTRUCTION BANNER
+         ============================================= -->
+    <div id="construction-banner" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,#f59e0b,#d97706,#f59e0b);color:#000;text-align:center;padding:8px 16px;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;" onclick="this.style.display='none';document.querySelector('nav').style.top='0';">
+        <span style="margin-right:6px;">&#9888;</span> V2 Framework Complete Redesign Underway: Construction Ahead! <span style="margin-left:6px;">&#9888;</span>
+    </div>
 
     <!-- =============================================
          NAVIGATION
