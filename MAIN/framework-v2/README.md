@@ -20,6 +20,7 @@
 | 🔍 | [06-GAP-ANALYSIS.md](06-GAP-ANALYSIS.md) | What BCIs can't do — known limits vs. open questions |
 | ⚛️ | [07-QUANTUM-BIOLOGY.md](07-QUANTUM-BIOLOGY.md) | What's proven, what's not, and the measurement wall |
 | 🔢 | [08-QUANTUM-INTEGER.md](08-QUANTUM-INTEGER.md) | Q — the labeled gap for quantum unknowns at each ring |
+| 🔐 | [09-QUANTUM-NEUROSECURITY.md](09-QUANTUM-NEUROSECURITY.md) | Quantum bridges, DSKE, defense-in-depth rings, gateway requirements |
 
 ---
 
