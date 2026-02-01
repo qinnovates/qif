@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wave Spectrum Explorer | ONI Visualizations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --border: #1e1e2e;
+  --text: #e0e0e8;
+  --text-dim: #6b7280;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-amber: #f59e0b;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+#canvas-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+/* Header */
+#header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 24px;
+  background: linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.7) 80%, transparent 100%);
+  pointer-events: none;
+}
+#header a, #header button { pointer-events: auto; }
+#header .back-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+#header .back-link:hover { color: #60a5fa; }
+#header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 4px;
+  letter-spacing: -0.02em;
+}
+#header .subtitle {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* Left Panel */
+#left-panel {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 280px;
+  bottom: 60px;
+  z-index: 50;
+  background: rgba(18,18,26,0.92);
+  border-right: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  padding: 16px;
+}
+#left-panel.collapsed { transform: translateX(-280px); }
+#left-panel::-webkit-scrollbar { width: 4px; }
+#left-panel::-webkit-scrollbar-track { background: transparent; }
+#left-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+#toggle-left {
+  position: fixed;
+  top: 90px;
+  left: 280px;
+  z-index: 51;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 24px; height: 40px;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  transition: left 0.3s ease, background 0.2s;
+}
+#toggle-left:hover { background: var(--border); color: var(--text); }
+#toggle-left.collapsed-btn { left: 0; }
+
+.panel-section { margin-bottom: 16px; }
+.panel-section h3 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(30,30,46,0.8);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#search-input:focus { border-color: var(--accent-blue); }
+#search-input::placeholder { color: var(--text-dim); }
+
+#wave-count {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+.category-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text);
+  user-select: none;
+}
+.category-filter input[type="checkbox"] { display: none; }
+.category-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+.category-filter.unchecked .category-dot { opacity: 0.3; }
+.category-filter.unchecked { color: var(--text-dim); }
+.cat-count {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Right Detail Panel */
+#detail-panel {
+  position: fixed;
+  top: 0; right: 0;
+  width: 400px;
+  height: 100%;
+  z-index: 80;
+  background: rgba(18,18,26,0.96);
+  border-left: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transform: translateX(400px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  padding: 24px;
+}
+#detail-panel.open { transform: translateX(0); }
+#detail-panel::-webkit-scrollbar { width: 4px; }
+#detail-panel::-webkit-scrollbar-track { background: transparent; }
+#detail-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+#detail-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+#detail-close:hover { background: var(--border); color: var(--text); }
+
+#detail-content .detail-header {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+#detail-content .detail-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  padding-right: 36px;
+}
+#detail-content .detail-category {
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+#detail-content .detail-field {
+  margin-bottom: 14px;
+}
+#detail-content .detail-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 3px;
+}
+#detail-content .detail-value {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+#detail-content .detail-value ul {
+  padding-left: 16px;
+  margin-top: 4px;
+}
+#detail-content .detail-value li {
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: #c0c0cc;
+}
+
+/* Tooltip */
+#tooltip {
+  position: fixed;
+  z-index: 200;
+  background: rgba(18,18,26,0.95);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#tooltip.visible { opacity: 1; }
+#tooltip .tt-cat {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* Bottom Controls */
+#controls {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(18,18,26,0.88);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+#controls button {
+  background: rgba(30,30,46,0.8);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#controls button:hover { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+#controls .hint {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Loading */
+#loading {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1000;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s;
+}
+#loading.hidden { opacity: 0; pointer-events: none; }
+#loading .spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading p { margin-top: 16px; color: var(--text-dim); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="spinner"></div>
+  <p>Loading Wave Spectrum Explorer...</p>
+</div>
+
+<div id="header">
+  <a href="index.html" class="back-link">&#8592; Back to Visualizations</a>
+  <h1>Wave Spectrum Explorer</h1>
+  <div class="subtitle">Every known wave in existence -- from ELF radio to Hawking radiation</div>
+</div>
+
+<div id="left-panel">
+  <div class="panel-section">
+    <h3>Search</h3>
+    <input type="text" id="search-input" placeholder="Search waves...">
+    <div id="wave-count">67 waves shown</div>
+  </div>
+  <div class="panel-section">
+    <h3>Categories</h3>
+    <div id="category-filters"></div>
+  </div>
+</div>
+<button id="toggle-left">&#9664;</button>
+
+<div id="detail-panel">
+  <button id="detail-close">&#10005;</button>
+  <div id="detail-content"></div>
+</div>
+
+<div id="tooltip"></div>
+
+<div id="canvas-container"></div>
+
+<div id="controls">
+  <button id="btn-reset">Reset Camera</button>
+  <button id="btn-fit">Fit All</button>
+  <span class="hint">Orbit: drag &nbsp;|&nbsp; Zoom: scroll &nbsp;|&nbsp; Pan: right-drag &nbsp;|&nbsp; Click: details</span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ============================================================
+// OrbitControls inline (minimal version from Three.js examples)
+// ============================================================
+THREE.OrbitControls = function(object, domElement) {
+  this.object = object;
+  this.domElement = domElement;
+  this.enabled = true;
+  this.target = new THREE.Vector3();
+  this.minDistance = 0;
+  this.maxDistance = Infinity;
+  this.enableDamping = true;
+  this.dampingFactor = 0.08;
+  this.enableZoom = true;
+  this.zoomSpeed = 1.0;
+  this.enableRotate = true;
+  this.rotateSpeed = 0.6;
+  this.enablePan = true;
+  this.panSpeed = 0.8;
+  this.autoRotate = false;
+  this.autoRotateSpeed = 2.0;
+
+  var scope = this;
+  var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2 };
+  var state = STATE.NONE;
+
+  var spherical = new THREE.Spherical();
+  var sphericalDelta = new THREE.Spherical();
+  var scale = 1;
+  var panOffset = new THREE.Vector3();
+  var rotateStart = new THREE.Vector2();
+  var rotateEnd = new THREE.Vector2();
+  var rotateDelta = new THREE.Vector2();
+  var panStart = new THREE.Vector2();
+  var panEnd = new THREE.Vector2();
+  var panDelta = new THREE.Vector2();
+
+  this.update = function() {
+    var offset = new THREE.Vector3();
+    var quat = new THREE.Quaternion().setFromUnitVectors(object.up, new THREE.Vector3(0, 1, 0));
+    var quatInverse = quat.clone().invert();
+    var lastPosition = new THREE.Vector3();
+
+    return function update() {
+      var position = scope.object.position;
+      offset.copy(position).sub(scope.target);
+      offset.applyQuaternion(quat);
+      spherical.setFromVector3(offset);
+
+      if (scope.autoRotate && state === STATE.NONE) {
+        spherical.theta -= 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
+      }
+
+      spherical.theta += sphericalDelta.theta;
+      spherical.phi += sphericalDelta.phi;
+      spherical.phi = Math.max(0.01, Math.min(Math.PI - 0.01, spherical.phi));
+      spherical.radius *= scale;
+      spherical.radius = Math.max(scope.minDistance, Math.min(scope.maxDistance, spherical.radius));
+
+      scope.target.add(panOffset);
+
+      offset.setFromSpherical(spherical);
+      offset.applyQuaternion(quatInverse);
+
+      position.copy(scope.target).add(offset);
+      scope.object.lookAt(scope.target);
+
+      if (scope.enableDamping) {
+        sphericalDelta.theta *= (1 - scope.dampingFactor);
+        sphericalDelta.phi *= (1 - scope.dampingFactor);
+        panOffset.multiplyScalar(1 - scope.dampingFactor);
+      } else {
+        sphericalDelta.set(0, 0, 0);
+        panOffset.set(0, 0, 0);
+      }
+
+      scale = 1;
+
+      if (lastPosition.distanceToSquared(scope.object.position) > 1e-6) {
+        lastPosition.copy(scope.object.position);
+        return true;
+      }
+      return false;
+    };
+  }();
+
+  function panLeft(distance, objectMatrix) {
+    var v = new THREE.Vector3();
+    v.setFromMatrixColumn(objectMatrix, 0);
+    v.multiplyScalar(-distance);
+    panOffset.add(v);
+  }
+  function panUp(distance, objectMatrix) {
+    var v = new THREE.Vector3();
+    v.setFromMatrixColumn(objectMatrix, 1);
+    v.multiplyScalar(distance);
+    panOffset.add(v);
+  }
+  function pan(deltaX, deltaY) {
+    var element = scope.domElement;
+    var offset = new THREE.Vector3();
+    var position = scope.object.position;
+    offset.copy(position).sub(scope.target);
+    var targetDistance = offset.length();
+    targetDistance *= Math.tan((scope.object.fov / 2) * Math.PI / 180.0);
+    panLeft(2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix);
+    panUp(2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix);
+  }
+
+  function onMouseDown(event) {
+    if (!scope.enabled) return;
+    event.preventDefault();
+    if (event.button === 0) {
+      if (!scope.enableRotate) return;
+      rotateStart.set(event.clientX, event.clientY);
+      state = STATE.ROTATE;
+    } else if (event.button === 1) {
+      if (!scope.enableZoom) return;
+      state = STATE.ZOOM;
+    } else if (event.button === 2) {
+      if (!scope.enablePan) return;
+      panStart.set(event.clientX, event.clientY);
+      state = STATE.PAN;
+    }
+    if (state !== STATE.NONE) {
+      document.addEventListener('mousemove', onMouseMove, false);
+      document.addEventListener('mouseup', onMouseUp, false);
+    }
+  }
+  function onMouseMove(event) {
+    if (!scope.enabled) return;
+    event.preventDefault();
+    if (state === STATE.ROTATE) {
+      rotateEnd.set(event.clientX, event.clientY);
+      rotateDelta.subVectors(rotateEnd, rotateStart);
+      var element = scope.domElement;
+      sphericalDelta.theta -= 2 * Math.PI * rotateDelta.x / element.clientHeight * scope.rotateSpeed;
+      sphericalDelta.phi -= 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed;
+      rotateStart.copy(rotateEnd);
+    } else if (state === STATE.PAN) {
+      panEnd.set(event.clientX, event.clientY);
+      panDelta.subVectors(panEnd, panStart);
+      pan(panDelta.x, panDelta.y);
+      panStart.copy(panEnd);
+    }
+  }
+  function onMouseUp() {
+    document.removeEventListener('mousemove', onMouseMove, false);
+    document.removeEventListener('mouseup', onMouseUp, false);
+    state = STATE.NONE;
+  }
+  function onWheel(event) {
+    if (!scope.enabled || !scope.enableZoom) return;
+    event.preventDefault();
+    if (event.deltaY < 0) {
+      scale /= Math.pow(0.95, scope.zoomSpeed);
+    } else if (event.deltaY > 0) {
+      scale *= Math.pow(0.95, scope.zoomSpeed);
+    }
+  }
+  function onContextMenu(event) { event.preventDefault(); }
+
+  this.dispose = function() {
+    scope.domElement.removeEventListener('contextmenu', onContextMenu);
+    scope.domElement.removeEventListener('mousedown', onMouseDown);
+    scope.domElement.removeEventListener('wheel', onWheel);
+  };
+
+  domElement.addEventListener('contextmenu', onContextMenu, false);
+  domElement.addEventListener('mousedown', onMouseDown, false);
+  domElement.addEventListener('wheel', onWheel, { passive: false });
+
+  this.update();
+};
+
+// ============================================================
+// WAVE DATA
+// ============================================================
+const WAVES = [
+  {id:1,name:"Extremely Low Frequency (ELF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e5,wavelength_display:"10,000 \u2013 100,000 km",frequency_Hz:3,frequency_display:"3 \u2013 30 Hz",energy_eV:"1.24e-14 to 1.24e-13",waveform:"Transverse EM wave. Extremely long wavelength, penetrates seawater and rock.",source:"Lightning (Schumann resonances at 7.83, 14.3, 20.8 Hz), submarine communications (US Navy 76 Hz, Russian ZEVS 82 Hz), power grid harmonics.",detector:"Large wire antennas (km-scale), SQUID magnetometers, induction coils.",examples:["Schumann resonances (Earth-ionosphere cavity)","Submarine communications (Project Sanguine/ELF at 76 Hz)","Geophysical prospecting","Brain wave frequencies overlap this range"],discovery:"Schumann predicted Earth-ionosphere resonances in 1952. First measured by Balser and Wagner in 1960."},
+  {id:2,name:"Super Low Frequency (SLF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e4,wavelength_display:"1,000 \u2013 10,000 km",frequency_Hz:30,frequency_display:"30 \u2013 300 Hz",energy_eV:"1.24e-13 to 1.24e-12",waveform:"Transverse EM wave. Penetrates deep ocean water.",source:"Lightning, power grid emissions (50/60 Hz), submarine transmitters.",detector:"Long wire antennas, induction coil magnetometers.",examples:["Power line radiation (50 Hz Europe, 60 Hz North America)","Some animal navigation may sense these frequencies"],discovery:"Part of the radio spectrum recognized in early 20th century radio science."},
+  {id:3,name:"Ultra Low Frequency (ULF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e3,wavelength_display:"100 \u2013 1,000 km",frequency_Hz:300,frequency_display:"300 Hz \u2013 3 kHz",energy_eV:"1.24e-12 to 1.24e-11",waveform:"Transverse EM wave. Penetrates into Earth's crust.",source:"Magnetospheric processes, lightning, geomagnetic pulsations.",detector:"Induction magnetometers, search coil arrays, geomagnetic observatories.",examples:["Geomagnetic pulsations (Pc1\u2013Pc5)","Earthquake precursor research","Magnetospheric diagnostics"],discovery:"Geomagnetic pulsations described by Stewart (1861) and Balfour Stewart."},
+  {id:4,name:"Very Low Frequency (VLF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e2,wavelength_display:"10 \u2013 100 km",frequency_Hz:3e3,frequency_display:"3 \u2013 30 kHz",energy_eV:"1.24e-11 to 1.24e-10",waveform:"Transverse EM wave. Propagates via Earth-ionosphere waveguide.",source:"Lightning (sferics), VLF navigation transmitters, natural whistlers.",detector:"Whip antennas, loop antennas, VLF receivers (e.g., Stanford VLF group).",examples:["OMEGA navigation system (historical)","Lightning location networks","Natural radio (whistlers, tweeks, chorus)","Nuclear detonation detection"],discovery:"VLF propagation characteristics studied from early 1900s. Whistlers explained by Storey (1953)."},
+  {id:5,name:"Low Frequency / Longwave (LF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e1,wavelength_display:"1 \u2013 10 km",frequency_Hz:3e4,frequency_display:"30 \u2013 300 kHz",energy_eV:"1.24e-10 to 1.24e-9",waveform:"Transverse EM wave. Reliable ground wave propagation.",source:"LF transmitters, LORAN-C navigation, time signal stations (WWVB 60 kHz, DCF77 77.5 kHz).",detector:"Ferrite bar antennas, long-wire antennas.",examples:["WWVB time signals (60 kHz, atomic clocks)","Longwave broadcasting (Europe)","LORAN-C navigation","NDB aviation beacons"],discovery:"Marconi's early transatlantic experiments (1901) used longwave frequencies."},
+  {id:6,name:"Medium Frequency / Mediumwave (MF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e0,wavelength_display:"100 m \u2013 1 km",frequency_Hz:3e5,frequency_display:"300 kHz \u2013 3 MHz",energy_eV:"1.24e-9 to 1.24e-8",waveform:"Transverse EM wave. Ground wave + nighttime skywave (ionospheric reflection).",source:"AM broadcast transmitters, NDB beacons, amateur radio.",detector:"Ferrite antennas, loop antennas, AM radio receivers.",examples:["AM radio broadcasting (530\u20131700 kHz)","Maritime distress (500 kHz, historical)","Amateur radio 160m band"],discovery:"AM broadcasting began in the 1920s. MF propagation well characterized by 1930s."},
+  {id:7,name:"High Frequency / Shortwave (HF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e-1,wavelength_display:"10 \u2013 100 m",frequency_Hz:3e6,frequency_display:"3 \u2013 30 MHz",energy_eV:"1.24e-8 to 1.24e-7",waveform:"Transverse EM wave. Ionospheric skywave propagation enables global range.",source:"Shortwave transmitters, amateur radio, over-the-horizon radar.",detector:"Dipole antennas, Yagi antennas, HF receivers.",examples:["Shortwave international broadcasting (BBC World Service, VOA)","Amateur radio (HAM)","Over-the-horizon radar (OTHR)","Ionospheric research"],discovery:"Marconi demonstrated long-distance HF propagation in 1920s. Appleton and Barnett proved ionospheric reflection (1925)."},
+  {id:8,name:"Very High Frequency (VHF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e-1,wavelength_display:"1 \u2013 10 m",frequency_Hz:3e7,frequency_display:"30 \u2013 300 MHz",energy_eV:"1.24e-7 to 1.24e-6",waveform:"Transverse EM wave. Line-of-sight propagation.",source:"FM radio transmitters, TV broadcast, air traffic control, two-way radios.",detector:"Dipole antennas, Yagi antennas, FM receivers.",examples:["FM radio (88\u2013108 MHz)","VHF television","Air traffic control","Marine VHF","Amateur radio 2m band"],discovery:"VHF technology developed in 1930s-1940s. FM radio invented by Armstrong (1933)."},
+  {id:9,name:"Ultra High Frequency (UHF)",category:"em-radio",categoryLabel:"EM \u2014 Radio",wavelength_m:1e-1,wavelength_display:"10 cm \u2013 1 m",frequency_Hz:3e8,frequency_display:"300 MHz \u2013 3 GHz",energy_eV:"1.24e-6 to 1.24e-5",waveform:"Transverse EM wave. Line-of-sight, good building penetration at lower end.",source:"Cell towers, WiFi routers, Bluetooth devices, UHF TV transmitters, GPS satellites.",detector:"Patch antennas, dipoles, parabolic dishes.",examples:["Cell phones (700\u20132600 MHz)","WiFi (2.4 GHz)","Bluetooth (2.4 GHz)","GPS (1.575 GHz)","UHF television"],discovery:"UHF technology emerged in WWII for radar. Cellular communications from 1980s."},
+  {id:10,name:"Microwave L-band",category:"em-microwave",categoryLabel:"EM \u2014 Microwave",wavelength_m:2e-1,wavelength_display:"15 \u2013 30 cm",frequency_Hz:1e9,frequency_display:"1 \u2013 2 GHz",energy_eV:"4.14e-6 to 8.27e-6",waveform:"Transverse EM wave.",source:"GPS, some radar systems, satellite communications.",detector:"Patch antennas, horn antennas, microstrip receivers.",examples:["GPS L1 (1.575 GHz)","Air surveillance radar","GNSS systems"],discovery:"Microwave technology developed during WWII for radar."},
+  {id:11,name:"Microwave S-band",category:"em-microwave",categoryLabel:"EM \u2014 Microwave",wavelength_m:1e-1,wavelength_display:"7.5 \u2013 15 cm",frequency_Hz:2e9,frequency_display:"2 \u2013 4 GHz",energy_eV:"8.27e-6 to 1.65e-5",waveform:"Transverse EM wave.",source:"Weather radar, WiFi (2.4 GHz), microwave ovens (2.45 GHz), satellite comms.",detector:"Horn antennas, parabolic dishes, waveguide receivers.",examples:["Weather radar (NEXRAD)","Microwave ovens (2.45 GHz)","WiFi 2.4 GHz","5G sub-6 GHz"],discovery:"S-band radar widely used from WWII onward."},
+  {id:12,name:"Microwave C-band",category:"em-microwave",categoryLabel:"EM \u2014 Microwave",wavelength_m:5e-2,wavelength_display:"3.75 \u2013 7.5 cm",frequency_Hz:4e9,frequency_display:"4 \u2013 8 GHz",energy_eV:"1.65e-5 to 3.31e-5",waveform:"Transverse EM wave.",source:"Satellite downlinks, weather radar, 5G (3.5 GHz).",detector:"Parabolic dishes, horn antennas.",examples:["Satellite TV (C-band downlink)","5G mid-band (3.5 GHz)","Long-range weather radar"],discovery:"Developed in WWII radar systems."},
+  {id:13,name:"Microwave X-band",category:"em-microwave",categoryLabel:"EM \u2014 Microwave",wavelength_m:3e-2,wavelength_display:"2.5 \u2013 3.75 cm",frequency_Hz:8e9,frequency_display:"8 \u2013 12 GHz",energy_eV:"3.31e-5 to 4.96e-5",waveform:"Transverse EM wave.",source:"Marine radar, military radar, satellite communications.",detector:"Waveguide antennas, phased arrays.",examples:["Ship navigation radar","Airport surface detection radar","SpaceX Starlink (some bands)","Military fire control radar"],discovery:"X-band radar developed in WWII."},
+  {id:14,name:"Microwave Ku/K/Ka-band",category:"em-microwave",categoryLabel:"EM \u2014 Microwave",wavelength_m:1e-2,wavelength_display:"0.75 \u2013 2.5 cm",frequency_Hz:1.2e10,frequency_display:"12 \u2013 40 GHz",energy_eV:"4.96e-5 to 1.65e-4",waveform:"Transverse EM wave. Absorbed by rain at higher frequencies.",source:"Satellite TV (Ku-band), 5G mmWave, police radar (K/Ka), satellite internet.",detector:"Small dish antennas, phased array antennas.",examples:["Satellite TV (Ku-band 12\u201318 GHz)","Police speed radar (K-band 24 GHz, Ka-band 33.4\u201336 GHz)","5G mmWave","Starlink Ka-band"],discovery:"Higher microwave bands exploited post-WWII as technology improved."},
+  {id:15,name:"Microwave V/W-band (mmWave)",category:"em-microwave",categoryLabel:"EM \u2014 Microwave",wavelength_m:3e-3,wavelength_display:"2.7 \u2013 7.5 mm",frequency_Hz:4e10,frequency_display:"40 \u2013 110 GHz",energy_eV:"1.65e-4 to 4.55e-4",waveform:"Transverse EM wave. Significant atmospheric absorption (O2 absorption at 60 GHz).",source:"5G mmWave, automotive radar (77 GHz), security imaging (94 GHz), radio astronomy.",detector:"Phased array antennas, Schottky diode mixers, bolometric detectors.",examples:["5G mmWave (28/39 GHz)","Automotive collision radar (77 GHz)","Airport security scanners (94 GHz)","Radio astronomy"],discovery:"mmWave technology advanced from 1960s-1990s. 5G mmWave deployed from 2019."},
+  {id:16,name:"Terahertz / T-rays",category:"em-microwave",categoryLabel:"EM \u2014 Microwave/IR",wavelength_m:3e-4,wavelength_display:"30 \u00b5m \u2013 3 mm",frequency_Hz:1e11,frequency_display:"0.1 \u2013 10 THz",energy_eV:"0.4 meV to 41 meV",waveform:"Transverse EM wave. 'Terahertz gap' \u2014 historically difficult to generate and detect.",source:"Quantum cascade lasers, photoconductive antennas, free-electron lasers, synchrotrons.",detector:"Bolometers, Golay cells, photoconductive antennas, Schottky diodes.",examples:["Security screening (see through clothing)","Pharmaceutical quality control","Art conservation (non-invasive layer imaging)","6G research (sub-THz bands)"],discovery:"Terahertz science emerged as a distinct field in the 1990s-2000s with advances in ultrafast lasers."},
+  {id:17,name:"Far Infrared",category:"em-infrared",categoryLabel:"EM \u2014 Infrared",wavelength_m:5e-5,wavelength_display:"15 \u2013 1000 \u00b5m",frequency_Hz:3e11,frequency_display:"0.3 \u2013 20 THz",energy_eV:"1.2 meV to 83 meV",waveform:"Transverse EM wave. Overlaps with terahertz. Emitted by cool astronomical objects.",source:"Cool interstellar dust clouds (10\u201350 K), planetary atmospheres, warm objects.",detector:"Bolometers (cooled to <1 K), Herschel Space Observatory, ALMA (submillimeter).",examples:["Star formation studies (cool dust in molecular clouds)","Cosmic microwave background studies","Herschel Space Observatory observations"],discovery:"Herschel discovered infrared in 1800. Far-IR astronomy developed from 1960s with balloon and space telescopes."},
+  {id:18,name:"Mid Infrared",category:"em-infrared",categoryLabel:"EM \u2014 Infrared",wavelength_m:5e-6,wavelength_display:"2.5 \u2013 15 \u00b5m",frequency_Hz:2e13,frequency_display:"20 \u2013 120 THz",energy_eV:"83 meV to 0.5 eV",waveform:"Transverse EM wave. Strong molecular absorption bands (H2O, CO2, CH4).",source:"Room-temperature objects (peak ~10 \u00b5m), CO2 lasers, quantum cascade lasers.",detector:"MCT (HgCdTe) detectors, thermal imaging cameras, pyroelectric detectors.",examples:["Thermal imaging cameras (FLIR)","FTIR spectroscopy","Greenhouse gas detection","Heat-seeking missiles","JWST MIRI instrument (5-28 \u00b5m)"],discovery:"Mid-IR spectroscopy developed from early 20th century. Thermal imaging from 1960s military applications."},
+  {id:19,name:"Near Infrared",category:"em-infrared",categoryLabel:"EM \u2014 Infrared",wavelength_m:1e-6,wavelength_display:"0.7 \u2013 2.5 \u00b5m",frequency_Hz:1.2e14,frequency_display:"120 \u2013 430 THz",energy_eV:"0.5 to 1.77 eV",waveform:"Transverse EM wave. Partially transmitted through optical fibers and atmosphere.",source:"LEDs, laser diodes (1310/1550 nm telecom), stars, hot objects.",detector:"InGaAs photodiodes, silicon (up to ~1100 nm), SWIR cameras.",examples:["Fiber optic telecommunications (1310/1550 nm)","Night vision goggles","TV remote controls (~940 nm)","JWST NIRCam","Pulse oximeters"],discovery:"Herschel discovered infrared (1800). Near-IR fiber optics developed from 1970s."},
+  {id:20,name:"Visible Light (Red \u2013 Violet)",category:"em-visible",categoryLabel:"EM \u2014 Visible",wavelength_m:5.5e-7,wavelength_display:"380 \u2013 700 nm",frequency_Hz:5e14,frequency_display:"430 \u2013 790 THz",energy_eV:"1.77 to 3.26 eV",waveform:"Transverse EM wave. The only EM radiation directly perceived by human eyes. Exhibits all wave phenomena (interference, diffraction, polarization).",source:"The Sun, stars, LEDs, lasers, incandescent/fluorescent/OLED sources, bioluminescence.",detector:"Human eye (rods/cones), CCD/CMOS cameras, photomultiplier tubes, photodiodes.",examples:["Human vision","Photography","Optical microscopy","Laser pointers","Fiber optic visible-light communication","Bioluminescence (fireflies, deep-sea creatures)"],discovery:"Newton's prism experiment (1666) decomposed white light into spectrum. Wave nature by Young's double-slit (1801). Quantized by Einstein (photoelectric effect, 1905)."},
+  {id:21,name:"Ultraviolet A (UVA)",category:"em-uv",categoryLabel:"EM \u2014 Ultraviolet",wavelength_m:3.5e-7,wavelength_display:"315 \u2013 400 nm",frequency_Hz:7.5e14,frequency_display:"750 THz \u2013 950 THz",energy_eV:"3.1 to 3.9 eV",waveform:"Transverse EM wave. Passes through atmosphere and glass. Causes skin tanning/aging.",source:"The Sun, black lights (Wood's lamp), UVA LEDs.",detector:"UV-sensitive photodiodes, UV cameras, fluorescence-based sensors.",examples:["Suntan/aging","Black light effects (fluorescence)","UV curing","Forensic investigation"],discovery:"Ritter discovered UV in 1801 using silver chloride."},
+  {id:22,name:"Ultraviolet B (UVB)",category:"em-uv",categoryLabel:"EM \u2014 Ultraviolet",wavelength_m:3e-7,wavelength_display:"280 \u2013 315 nm",frequency_Hz:9.5e14,frequency_display:"950 THz \u2013 1.07 PHz",energy_eV:"3.9 to 4.4 eV",waveform:"Transverse EM wave. Partially absorbed by ozone layer. Causes sunburn and DNA damage.",source:"The Sun (partially filtered by ozone), UVB lamps for phototherapy.",detector:"UV photodiodes, UV radiometers.",examples:["Sunburn","Vitamin D synthesis in skin","Phototherapy for psoriasis/eczema","Ozone monitoring"],discovery:"Ritter (1801). Ozone layer UV filtering discovered by Hartley (1881)."},
+  {id:23,name:"Ultraviolet C (UVC)",category:"em-uv",categoryLabel:"EM \u2014 Ultraviolet",wavelength_m:2.5e-7,wavelength_display:"100 \u2013 280 nm",frequency_Hz:1.1e15,frequency_display:"1.07 \u2013 3 PHz",energy_eV:"4.4 to 12.4 eV",waveform:"Transverse EM wave. Completely absorbed by ozone/atmosphere. Germicidal \u2014 destroys DNA/RNA.",source:"Mercury lamps (254 nm), excimer lamps (222 nm far-UVC), UVC LEDs.",detector:"Solar-blind UV detectors (SiC, AlGaN), UV radiometers.",examples:["Germicidal UV disinfection (water, hospitals)","Far-UVC (222 nm) occupied-space disinfection","EPROM chip erasure","COVID-19 surface disinfection"],discovery:"Ritter (1801). Germicidal properties recognized by Downes and Blunt (1878)."},
+  {id:24,name:"Extreme UV (EUV)",category:"em-uv",categoryLabel:"EM \u2014 Ultraviolet",wavelength_m:5e-8,wavelength_display:"10 \u2013 100 nm",frequency_Hz:3e15,frequency_display:"3 \u2013 30 PHz",energy_eV:"12.4 to 124 eV",waveform:"Transverse EM wave. Ionizing. Absorbed by virtually all materials including air.",source:"Laser-produced plasma (tin droplets at 13.5 nm for lithography), synchrotrons, the Sun's corona.",detector:"Back-illuminated CCDs, microchannel plates, multilayer-coated optics.",examples:["EUV lithography (13.5 nm) for sub-7nm semiconductor manufacturing (ASML)","Solar physics (SDO, SOHO spacecraft)","Plasma diagnostics in fusion research"],discovery:"EUV solar radiation observed from space 1940s\u20131960s. Commercial EUV lithography by ASML (2017\u20132018)."},
+  {id:25,name:"Soft X-rays",category:"em-xray",categoryLabel:"EM \u2014 X-ray",wavelength_m:1e-9,wavelength_display:"0.2 \u2013 10 nm",frequency_Hz:3e16,frequency_display:"30 PHz \u2013 1.5 EHz",energy_eV:"124 eV to 5 keV",waveform:"Transverse EM wave. Ionizing. Easily absorbed by air.",source:"Synchrotrons, X-ray tubes (low voltage), hot astrophysical plasmas.",detector:"Back-illuminated CCDs, silicon drift detectors, zone plate optics.",examples:["X-ray microscopy","X-ray absorption spectroscopy (synchrotrons)","Soft X-ray astronomy (Chandra, XMM-Newton)"],discovery:"Roentgen discovered X-rays on Nov 8, 1895. First Nobel Prize in Physics (1901)."},
+  {id:26,name:"Hard X-rays",category:"em-xray",categoryLabel:"EM \u2014 X-ray",wavelength_m:1e-11,wavelength_display:"0.01 \u2013 0.2 nm",frequency_Hz:1.5e18,frequency_display:"1.5 EHz \u2013 30 EHz",energy_eV:"5 keV to 200 keV",waveform:"Transverse EM wave. Highly penetrating ionizing radiation.",source:"X-ray tubes (Bremsstrahlung), synchrotrons, XFELs, radioactive sources.",detector:"Scintillation detectors, HPGe semiconductor, photon-counting detectors.",examples:["Medical radiography and CT scans","Dental X-rays","Airport baggage screening","X-ray crystallography (protein structures)","Mammography"],discovery:"Roentgen (1895). X-ray crystallography by von Laue (1912) and Braggs (1913)."},
+  {id:27,name:"Gamma Rays (Nuclear)",category:"em-gamma",categoryLabel:"EM \u2014 Gamma",wavelength_m:1e-12,wavelength_display:"< 0.01 nm (typically 1e-11 to 1e-14 m)",frequency_Hz:3e19,frequency_display:"> 30 EHz",energy_eV:"> 100 keV (typically 100 keV to 10 MeV)",waveform:"Transverse EM wave. Extremely penetrating. Particle-like behavior dominates.",source:"Radioactive decay (Co-60, Cs-137), nuclear reactions, matter-antimatter annihilation, particle accelerators.",detector:"Scintillation detectors, HPGe detectors, Geiger-M\u00fcller counters.",examples:["PET scanning (511 keV)","Cancer radiotherapy (Co-60)","Nuclear medicine (Tc-99m)","Food irradiation","Industrial radiography"],discovery:"Paul Villard (1900). Named 'gamma rays' by Rutherford (1903)."},
+  {id:28,name:"Ultra-High-Energy Gamma Rays",category:"em-gamma",categoryLabel:"EM \u2014 Gamma",wavelength_m:1e-17,wavelength_display:"< 1e-14 m (VHE to UHE)",frequency_Hz:3e25,frequency_display:"> 3\u00d710\u00b2\u00b2 Hz (VHE to UHE)",energy_eV:"100 GeV to 1.4 PeV (record: LHAASO 2021)",waveform:"Transverse EM. Photon behavior dominates. Creates extensive air showers in atmosphere.",source:"Supernova remnants, pulsars, active galactic nuclei, blazars, gamma-ray bursts, PeVatrons.",detector:"Fermi LAT (space), MAGIC/H.E.S.S./VERITAS (Cherenkov telescopes), HAWC/LHAASO (water Cherenkov).",examples:["Crab Nebula (VHE standard candle)","GRB 221009A ('brightest of all time')","Fermi Bubbles","LHAASO >1 PeV photons from Cygnus (2021)"],discovery:"First cosmic gamma rays: Explorer 11 (1961). VHE from Crab: Whipple (1989). UHE >100 TeV: LHAASO (2019-2021)."},
+  {id:29,name:"Cherenkov Radiation",category:"em-special",categoryLabel:"EM \u2014 Special",wavelength_m:4.2e-7,wavelength_display:"Continuous, peaks ~420 nm (blue-UV)",frequency_Hz:7e14,frequency_display:"UV through visible; peak ~700 THz",energy_eV:"2.5 to 3.5 eV (visible); up to 6 eV (UV)",waveform:"Transverse EM wave emitted in forward cone. cos(\u03b8) = c/(nv). Intensity \u221d frequency. No spectral lines.",source:"Charged particles exceeding phase velocity of light in a medium (beta particles in water, cosmic ray secondaries).",detector:"Photomultiplier tubes, SiPMs, water Cherenkov detectors (Super-Kamiokande: 50,000 tons water + 11,146 PMTs).",examples:["Blue glow in nuclear reactor pools","IceCube Neutrino Observatory (1 km\u00b3 Antarctic ice)","Super-Kamiokande","RICH detectors at CERN LHCb"],discovery:"Cherenkov (1934) under Vavilov. Theory by Tamm & Frank (1937). Nobel Prize 1958."},
+  {id:30,name:"Synchrotron Radiation",category:"em-special",categoryLabel:"EM \u2014 Special",wavelength_m:1e-10,wavelength_display:"Broadband: radio to hard X-rays",frequency_Hz:1e17,frequency_display:"~GHz to ~10 EHz (depends on source energy)",energy_eV:"meV (infrared) to hundreds of keV (hard X-rays)",waveform:"Transverse EM. Highly collimated (cone angle ~1/\u03b3). Strongly polarized. Pulsed. Broad continuous spectrum.",source:"Relativistic electrons in magnetic fields. >60 synchrotron facilities worldwide. Natural: Crab Nebula, radio galaxies.",detector:"Depends on wavelength. X-rays: pixel array detectors. UV/vis: optical detectors. IR: bolometers.",examples:["Protein crystallography (most PDB structures)","X-ray free electron lasers (XFEL)","Materials science","Crab Nebula (radio to gamma-ray synchrotron)"],discovery:"Predicted: Larmor (1897), Li\u00e9nard (1898). First observed: April 24, 1947 at GE 70 MeV synchrotron."},
+  {id:31,name:"Bremsstrahlung",category:"em-special",categoryLabel:"EM \u2014 Special",wavelength_m:1e-11,wavelength_display:"Continuous up to particle energy limit",frequency_Hz:2.4e19,frequency_display:"Continuous up to f_max = E_kinetic/h",energy_eV:"0 to full kinetic energy (flat spectrum then cutoff)",waveform:"Transverse EM. Continuous spectrum (no lines). Forward-peaked for relativistic particles.",source:"Deceleration of charged particles in Coulomb field of nuclei. X-ray tubes, hot plasmas, cosmic ray electrons.",detector:"Same as X-ray/gamma detectors depending on energy.",examples:["Medical X-ray production","CT scanners","Radiation therapy (linac photon beams)","Galaxy cluster X-rays (thermal Bremsstrahlung)","Solar flares"],discovery:"Term by Sommerfeld. Classical theory by Kramers (1923). Quantum treatment by Bethe & Heitler (1934)."},
+  {id:32,name:"Blackbody / Thermal Radiation",category:"em-special",categoryLabel:"EM \u2014 Special",wavelength_m:1e-6,wavelength_display:"All wavelengths; peak = 2.898e-3/T meters (Wien's law)",frequency_Hz:3e14,frequency_display:"All frequencies; peak = 5.879\u00d710\u00b9\u2070 \u00d7 T Hz",energy_eV:"kT = 8.617\u00d710\u207b\u2075 \u00d7 T eV (peak photon \u2248 2.82 kT)",waveform:"Incoherent superposition of all frequencies. Unpolarized. Universal shape (Planck's law). Power \u221d T\u2074 (Stefan-Boltzmann).",source:"Any object above 0 K. Perfect: cavity with small hole. Approximate: stars, incandescent filaments, CMB (2.725 K).",detector:"Depends on temperature: radio receivers (CMB), bolometers (IR), eyes/cameras (visible), radiometers.",examples:["Cosmic Microwave Background (2.725 K \u2014 most perfect blackbody ever measured)","Stellar colors/temperatures","Incandescent bulbs","Thermal imaging","Earth's IR emission to space"],discovery:"Stefan (1879, T\u2074 law). Boltzmann (1884, derived). Wien (1893, displacement law). Planck (Oct 19, 1900, correct spectrum \u2192 birth of quantum theory). Nobel 1918."},
+  {id:33,name:"Binary Neutron Star Gravitational Waves",category:"gravitational",categoryLabel:"Gravitational",wavelength_m:3e6,wavelength_display:"~3000 km (at merger; ~10\u2078 m during inspiral)",frequency_Hz:10,frequency_display:"~10 Hz to ~2000 Hz (chirp from low to high)",energy_eV:"N/A \u2014 spacetime strain, not photons. Strain h ~ 10\u207b\u00b2\u00b9 at Earth.",waveform:"Quadrupolar transverse strain wave in spacetime. Chirp signal: frequency and amplitude increase as orbit decays.",source:"Binary neutron star mergers (GW170817 \u2014 first NS-NS detection with EM counterpart).",detector:"LIGO (4 km arms, Hanford + Livingston), Virgo (3 km, Italy), KAGRA (3 km, Japan).",examples:["GW170817 (first NS-NS merger, Aug 2017, with kilonova optical counterpart)","Multi-messenger astronomy birth event","r-process nucleosynthesis confirmation"],discovery:"Predicted by Einstein (1916). First indirect evidence: Hulse-Taylor pulsar PSR B1913+16 (1974, Nobel 1993). First direct detection: GW150914 (LIGO, Sep 14, 2015, Nobel 2017)."},
+  {id:34,name:"Binary Black Hole Gravitational Waves",category:"gravitational",categoryLabel:"Gravitational",wavelength_m:3e6,wavelength_display:"~3000 km (at merger)",frequency_Hz:100,frequency_display:"~20 Hz to ~300 Hz (typical LIGO band)",energy_eV:"N/A \u2014 strain h ~ 10\u207b\u00b2\u00b9. GW150914 radiated ~3 M\u2609c\u00b2",waveform:"Chirp: sinusoidal with increasing frequency and amplitude, followed by ringdown.",source:"Binary black hole mergers. GW150914: 36+29 M\u2609 \u2192 62 M\u2609 (3 M\u2609 radiated as GW).",detector:"LIGO, Virgo, KAGRA. As of 2025: hundreds of BBH detections in O1-O4.",examples:["GW150914 (first direct GW detection, Sep 14, 2015)","GW190521 (most massive: 85+66 M\u2609)","Hundreds of events in GWTC catalogs"],discovery:"GW150914 detected Sep 14, 2015 by LIGO. Nobel Prize 2017 (Weiss, Barish, Thorne)."},
+  {id:35,name:"Supernova Gravitational Waves",category:"gravitational",categoryLabel:"Gravitational",wavelength_m:3e5,wavelength_display:"~300 km (at ~1 kHz)",frequency_Hz:1000,frequency_display:"~100 Hz to ~3 kHz (core bounce)",energy_eV:"N/A \u2014 strain h ~ 10\u207b\u00b2\u00b3 to 10\u207b\u00b2\u00b9 (depends on distance/asymmetry)",waveform:"Burst: short-duration, complex waveform from asymmetric core collapse.",source:"Core-collapse supernovae (Type II/Ib/Ic). Requires asymmetry in collapse.",detector:"LIGO/Virgo/KAGRA (current sensitivity: Milky Way and nearby galaxies).",examples:["No confirmed detection yet","SN 1987A (pre-LIGO, neutrinos detected but no GW detectors)","Target for next galactic supernova"],discovery:"Not yet directly detected. A top target for current gravitational wave observatories."},
+  {id:36,name:"Primordial / Inflationary Gravitational Waves",category:"gravitational",categoryLabel:"Gravitational",wavelength_m:1e25,wavelength_display:"~10\u00b2\u2075 m (cosmological scales, ~Gpc)",frequency_Hz:1e-17,frequency_display:"~10\u207b\u00b9\u2078 to 10\u207b\u00b9\u2075 Hz (nanohertz and below)",energy_eV:"N/A \u2014 strain h ~ 10\u207b\u00b2\u2075 or less",waveform:"Stochastic background \u2014 random superposition from quantum fluctuations amplified during cosmic inflation.",source:"Quantum vacuum fluctuations during cosmic inflation (~10\u207b\u00b3\u2076 to 10\u207b\u00b3\u00b2 s after Big Bang).",detector:"CMB B-mode polarization (BICEP/Keck Array, LiteBIRD, CMB-S4). Pulsar timing arrays (NANOGrav, EPTA).",examples:["BICEP2 false alarm (2014, turned out to be dust)","NANOGrav 15-year signal (2023, possible stochastic background)","Major target for next-gen CMB experiments"],discovery:"Predicted by Starobinsky (1979), others. Not yet confirmed. NANOGrav signal (2023) is a candidate."},
+  {id:37,name:"Hawking Radiation",category:"gravitational",categoryLabel:"Gravitational",wavelength_m:1e-2,wavelength_display:"Thermal spectrum; peak depends on BH mass. Stellar BH: ~10\u207b\u00b2 m (microwave).",frequency_Hz:3e10,frequency_display:"Peak ~ c\u00b3/(16\u03c0\u00b2GM) Hz. Stellar BH: ~GHz. Primordial micro-BH: up to gamma.",energy_eV:"kT = \u210fc\u00b3/(8\u03c0GMk_B). Stellar BH (10 M\u2609): T ~ 6\u00d710\u207b\u2079 K \u2192 ~5\u00d710\u207b\u00b9\u00b3 eV. Micro-BH (~10\u00b9\u00b9 kg): T ~ 10\u00b9\u00b2 K \u2192 ~100 MeV.",waveform:"Thermal blackbody spectrum from quantum pair production at event horizon. Not directional \u2014 isotropic.",source:"Black hole event horizons via quantum vacuum fluctuations (virtual particle pairs separated by horizon).",detector:"Not yet detected (far too faint for stellar/supermassive BHs). Analog Hawking radiation observed in lab systems.",examples:["Theoretical prediction only for astrophysical BHs","Analog Hawking radiation in Bose-Einstein condensates and optical fibers","Black hole information paradox","Black hole evaporation (micro-BHs)"],discovery:"Predicted by Stephen Hawking (1974). Key equation: T = \u210fc\u00b3/(8\u03c0GMk_B). Unruh effect (related, 1976). Not yet observed astrophysically."},
+  {id:38,name:"Infrasound",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:17,wavelength_display:"> 17 m (in air)",frequency_Hz:0.01,frequency_display:"0.01 \u2013 20 Hz",energy_eV:"N/A (mechanical pressure wave)",waveform:"Longitudinal pressure wave. Can travel thousands of km in atmosphere.",source:"Volcanoes, earthquakes, meteorological events, nuclear explosions, wind turbines, elephants.",detector:"Microbarometers, infrasound arrays (IMS/CTBTO has 60 stations worldwide).",examples:["Nuclear test detection (CTBTO)","Volcanic eruption monitoring","Elephant communication (14-24 Hz)","Tonga eruption 2022 (detected globally)"],discovery:"Recognized as distinct from audible sound in early 20th century. CTBTO network from 1996."},
+  {id:39,name:"Audible Sound",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1.7e-2,wavelength_display:"17 mm \u2013 17 m (in air at 343 m/s)",frequency_Hz:20,frequency_display:"20 Hz \u2013 20 kHz",energy_eV:"N/A (mechanical pressure wave)",waveform:"Longitudinal pressure wave in air. Speed ~343 m/s (20\u00b0C air), ~1480 m/s (water), ~5100 m/s (steel).",source:"Vibrating objects: vocal cords, speakers, instruments, machinery, wind.",detector:"Microphones, human ear (cochlea: ~20 Hz\u201320 kHz, most sensitive ~2-4 kHz).",examples:["Human speech and music","Sonar (active/passive)","Acoustic engineering","Musical instruments"],discovery:"Known since antiquity. Wave nature: Mersenne (1637), speed measurement: Newton (1687), Laplace correction."},
+  {id:40,name:"Ultrasound",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e-4,wavelength_display:"0.015 mm \u2013 17 mm (in air)",frequency_Hz:2e4,frequency_display:"20 kHz \u2013 1 GHz",energy_eV:"N/A (mechanical pressure wave)",waveform:"Longitudinal pressure wave. Higher frequency = shorter wavelength = better resolution but more attenuation.",source:"Piezoelectric transducers, magnetostrictive devices, bats (20-200 kHz), dolphins.",detector:"Piezoelectric transducers, MEMS microphones.",examples:["Medical imaging (2-18 MHz)","Fetal ultrasound","Non-destructive testing","Bat echolocation","Ultrasonic cleaning","HIFU surgery"],discovery:"Galton whistle (1876). Piezoelectric ultrasound: Langevin (1917, submarine detection). Medical: Dussik (1942), Wild & Reid (1950s)."},
+  {id:41,name:"Hypersound",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e-7,wavelength_display:"~1 nm to 1 \u00b5m",frequency_Hz:1e9,frequency_display:"> 1 GHz (up to ~10 THz, where phonon description takes over)",energy_eV:"~4 \u00b5eV to 40 meV",waveform:"Longitudinal/transverse acoustic wave at near-atomic wavelengths. Transitions into thermal phonon regime.",source:"Laser ultrasonics, surface acoustic wave (SAW) devices, Brillouin scattering.",detector:"Brillouin light scattering, laser interferometry, SAW devices.",examples:["Acoustic microscopy at GHz frequencies","SAW filters in cell phones (GHz)","Phononic crystals","Picosecond ultrasonics"],discovery:"High-frequency acoustics explored from mid-20th century with laser and piezoelectric technology advances."},
+  {id:42,name:"P-waves (Primary Seismic)",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e4,wavelength_display:"~1 km to 100 km",frequency_Hz:0.02,frequency_display:"0.02 \u2013 50 Hz",energy_eV:"N/A (mechanical wave in rock/fluid)",waveform:"Longitudinal compressional wave. Fastest seismic wave. Travels through solids and fluids.",source:"Earthquakes, explosions, volcanic eruptions, meteor impacts.",detector:"Seismometers (broadband, short-period), geophones, accelerometers.",examples:["Earthquake first arrival","Nuclear explosion detection","Oil/gas exploration (seismic reflection)","Earth interior structure (P-wave shadow zone reveals liquid outer core)"],discovery:"Recognized in seismology from 1880s-1900s. Oldham (1906) used P/S wave analysis to discover Earth's core."},
+  {id:43,name:"S-waves (Secondary Seismic)",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:5e3,wavelength_display:"~0.5 km to 50 km",frequency_Hz:0.02,frequency_display:"0.02 \u2013 20 Hz",energy_eV:"N/A (mechanical shear wave)",waveform:"Transverse shear wave. Cannot propagate through fluids. Slower than P-waves (~60% of P-wave speed).",source:"Earthquakes, explosions.",detector:"Three-component seismometers, accelerometers.",examples:["S-wave shadow zone (proves liquid outer core)","Earthquake damage (S-waves carry more energy)","Vs30 site classification (building codes)"],discovery:"Identified alongside P-waves in early seismology. S-wave absence through outer core: Gutenberg (1914)."},
+  {id:44,name:"Love Waves (Surface Seismic)",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e4,wavelength_display:"~10 km to 100+ km",frequency_Hz:0.01,frequency_display:"0.01 \u2013 1 Hz",energy_eV:"N/A (surface mechanical wave)",waveform:"Transverse horizontal surface wave. Dispersive \u2014 different frequencies travel at different speeds.",source:"Earthquakes (generated when body waves interact with surface layer).",detector:"Broadband seismometers (horizontal components).",examples:["Most destructive seismic wave (horizontal shaking)","Building damage in earthquakes","Crustal structure studies (dispersion analysis)"],discovery:"Predicted theoretically by A.E.H. Love in 1911."},
+  {id:45,name:"Rayleigh Waves (Surface Seismic)",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e4,wavelength_display:"~10 km to 100+ km",frequency_Hz:0.01,frequency_display:"0.01 \u2013 1 Hz (for teleseismic); up to 100 Hz for near-surface",energy_eV:"N/A (surface mechanical wave)",waveform:"Retrograde elliptical ground motion (like ocean waves). Dispersive.",source:"Earthquakes, large explosions.",detector:"Broadband seismometers (vertical + radial components).",examples:["Ground roll in seismic exploration","Earth's free oscillations after great earthquakes","Hum of Earth (persistent free oscillations)"],discovery:"Predicted by Lord Rayleigh in 1885."},
+  {id:46,name:"Ocean Surface Gravity Waves",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e2,wavelength_display:"~1 m to 300+ m (wind waves to swell)",frequency_Hz:0.05,frequency_display:"~0.03 \u2013 1 Hz (periods 1\u201330 s)",energy_eV:"N/A (mechanical surface wave)",waveform:"Orbital motion (circles near surface, ellipses at depth). Dispersive \u2014 longer waves travel faster.",source:"Wind stress on ocean surface, distant storms (swell).",detector:"Wave buoys, radar altimeters (satellites), pressure sensors, coastal tide gauges.",examples:["Ocean swell from distant storms","Surf and breakers","Wave energy harvesting","Rogue waves"],discovery:"Wave theory: Airy (1841), Stokes (1847). Modern wave forecasting from WWII (Sverdrup & Munk)."},
+  {id:47,name:"Tsunamis",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:2e5,wavelength_display:"100 \u2013 500 km",frequency_Hz:5e-4,frequency_display:"~0.0002 \u2013 0.002 Hz (periods ~8 min to 90 min)",energy_eV:"N/A (shallow-water gravity wave)",waveform:"Shallow-water wave (wavelength >> ocean depth). Speed = \u221a(gd) \u2248 200 m/s in deep ocean (~700 km/h).",source:"Submarine earthquakes, volcanic eruptions, landslides, asteroid impacts.",detector:"DART buoys (deep ocean), coastal tide gauges, GPS buoys, seismometers (seismic trigger).",examples:["2004 Indian Ocean tsunami (M9.1, ~230,000 deaths)","2011 T\u014dhoku tsunami (M9.1, Fukushima)","Tonga volcanic tsunami (2022)"],discovery:"Documented since antiquity. Scientific study from 19th century. DART system deployed from 2003."},
+  {id:48,name:"Shock Waves",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e-3,wavelength_display:"~mm to meters (thin shock front)",frequency_Hz:1000,frequency_display:"Broadband (shock front contains all frequencies)",energy_eV:"N/A (nonlinear mechanical discontinuity)",waveform:"Nonlinear pressure discontinuity. Supersonic. Mach number M = v/c_s > 1.",source:"Supersonic aircraft (sonic booms), explosions, lightning, meteorites, volcanic eruptions.",detector:"Pressure transducers, Schlieren photography, shadowgraph imaging.",examples:["Sonic boom","Bullet shock waves","Lightning thunder","Lithotripsy (kidney stone treatment)","Supernova blast waves"],discovery:"Theoretical: Rankine (1870), Hugoniot (1889). Mach (1877) photographed bullet shock waves."},
+  {id:49,name:"Electron de Broglie Waves",category:"quantum",categoryLabel:"Matter/Quantum",wavelength_m:1e-10,wavelength_display:"\u03bb = h/p. At 100 eV: 0.123 nm. At 200 kV TEM: 0.0025 nm.",frequency_Hz:2.4e16,frequency_display:"f = E/h. At 100 eV: 2.4\u00d710\u00b9\u2076 Hz",energy_eV:"Tunable: meV (cold electrons) to MeV (accelerators)",waveform:"Quantum probability amplitude wave (complex-valued \u03a8). |\u03a8|\u00b2 gives probability density.",source:"Electron guns (thermionic, field emission), photoelectric emission, beta decay.",detector:"Phosphor screens, CCD detectors, electron multipliers, Faraday cups.",examples:["Electron microscopy (TEM, SEM)","Electron diffraction (crystal structure)","Davisson-Germer experiment","LEED surface analysis"],discovery:"De Broglie hypothesis (1924). Confirmed: Davisson & Germer (1927), Thomson (1927). Nobel: de Broglie 1929, Davisson & Thomson 1937."},
+  {id:50,name:"Neutron de Broglie Waves",category:"quantum",categoryLabel:"Matter/Quantum",wavelength_m:1.8e-10,wavelength_display:"Thermal neutrons (25 meV): 0.18 nm. Cold: ~0.4 nm. Hot: ~0.1 nm.",frequency_Hz:6e12,frequency_display:"f = E/h. Thermal: ~6 THz",energy_eV:"Cold: ~1 meV. Thermal: ~25 meV. Hot: ~200 meV.",waveform:"Quantum probability wave. Neutrons interact with nuclei (not electron cloud), complementary to X-rays.",source:"Nuclear reactors, spallation sources (ISIS, SNS, ESS, J-PARC).",detector:"\u00b3He proportional counters, scintillation detectors, \u2076Li-based detectors.",examples:["Neutron diffraction (locating hydrogen atoms in crystals)","Neutron scattering (lattice dynamics, magnetism)","Neutron radiography (see through metals)"],discovery:"Predicted by de Broglie (1924). Neutron diffraction: Shull & Brockhouse. Nobel 1994."},
+  {id:51,name:"Atom / Molecule de Broglie Waves",category:"quantum",categoryLabel:"Matter/Quantum",wavelength_m:1e-11,wavelength_display:"He at 300K: ~0.073 nm. BEC: ~\u00b5m. C60 fullerene: ~2.5 pm.",frequency_Hz:3e13,frequency_display:"Varies with kinetic energy and mass",energy_eV:"Thermal atoms ~25 meV. Ultracold (\u00b5K): ~neV.",waveform:"Quantum probability wave. Exhibits diffraction, interference even for large molecules.",source:"Thermal beams, laser-cooled atoms, BEC, molecular beams.",detector:"Atom detectors, fluorescence imaging, absorption imaging, microchannel plates.",examples:["Atom interferometry (precision gravimetry, navigation)","BEC interference patterns","C60 fullerene interference (Arndt/Zeilinger 1999)","Atom lithography"],discovery:"De Broglie (1924). Atom diffraction: Estermann & Stern (1930). BEC: Cornell & Wieman (1995, Nobel 2001)."},
+  {id:52,name:"Acoustic Phonons",category:"quantum",categoryLabel:"Matter/Quantum",wavelength_m:1e-9,wavelength_display:"~nm (zone boundary) to ~mm (long wavelength limit)",frequency_Hz:1e10,frequency_display:"0 to ~10 THz (Debye frequency)",energy_eV:"0 to ~40 meV (Debye energy)",waveform:"Quantized lattice vibration. Linear dispersion \u03c9 = v\u00b7k at low k. Adjacent atoms move in phase.",source:"Thermal excitation, piezoelectric transducers, laser pulse absorption.",detector:"Inelastic neutron scattering, Brillouin light scattering, specific heat measurements.",examples:["Sound propagation in solids","Thermal conductivity","Debye model of specific heat","Phonon-electron interactions (BCS superconductivity)"],discovery:"Concept: Debye (1912) and Born & von K\u00e1rm\u00e1n (1912). Measured: Brockhouse via neutron scattering (1950s, Nobel 1994)."},
+  {id:53,name:"Optical Phonons",category:"quantum",categoryLabel:"Matter/Quantum",wavelength_m:1e-9,wavelength_display:"~nm (near zone boundary) \u2014 flat dispersion means k varies widely at ~same \u03c9",frequency_Hz:1e13,frequency_display:"~5\u201320 THz (higher than acoustic; finite frequency at k=0)",energy_eV:"~20\u201380 meV",waveform:"Quantized lattice vibration. Adjacent atoms move in antiphase. Nearly flat dispersion. Interacts with IR light.",source:"Thermal excitation, IR absorption, Raman scattering.",detector:"Infrared absorption spectroscopy, Raman spectroscopy, inelastic neutron scattering.",examples:["IR absorption in ionic crystals (reststrahlen band)","Raman spectroscopy","Polar optical phonon scattering (limits electron mobility in semiconductors)","Polaritons (phonon-photon coupling)"],discovery:"Theoretical framework: Born & Huang (1954). Raman scattering: C.V. Raman (1928, Nobel 1930)."},
+  {id:54,name:"Capillary Waves",category:"mechanical",categoryLabel:"Mechanical/Acoustic",wavelength_m:1e-3,wavelength_display:"< ~17 mm (below this, surface tension dominates over gravity)",frequency_Hz:100,frequency_display:"~10 Hz to ~10 kHz",energy_eV:"N/A (surface tension wave)",waveform:"Surface wave where restoring force is primarily surface tension. Dispersive \u2014 shorter waves travel faster (opposite of gravity waves).",source:"Wind on small scales, vibrations, thermal fluctuations, insects walking on water.",detector:"Laser light scattering, optical reflection, high-speed cameras.",examples:["Ripples on a pond (small scale)","Water strider locomotion","Spray formation","Thin film stability"],discovery:"Theory by Lord Kelvin (1871). Characterized throughout 19th-20th century fluid dynamics."},
+  {id:55,name:"Langmuir Waves (Electron Plasma Waves)",category:"plasma",categoryLabel:"Plasma",wavelength_m:1e-2,wavelength_display:"~mm to meters (depends on Debye length and plasma density)",frequency_Hz:1e9,frequency_display:"Near electron plasma frequency \u03c9_pe = \u221a(ne\u00b2/m\u03b5\u2080). Ionosphere: ~MHz. Solar wind: ~10-100 kHz.",energy_eV:"N/A (collective electron oscillation)",waveform:"Longitudinal electrostatic oscillation of electrons against ion background. Dispersive: \u03c9\u00b2 = \u03c9_pe\u00b2 + 3k\u00b2v_th\u00b2.",source:"Electron beams, solar radio bursts (Type III), laser-plasma interactions.",detector:"Electric field antennas on spacecraft, Langmuir probes, laser Thomson scattering.",examples:["Solar Type III radio bursts","Laser fusion plasma diagnostics","Ionospheric plasma instabilities","Plasma processing"],discovery:"Irving Langmuir (1928) identified plasma oscillations. Tonks & Langmuir (1929) described oscillation frequency."},
+  {id:56,name:"Alfv\u00e9n Waves (Shear)",category:"plasma",categoryLabel:"Plasma",wavelength_m:1e6,wavelength_display:"km to AU scale (solar wind)",frequency_Hz:1e-3,frequency_display:"~\u00b5Hz to Hz (below ion cyclotron frequency)",energy_eV:"N/A (MHD wave in magnetized plasma)",waveform:"Transverse (incompressible). Magnetic tension provides restoring force. Like plucking a magnetic field line.",source:"Solar surface convection, magnetic reconnection, coronal mass ejections.",detector:"Magnetometers on spacecraft (Parker Solar Probe, ACE, Wind, MMS), ground magnetometers.",examples:["Solar wind turbulence (dominated by Alfv\u00e9nic fluctuations)","Coronal heating problem","Magnetospheric field line resonances","Fusion plasma heating (ICRF)"],discovery:"Predicted by Hannes Alfv\u00e9n (1942). Nobel Prize 1970."},
+  {id:57,name:"Magnetosonic Waves (Compressional Alfv\u00e9n)",category:"plasma",categoryLabel:"Plasma",wavelength_m:1e5,wavelength_display:"km to planetary scales",frequency_Hz:1e-2,frequency_display:"sub-mHz to Hz",energy_eV:"N/A (MHD wave)",waveform:"Compressional \u2014 density and magnetic field magnitude oscillate. Fast mode is isotropic; slow mode guided along B.",source:"Solar wind compressions, CME-driven shocks, substorm injections.",detector:"Spacecraft magnetometers and plasma instruments, ground magnetometers.",examples:["Magnetospheric compressions during solar wind pressure pulses","Equatorial noise in inner magnetosphere","Supernova remnant shock waves"],discovery:"Part of MHD wave theory developed by Alfv\u00e9n and others in 1940s-1950s."},
+  {id:58,name:"Ion Acoustic Waves",category:"plasma",categoryLabel:"Plasma",wavelength_m:1e-1,wavelength_display:"mm to km (Debye length scale dependent)",frequency_Hz:1e4,frequency_display:"kHz to MHz (below electron plasma frequency)",energy_eV:"N/A (electrostatic ion density oscillation)",waveform:"Longitudinal electrostatic. Sound-like in plasma. Electrons provide pressure, ions provide inertia.",source:"Current-driven instabilities, parametric decay, ion beams, laser-plasma interactions.",detector:"Langmuir probes, laser Thomson scattering (ion feature), spacecraft electric field instruments.",examples:["Solar wind (near shocks)","Laser fusion diagnostics","Earth's bow shock turbulence","Laboratory plasma experiments"],discovery:"Theoretical prediction from plasma physics. Observed in laboratory and space plasmas."},
+  {id:59,name:"Whistler Waves",category:"plasma",categoryLabel:"Plasma",wavelength_m:1e3,wavelength_display:"10 m to 1000 km",frequency_Hz:1e3,frequency_display:"100 Hz \u2013 100 kHz (between ion and electron cyclotron frequencies)",energy_eV:"N/A (EM wave in magnetized plasma)",waveform:"Electromagnetic, right-hand circularly polarized. Dispersive \u2014 lower frequencies arrive later \u2192 descending whistle.",source:"Lightning strikes (natural whistlers), electron temperature anisotropy (chorus waves).",detector:"VLF receivers, search coil magnetometers, electric field antennas (Van Allen Probes, MMS).",examples:["Natural whistlers from lightning (Barkhausen 1919, Storey 1953)","Chorus and hiss waves in radiation belts","Radiation belt electron dynamics"],discovery:"First reported by Barkhausen (1919). Explained by Storey (1953). Chorus waves: Burtis & Helliwell (1969)."},
+  {id:60,name:"Neutrino Waves",category:"nuclear",categoryLabel:"Nuclear/Particle",wavelength_m:1e-13,wavelength_display:"\u03bb = h/p. MeV neutrinos: ~10\u207b\u00b9\u00b3 m. Cosmic neutrino background: ~0.1 mm.",frequency_Hz:2.4e20,frequency_display:"f = E/h. Solar neutrinos (~MeV): ~2.4\u00d710\u00b2\u2070 Hz",energy_eV:"Solar: ~MeV. Reactor: ~few MeV. Atmospheric: ~GeV. Astrophysical: up to PeV.",waveform:"Quantum probability wave. Oscillates between flavor eigenstates (\u03bd_e, \u03bd_\u00b5, \u03bd_\u03c4) due to mass mixing.",source:"Nuclear beta decay, reactors, Sun (pp chain), supernovae, cosmic ray interactions, Big Bang (relic C\u03bdB at ~1.9 K).",detector:"Super-Kamiokande, IceCube, Borexino, DUNE. Detection via inverse beta decay, elastic scattering.",examples:["Solar neutrino problem \u2192 neutrino oscillations","SN 1987A neutrino burst","IceCube astrophysical neutrinos from blazar TXS 0506+056"],discovery:"Proposed: Pauli (1930). Detected: Cowan & Reines (1956, Nobel 1995). Oscillation: Super-K (1998, Nobel 2015)."},
+  {id:61,name:"Spin Waves / Magnons",category:"nuclear",categoryLabel:"Nuclear/Particle",wavelength_m:1e-7,wavelength_display:"~nm (zone boundary) to ~mm (magnetostatic waves)",frequency_Hz:1e10,frequency_display:"GHz (ferromagnets) to ~600 GHz (antiferromagnets)",energy_eV:"~\u00b5eV to meV",waveform:"Transverse precession wave \u2014 spins precess around equilibrium direction, propagating through magnetic lattice.",source:"Microwave antennas, spin-transfer torque, thermal excitation, laser pulses.",detector:"Inelastic neutron scattering, Brillouin light scattering, ferromagnetic resonance, NV center magnetometry.",examples:["Magnonics (spin-wave computing)","YIG delay lines and filters","Magnon Bose-Einstein condensation","Antiferromagnetic spintronics (THz devices)"],discovery:"Bloch (1930, spin wave theory). Brockhouse (1957, neutron scattering measurement). Magnon BEC: Demokritov (2006)."},
+  {id:62,name:"Brain Waves \u2014 Delta",category:"biological",categoryLabel:"Biological",wavelength_m:0.5,wavelength_display:"N/A (bioelectric, not propagating EM). Cortical scale: ~cm to m.",frequency_Hz:0.5,frequency_display:"0.1 \u2013 4 Hz",energy_eV:"N/A (10\u2013200 \u00b5V bioelectric potentials)",waveform:"Bioelectric oscillation \u2014 synchronized post-synaptic potentials from cortical neuron populations.",source:"Thalamocortical network oscillations during deep (NREM stage 3-4) sleep, brain injury.",detector:"Electroencephalogram (EEG) \u2014 scalp electrodes, 10\u2013200 \u00b5V amplitude (highest of all bands).",examples:["Deep sleep monitoring","Brain pathology detection (abnormal delta while awake)","Anesthesia depth monitoring","Dominant in infant brains"],discovery:"EEG discovered by Hans Berger (1924). Delta waves characterized in sleep research from 1930s-1960s."},
+  {id:63,name:"Brain Waves \u2014 Theta",category:"biological",categoryLabel:"Biological",wavelength_m:0.15,wavelength_display:"N/A (bioelectric). Cortical scale: ~5\u201325 cm.",frequency_Hz:6,frequency_display:"4 \u2013 8 Hz",energy_eV:"N/A (10\u201350 \u00b5V bioelectric)",waveform:"Bioelectric oscillation from hippocampal/limbic circuits.",source:"Hippocampal theta rhythm generators, medial septum pacemaker. Active during drowsiness, meditation, memory encoding.",detector:"EEG, intracranial EEG (iEEG), MEG.",examples:["Memory encoding and retrieval","Spatial navigation (theta phase precession in place cells)","Meditation states","REM sleep"],discovery:"Hippocampal theta discovered by Jung & Kornm\u00fcller (1938). Place cells + theta: O'Keefe (1971, Nobel 2014)."},
+  {id:64,name:"Brain Waves \u2014 Alpha",category:"biological",categoryLabel:"Biological",wavelength_m:0.05,wavelength_display:"N/A (bioelectric). Cortical scale: ~1\u201325 cm.",frequency_Hz:10,frequency_display:"8 \u2013 13 Hz",energy_eV:"N/A (20\u201360 \u00b5V bioelectric)",waveform:"Bioelectric oscillation \u2014 prominent, regular rhythm from thalamocortical feedback loops.",source:"Relaxed wakefulness with eyes closed. Occipital cortex primarily. Alpha blocking when eyes open.",detector:"EEG (strongest at occipital electrodes O1, O2, Oz), MEG.",examples:["First brain waves discovered (Berger, 1924)","Relaxation/meditation monitoring","Brain-computer interfaces","Alpha blocking as diagnostic tool"],discovery:"Hans Berger (1924) \u2014 first human EEG recording. Called 'alpha rhythm' for being the first discovered."},
+  {id:65,name:"Brain Waves \u2014 Beta",category:"biological",categoryLabel:"Biological",wavelength_m:0.02,wavelength_display:"N/A (bioelectric). Cortical scale: ~5\u201325 mm.",frequency_Hz:20,frequency_display:"13 \u2013 30 Hz",energy_eV:"N/A (5\u201330 \u00b5V bioelectric)",waveform:"Bioelectric oscillation from active cortical processing.",source:"Active thinking, alertness, concentration, motor planning, anxiety. Frontal and parietal cortex.",detector:"EEG (frontal and central electrodes), MEG, ECoG.",examples:["Motor cortex beta desynchronization during movement","Parkinson's disease (excessive beta in basal ganglia)","Cognitive workload assessment","ADHD neurofeedback (increase beta/theta ratio)"],discovery:"Identified as distinct from alpha by Berger and subsequent EEG researchers in 1930s."},
+  {id:66,name:"Brain Waves \u2014 Gamma",category:"biological",categoryLabel:"Biological",wavelength_m:0.008,wavelength_display:"N/A (bioelectric). Cortical scale: ~3\u201310 mm.",frequency_Hz:40,frequency_display:"30 \u2013 100+ Hz",energy_eV:"N/A (2\u201310 \u00b5V bioelectric \u2014 lowest amplitude)",waveform:"Bioelectric oscillation from local cortical interneuron networks.",source:"Parvalbumin-positive basket cells. Associated with attention, perception, consciousness, sensory binding.",detector:"EEG (difficult from scalp), MEG, intracranial EEG, ECoG.",examples:["Binding problem (gamma synchronization hypothesis)","Consciousness correlates","Schizophrenia (disrupted gamma)","Meditation (Tibetan monks: elevated gamma)"],discovery:"Gamma oscillations described in olfactory cortex by Freeman (1960s-1970s). Role in binding: Singer & Gray (1989)."},
+  {id:67,name:"Cardiac Waves (ECG)",category:"biological",categoryLabel:"Biological",wavelength_m:0.1,wavelength_display:"1\u201315 cm (physical extent of depolarization wavefront in heart)",frequency_Hz:1.2,frequency_display:"Heart rate: 1\u20133 Hz. ECG content: 0.05\u2013150 Hz. QRS: up to 250 Hz.",energy_eV:"N/A (millivolt-level bioelectric)",waveform:"Bioelectric depolarization wave. Sequential P wave (atrial), QRS complex (ventricular depolarization), T wave (repolarization).",source:"Sinoatrial (SA) node pacemaker (60\u2013100 bpm). AV node backup (40\u201360 bpm).",detector:"Electrocardiograph (12-lead ECG). Holter monitors. Apple Watch, Kardia (consumer).",examples:["Clinical ECG diagnosis (arrhythmias, MI, conduction blocks)","Cardiac resynchronization therapy","Atrial fibrillation detection","Wearable health monitoring"],discovery:"Einthoven developed string galvanometer ECG (1901-1903). Nobel Prize 1924."}
+];
+
+// ============================================================
+// CATEGORY CONFIG
+// ============================================================
+const CATEGORY_COLORS = {
+  "em-radio":     0x3b82f6,
+  "em-microwave":  0x60a5fa,
+  "em-infrared":   0xf97316,
+  "em-visible":    0xfbbf24,
+  "em-uv":         0xa78bfa,
+  "em-xray":       0xc084fc,
+  "em-gamma":      0xf472b6,
+  "em-special":    0x818cf8,
+  "gravitational": 0x10b981,
+  "mechanical":    0xf59e0b,
+  "quantum":       0x06b6d4,
+  "plasma":        0xe879f9,
+  "nuclear":       0xfb923c,
+  "biological":    0x34d399
+};
+
+const CATEGORY_CSS = {
+  "em-radio":     "#3b82f6",
+  "em-microwave":  "#60a5fa",
+  "em-infrared":   "#f97316",
+  "em-visible":    "#fbbf24",
+  "em-uv":         "#a78bfa",
+  "em-xray":       "#c084fc",
+  "em-gamma":      "#f472b6",
+  "em-special":    "#818cf8",
+  "gravitational": "#10b981",
+  "mechanical":    "#f59e0b",
+  "quantum":       "#06b6d4",
+  "plasma":        "#e879f9",
+  "nuclear":       "#fb923c",
+  "biological":    "#34d399"
+};
+
+const CATEGORY_LABELS = {
+  "em-radio":     "EM -- Radio",
+  "em-microwave":  "EM -- Microwave",
+  "em-infrared":   "EM -- Infrared",
+  "em-visible":    "EM -- Visible",
+  "em-uv":         "EM -- Ultraviolet",
+  "em-xray":       "EM -- X-ray",
+  "em-gamma":      "EM -- Gamma",
+  "em-special":    "EM -- Special",
+  "gravitational": "Gravitational",
+  "mechanical":    "Mechanical/Acoustic",
+  "quantum":       "Matter/Quantum",
+  "plasma":        "Plasma",
+  "nuclear":       "Nuclear/Particle",
+  "biological":    "Biological"
+};
+
+const CATEGORY_Y_OFFSET = {
+  "em-radio": 6,
+  "em-microwave": 5,
+  "em-infrared": 4,
+  "em-visible": 3,
+  "em-uv": 2,
+  "em-xray": 1,
+  "em-gamma": 0,
+  "em-special": -1,
+  "gravitational": -3,
+  "mechanical": -5,
+  "quantum": -7,
+  "plasma": -9,
+  "nuclear": -11,
+  "biological": -13
+};
+
+// ============================================================
+// SCENE SETUP
+// ============================================================
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0a0f);
+scene.fog = new THREE.FogExp2(0x0a0a0f, 0.006);
+
+const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 2000);
+camera.position.set(0, 5, 50);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 5;
+controls.maxDistance = 300;
+controls.target.set(0, -3, 0);
+
+// Ambient light
+scene.add(new THREE.AmbientLight(0x222233, 0.4));
+
+// Directional
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
+dirLight.position.set(20, 30, 20);
+scene.add(dirLight);
+
+// ============================================================
+// CREATE WAVE SPHERES
+// ============================================================
+const waveMeshes = [];
+const waveLabels = [];
+const waveData = {};
+
+// Compute X positions based on log wavelength
+const wavelengths = WAVES.map(w => Math.log10(w.wavelength_m));
+const wlMin = Math.min(...wavelengths);
+const wlMax = Math.max(...wavelengths);
+const xScale = 80; // total X range
+
+function wlToX(logWl) {
+  return ((logWl - wlMin) / (wlMax - wlMin) - 0.5) * xScale;
+}
+
+// Sphere geometry - shared
+const sphereGeo = new THREE.SphereGeometry(0.5, 24, 24);
+
+// Create a label canvas texture
+function createLabelTexture(text, color) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = 512;
+  canvas.height = 64;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.font = '24px Inter, system-ui, sans-serif';
+  ctx.fillStyle = color || '#e0e0e8';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Truncate if too long
+  let displayText = text;
+  if (ctx.measureText(displayText).width > 500) {
+    while (ctx.measureText(displayText + '...').width > 500 && displayText.length > 5) {
+      displayText = displayText.slice(0, -1);
+    }
+    displayText += '...';
+  }
+  ctx.fillText(displayText, 256, 32);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.minFilter = THREE.LinearFilter;
+  return texture;
+}
+
+// Category index trackers for Z offset
+const catIndexCount = {};
+
+WAVES.forEach((wave) => {
+  const logWl = Math.log10(wave.wavelength_m);
+  const x = wlToX(logWl);
+  const y = (CATEGORY_Y_OFFSET[wave.category] || 0) * 2.2;
+
+  // Z offset within category
+  if (!catIndexCount[wave.category]) catIndexCount[wave.category] = 0;
+  const zIdx = catIndexCount[wave.category]++;
+  const z = (zIdx % 3 - 1) * 1.8 + (Math.random() - 0.5) * 0.6;
+
+  const color = CATEGORY_COLORS[wave.category] || 0xffffff;
+  const mat = new THREE.MeshStandardMaterial({
+    color: color,
+    emissive: color,
+    emissiveIntensity: 0.5,
+    roughness: 0.3,
+    metalness: 0.1,
+    transparent: true,
+    opacity: 0.9
+  });
+
+  const mesh = new THREE.Mesh(sphereGeo, mat);
+  mesh.position.set(x, y, z);
+  mesh.userData = { waveId: wave.id, baseScale: 1, category: wave.category };
+  scene.add(mesh);
+  waveMeshes.push(mesh);
+  waveData[wave.id] = wave;
+
+  // Glow sprite
+  const spriteMat = new THREE.SpriteMaterial({
+    color: color,
+    transparent: true,
+    opacity: 0.15,
+    blending: THREE.AdditiveBlending
+  });
+  const sprite = new THREE.Sprite(spriteMat);
+  sprite.scale.set(3, 3, 1);
+  sprite.position.copy(mesh.position);
+  scene.add(sprite);
+  mesh.userData.glow = sprite;
+
+  // Text label
+  const labelTex = createLabelTexture(wave.name, CATEGORY_CSS[wave.category]);
+  const labelMat = new THREE.SpriteMaterial({
+    map: labelTex,
+    transparent: true,
+    opacity: 0.7,
+    depthTest: false
+  });
+  const label = new THREE.Sprite(labelMat);
+  label.scale.set(8, 1, 1);
+  label.position.set(x, y + 1.2, z);
+  label.userData = { waveId: wave.id };
+  scene.add(label);
+  waveLabels.push(label);
+  mesh.userData.label = label;
+});
+
+// ============================================================
+// WAVELENGTH AXIS / GRID
+// ============================================================
+// Axis line
+const axisGeo = new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(-xScale/2 - 5, -32, 0),
+  new THREE.Vector3(xScale/2 + 5, -32, 0)
+]);
+const axisMat = new THREE.LineBasicMaterial({ color: 0x2a2a3a });
+scene.add(new THREE.Line(axisGeo, axisMat));
+
+// Scale markers
+const scaleMarkers = [
+  { exp: -17, label: 'am' },
+  { exp: -15, label: 'fm' },
+  { exp: -12, label: 'pm' },
+  { exp: -10, label: 'A' },
+  { exp: -9,  label: 'nm' },
+  { exp: -6,  label: '\u00b5m' },
+  { exp: -3,  label: 'mm' },
+  { exp: 0,   label: 'm' },
+  { exp: 3,   label: 'km' },
+  { exp: 5,   label: '100km' },
+  { exp: 6,   label: 'Mm' },
+  { exp: 25,  label: 'Gpc' }
+];
+
+scaleMarkers.forEach(mark => {
+  if (mark.exp < wlMin - 1 || mark.exp > wlMax + 1) return;
+  const x = wlToX(mark.exp);
+
+  // Vertical tick
+  const tickGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(x, -32, 0),
+    new THREE.Vector3(x, -31.2, 0)
+  ]);
+  scene.add(new THREE.Line(tickGeo, new THREE.LineBasicMaterial({ color: 0x3a3a4a })));
+
+  // Vertical guide line (subtle)
+  const guideGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(x, -31, 0),
+    new THREE.Vector3(x, 20, 0)
+  ]);
+  scene.add(new THREE.Line(guideGeo, new THREE.LineBasicMaterial({ color: 0x15151f, transparent: true, opacity: 0.5 })));
+
+  // Label
+  const tex = createLabelTexture(mark.label, '#4a4a6a');
+  const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, opacity: 0.8, depthTest: false });
+  const spr = new THREE.Sprite(mat);
+  spr.scale.set(5, 0.7, 1);
+  spr.position.set(x, -33.2, 0);
+  scene.add(spr);
+});
+
+// Arrow label for axis
+const axisLabelTex = createLabelTexture('Wavelength  \u2190 shorter     longer \u2192', '#4a4a6a');
+const axisLabelMat = new THREE.SpriteMaterial({ map: axisLabelTex, transparent: true, opacity: 0.7, depthTest: false });
+const axisLabelSpr = new THREE.Sprite(axisLabelMat);
+axisLabelSpr.scale.set(14, 1.6, 1);
+axisLabelSpr.position.set(0, -35, 0);
+scene.add(axisLabelSpr);
+
+// ============================================================
+// CATEGORY LINES (subtle connecting lines within each category)
+// ============================================================
+const catGroups = {};
+waveMeshes.forEach(m => {
+  const cat = m.userData.category;
+  if (!catGroups[cat]) catGroups[cat] = [];
+  catGroups[cat].push(m.position.clone());
+});
+
+Object.keys(catGroups).forEach(cat => {
+  const pts = catGroups[cat].sort((a, b) => a.x - b.x);
+  if (pts.length < 2) return;
+  const geo = new THREE.BufferGeometry().setFromPoints(pts);
+  const mat = new THREE.LineBasicMaterial({
+    color: CATEGORY_COLORS[cat],
+    transparent: true,
+    opacity: 0.12
+  });
+  scene.add(new THREE.Line(geo, mat));
+});
+
+// ============================================================
+// STARFIELD BACKGROUND
+// ============================================================
+(function() {
+  const starCount = 2000;
+  const starGeo = new THREE.BufferGeometry();
+  const positions = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 600;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 400;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 400 - 50;
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const starMat = new THREE.PointsMaterial({ color: 0x444466, size: 0.3, transparent: true, opacity: 0.6 });
+  scene.add(new THREE.Points(starGeo, starMat));
+})();
+
+// ============================================================
+// RAYCASTER / INTERACTION
+// ============================================================
+const raycaster = new THREE.Raycaster();
+raycaster.params.Points = { threshold: 1 };
+const mouse = new THREE.Vector2();
+let hoveredMesh = null;
+let selectedWaveId = null;
+
+const tooltip = document.getElementById('tooltip');
+const detailPanel = document.getElementById('detail-panel');
+const detailContent = document.getElementById('detail-content');
+
+function onMouseMove(event) {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects(waveMeshes);
+
+  // Reset previous hover
+  if (hoveredMesh) {
+    hoveredMesh.scale.setScalar(hoveredMesh.userData.baseScale);
+    hoveredMesh.material.emissiveIntensity = 0.5;
+    if (hoveredMesh.userData.glow) hoveredMesh.userData.glow.material.opacity = 0.15;
+    hoveredMesh = null;
+  }
+
+  if (intersects.length > 0) {
+    const mesh = intersects[0].object;
+    if (mesh.visible) {
+      hoveredMesh = mesh;
+      mesh.scale.setScalar(1.5);
+      mesh.material.emissiveIntensity = 1.0;
+      if (mesh.userData.glow) mesh.userData.glow.material.opacity = 0.35;
+
+      const wave = waveData[mesh.userData.waveId];
+      tooltip.innerHTML = '<div>' + wave.name + '</div><div class="tt-cat">' + wave.categoryLabel + '</div>';
+      tooltip.style.left = (event.clientX + 16) + 'px';
+      tooltip.style.top = (event.clientY - 10) + 'px';
+      tooltip.classList.add('visible');
+      renderer.domElement.style.cursor = 'pointer';
+    }
+  } else {
+    tooltip.classList.remove('visible');
+    renderer.domElement.style.cursor = 'default';
+  }
+}
+
+function onClick(event) {
+  // Ignore if clicking on UI elements
+  if (event.target.closest('#left-panel') || event.target.closest('#detail-panel') ||
+      event.target.closest('#controls') || event.target.closest('#header') ||
+      event.target.closest('#toggle-left')) return;
+
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects(waveMeshes);
+
+  if (intersects.length > 0 && intersects[0].object.visible) {
+    const mesh = intersects[0].object;
+    const wave = waveData[mesh.userData.waveId];
+    selectedWaveId = wave.id;
+    showDetail(wave);
+    // Smooth camera move toward selected wave
+    animateCameraTo(mesh.position);
+  }
+}
+
+function animateCameraTo(targetPos) {
+  const startTarget = controls.target.clone();
+  const endTarget = targetPos.clone();
+  const startTime = performance.now();
+  const duration = 800;
+
+  function lerpAnim() {
+    const t = Math.min((performance.now() - startTime) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3); // easeOutCubic
+    controls.target.lerpVectors(startTarget, endTarget, ease);
+    if (t < 1) requestAnimationFrame(lerpAnim);
+  }
+  lerpAnim();
+}
+
+function showDetail(wave) {
+  const color = CATEGORY_CSS[wave.category];
+  let html = '<div class="detail-header">';
+  html += '<div class="detail-name">' + escHtml(wave.name) + '</div>';
+  html += '<span class="detail-category" style="background:' + color + '22;color:' + color + ';border:1px solid ' + color + '44">' + escHtml(wave.categoryLabel) + '</span>';
+  html += '</div>';
+
+  const fields = [
+    ['Wavelength', wave.wavelength_display],
+    ['Frequency', wave.frequency_display],
+    ['Energy', wave.energy_eV],
+    ['Waveform', wave.waveform],
+    ['Source', wave.source],
+    ['Detector', wave.detector],
+    ['Discovery', wave.discovery]
+  ];
+
+  fields.forEach(([label, value]) => {
+    if (!value) return;
+    html += '<div class="detail-field"><div class="detail-label">' + label + '</div>';
+    html += '<div class="detail-value">' + escHtml(value) + '</div></div>';
+  });
+
+  if (wave.examples && wave.examples.length) {
+    html += '<div class="detail-field"><div class="detail-label">Examples</div>';
+    html += '<div class="detail-value"><ul>';
+    wave.examples.forEach(ex => {
+      html += '<li>' + escHtml(ex) + '</li>';
+    });
+    html += '</ul></div></div>';
+  }
+
+  detailContent.innerHTML = html;
+  detailPanel.classList.add('open');
+}
+
+function escHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.getElementById('detail-close').addEventListener('click', () => {
+  detailPanel.classList.remove('open');
+  selectedWaveId = null;
+});
+
+window.addEventListener('mousemove', onMouseMove);
+window.addEventListener('click', onClick);
+
+// ============================================================
+// LEFT PANEL: FILTERS & SEARCH
+// ============================================================
+const categoryFiltersEl = document.getElementById('category-filters');
+const searchInput = document.getElementById('search-input');
+const waveCountEl = document.getElementById('wave-count');
+
+const activeCategories = new Set(Object.keys(CATEGORY_COLORS));
+let searchTerm = '';
+
+// Count per category
+const catCounts = {};
+WAVES.forEach(w => { catCounts[w.category] = (catCounts[w.category] || 0) + 1; });
+
+// Build filter checkboxes
+Object.keys(CATEGORY_COLORS).forEach(cat => {
+  const label = document.createElement('label');
+  label.className = 'category-filter';
+  label.innerHTML =
+    '<input type="checkbox" checked data-cat="' + cat + '">' +
+    '<span class="category-dot" style="background:' + CATEGORY_CSS[cat] + '"></span>' +
+    '<span>' + CATEGORY_LABELS[cat] + '</span>' +
+    '<span class="cat-count">' + (catCounts[cat] || 0) + '</span>';
+  label.querySelector('input').addEventListener('change', function() {
+    if (this.checked) {
+      activeCategories.add(cat);
+      label.classList.remove('unchecked');
+    } else {
+      activeCategories.delete(cat);
+      label.classList.add('unchecked');
+    }
+    applyFilters();
+  });
+  categoryFiltersEl.appendChild(label);
+});
+
+searchInput.addEventListener('input', function() {
+  searchTerm = this.value.toLowerCase().trim();
+  applyFilters();
+});
+
+function applyFilters() {
+  let visibleCount = 0;
+  waveMeshes.forEach(mesh => {
+    const wave = waveData[mesh.userData.waveId];
+    const catMatch = activeCategories.has(wave.category);
+    const searchMatch = !searchTerm ||
+      wave.name.toLowerCase().includes(searchTerm) ||
+      wave.categoryLabel.toLowerCase().includes(searchTerm) ||
+      (wave.source && wave.source.toLowerCase().includes(searchTerm)) ||
+      (wave.examples && wave.examples.some(e => e.toLowerCase().includes(searchTerm)));
+
+    const visible = catMatch && searchMatch;
+    mesh.visible = visible;
+    if (mesh.userData.glow) mesh.userData.glow.visible = visible;
+    if (mesh.userData.label) mesh.userData.label.visible = visible;
+    if (visible) visibleCount++;
+  });
+  waveCountEl.textContent = visibleCount + ' wave' + (visibleCount !== 1 ? 's' : '') + ' shown';
+}
+
+// Toggle left panel
+const toggleLeft = document.getElementById('toggle-left');
+const leftPanel = document.getElementById('left-panel');
+toggleLeft.addEventListener('click', () => {
+  leftPanel.classList.toggle('collapsed');
+  toggleLeft.classList.toggle('collapsed-btn');
+  toggleLeft.innerHTML = leftPanel.classList.contains('collapsed') ? '&#9654;' : '&#9664;';
+});
+
+// ============================================================
+// CONTROLS
+// ============================================================
+document.getElementById('btn-reset').addEventListener('click', () => {
+  const startPos = camera.position.clone();
+  const startTarget = controls.target.clone();
+  const endPos = new THREE.Vector3(0, 5, 50);
+  const endTarget = new THREE.Vector3(0, -3, 0);
+  const startTime = performance.now();
+  const duration = 800;
+
+  function anim() {
+    const t = Math.min((performance.now() - startTime) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    camera.position.lerpVectors(startPos, endPos, ease);
+    controls.target.lerpVectors(startTarget, endTarget, ease);
+    if (t < 1) requestAnimationFrame(anim);
+  }
+  anim();
+});
+
+document.getElementById('btn-fit').addEventListener('click', () => {
+  // Compute bounding box of visible meshes
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  let count = 0;
+  waveMeshes.forEach(m => {
+    if (!m.visible) return;
+    count++;
+    minX = Math.min(minX, m.position.x);
+    maxX = Math.max(maxX, m.position.x);
+    minY = Math.min(minY, m.position.y);
+    maxY = Math.max(maxY, m.position.y);
+  });
+  if (count === 0) return;
+
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+  const rangeX = maxX - minX + 10;
+  const rangeY = maxY - minY + 10;
+  const dist = Math.max(rangeX, rangeY) * 0.7;
+
+  const startPos = camera.position.clone();
+  const startTarget = controls.target.clone();
+  const endPos = new THREE.Vector3(cx, cy + 5, dist);
+  const endTarget = new THREE.Vector3(cx, cy, 0);
+  const startTime = performance.now();
+  const duration = 800;
+
+  function anim() {
+    const t = Math.min((performance.now() - startTime) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    camera.position.lerpVectors(startPos, endPos, ease);
+    controls.target.lerpVectors(startTarget, endTarget, ease);
+    if (t < 1) requestAnimationFrame(anim);
+  }
+  anim();
+});
+
+// ============================================================
+// ANIMATION LOOP
+// ============================================================
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+  const elapsed = clock.getElapsedTime();
+
+  // Subtle sphere pulsing
+  waveMeshes.forEach((mesh, i) => {
+    if (mesh === hoveredMesh) return;
+    const s = mesh.userData.baseScale + Math.sin(elapsed * 1.2 + i * 0.5) * 0.05;
+    mesh.scale.setScalar(s);
+    mesh.material.emissiveIntensity = 0.4 + Math.sin(elapsed * 0.8 + i * 0.3) * 0.15;
+  });
+
+  // Fade labels based on distance
+  const camPos = camera.position;
+  waveLabels.forEach(label => {
+    const d = camPos.distanceTo(label.position);
+    label.material.opacity = THREE.MathUtils.clamp(1 - (d - 15) / 60, 0.05, 0.85);
+    // Scale labels to always be readable
+    const scl = THREE.MathUtils.clamp(d * 0.08, 3, 12);
+    label.scale.set(scl, scl * 0.125, 1);
+  });
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+// ============================================================
+// RESIZE
+// ============================================================
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// ============================================================
+// INIT
+// ============================================================
+animate();
+
+// Hide loading screen
+setTimeout(() => {
+  document.getElementById('loading').classList.add('hidden');
+  setTimeout(() => document.getElementById('loading').remove(), 500);
+}, 600);
+
+</script>
+</body>
+</html>
