@@ -57,3 +57,9 @@ Thumbs.db
 # Node/Vite
 node_modules/
 .vite/
+
+# Learnviz generated outputs
+autodidact/learnviz/output/*.mp4
+autodidact/learnviz/output/*.mp3
+autodidact/learnviz/output/*.json
+autodidact/learnviz/output/*_narration.txt
