@@ -74,9 +74,9 @@ dev = [
 
 [project.urls]
 Homepage = "https://qinnovates.github.io/ONI/"
-Documentation = "https://github.com/qinnovates/qinnovate/tree/main/autodidact"
-Repository = "https://github.com/qinnovates/qinnovate"
-Issues = "https://github.com/qinnovates/qinnovate/issues"
+Documentation = "https://github.com/qinnovates/qif/tree/main/autodidact"
+Repository = "https://github.com/qinnovates/qif"
+Issues = "https://github.com/qinnovates/qif/issues"
 
 [project.scripts]
 oni-academy = "oni_academy.cli:main"

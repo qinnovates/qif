@@ -12,7 +12,7 @@ Instead, use one of these methods:
 
 1. **GitHub Private Vulnerability Reporting**
    ```
-   https://github.com/qinnovates/qinnovate/security/advisories/new
+   https://github.com/qinnovates/qif/security/advisories/new
    ```
 
 2. **Email**
@@ -43,10 +43,10 @@ Instead, use one of these methods:
 
 | Status | Setting | URL |
 |--------|---------|-----|
-| [ ] | Secret scanning + push protection | [Settings → Security](https://github.com/qinnovates/qinnovate/settings/security_analysis) |
-| [ ] | Branch protection on `main` | [Settings → Branches](https://github.com/qinnovates/qinnovate/settings/branches) |
-| [~] | Ruleset (no admin bypass) | [Settings → Rules](https://github.com/qinnovates/qinnovate/settings/rules) |
-| [ ] | Actions permissions (restrict) | [Settings → Actions](https://github.com/qinnovates/qinnovate/settings/actions) |
+| [ ] | Secret scanning + push protection | [Settings → Security](https://github.com/qinnovates/qif/settings/security_analysis) |
+| [ ] | Branch protection on `main` | [Settings → Branches](https://github.com/qinnovates/qif/settings/branches) |
+| [~] | Ruleset (no admin bypass) | [Settings → Rules](https://github.com/qinnovates/qif/settings/rules) |
+| [ ] | Actions permissions (restrict) | [Settings → Actions](https://github.com/qinnovates/qif/settings/actions) |
 | [x] | CODEOWNERS for critical files | [.github/CODEOWNERS](.github/CODEOWNERS) |
 | [x] | Trusted Publishers (PyPI OIDC) | [.github/workflows/publish.yml](.github/workflows/publish.yml) |
 
@@ -56,9 +56,9 @@ Instead, use one of these methods:
 
 | Status | Setting | URL |
 |--------|---------|-----|
-| [ ] | Tag protection `v*` | [Settings → Tags](https://github.com/qinnovates/qinnovate/settings/tag_protection) |
-| [ ] | Private vulnerability reporting | [Settings → Security](https://github.com/qinnovates/qinnovate/settings/security_analysis) |
-| [ ] | Environment protection (`pypi`) | [Settings → Environments](https://github.com/qinnovates/qinnovate/settings/environments) |
+| [ ] | Tag protection `v*` | [Settings → Tags](https://github.com/qinnovates/qif/settings/tag_protection) |
+| [ ] | Private vulnerability reporting | [Settings → Security](https://github.com/qinnovates/qif/settings/security_analysis) |
+| [ ] | Environment protection (`pypi`) | [Settings → Environments](https://github.com/qinnovates/qif/settings/environments) |
 | [x] | SECURITY.md | This file |
 | [x] | Security audit pipeline | [.github/security-audit/](.github/security-audit/) |
 | [x] | Dependabot alerts | [.github/dependabot.yml](.github/dependabot.yml) |
@@ -67,10 +67,10 @@ Instead, use one of these methods:
 
 | Status | Setting | URL |
 |--------|---------|-----|
-| [ ] | Signed commits required | [Settings → Branches](https://github.com/qinnovates/qinnovate/settings/branches) |
-| [ ] | CodeQL scanning | [Settings → Security](https://github.com/qinnovates/qinnovate/settings/security_analysis) |
-| [ ] | Deploy keys audit | [Settings → Keys](https://github.com/qinnovates/qinnovate/settings/keys) |
-| [ ] | Webhooks audit | [Settings → Webhooks](https://github.com/qinnovates/qinnovate/settings/hooks) |
+| [ ] | Signed commits required | [Settings → Branches](https://github.com/qinnovates/qif/settings/branches) |
+| [ ] | CodeQL scanning | [Settings → Security](https://github.com/qinnovates/qif/settings/security_analysis) |
+| [ ] | Deploy keys audit | [Settings → Keys](https://github.com/qinnovates/qif/settings/keys) |
+| [ ] | Webhooks audit | [Settings → Webhooks](https://github.com/qinnovates/qif/settings/hooks) |
 
 ### Account Security
 
@@ -293,7 +293,7 @@ If a secret is accidentally committed:
 ## Security Contacts
 
 - **Primary Maintainer:** [@qikevinl](https://github.com/qikevinl)
-- **Private Disclosure:** [GitHub Security Advisories](https://github.com/qinnovates/qinnovate/security/advisories/new)
+- **Private Disclosure:** [GitHub Security Advisories](https://github.com/qinnovates/qif/security/advisories/new)
 
 ---
 

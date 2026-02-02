@@ -309,7 +309,7 @@ Subject: ONI Framework - Implementation of [Their Work]
 
 Dear Dr. [Name],
 
-I am writing to inform you that the ONI Framework (github.com/qinnovates/qinnovate),
+I am writing to inform you that the ONI Framework (github.com/qinnovates/qif),
 an open-source brain-computer interface security framework, has implemented
 concepts from your work on [specific paper/patent].
 
@@ -332,7 +332,7 @@ Would you be open to a brief conversation about [specific topic]?
 
 Best regards,
 Kevin L. Qi
-github.com/qinnovates/qinnovate
+github.com/qinnovates/qif
 ```
 
 ### 4.3 Collaboration Tracking
