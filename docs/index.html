@@ -1729,10 +1729,10 @@
         }
         #oni-bci-feedback-card {
             background: rgba(15, 23, 42, 0.97);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(34, 201, 151, 0.3);
             border-radius: 14px;
             padding: 2rem 2.25rem;
-            max-width: 500px;
+            max-width: 520px;
             text-align: center;
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
             transform: scale(0.95) translateY(10px);
@@ -1742,7 +1742,7 @@
             transform: scale(1) translateY(0);
         }
         #oni-bci-feedback-card h3 {
-            color: var(--accent-blue);
+            color: #22c997;
             font-size: 1.05rem;
             font-weight: 700;
             margin: 0 0 0.75rem 0;
@@ -1773,7 +1773,7 @@
             text-decoration: none;
         }
         #oni-bci-feedback-card .bci-feedback-actions a {
-            background: var(--accent-blue);
+            background: #22c997;
             color: #fff;
             border: none;
             display: inline-flex;
@@ -1781,7 +1781,7 @@
             gap: 0.4rem;
         }
         #oni-bci-feedback-card .bci-feedback-actions a:hover {
-            background: #2563eb;
+            background: #1aad82;
         }
         #oni-bci-feedback-card .bci-feedback-actions button {
             background: transparent;
@@ -1794,7 +1794,7 @@
         }
         #oni-bci-feedback-card .bci-feedback-actions a:focus-visible,
         #oni-bci-feedback-card .bci-feedback-actions button:focus-visible {
-            outline: 2px solid var(--accent-blue);
+            outline: 2px solid #22c997;
             outline-offset: 2px;
         }
         @media (max-width: 480px) {
@@ -2357,14 +2357,18 @@
         </div>
     </div>
 
-    <!-- BCI-Friendly feedback modal (shown once when user enables reduced-motion) -->
+    <!-- BCI-Friendly feedback modal (shown once when user enables BCI mode) -->
     <div id="oni-bci-feedback-overlay" role="dialog" aria-labelledby="oni-bci-feedback-heading" aria-modal="true">
         <div id="oni-bci-feedback-card">
-            <h3 id="oni-bci-feedback-heading">Thank you for your interest</h3>
-            <p>We're building this project with accessibility and BCI-compatible browsing in mind — but we know there's always more to learn. If you use assistive technology or a brain-computer interface, we'd genuinely love to hear from you on how we can make this better.</p>
+            <h3 id="oni-bci-feedback-heading">Thank you — sincerely.</h3>
+            <p>The fact that you clicked this means the world to me. This entire project exists because I believe the people who use brain-computer interfaces deserve security, transparency, and a voice in how that future is built.</p>
+            <p>Right now, this mode is just the beginning. But I'm working toward something much bigger — a version of this site that truly adapts to <em>your</em> BCI, rendering visualizations driven by your own device in real time. That's not a dream. It's on the roadmap.</p>
+            <p style="color: var(--accent-blue); font-weight: 600; margin-bottom: 0.5rem;">Please come back and revisit.</p>
+            <p>In the meantime, I'd love to hear from you. What would make this better? What matters most to you? Your perspective is the one I can't build this without.</p>
             <div class="bci-feedback-actions">
-                <a href="https://github.com/qinnovates/mindloft/issues/new?labels=accessibility,bci-feedback&title=BCI+Accessibility+Feedback" target="_blank" rel="noopener">Share Feedback</a>
-                <button id="oni-bci-feedback-dismiss" type="button">Maybe later</button>
+                <a href="https://github.com/qinnovates/mindloft/issues/new?labels=accessibility,bci-feedback&title=BCI+Accessibility+Feedback" target="_blank" rel="noopener">Open a Conversation</a>
+                <a href="mailto:qi.kevin.l@gmail.com?subject=BCI%20Feedback%20-%20QIF%20Project" style="background: transparent; color: var(--text-secondary); border: 1px solid rgba(34, 201, 151, 0.4);">Email Me Directly</a>
+                <button id="oni-bci-feedback-dismiss" type="button">I'll be back</button>
             </div>
         </div>
     </div>
@@ -2475,17 +2479,13 @@
         var bciFeedbackDismiss = document.getElementById('oni-bci-feedback-dismiss');
 
         function showBciFeedback() {
-            var alreadyShown = localStorage.getItem(BCI_FEEDBACK_KEY) === 'true';
-            if (!alreadyShown) {
-                setTimeout(function() {
-                    bciFeedbackOverlay.classList.add('visible');
-                }, 300);
-            }
+            setTimeout(function() {
+                bciFeedbackOverlay.classList.add('visible');
+            }, 300);
         }
 
         function dismissBciFeedback() {
             bciFeedbackOverlay.classList.remove('visible');
-            localStorage.setItem(BCI_FEEDBACK_KEY, 'true');
         }
 
         bciFeedbackDismiss.addEventListener('click', dismissBciFeedback);
@@ -2502,10 +2502,10 @@
             }
         });
 
-        // Dismiss on feedback link click (they've engaged)
-        var bciFeedbackLink = bciFeedbackOverlay.querySelector('a');
-        if (bciFeedbackLink) {
-            bciFeedbackLink.addEventListener('click', function() {
+        // Mark as shown when any link is clicked (they've engaged)
+        var bciFeedbackLinks = bciFeedbackOverlay.querySelectorAll('a');
+        for (var i = 0; i < bciFeedbackLinks.length; i++) {
+            bciFeedbackLinks[i].addEventListener('click', function() {
                 localStorage.setItem(BCI_FEEDBACK_KEY, 'true');
             });
         }
