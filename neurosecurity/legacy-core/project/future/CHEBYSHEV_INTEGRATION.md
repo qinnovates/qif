@@ -75,7 +75,7 @@ network_result = detector.detect_network(
 ## References
 
 - Current theory: `publications/detection-theory/TechDoc-Detection_Theory.md` (lines 280-290)
-- Full research notes: `@kevinqicode/obsidian/02-Projects/ONI-Chebyshev-Integration.md`
+- Full research notes: `~/Library/Mobile Documents/com~apple~CloudDocs/obsidian/02-Projects/ONI-Chebyshev-Integration.md`
 
 ## Exit Criteria
 

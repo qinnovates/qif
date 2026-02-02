@@ -9,7 +9,7 @@
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                  CANONICAL SOURCE (outside repo)              │
-│  QIF-TRUTH.md  (@qikevinl/drafts/ai-working/)               │
+│  QIF-TRUTH.md  (qinnovates/mindloft/drafts/ai-working/)      │
 │  See: PROPAGATION.md for full protocol                       │
 └─────────────────────────────────────────────────────────────┘
                             │

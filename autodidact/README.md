@@ -57,7 +57,7 @@ The platform now includes **browser-based AI** using WebLLM:
 
 **Web:** [frontend-phi-seven-64.vercel.app](https://frontend-phi-seven-64.vercel.app)
 
-**Source:** [@kevinqicode/projects/autodidactive](https://github.com/kevinqicode) (private development repo)
+**Source:** [kevinqicode/personal/projects/autodidactive](https://github.com/kevinqicode) (private development repo)
 
 ---
 
@@ -437,7 +437,7 @@ autodidact/
 └── neuroscience-homework-todo/  # Active research tasks
 ```
 
-**Web Platform Source:** `@kevinqicode/projects/autodidactive/` (separate repo)
+**Web Platform Source:** `kevinqicode/personal/projects/autodidactive/` (separate repo)
 
 ---
 

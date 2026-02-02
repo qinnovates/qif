@@ -7,8 +7,8 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 # Base path
-BASE = "/Users/mac/Documents/PROJECTS/@qikevinl/oni/video/bci-zoom/assets"
-OUTPUT = "/Users/mac/Documents/PROJECTS/@qikevinl/oni/video/bci-zoom/assets/labeled"
+BASE = "/Users/mac/Documents/PROJECTS/qinnovates/mindloft/main/video/bci-zoom/assets"
+OUTPUT = "/Users/mac/Documents/PROJECTS/qinnovates/mindloft/main/video/bci-zoom/assets/labeled"
 
 # Create output directory
 os.makedirs(OUTPUT, exist_ok=True)

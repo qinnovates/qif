@@ -32,7 +32,7 @@ from mathlib import Vector
 # =============================================================================
 
 # Asset paths (relative to this script)
-SCRIPT_DIR = os.path.dirname(bpy.data.filepath) if bpy.data.filepath else "/Users/mac/Documents/PROJECTS/@qikevinl/oni/video/bci-zoom"
+SCRIPT_DIR = os.path.dirname(bpy.data.filepath) if bpy.data.filepath else "/Users/mac/Documents/PROJECTS/qinnovates/mindloft/main/video/bci-zoom"
 ASSETS_DIR = os.path.join(os.path.dirname(SCRIPT_DIR), "assets")
 
 ASSETS = {

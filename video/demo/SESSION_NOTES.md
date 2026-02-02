@@ -174,7 +174,7 @@ The product remains constant - a fingerprint of healthy neural activity.
 Run these commands to commit all changes:
 
 ```bash
-cd /Users/mac/Documents/PROJECTS/@qikevinl/oni/video/demo
+cd /Users/mac/Documents/PROJECTS/qinnovates/mindloft/main/video/demo
 
 git add src/scenes/TitleScene.tsx
 git add src/scenes/ProblemScene.tsx

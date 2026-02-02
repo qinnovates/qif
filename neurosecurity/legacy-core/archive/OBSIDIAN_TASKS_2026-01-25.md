@@ -77,4 +77,4 @@
 
 ---
 
-*This file tracks ONI-specific tasks extracted from Obsidian notes. For kevinqicode tasks, see @kevinqicode/tasks/PRIORITIES.md*
+*This file tracks ONI-specific tasks extracted from Obsidian notes. For kevinqicode tasks, see kevinqicode/personal/tasks/PRIORITIES.md*
