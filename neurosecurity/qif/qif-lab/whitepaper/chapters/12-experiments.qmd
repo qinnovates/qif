@@ -11,6 +11,35 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from src.config import DECOHERENCE_CAMPS
+
+# Plotly / matplotlib detection
+_IS_HTML = os.environ.get('QUARTO_FIG_FORMAT', 'png') != 'pdf'
+try:
+    import plotly.graph_objects as go
+    _HAS_PLOTLY = True
+except ImportError:
+    _HAS_PLOTLY = False
+_USE_PLOTLY = _IS_HTML and _HAS_PLOTLY
+
+if _USE_PLOTLY:
+    _plotly_template = go.layout.Template(
+        layout=go.Layout(
+            paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='#161b22',
+            font=dict(color='#c9d1d9', family='sans-serif', size=12),
+            xaxis=dict(gridcolor='#21262d', linecolor='#30363d', tickfont=dict(color='#8b949e')),
+            yaxis=dict(gridcolor='#21262d', linecolor='#30363d', tickfont=dict(color='#8b949e')),
+            colorway=['#58a6ff', '#79c0ff', '#3fb950', '#d29922', '#bc8cff'],
+        )
+    )
+
+COLORS_BANDS = ['#58a6ff', '#79c0ff', '#3fb950', '#d29922', '#bc8cff']
+
+plt.rcParams.update({
+    'figure.facecolor': '#0d1117', 'axes.facecolor': '#161b22',
+    'text.color': '#c9d1d9', 'axes.labelcolor': '#c9d1d9',
+    'xtick.color': '#8b949e', 'ytick.color': '#8b949e',
+    'axes.edgecolor': '#30363d', 'grid.color': '#21262d',
+})
 ```
 
 ::: {.callout-note}
@@ -49,32 +78,47 @@ try:
     run_labels = {'S001R01': 'Eyes Open (R01)', 'S001R02': 'Eyes Closed (R02)'}
     bands_order = ['delta', 'theta', 'alpha', 'beta', 'gamma']
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 5), sharey=True)
-
-    for ax_idx, (run_key, run_label) in enumerate(run_labels.items()):
-        means = []
-        stds = []
-        for band in bands_order:
-            key = (run_key, band)
-            if key in results:
-                r = results[key]
-                means.append(r['mean_coherence'])
-                stds.append(np.std(r['coherence_values']) if len(r['coherence_values']) > 0 else 0)
-            else:
-                means.append(0)
-                stds.append(0)
-
-        bars = axes[ax_idx].bar(bands_order, means, yerr=stds, capsize=5,
-                                color=['#58a6ff', '#79c0ff', '#3fb950', '#d29922', '#bc8cff'],
-                                alpha=0.8, edgecolor='white', linewidth=0.5)
-        axes[ax_idx].set_title(run_label)
-        axes[ax_idx].set_xlabel('Frequency Band')
-        axes[ax_idx].set_ylim(0, 1.0)
-
-    axes[0].set_ylabel('Coherence Cₛ')
-    fig.suptitle('QIF Coherence Metric on Real EEG — Subject 001', fontsize=13)
-    plt.tight_layout()
-    plt.show()
+    if _USE_PLOTLY:
+        from plotly.subplots import make_subplots
+        fig = make_subplots(rows=1, cols=2, subplot_titles=list(run_labels.values()), shared_yaxes=True)
+        for ax_idx, (run_key, run_label) in enumerate(run_labels.items()):
+            means, stds = [], []
+            for band in bands_order:
+                key = (run_key, band)
+                if key in results:
+                    r = results[key]
+                    means.append(r['mean_coherence'])
+                    stds.append(np.std(r['coherence_values']) if len(r['coherence_values']) > 0 else 0)
+                else:
+                    means.append(0); stds.append(0)
+            fig.add_trace(go.Bar(
+                x=bands_order, y=means, error_y=dict(type='data', array=stds, visible=True),
+                marker_color=COLORS_BANDS, opacity=0.8, showlegend=False,
+                hovertemplate='%{x}<br>Cₛ=%{y:.4f} ± %{error_y.array:.4f}<extra></extra>'
+            ), row=1, col=ax_idx+1)
+        fig.update_yaxes(range=[0, 1.0], title='Coherence Cₛ', row=1, col=1)
+        fig.update_layout(template=_plotly_template, height=450,
+                          title='QIF Coherence Metric on Real EEG — Subject 001')
+        fig.show()
+    else:
+        fig, axes = plt.subplots(1, 2, figsize=(12, 5), sharey=True)
+        for ax_idx, (run_key, run_label) in enumerate(run_labels.items()):
+            means, stds = [], []
+            for band in bands_order:
+                key = (run_key, band)
+                if key in results:
+                    r = results[key]
+                    means.append(r['mean_coherence'])
+                    stds.append(np.std(r['coherence_values']) if len(r['coherence_values']) > 0 else 0)
+                else:
+                    means.append(0); stds.append(0)
+            axes[ax_idx].bar(bands_order, means, yerr=stds, capsize=5,
+                             color=COLORS_BANDS, alpha=0.8, edgecolor='white', linewidth=0.5)
+            axes[ax_idx].set_title(run_label); axes[ax_idx].set_xlabel('Frequency Band')
+            axes[ax_idx].set_ylim(0, 1.0)
+        axes[0].set_ylabel('Coherence Cₛ')
+        fig.suptitle('QIF Coherence Metric on Real EEG — Subject 001', fontsize=13)
+        plt.tight_layout(); plt.show()
 
     _real_data_available = True
 
@@ -96,29 +140,48 @@ except (ImportError, Exception) as e:
 
 try:
     if _real_data_available:
-        # Plot alpha-band coherence time series for both conditions
-        fig, axes = plt.subplots(2, 1, figsize=(12, 6), sharex=True)
-
-        for ax_idx, (run_key, run_label) in enumerate(run_labels.items()):
-            key = (run_key, 'alpha')
-            if key in results:
-                r = results[key]
-                t_windows = np.arange(len(r['coherence_values'])) * 2  # 2-second windows
-                axes[ax_idx].plot(t_windows, r['coherence_values'], color='#3fb950',
-                                  linewidth=1.5, alpha=0.8)
-                axes[ax_idx].axhline(y=0.6, color='#d29922', linestyle='--', alpha=0.5, label='High threshold')
-                axes[ax_idx].axhline(y=0.3, color='#f85149', linestyle='--', alpha=0.5, label='Low threshold')
-                axes[ax_idx].fill_between(t_windows, 0.6, 1.0, alpha=0.05, color='#3fb950')
-                axes[ax_idx].fill_between(t_windows, 0.0, 0.3, alpha=0.05, color='#f85149')
-                axes[ax_idx].set_ylabel('Cₛ')
-                axes[ax_idx].set_title(f'{run_label} — Alpha Band')
-                axes[ax_idx].set_ylim(0, 1.0)
-                axes[ax_idx].legend(loc='upper right', fontsize=8)
-
-        axes[1].set_xlabel('Time (seconds)')
-        fig.suptitle('Coherence Cₛ Over Time — Real EEG', fontsize=13)
-        plt.tight_layout()
-        plt.show()
+        if _USE_PLOTLY:
+            fig = go.Figure()
+            for run_key, run_label in run_labels.items():
+                key = (run_key, 'alpha')
+                if key in results:
+                    r = results[key]
+                    t_windows = (np.arange(len(r['coherence_values'])) * 2).tolist()
+                    fig.add_trace(go.Scatter(
+                        x=t_windows, y=r['coherence_values'].tolist() if hasattr(r['coherence_values'], 'tolist') else r['coherence_values'],
+                        mode='lines', name=run_label, line=dict(width=1.5),
+                        hovertemplate='t=%{x}s<br>Cₛ=%{y:.4f}<extra>%{fullData.name}</extra>'))
+            fig.add_hline(y=0.6, line_dash='dash', line_color='#d29922', opacity=0.5,
+                          annotation_text='High threshold')
+            fig.add_hline(y=0.3, line_dash='dash', line_color='#f85149', opacity=0.5,
+                          annotation_text='Low threshold')
+            fig.add_hrect(y0=0.6, y1=1.0, fillcolor='#3fb950', opacity=0.03)
+            fig.add_hrect(y0=0.0, y1=0.3, fillcolor='#f85149', opacity=0.03)
+            fig.update_xaxes(title='Time (seconds)')
+            fig.update_yaxes(title='Cₛ', range=[0, 1.0])
+            fig.update_layout(template=_plotly_template, title='Coherence Cₛ Over Time — Real EEG (Alpha Band)',
+                              height=500)
+            fig.show()
+        else:
+            fig, axes = plt.subplots(2, 1, figsize=(12, 6), sharex=True)
+            for ax_idx, (run_key, run_label) in enumerate(run_labels.items()):
+                key = (run_key, 'alpha')
+                if key in results:
+                    r = results[key]
+                    t_windows = np.arange(len(r['coherence_values'])) * 2
+                    axes[ax_idx].plot(t_windows, r['coherence_values'], color='#3fb950',
+                                     linewidth=1.5, alpha=0.8)
+                    axes[ax_idx].axhline(y=0.6, color='#d29922', linestyle='--', alpha=0.5, label='High threshold')
+                    axes[ax_idx].axhline(y=0.3, color='#f85149', linestyle='--', alpha=0.5, label='Low threshold')
+                    axes[ax_idx].fill_between(t_windows, 0.6, 1.0, alpha=0.05, color='#3fb950')
+                    axes[ax_idx].fill_between(t_windows, 0.0, 0.3, alpha=0.05, color='#f85149')
+                    axes[ax_idx].set_ylabel('Cₛ')
+                    axes[ax_idx].set_title(f'{run_label} — Alpha Band')
+                    axes[ax_idx].set_ylim(0, 1.0)
+                    axes[ax_idx].legend(loc='upper right', fontsize=8)
+            axes[1].set_xlabel('Time (seconds)')
+            fig.suptitle('Coherence Cₛ Over Time — Real EEG', fontsize=13)
+            plt.tight_layout(); plt.show()
 except NameError:
     pass
 ```
