@@ -16,7 +16,20 @@
     <meta name="keywords" content="neurosecurity, neural interface, brain-computer interface, convergent neurosecurity framework, neural security standard, neuroethics, quantum neural interfaces">
 
     <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data:; connect-src 'self' https://raw.githubusercontent.com https://api.github.com https://www.google-analytics.com https://analytics.google.com; font-src 'self' https://fonts.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.googletagmanager.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   img-src 'self' https: data:;
+                   connect-src 'self' https://raw.githubusercontent.com https://api.github.com https://www.google-analytics.com https://analytics.google.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   object-src 'none';
+                   base-uri 'self';
+                   form-action 'self';
+                   frame-ancestors 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Open Graph -->
     <meta property="og:title" content="The QIF — Quantum Indeterministic Framework for Neural Security | Security Standards for BCIs">
@@ -30,12 +43,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Three.js -->
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <!-- Three.js (pinned version with SRI) -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"
+            integrity="sha384-qOkzR5Ke/XkQxuGVJ9hpFEpDlcoLtWwVYhnJf06cLIZa2vaIptSqaubivErzmD5O"
+            crossorigin="anonymous"></script>
 
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- GSAP + ScrollTrigger (pinned versions with SRI) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+            integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+            integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d"
+            crossorigin="anonymous"></script>
 
     <style>
         /* ============================================
@@ -1332,6 +1351,105 @@
             margin-top: 0.2rem;
         }
 
+        /* Dynamic Progress Tracker (fetched from prd.json) */
+        .roadmap-progress {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        .roadmap-progress h5 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--gradient-blue-purple);
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .progress-stat {
+            text-align: center;
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .progress-stat .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .progress-stat .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .recent-completions {
+            margin-top: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.75rem;
+        }
+
+        .recent-completions h6 {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .completion-item .check {
+            color: var(--accent-green);
+            font-size: 0.8rem;
+        }
+
+        .completion-item .date {
+            color: var(--text-dim);
+            font-size: 0.65rem;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
         @media (max-width: 768px) {
             .vision-parallel {
                 grid-template-columns: 1fr;
@@ -2176,6 +2294,16 @@
                             <div class="step-title">Dedicated Neurotechnology Standards Body</div>
                             <div class="step-desc">UNESCO's 2025 Recommendation on Neurotechnology calls for a dedicated standards body. This framework is designed to be the technical foundation it can build on.</div>
                         </div>
+                    </div>
+
+                    <!-- Dynamic Progress (fetched from prd.json) -->
+                    <div id="roadmap-progress" class="roadmap-progress" style="display:none;">
+                        <h5>Development Progress <span id="progress-version"></span></h5>
+                        <div class="progress-bar-container">
+                            <div id="progress-bar" class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                        <div id="progress-stats" class="progress-stats"></div>
+                        <div id="recent-completions" class="recent-completions"></div>
                     </div>
                 </div>
 
@@ -5235,11 +5363,96 @@
             .catch(function() { return null; })
             .then(function(data) {
                 if (!data || !data.oni) return;
-                // Update page title meta if needed
                 var desc = document.querySelector('meta[name="description"]');
                 if (desc && data.oni.description) {
                     desc.content = data.oni.description;
                 }
+            });
+
+        // =============================================
+        // DYNAMIC ROADMAP PROGRESS (from prd.json)
+        // =============================================
+        fetch('https://raw.githubusercontent.com/qinnovates/mindloft/main/neurosecurity/legacy-core/project/prd.json')
+            .then(function(r) { return r.json(); })
+            .catch(function() { return null; })
+            .then(function(data) {
+                if (!data || !data.tasks) return;
+
+                var container = document.getElementById('roadmap-progress');
+                if (!container) return;
+
+                var tasks = data.tasks;
+                var completed = tasks.filter(function(t) { return t.status === 'complete'; });
+                var pending = tasks.filter(function(t) { return t.status === 'pending'; });
+                var inProgress = tasks.filter(function(t) { return t.status === 'in-progress' || t.status === 'in_progress'; });
+                var total = tasks.length;
+                var pct = total > 0 ? Math.round((completed.length / total) * 100) : 0;
+
+                // Version
+                var verEl = document.getElementById('progress-version');
+                if (verEl && data.version) {
+                    verEl.textContent = '(v' + data.version + ')';
+                }
+
+                // Progress bar
+                var bar = document.getElementById('progress-bar');
+                if (bar) {
+                    setTimeout(function() { bar.style.width = pct + '%'; }, 200);
+                }
+
+                // Stats
+                var statsEl = document.getElementById('progress-stats');
+                if (statsEl) {
+                    var stats = [
+                        { value: completed.length, label: 'Done' },
+                        { value: inProgress.length, label: 'Active' },
+                        { value: pending.length, label: 'Pending' },
+                        { value: pct + '%', label: 'Complete' }
+                    ];
+                    stats.forEach(function(s) {
+                        var div = document.createElement('div');
+                        div.className = 'progress-stat';
+                        var val = document.createElement('div');
+                        val.className = 'stat-value';
+                        val.textContent = s.value;
+                        var lbl = document.createElement('div');
+                        lbl.className = 'stat-label';
+                        lbl.textContent = s.label;
+                        div.appendChild(val);
+                        div.appendChild(lbl);
+                        statsEl.appendChild(div);
+                    });
+                }
+
+                // Recent completions (last 5)
+                var recentEl = document.getElementById('recent-completions');
+                if (recentEl && completed.length > 0) {
+                    var sorted = completed.slice().sort(function(a, b) {
+                        return (b.completed_at || '').localeCompare(a.completed_at || '');
+                    });
+                    var heading = document.createElement('h6');
+                    heading.textContent = 'Recent Completions';
+                    recentEl.appendChild(heading);
+
+                    sorted.slice(0, 5).forEach(function(t) {
+                        var item = document.createElement('div');
+                        item.className = 'completion-item';
+                        var check = document.createElement('span');
+                        check.className = 'check';
+                        check.textContent = '\u2713';
+                        var desc = document.createElement('span');
+                        desc.textContent = t.description.length > 60 ? t.description.substring(0, 60) + '\u2026' : t.description;
+                        var date = document.createElement('span');
+                        date.className = 'date';
+                        date.textContent = t.completed_at || '';
+                        item.appendChild(check);
+                        item.appendChild(desc);
+                        item.appendChild(date);
+                        recentEl.appendChild(item);
+                    });
+                }
+
+                container.style.display = 'block';
             });
 
     })();

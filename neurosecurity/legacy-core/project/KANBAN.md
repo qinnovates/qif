@@ -3,7 +3,7 @@
 > **Visual task board for tracking work in progress.**
 > Synced with `prd.json` — update both when tasks move.
 
-**Last Updated:** 2026-02-01
+**Last Updated:** 2026-02-02
 **Sprint:** Q1 2026
 
 ---
@@ -33,10 +33,10 @@
 |                  |                  |                  |                  | [P1] ONI_LAYERS  |
 | [P2] MOABB       |                  |                  |                  | Reference        |
 | Benchmarks       |                  |                  |                  |                  |
-|                  |                  |                  |                  | ...+21 more      |
+|                  |                  |                  |                  | ...+27 more      |
 |                  |                  |                  |                  |                  |
 +------------------+------------------+------------------+------------------+------------------+
-     7 items            3 items           0 items           0 items           27 items
+     7 items            3 items           0 items           0 items           33 items
 ```
 
 ---
@@ -231,8 +231,14 @@
 | equations-reference-document | TechDoc-Equations_Reference.md (14 equations) | 2026-01-29 | P1 |
 | external-tools-reference | EXTERNAL_TOOLS.md — tools & libraries catalog | 2026-01-29 | P2 |
 | github-pages-resources-update | 4 new resource cards on GitHub Pages | 2026-01-29 | P2 |
+| immersive-3d-whitepaper-ui | 9 CSS/JS visual effects for QIF whitepaper | 2026-02-02 | P1 |
+| plotly-interactive-figures | Migrate 14 matplotlib figures to Plotly (HTML) | 2026-02-02 | P1 |
+| auto-dictation-engine | Web Speech API auto-narration on scroll | 2026-02-02 | P2 |
+| security-hardening-all-sites | CSP + SRI on whitepaper + both GitHub Pages | 2026-02-02 | P0 |
+| qif-neuroethics-document | 11 open ethics questions + regulatory analysis | 2026-02-02 | P1 |
+| qif-lab-readme | As-code whitepaper system documentation | 2026-02-02 | P2 |
 
-**Total Completed:** 27 tasks
+**Total Completed:** 33 tasks
 
 ---
 
@@ -254,7 +260,8 @@
 Backlog: brainflow-integration
 To Do: changelog-creation
 Done: editor-agent, pm-agent, images-organization, pm-hub-readme, github-pages-sri-fix,
-      pypi-security-scan, github-pages-resources-update, external-tools-reference
+      pypi-security-scan, github-pages-resources-update, external-tools-reference,
+      security-hardening-all-sites
 ```
 
 ### Code & Implementation
@@ -270,7 +277,7 @@ Done: layer-validation, oni-layer-correction, oni-layers-reference, nsam-externa
       readme-privacy-statement, related-work, consent-framework, post-deployment,
       pediatric-considerations, neuroethics-expansion, whitepaper-integration,
       mathematical-audit-corrections, unified-layer-aware-coherence-section,
-      equations-reference-document
+      equations-reference-document, qif-neuroethics-document, qif-lab-readme
 ```
 
 ### Accessibility
@@ -278,9 +285,10 @@ Done: layer-validation, oni-layer-correction, oni-layers-reference, nsam-externa
 Backlog: bci-accessibility-layer, wcag-ada-compliance, accessible-landing-site
 ```
 
-### Visualization
+### Visualization & UX
 ```
-Done: hourglass-diagram-prompt
+Done: hourglass-diagram-prompt, immersive-3d-whitepaper-ui, plotly-interactive-figures,
+      auto-dictation-engine
 ```
 
 ---
@@ -300,10 +308,10 @@ Done: hourglass-diagram-prompt
 
 | Metric | Value |
 |--------|-------|
-| Total Tasks | 36 |
-| Completed | 28 (78%) |
+| Total Tasks | 42 |
+| Completed | 33 (79%) |
 | In Progress | 0 |
-| Pending | 8 |
+| Pending | 9 |
 | Blocked | 0 |
 
 ---
@@ -355,4 +363,4 @@ After moving tasks:
 ---
 
 *Synced with: `prd.json` v0.5.0*
-*Board Version: 1.1*
+*Board Version: 1.2*

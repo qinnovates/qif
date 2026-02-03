@@ -1,8 +1,8 @@
 {
-  "project": "ONI Framework",
-  "version": "0.4.0",
-  "last_updated": "2026-01-29",
-  "loop_iteration": 14,
+  "project": "QIF Framework",
+  "version": "0.5.0",
+  "last_updated": "2026-02-02",
+  "loop_iteration": 15,
 
   "exit_conditions": {
     "global": "All tasks complete, Editor Agent passes with 0 critical issues, ONI layers correct across all docs",
@@ -325,6 +325,60 @@
       "completed_at": "2026-01-29",
       "priority": "medium",
       "learnings": "Resource cards with short icon abbreviations (Eq, Lib, Au) work well for compact display in the grid layout."
+    },
+    {
+      "id": "immersive-3d-whitepaper-ui",
+      "description": "Create immersive 3D reading experience for QIF whitepaper: 9 CSS visual effects (curved monitor, glassmorphism, aurora gradient, floating particles, depth-of-field blur, scroll reveals, neumorphic separators, noise texture, parallax depth) plus scroll-linked JS engine",
+      "status": "complete",
+      "exit_condition": "qif-immersive.css and qif-immersive.js exist; _quarto.yml references both; all effects respect prefers-reduced-motion",
+      "completed_at": "2026-02-02",
+      "priority": "high",
+      "learnings": "CSS perspective + rotateY creates convincing curved monitor effect. IntersectionObserver at 20% threshold gives smooth section reveals. SVG feTurbulence for noise grain is lightweight and effective. All effects must check prefers-reduced-motion."
+    },
+    {
+      "id": "plotly-interactive-figures",
+      "description": "Migrate all whitepaper matplotlib figures to interactive Plotly for HTML output. 14 figures across index.qmd, ch06, ch07, ch12. Matplotlib retained as PDF fallback via _USE_PLOTLY conditional.",
+      "status": "complete",
+      "exit_condition": "_USE_PLOTLY detection in setup block; all figures have if/else for Plotly vs matplotlib; Plotly CDN loaded via include-in-header with SRI",
+      "completed_at": "2026-02-02",
+      "priority": "high",
+      "learnings": "Plotly in self-contained Quarto works via include-in-header script tag. Dark template needs transparent paper_bgcolor for theme integration. go.Surface for 3D coherence, go.Heatmap for sensitivity analysis. Format detection via QUARTO_FIG_FORMAT env var."
+    },
+    {
+      "id": "auto-dictation-engine",
+      "description": "Implement Web Speech API auto-dictation: scroll-triggered section narration, toggle button with glassmorphism styling, voice selection popover, Alt+D shortcut, localStorage persistence, privacy disclosure",
+      "status": "complete",
+      "exit_condition": "Dictation toggle visible in bottom-right; Alt+D toggles; sections read aloud on scroll; code blocks and tables stripped from narration; localService preference set",
+      "completed_at": "2026-02-02",
+      "priority": "medium",
+      "learnings": "extractReadableText via clone + remove (code, table, .katex) then textContent is safe and effective. IntersectionObserver rootMargin '-30% 0px -30% 0px' targets center viewport. Voice preference: 'Google UK English Female', 'Samantha', 'Daniel'."
+    },
+    {
+      "id": "security-hardening-all-sites",
+      "description": "Security harden QIF whitepaper and both GitHub Pages sites (qinnovates.github.io, mindloft/main/docs). CSP meta tags, SRI hashes on all CDN scripts (Three.js, GSAP, ScrollTrigger, Plotly), X-Content-Type-Options, X-Frame-Options, referrer policy. Zero innerHTML in all custom JS.",
+      "status": "complete",
+      "exit_condition": "CSP meta tag on all 3 HTML entry points; SRI on all CDN script tags; X-Frame-Options DENY; no innerHTML in qif-immersive.js",
+      "completed_at": "2026-02-02",
+      "priority": "critical",
+      "learnings": "GitHub Pages cannot set HTTP headers — must use meta http-equiv. SRI hashes generated via curl | openssl dgst -sha384 -binary | openssl base64 -A. Pinning CDN versions is essential for SRI to work."
+    },
+    {
+      "id": "qif-neuroethics-document",
+      "description": "Create QIF-NEUROETHICS.md — living document of 11 open ethical questions for quantum biometric governance. Covers HIPAA, GDPR, CCPA/CPRA, BIPA, EU AI Act, Chile Neurorights, UNESCO, OECD, and 9 more regulatory frameworks. Foundation for admissions paper thesis.",
+      "status": "complete",
+      "exit_condition": "QIF-NEUROETHICS.md exists in drafts/ai-working/ with 11 numbered questions, regulatory analysis, admissions paper structure, thesis statement",
+      "completed_at": "2026-02-02",
+      "priority": "high",
+      "learnings": "Quantum biometric data creates a regulatory gap — no existing framework (HIPAA, GDPR, etc.) addresses quantum-level neural signatures. The no-cloning theorem creates a unique property right argument. Multi-stakeholder collaboration table with 20+ entities is essential for standards development."
+    },
+    {
+      "id": "qif-lab-readme",
+      "description": "Create qif-lab/README.md documenting the as-code whitepaper system: quick start, prerequisites, render commands, architecture diagram, collaboration instructions for researchers/ethicists/experimentalists/engineers, interactive features, security, citation",
+      "status": "complete",
+      "exit_condition": "qif-lab/README.md exists with architecture diagram, collaboration sections, security documentation, BibTeX citation",
+      "completed_at": "2026-02-02",
+      "priority": "medium",
+      "learnings": "README should emphasize the as-code principle — change equations, re-render, paper updates. 5 testable predictions are the best hook for experimentalists."
     }
   ],
 
@@ -596,10 +650,10 @@
   ],
 
   "metrics": {
-    "total_tasks": 34,
-    "completed": 28,
+    "total_tasks": 40,
+    "completed": 34,
     "in_progress": 0,
     "pending": 6,
-    "completion_rate": "82%"
+    "completion_rate": "85%"
   }
 }
