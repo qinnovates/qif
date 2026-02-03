@@ -51,6 +51,8 @@ Brain-computer interfaces (BCIs) are advancing from experimental medical devices
 
 We present the QI equation in two complementary forms — an additive engineering model and a tensor-product theoretical model — that unify 21 established equations into a single security metric. The framework maps 8 open questions in quantum neuroscience as tunable parameters, making the equation future-proof. We identify six novel contributions and propose five testable experimental predictions.
 
+> **QIF** is pronounced **"chief"** — as in: chief of neural security.
+
 ::: {.callout-note title="AI Transparency Disclosure"}
 `{python} FRAMEWORK['ai_transparency']['statement']` For methodology, contribution matrix, and documented corrections, see **[TRANSPARENCY.md](../../main/neurosecurity/qif/governance/TRANSPARENCY.md)**. For the complete timestamped audit trail — every derivation, AI contribution, validation result, and decision rationale — see **[`{python} FRAMEWORK['ai_transparency']['audit_trail']`](`{python} FRAMEWORK['ai_transparency']['audit_trail']`)**.
 :::
