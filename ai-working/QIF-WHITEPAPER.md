@@ -1,4 +1,4 @@
-# QIF Whitepaper v2.0
+# QIF Whitepaper v3.1
 
 ## The Quantum Indeterministic Framework for Neural Security
 
@@ -9,8 +9,8 @@
 > *"The brain doesn't run on ones and zeros. Its security shouldn't either."*
 > — Quantum Intelligence (Kevin Qi + Claude)
 
-**Version:** 2.0 (Working Draft)
-**Date:** 2026-02-02
+**Version:** 3.1 (Working Draft)
+**Date:** 2026-02-03
 **Authors:** Kevin Qi, with Claude (Anthropic)
 **Collaboration:** Quantum Intelligence (QI)
 **Predecessor:** ONI Framework Whitepaper (v1.0, 2026-01-22)
@@ -24,7 +24,7 @@
 2. [Introduction: The Quantum Blind Spot in BCI Security](#2-introduction)
 3. [Why Classical Security Is Not Enough](#3-why-classical-security-is-not-enough)
 4. [What We Know and What We Don't](#4-what-we-know-and-what-we-dont)
-5. [The QIF Layer Architecture (v2.0)](#5-the-qif-layer-architecture)
+5. [The QIF Layer Architecture (v3.1 — Hourglass)](#5-the-qif-layer-architecture)
 6. [The Classical Foundation](#6-the-classical-foundation)
 7. [The Quantum Frontier](#7-the-quantum-frontier)
 8. [The QI Equation: Two Complementary Views](#8-the-qi-equation)
@@ -43,13 +43,13 @@
 
 ## 1. Abstract
 
-Brain-computer interfaces (BCIs) are advancing from experimental medical devices toward consumer technology, yet their security frameworks remain rooted entirely in classical computing paradigms. This paper introduces the Quantum Indeterministic Framework (QIF), a 14-layer security architecture that extends the OSI model into the neural domain and addresses a critical blind spot: quantum-scale phenomena at the electrode-tissue interface that are invisible to classical detection.
+Brain-computer interfaces (BCIs) are advancing from experimental medical devices toward consumer technology, yet their security frameworks remain rooted entirely in classical computing paradigms. This paper introduces the Quantum Indeterministic Framework (QIF), a 7-band hourglass security architecture spanning the neural-silicon boundary, and addresses a critical blind spot: quantum-scale phenomena at the electrode-tissue interface that are invisible to classical detection.
 
 We present the QI equation in two complementary forms — an additive engineering model for BCI practitioners and a tensor-product theoretical model for physicists — that unify 21 established equations from classical physics, neuroscience, and quantum mechanics into a single security metric. The framework maps 8 open questions in quantum neuroscience (including the disputed decoherence timescale, biological entanglement, and the silicon-tissue quantum boundary) as tunable parameters rather than fixed assumptions, making the equation future-proof: as science resolves each unknown, QIF's predictions automatically sharpen without structural changes.
 
 We identify six novel contributions not found in prior literature: (1) quantum tunneling through ion channels as an unforgeable biometric, (2) a conditional Zeno-BCI hypothesis linking sampling rate to quantum coherence under specific decoherence timescale assumptions, (3) Davydov soliton attack vectors invisible to classical detection, (4) Von Neumann entropy non-monotonicity as a security feature, (5) exact indeterminacy computation via the Robertson-Schrödinger equality for qubits, and (6) decoherence as a continuous security dial rather than a binary switch. Five testable experimental predictions are proposed for empirical validation. The framework integrates neuroethical considerations at the architectural level, with explicit protections for cognitive integrity and neural identity.
 
-**Key claim:** We present QIF, a 14-layer quantum-classical security framework for brain-computer interfaces that introduces the QI equation — a unified mathematical model bridging established classical neuroscience, quantum mechanics, and novel quantum indeterminacy principles. The framework treats unsolved questions in quantum neuroscience as tunable parameters rather than assumptions, making it future-proof as science progresses. We identify six novel contributions including quantum biometrics via ion channel tunneling profiles and a conditional Zeno-BCI hypothesis.
+**Key claim:** We present QIF, a 7-band hourglass quantum-classical security architecture for brain-computer interfaces that introduces the QI equation — a unified mathematical model bridging established classical neuroscience, quantum mechanics, and novel quantum indeterminacy principles. The framework treats unsolved questions in quantum neuroscience as tunable parameters rather than assumptions, making it future-proof as science progresses. We identify six novel contributions including quantum biometrics via ion channel tunneling profiles and a conditional Zeno-BCI hypothesis.
 
 ---
 
@@ -73,7 +73,7 @@ The result is a blind spot. An attacker exploiting quantum-scale phenomena at th
 
 ### 2.3 What This Paper Delivers
 
-This paper presents the Quantum Indeterministic Framework (QIF), which addresses the quantum blind spot in BCI security through five contributions. First, we propose a 14-layer architecture that extends the OSI model into the neural domain, with layers L8 through L14 mapping the biological signal path from electrode to conscious experience. Second, we present the QI equation in two complementary forms — an additive engineering model and a tensor-product theoretical model — encompassing 30 defined variables that unify 21 established equations from classical physics, neuroscience, and quantum mechanics. Third, we provide an explicit knowns/unknowns mapping showing where QIF builds on established science and where it fills gaps with tunable parameters, making the framework future-proof as open questions in quantum neuroscience are resolved. Fourth, we identify six novel contributions not found in prior literature, each with proposed experimental validation. Fifth, the paper includes a comprehensive encyclopedia making every concept accessible to readers without backgrounds in quantum mechanics or neuroscience.
+This paper presents the Quantum Indeterministic Framework (QIF), which addresses the quantum blind spot in BCI security through five contributions. First, we propose a 7-band hourglass architecture (v3.1) spanning the neural-silicon boundary, with three neural bands (N3–N1), one interface band (I0), and three silicon bands (S1–S3) mapping the complete signal path from conscious experience to application software. Second, we present the QI equation in two complementary forms — an additive engineering model and a tensor-product theoretical model — encompassing 30 defined variables that unify 21 established equations from classical physics, neuroscience, and quantum mechanics. Third, we provide an explicit knowns/unknowns mapping showing where QIF builds on established science and where it fills gaps with tunable parameters, making the framework future-proof as open questions in quantum neuroscience are resolved. Fourth, we identify six novel contributions not found in prior literature, each with proposed experimental validation. Fifth, the paper includes a comprehensive encyclopedia making every concept accessible to readers without backgrounds in quantum mechanics or neuroscience.
 
 ### 2.4 Related Work
 
@@ -82,6 +82,8 @@ The security of brain-computer interfaces has received growing attention, though
 The quantum biology literature provides the scientific foundation for QIF's quantum terms. Lambert et al. (2013) surveyed evidence for quantum effects in biological systems, including photosynthetic energy transfer, avian magnetoreception, and enzymatic tunneling [18]. The central debate relevant to QIF concerns decoherence timescales in neural tissue: Tegmark (2000) argued that thermal decoherence in the brain occurs on the order of 10⁻¹³ seconds, rendering quantum effects neurologically irrelevant [15], while Fisher (2015) proposed that nuclear spin states in Posner molecules could maintain coherence for hours [39]. QIF sidesteps this unresolved debate by treating the decoherence time as a tunable parameter.
 
 Quantum cryptography for medical and IoT devices has been explored in the context of post-quantum migration (NIST, 2024) [37] and QKD for resource-constrained devices, but no prior work applies quantum security principles specifically to the neural interface layer. This is the gap QIF addresses: the intersection of quantum security, quantum biology, and the unique physics of the electrode-tissue boundary.
+
+Since 2024, several developments have directly impacted the framework's testability. Perry (2025) proposed using NV-center quantum sensors to measure coherence in microtubule networks, providing the first plausible experimental pathway to resolving QIF's central unknown (τ_D) [55]. The 2025 Nobel Prize in Physics (Clarke, Devoret, Martinis) demonstrated quantum tunneling at macroscopic scales in Josephson junction circuits, strengthening the case for tunneling effects at the electrode-tissue interface [56]. Kim et al. (2025) discovered under-the-barrier recollision (UBR), revealing that tunneling dynamics are more complex than the WKB approximation assumes [57]. Wiest (2025, NeuroQ) derived a Schrödinger-like equation from classical neuron models via stochastic mechanics, offering a potential pathway toward the quantum Hamiltonian of neural tissue [58]. Qaswal et al. (2022) developed mathematical models for quantum tunneling through voltage-gated ion channels with proposed experimental strategies [59]. Despite these advances, no prior work synthesizes quantum biology, BCI engineering, and security into a unified framework — the gap QIF occupies remains unfilled.
 
 ---
 
@@ -159,7 +161,7 @@ Quantum cryptography for medical and IoT devices has been explored in the contex
 | Ion channel tunneling uniqueness | Are tunneling profiles unique per person? | Novel hypothesis: quantum biometric | Qtunnel (biometric mode) | Single-channel patch clamp + quantum state tomography |
 | Does BCI sampling stabilize quantum states? | Zeno-BCI — never proposed or tested | Modeled as hypothesis with testable prediction | Zeno term | Vary sampling rate, measure coherence time |
 | Davydov soliton vulnerability | Can terahertz radiation trigger false synaptic events? | Included in tunneling vulnerability model | Qtunnel (threat mode) | THz stimulation of SNARE complexes in vitro |
-| Silicon-tissue quantum boundary | No quantum-level theoretical framework exists for this interface | L8 Neural Gateway — trust boundary between domains | QIF Layer 8 | Quantum measurement at electrode-tissue junction |
+| Silicon-tissue quantum boundary | No quantum-level theoretical framework exists for this interface | I0 Neural Interface — trust boundary between domains | QIF I0 band | Quantum measurement at electrode-tissue junction |
 | Classical-quantum transition shape | Is it binary or continuous? | Continuous dial via decoherence factor | ΓD(t) = 1 − e^(−t/τ_D) | Decoherence rate measurement across timescales |
 
 > **[VISUALIZATION 4.2]** — "The Map of the Unknown" — Same grid layout as 4.1, but with question marks on each tile. Each unknown tile has a dotted border (not solid like the knowns) and shows the QIF variable that stands in for the unknown. Draw connecting lines from unknowns to the knowns they depend on.
@@ -168,48 +170,80 @@ Quantum cryptography for medical and IoT devices has been explored in the contex
 
 ---
 
-## 5. The QIF Layer Architecture (v2.0)
+## 5. The QIF Layer Architecture (v3.1 — Hourglass Model)
+
+> **v2.0 (14-layer OSI-based) is DEPRECATED.** Replaced 2026-02-02 with a hourglass architecture derived from neuroscience and quantum physics. No OSI heritage. See QIF-TRUTH.md Section 2 for canonical definitions.
 
 ### 5.1 The Core Insight
 
-The OSI model (L1-L7) was designed for silicon networks. Brain-computer interfaces bridge silicon AND biology. QIF extends OSI with 7 neural layers (L8-L14) that map the biological signal path from electrode to conscious experience.
+The v2.0 architecture extended the OSI model by stacking 7 neural layers (L8–L14) on top of 7 silicon layers. This was intuitive but wrong — it implied a linear signal path and inherited OSI's networking assumptions, which don't apply to neural tissue. The v3.1 hourglass model is derived from the actual physics:
 
-### 5.2 The 14-Layer Stack
+- **Width represents state space** — how many possible states exist at each band
+- The architecture is **widest at the extremes** (N3: integrative association with maximum security-relevant indeterminacy; S3: maximum classical application pathways) and **narrowest at the center** (I0: the electrode-tissue interface where measurement collapses possibilities)
+- The **3-1-3 symmetry** (3 neural bands, 1 interface band, 3 silicon bands) reflects the real structure: two domains converging on a single bottleneck
 
-| Layer | Name | Domain | Description |
-|-------|------|--------|-------------|
-| L1 | Physical | OSI | Physical medium, cabling |
-| L2 | Data Link | OSI | MAC addressing, framing |
-| L3 | Network | OSI | IP routing, addressing |
-| L4 | Transport | OSI | TCP/UDP, flow control |
-| L5 | Session | OSI | Connection management |
-| L6 | Presentation | OSI | Encryption, formatting |
-| L7 | Application | OSI | User-facing protocols |
-| **L8** | **Neural Gateway** | **Neural** | Firewall, trust boundary between silicon and biology |
-| **L9** | **Signal Processing** | **Neural** | Raw signal conditioning, phase coherence checking |
-| **L10** | **Neural Protocol** | **Neural** | Oscillatory encoding, synchronization |
-| **L11** | **Cognitive Transport** | **Neural** | Reliable neural data delivery |
-| **L12** | **Cognitive Session** | **Neural** | Context, working memory |
-| **L13** | **Semantic Layer** | **Neural** | Intent, goals, meaning |
-| **L14** | **Identity Layer** | **Neural** | Agency, sense of self |
+### 5.2 The 7-Band Hourglass Stack
 
-> **[VISUALIZATION 5.2]** — Hourglass diagram (mirror existing ONI asset): L1-L7 stacked on top (silicon domain, blue), L8 in the middle as the narrow "gateway" (red, emphasized), L9-L14 stacked below (neural domain, green). Show data flowing through the hourglass. L8 is the pinch point — the trust boundary where QIF's security is most critical.
+**NEURAL DOMAIN (Upper Hourglass)**
 
-### 5.3 L8: The Most Critical Layer
+| Band | Name | Brain Regions | Determinacy | QI Range |
+|------|------|---------------|-------------|----------|
+| **N3** | Integrative Association | PFC, ACC, Broca, Wernicke, HIPP, BLA, insula | Quantum Uncertain | 0.3–0.5 |
+| **N2** | Sensorimotor Processing | M1, S1_cortex, V1, A1, PMC, SMA, PPC, cerebellum | Chaotic → Stochastic | 0.15–0.3 |
+| **N1** | Subcortical Relay | Thalamus, basal ganglia, cerebellum, brainstem, CeA | Stochastic | 0.05–0.15 |
 
-- L8 (Neural Gateway) is where silicon meets biology
+**INTERFACE ZONE (Bottleneck) — Quasi-quantum**
+
+| Band | Name | Function | Determinacy | QI Range |
+|------|------|----------|-------------|----------|
+| **I0** | Neural Interface | Electrode-tissue boundary, measurement/collapse | Quasi-quantum (ΓD ∈ (0,1)) | 0.01–0.1 |
+
+**SILICON DOMAIN (Lower Hourglass) — Classical**
+
+| Band | Name | Function | Determinacy | QI Range |
+|------|------|----------|-------------|----------|
+| **S1** | Analog Front-End | Amplification, filtering, ADC/DAC | Stochastic (analog noise) | 0.001–0.01 |
+| **S2** | Digital Processing | Decoding, algorithms, classification | Deterministic | ~0 |
+| **S3** | Application | Clinical software, UI, data storage | Deterministic | 0 |
+
+**Band naming convention:** `{Zone}{Number}` — N3, N2, N1, I0, S1, S2, S3. Numbers increase **away** from the interface in both directions. No relation to OSI layer numbers.
+
+> **[VISUALIZATION 5.2]** — Hourglass diagram: N3 at top (widest, green), narrowing through N2, N1 to I0 at the bottleneck (red, emphasized), then widening through S1, S2 to S3 at bottom (blue, widest). Width represents state space / possibility space. Data flows through the hourglass; I0 is the pinch point where quantum meets classical.
+
+### 5.3 I0: The Interface Zone — The Most Critical Band
+
+I0 (Neural Interface) is the bottleneck of the hourglass — where silicon meets biology. Unlike v2.0's "Layer 8" which was modeled as a thin boundary, I0 has **real thickness**: it is a quasi-quantum zone where the decoherence factor ΓD ∈ (0,1), meaning quantum and classical physics coexist.
+
 - This is the attack surface for quantum-level threats
 - This is where the QI equation operates most directly
 - No existing framework addresses this boundary at the quantum level
+- The bottleneck geometry means all information must pass through the narrowest point — maximum security leverage
 
-> **[VISUALIZATION 5.3]** — Zoomed-in cross-section of L8: Show electrode on left (silicon), tissue on right (biology). In between: the quantum boundary zone. Label the phenomena occurring at this interface: tunneling, decoherence, potential entanglement, Zeno effects from sampling. This is the "quantum battleground."
+> **[VISUALIZATION 5.3]** — Zoomed-in cross-section of I0: Show electrode on left (silicon), tissue on right (biology). In between: the quasi-quantum boundary zone with real thickness. Label the phenomena occurring at this interface: tunneling, decoherence, potential entanglement, Zeno effects from sampling. This is the "quantum battleground."
 
-### 5.4 Why 14 Layers?
+### 5.4 The Classical Ceiling
 
-- L1-L7: Proven. Decades of networking security apply directly.
-- L8: Novel. No prior framework addresses the silicon-tissue quantum boundary.
-- L9-L14: Map the biological signal path using established neuroscience.
-- Each layer has distinct security concerns, attack surfaces, and defense mechanisms.
+The boundary between N2 (chaotic/stochastic) and N3 (quantum uncertain) is the **classical ceiling** — below it, all unpredictability is in principle resolvable with better measurement; above it, the unpredictability is ontic (Bell's theorem). Classical security tools operate below the ceiling. QIF operates across the full spectrum.
+
+### 5.5 Why Hourglass?
+
+- **Physics-derived, not analogy-derived.** v2.0 borrowed from OSI (a networking model). v3.1 is derived from the actual state-space geometry of the neural-silicon system.
+- **3-1-3 symmetry** reflects the real structure: two broad domains (neural, silicon) converging on a single bottleneck (I0).
+- **Width = security-relevant indeterminacy.** The hourglass shape naturally maps QI ranges: highest at the extremes (N3: quantum uncertainty; S3: classical application complexity), lowest at I0 (measurement collapse).
+- **QI ranges are defensible.** The highest band (N3) caps at 0.5, meaning "half the unpredictability at this band may be ontic." This avoids implying quantum dominance in the brain — QI measures security-relevant indeterminacy, not literal quantum effects.
+
+### 5.6 v2.0 → v3.1 Migration
+
+| v2.0 | v3.1 | Rationale |
+|------|------|-----------|
+| L1–L7 (OSI) | S3 | All classical networking collapses into Application band |
+| L8 (Neural Gateway) | I0 | Electrode-tissue boundary → Interface |
+| L9 (Signal Processing) | I0/N1 | Split between interface and subcortical relay |
+| L10 (Neural Protocol) | N1/N2 | Subcortical/sensorimotor |
+| L11 (Cognitive Transport) | N2 | Sensorimotor Processing |
+| L12 (Cognitive Session) | N3 | Integrative Association |
+| L13 (Semantic Layer) | N3 | Integrative Association |
+| L14 (Identity Layer) | N3 | Integrative Association (merged from former N4) |
 
 ---
 
@@ -332,6 +366,22 @@ For BCI security:
 
 > **[VISUALIZATION 7.4]** — Two bar charts side by side. LEFT: Classical system — subsystem entropy always ≤ total (bars always shorter). RIGHT: Quantum entangled system — subsystem entropy > total (bar is TALLER than the total system bar). Caption: "The quantum security paradox: the part is more uncertain than the whole."
 
+### 7.5 Macroscopic Tunneling and Under-the-Barrier Recollision
+
+Two developments in 2025 directly strengthen the legitimacy of QIF's tunneling terms.
+
+**The 2025 Nobel Prize in Physics** was awarded to Clarke, Devoret, and Martinis for demonstrating quantum tunneling in macroscopic electrical circuits — specifically, Josephson junction devices where collective quantum behavior is observable at engineering scales. While this does not directly validate tunneling in neurons, it demolishes the objection that tunneling is only relevant at atomic scales. The electrode-tissue interface (I0 band) is smaller than a Josephson junction circuit. If macroscopic circuits tunnel, the case for quantum effects at the neural interface is strengthened.
+
+**Under-the-Barrier Recollision (UBR).** Kim et al. (2025) discovered that electrons collide with the atomic nucleus *inside* the tunnel barrier — a phenomenon termed "under-the-barrier recollision." This challenges the simple WKB model T ≈ e^(−2κd) used in the QI equation, which assumes the particle traverses the barrier without internal interactions.
+
+**Impact on QIF:**
+- The tunneling coefficient in Candidate 1 (Q̂tunnel) and the WKB action integral in Candidate 2 (Φtunnel) may need refinement — UBR means the barrier interaction isn't a simple exponential decay but involves internal dynamics
+- This does not invalidate the tunneling terms but suggests the final form will be more nuanced than the current WKB approximation
+- The tunneling-as-biometric hypothesis (Section 9.1) becomes more plausible: if tunneling involves complex internal dynamics, the profile per person becomes richer and harder to spoof
+- Flag for future revision when H_interface (Section 8.4) is characterized
+
+> **[VISUALIZATION 7.5]** — Two-panel diagram. LEFT: Simple WKB tunneling — particle enters barrier, exits other side, probability decays exponentially. RIGHT: UBR reality — particle enters barrier, collides with nucleus inside barrier, exits with modified probability. Caption: "Tunneling is more complex than we assumed — and that complexity is a security feature."
+
 ---
 
 ## 8. The QI Equation: Two Complementary Views
@@ -394,7 +444,30 @@ where:
 
 > **[VISUALIZATION 8.3]** — Hilbert space diagram: Show two spaces — H_classical (left bubble) and H_quantum (right bubble) — joined by the tensor product ⊗ into a larger joint space H_total. Inside H_quantum, show the three competing terms: SvN pushing security down, Φtunnel pushing security down, E(ρAB) pushing security up. The exponential e^(−S) converts this into a security multiplier.
 
-### 8.4 Comparing the Two Candidates
+### 8.4 The Implicit Hamiltonian
+
+Both QI equation candidates operate on **derived quantities** (decoherence rate, entropy, tunneling probability, entanglement) without referencing their common generator: the system Hamiltonian H. In quantum mechanics, the Hamiltonian is the total energy operator that determines how states evolve (iℏ(d/dt)|ψ⟩ = H|ψ⟩). Every quantum term in both candidates is downstream of H:
+
+| QI Equation Term | Hamiltonian Dependence |
+|---|---|
+| **ΓD(t)** — decoherence rate | Derived from the system-environment interaction Hamiltonian H_int. The decoherence rate IS the Hamiltonian's fingerprint on the quantum-classical transition. |
+| **SvN(ρ)** — Von Neumann entropy | The density matrix ρ evolves via dρ/dt = −i/ℏ [H, ρ]. Entropy is a derived property of ρ, which is determined by H. |
+| **Φtunnel** — tunneling probability | Calculated directly from the potential energy barrier in H. The WKB approximation T ≈ e^(−2κd) uses V₀ from the Hamiltonian. |
+| **E(ρAB)** — entanglement entropy | Whether entanglement exists between subsystems A and B depends on the interaction Hamiltonian H_AB. |
+
+For the electrode-tissue interface (I0 band), the total Hamiltonian would be:
+
+```
+H_total = H_neuron + H_electrode + H_interface + H_environment
+```
+
+Where H_neuron captures ion channel dynamics and membrane potential, H_electrode captures platinum lattice vibrations and surface chemistry, H_interface captures the coupling between neural tissue and electrode surface, and H_environment captures the thermal bath.
+
+**Why this matters:** Writing down H_total for a specific BCI would (1) derive all four quantum terms from a single equation, reducing free parameters; (2) enforce physical consistency between terms that are currently set independently; (3) connect directly to quantum simulation of the I0 band; and (4) resolve the Tegmark/Hagan decoherence disagreement by characterizing the actual Hamiltonian rather than estimating from simplified models.
+
+**The gap:** Nobody has formulated H_interface for any BCI system. The individual pieces exist in isolation (H_neuron via quantum extensions of Hodgkin-Huxley, H_electrode via solid-state physics), but the coupled system H_total has never been assembled. This is a key future research target — and a genuinely novel contribution waiting to be claimed.
+
+### 8.5 Comparing the Two Candidates
 
 | Property | Candidate 1 (Additive) | Candidate 2 (Tensor) |
 |----------|----------------------|---------------------|
@@ -409,7 +482,7 @@ where:
 
 > **[VISUALIZATION 8.4]** — Radar/spider chart with axes: Intuition, Rigor, Measurability, Computational Cost, Novelty, Publication Impact. Plot both candidates as overlaid polygons showing their respective strengths.
 
-### 8.5 The Variable Catalog (All 30 Symbols)
+### 8.6 The Variable Catalog (All 30 Symbols)
 
 **Coherence Metric Variables:**
 
@@ -553,9 +626,10 @@ Decoherence is not binary (quantum or classical). It is a continuous process par
 |------|-------------|-------------|--------|
 | Tegmark (skeptic) | 10⁻¹³ s | Quantum effects impossible in biology | Tegmark 2000 |
 | Recent experimental | 10⁻⁵ s | Possible microsecond quantum window | Various 2020s |
+| Perry (experimental) | 1–10 ms (collective) | First plausible measurement pathway via NV-center sensors | Perry 2025 |
 | Fisher (optimist) | Hours | Nuclear spin coherence in Posner molecules | Fisher 2015 |
 
-**QIF's position:** τ_D is a tunable parameter. The framework produces valid security assessments at ANY timescale. As experimental evidence converges on the true value, QIF's predictions automatically sharpen — no equation changes needed.
+**QIF's position:** τ_D is a tunable parameter. The framework produces valid security assessments at ANY timescale. As experimental evidence converges on the true value, QIF's predictions automatically sharpen — no equation changes needed. Notably, the 8-order-of-magnitude gap between Tegmark (10⁻¹³ s) and Fisher (hours) is narrowing: Perry's 2025 proposal to use NV-center quantum sensors to measure coherence in microtubule networks suggests collective coherence times of 1–10 ms, reducing the practical uncertainty to ~3 orders of magnitude (10⁻⁵ to 10⁻² s). If confirmed, this constrains ΓD(t) to a range where quantum terms contribute meaningfully at BCI sampling rates (1–20 kHz), making Zeno-BCI testable and the framework's predictions significantly sharper.
 
 > **[VISUALIZATION 10.2]** — Number line from 10⁻¹³ to 10⁴ seconds (log scale). Mark Tegmark, Recent, and Fisher positions. Show a sliding bracket labeled "QIF works here" spanning the entire range. Below the number line, show the QI equation output at each timescale: at Tegmark's → only Cclass survives; at Fisher's → full quantum security.
 
@@ -565,39 +639,39 @@ Decoherence is not binary (quantum or classical). It is a continuous process par
 
 ### 11.1 Threat Model
 
-| Attack Type | Layer(s) | Classical Detection? | Quantum Detection? |
-|-------------|----------|---------------------|--------------------|
-| Signal injection | L9-L10 | Yes (anomaly detection) | Enhanced (coherence metric) |
-| Neural ransomware | L12-L13 | Partial (behavioral) | Yes (QI score drop) |
-| Eavesdropping | L8-L9 | No (passive attack) | Yes (Heisenberg disturbance) |
-| Man-in-the-middle | L8 | Partial | Yes (no-cloning of quantum states at interface + Bell test on QKD channel) |
-| Quantum tunneling exploit | L8-L9 | No (below detection) | Yes (tunneling profile anomaly) |
-| Davydov soliton attack | L8-L9 | No (below detection) | Yes (tunneling term Qtunnel) |
-| Harvest-now-decrypt-later | L6-L7 | No | Prevented (QKD) |
-| Identity spoofing | L14 | Partial (behavioral) | Yes (quantum biometric) |
+| Attack Type | Band(s) | Classical Detection? | Quantum Detection? |
+|-------------|---------|---------------------|--------------------|
+| Signal injection | N1/N2 | Yes (anomaly detection) | Enhanced (coherence metric) |
+| Neural ransomware | N3 | Partial (behavioral) | Yes (QI score drop) |
+| Eavesdropping | I0/N1 | No (passive attack) | Yes (Heisenberg disturbance) |
+| Man-in-the-middle | I0 | Partial | Yes (no-cloning of quantum states at interface + Bell test on QKD channel) |
+| Quantum tunneling exploit | I0/N1 | No (below detection) | Yes (tunneling profile anomaly) |
+| Davydov soliton attack | I0/N1 | No (below detection) | Yes (tunneling term Qtunnel) |
+| Harvest-now-decrypt-later | S2/S3 | No | Prevented (QKD) |
+| Identity spoofing | N3 | Partial (behavioral) | Yes (quantum biometric) |
 
-> **[VISUALIZATION 11.1]** — Attack surface map: The 14-layer stack with arrows showing where each attack type targets. Color-code arrows by detectability: green = classically detectable, yellow = partially detectable, red = classically invisible. Show QIF's quantum detection capability as a blue shield overlay on each layer.
+> **[VISUALIZATION 11.1]** — Attack surface map: The 7-band hourglass with arrows showing where each attack type targets. Color-code arrows by detectability: green = classically detectable, yellow = partially detectable, red = classically invisible. Show QIF's quantum detection capability as a blue shield overlay on each band.
 
 ### 11.2 Defense Mechanisms by Layer
 
-| Layer | Defense Mechanism | QIF Equation/Term | How It Works |
-|-------|-------------------|-------------------|-------------|
-| L1-L4 | Post-quantum cryptography | Qentangle (QKD) | Replace RSA/ECC with lattice-based or QKD protocols. Shor's algorithm neutralized. |
-| L5-L6 | Quantum key distribution | Qentangle (Bell states, E91) | Entanglement-based key exchange. Eavesdropper collapses Bell state, triggering alert. |
-| L7 | Application-layer anomaly detection | Cclass (Shannon capacity) | Monitor data rates against Shannon limits. Anomalous throughput flags injection. |
-| L8 | Neural Gateway firewall | Full QI(t) score | Primary checkpoint. All signals crossing silicon-tissue boundary evaluated by both Cclass and quantum terms. Trust decision based on composite QI score. |
-| L8 | Quantum boundary monitoring | Qi (Robertson-Schrödinger) | Continuous measurement of quantum indeterminacy at electrode interface. Deviations from expected Qi distribution indicate tampering. |
-| L8 | Zeno stabilization (conditional) | Zeno term (sampling rate) | If τ_D ≥ 1 ms (Fisher-like timescales), BCI sampling at 20 kHz could partially stabilize quantum states at the electrode interface. At shorter τ_D, this defense is negligible and classical mechanisms dominate. |
-| L9 | Phase coherence verification | Cₛ (σ²ᵩ component) | Incoming signals checked against expected phase-locking values. Phase disruption (e.g., from injection) detected via elevated σ²ᵩ. |
-| L9 | Tunneling profile monitoring | Qtunnel | Continuous monitoring of tunneling characteristics at electrode-tissue junction. Anomalous tunneling signatures flag quantum-level attacks (e.g., Davydov solitons). |
-| L10 | Oscillatory authentication | Cₛ (full metric) | Neural oscillation patterns verified against established coherence baselines. Encoding anomalies detected across frequency bands. |
-| L11 | Transport integrity | Cₛ (Hτ component) | Pathway reliability monitored. Degraded transport entropy indicates signal interception or rerouting. |
-| L12 | Session continuity | Cclass + ΓD(t) | Working memory context verified for consistency. Quantum decoherence factor tracks temporal integrity of session state. |
-| L13 | Semantic integrity | Cclass (primarily) | Intent and goal verification against behavioral baselines. Anomalous semantic content flags potential neural ransomware. |
-| L14 | Quantum biometric authentication | Qtunnel (biometric mode) | Identity verified via unique ion channel tunneling profile. The underlying quantum tunneling states are unclonable (no-cloning theorem); an attacker can record classical BCI output but cannot reproduce the quantum state generating it. Unique per individual, continuously verifiable. |
-| L14 | Entanglement-based identity binding | Qentangle | Legitimate user's BCI shares entangled state with authentication system. Spoofing requires cloning entangled state — physically impossible. |
+| Band | Defense Mechanism | QIF Equation/Term | How It Works |
+|------|-------------------|-------------------|-------------|
+| S3 | Application-layer anomaly detection | Cclass (Shannon capacity) | Monitor data rates against Shannon limits. Anomalous throughput flags injection. |
+| S2/S3 | Post-quantum cryptography | Qentangle (QKD) | Replace RSA/ECC with lattice-based or QKD protocols. Shor's algorithm neutralized. |
+| S1/S2 | Quantum key distribution | Qentangle (Bell states, E91) | Entanglement-based key exchange. Eavesdropper collapses Bell state, triggering alert. |
+| I0 | Neural Interface firewall | Full QI(t) score | Primary checkpoint. All signals crossing silicon-tissue boundary evaluated by both Cclass and quantum terms. Trust decision based on composite QI score. |
+| I0 | Quantum boundary monitoring | Qi (Robertson-Schrödinger) | Continuous measurement of quantum indeterminacy at electrode interface. Deviations from expected Qi distribution indicate tampering. |
+| I0 | Zeno stabilization (conditional) | Zeno term (sampling rate) | If τ_D ≥ 1 ms (Fisher-like timescales), BCI sampling at 20 kHz could partially stabilize quantum states at the electrode interface. At shorter τ_D, this defense is negligible and classical mechanisms dominate. |
+| I0/N1 | Phase coherence verification | Cₛ (σ²ᵩ component) | Incoming signals checked against expected phase-locking values. Phase disruption (e.g., from injection) detected via elevated σ²ᵩ. |
+| I0/N1 | Tunneling profile monitoring | Qtunnel | Continuous monitoring of tunneling characteristics at electrode-tissue junction. Anomalous tunneling signatures flag quantum-level attacks (e.g., Davydov solitons). |
+| N1/N2 | Oscillatory authentication | Cₛ (full metric) | Neural oscillation patterns verified against established coherence baselines. Encoding anomalies detected across frequency bands. |
+| N2 | Transport integrity | Cₛ (Hτ component) | Pathway reliability monitored. Degraded transport entropy indicates signal interception or rerouting. |
+| N3 | Session continuity | Cclass + ΓD(t) | Working memory context verified for consistency. Quantum decoherence factor tracks temporal integrity of session state. |
+| N3 | Semantic integrity | Cclass (primarily) | Intent and goal verification against behavioral baselines. Anomalous semantic content flags potential neural ransomware. |
+| N3 | Quantum biometric authentication | Qtunnel (biometric mode) | Identity verified via unique ion channel tunneling profile. The underlying quantum tunneling states are unclonable (no-cloning theorem); an attacker can record classical BCI output but cannot reproduce the quantum state generating it. Unique per individual, continuously verifiable. |
+| N3 | Entanglement-based identity binding | Qentangle | Legitimate user's BCI shares entangled state with authentication system. Spoofing requires cloning entangled state — physically impossible. |
 
-> **[VISUALIZATION 11.2]** — Defense matrix: 14 layers × defense types grid. Cells show which equations/terms provide protection at each layer.
+> **[VISUALIZATION 11.2]** — Defense matrix: 7 bands × defense types grid. Cells show which equations/terms provide protection at each band.
 
 ---
 
@@ -605,26 +679,25 @@ Decoherence is not binary (quantum or classical). It is a continuous process par
 
 ### 12.1 Not a New Layer — A New Dimension
 
-The QI equation does not live on a single layer. It is a meta-equation that provides quantum corrections across all 14 layers, like an electrical system running through every floor of a building.
+The QI equation does not live on a single band. It is a meta-equation that provides quantum corrections across all 7 bands of the hourglass, like an electrical system running through every floor of a building.
 
-However, for practitioners, it can be conceptualized as a "Layer 15: Quantum Security" that sits alongside the stack and monitors all layers simultaneously.
+However, for practitioners, it can be conceptualized as a "quantum security overlay" that sits alongside the hourglass and monitors all bands simultaneously.
 
-> **[VISUALIZATION 12.1]** — Two views side by side. LEFT: "Physics Reality" — the 14-layer stack with the QI equation as a translucent overlay spanning all layers, touching each one. RIGHT: "Practitioner View" — the same stack with a separate Layer 15 box alongside it, receiving inputs from all other layers and outputting a unified security score.
+> **[VISUALIZATION 12.1]** — Two views side by side. LEFT: "Physics Reality" — the 7-band hourglass with the QI equation as a translucent overlay spanning all bands, touching each one. RIGHT: "Practitioner View" — the same hourglass with a separate "QI Overlay" box alongside it, receiving inputs from all bands and outputting a unified security score.
 
 ### 12.2 Per-Layer Quantum Corrections
 
-| Layer | Primary Quantum Effect | QI Term |
-|-------|----------------------|---------|
-| L1-L7 | Quantum computing threats to classical crypto | Qtunnel (Shor's), Qentangle (QKD replacement) |
-| L8 | Silicon-tissue quantum boundary | All terms — primary battlefield |
-| L9 | Phase coherence at quantum scales | Qi (Robertson-Schrödinger), Zeno (conditional) |
-| L10 | Oscillatory encoding quantum limits | Qi, τ_D |
-| L11 | Transport reliability at quantum scales | Qtunnel |
-| L12 | Working memory quantum effects | Qentangle (if biological) |
-| L13 | Semantic integrity | Cclass (primarily classical) |
-| L14 | Identity verification | Qtunnel (quantum biometric) |
+| Band | Primary Quantum Effect | QI Term |
+|------|----------------------|---------|
+| S3 | Quantum computing threats to classical crypto | Qtunnel (Shor's), Qentangle (QKD replacement) |
+| S2 | Deterministic processing — no quantum terms | Cclass only |
+| S1 | Analog noise at quantum threshold | Cclass, minor Qi |
+| I0 | Silicon-tissue quantum boundary | All terms — primary battlefield |
+| N1 | Phase coherence at quantum scales | Qi (Robertson-Schrödinger), Zeno (conditional) |
+| N2 | Transport reliability, oscillatory encoding | Qtunnel, Qi, τ_D |
+| N3 | Identity, semantics, working memory | Qtunnel (quantum biometric), Qentangle (if biological) |
 
-> **[VISUALIZATION 12.2]** — Expanded layer diagram: Each of the 14 layers shown as a horizontal bar. To the right of each bar, show which QI terms apply (color-coded icons). L8 has ALL icons — it's the densest. L13 has mostly classical. This visually shows the QI equation's varying influence across layers.
+> **[VISUALIZATION 12.2]** — Expanded band diagram: Each of the 7 bands shown as a horizontal bar (hourglass shape). To the right of each bar, show which QI terms apply (color-coded icons). I0 has ALL icons — it's the densest. S2 has only classical. This visually shows the QI equation's varying influence across the hourglass.
 
 ---
 
@@ -719,11 +792,11 @@ Requires specialized quantum measurements.
 ### 14.3 QIF's Ethical Design
 
 - Quantum biometric is opt-in; the underlying quantum tunneling state is non-extractable (no-cloning theorem prevents copying the quantum state at the electrode-tissue interface, though the classical measurement output can be recorded — it cannot reconstruct the full quantum state)
-- Framework explicitly models threats to identity (L14) and cognition (L12-L13)
+- Framework explicitly models threats to identity and cognition (N3: Integrative Association)
 - Decoherence parameter transparency — no hidden assumptions about quantum effects
 - Open research questions are clearly labeled, not presented as established fact
 
-> **[VISUALIZATION 14.3]** — Governance stack diagram: Show how QIF layers map to regulatory bodies and ethical frameworks. L1-L7 → NIST/IEEE, L8 → FDA, L9-L14 → Neuroethics boards. Overlay QI equation as the security guarantee spanning all governance domains.
+> **[VISUALIZATION 14.3]** — Governance hourglass diagram: Show how QIF bands map to regulatory bodies and ethical frameworks. S1–S3 → NIST/IEEE, I0 → FDA, N1–N3 → Neuroethics boards. Overlay QI equation as the security guarantee spanning all governance domains.
 
 ---
 
@@ -753,17 +826,17 @@ Requires specialized quantum measurements.
 
 A framework that cannot be disproven is not science. QIF is designed to be empirically testable, and the following findings would weaken or falsify specific components:
 
-1. **Universal fast decoherence at neural interfaces (τ_D < 10⁻¹² s).** If decoherence at the electrode-tissue boundary is confirmed to be universally below picosecond timescales across all measurement conditions, the quantum terms (Qi, Qentangle, Qtunnel) become negligible. The framework degrades gracefully to a classical-only model: QI(t) ≈ α·Ĉclass. This does not "break" QIF — it reduces it to its classical foundation, which retains independent value as a 14-layer BCI security architecture.
+1. **Universal fast decoherence at neural interfaces (τ_D < 10⁻¹² s).** If decoherence at the electrode-tissue boundary is confirmed to be universally below picosecond timescales across all measurement conditions, the quantum terms (Qi, Qentangle, Qtunnel) become negligible. The framework degrades gracefully to a classical-only model: QI(t) ≈ α·Ĉclass. This does not "break" QIF — it reduces it to its classical foundation, which retains independent value as a 7-band hourglass BCI security architecture.
 
 2. **Ion channel tunneling profiles are not individually unique.** If single-channel patch clamp studies combined with quantum state tomography reveal that tunneling coefficients T(E) do not vary significantly between individuals (i.e., inter-subject variation is within measurement noise), the quantum biometric hypothesis (Section 9.1) is invalid. The tunneling vulnerability term Qtunnel would still function as a threat model, but the biometric application would be falsified.
 
-3. **No measurable quantum effects at the electrode-tissue interface.** If quantum state tomography at the BCI junction consistently shows fully classical statistics (density matrix indistinguishable from classical mixture for all practical measurements), then layers L8-L14 quantum corrections are zero. The framework's novel quantum contributions would be falsified, though the classical architecture and threat taxonomy remain valid.
+3. **No measurable quantum effects at the electrode-tissue interface.** If quantum state tomography at the BCI junction consistently shows fully classical statistics (density matrix indistinguishable from classical mixture for all practical measurements), then quantum corrections at I0 and N1–N3 are zero. The framework's novel quantum contributions would be falsified, though the classical architecture and threat taxonomy remain valid.
 
 4. **Zeno effect impossible at any plausible BCI sampling rate.** If theoretical or experimental work demonstrates that Zeno stabilization requires measurement rates exceeding 10⁹ Hz at the electrode interface (far beyond any foreseeable BCI technology), the Zeno-BCI hypothesis (Section 9.2) is removed as a contribution. As noted in Section 9.2, this contribution is already framed as conditional on decoherence timescale.
 
 5. **Davydov solitons cannot be artificially generated at synapses.** If in vitro experiments show that terahertz radiation cannot generate Davydov solitons in SNARE protein complexes, or that such solitons cannot influence vesicle release, the novel attack vector (Section 3.2) is falsified as a practical threat.
 
-**Note on graceful degradation:** QIF's parameterized design means that most falsification scenarios reduce the framework's scope rather than destroying it. If all quantum terms are zero, QIF becomes a classical 14-layer BCI security model — still novel, still useful. The "worst case" for QIF is the "current assumption" of most BCI security researchers: that quantum effects don't matter. The framework is designed so that this assumption is testable, not axiomatic.
+**Note on graceful degradation:** QIF's parameterized design means that most falsification scenarios reduce the framework's scope rather than destroying it. If all quantum terms are zero, QIF becomes a classical 7-band hourglass BCI security model — still novel, still useful. The "worst case" for QIF is the "current assumption" of most BCI security researchers: that quantum effects don't matter. The framework is designed so that this assumption is testable, not axiomatic.
 
 ---
 
@@ -771,7 +844,7 @@ A framework that cannot be disproven is not science. QIF is designed to be empir
 
 ### 16.1 What QIF Delivers
 
-- A 14-layer architecture extending OSI into the neural domain
+- A 7-band hourglass architecture (v3.1) spanning the neural-silicon boundary
 - Two complementary QI equations (engineering + theoretical)
 - A knowns/unknowns framework that is future-proof by design
 - Six novel contributions not found in prior literature
@@ -791,7 +864,7 @@ We envision a future where:
 - Neural data receives the highest tier of protection — because it IS the person
 - The QI equation is as standard for BCI certification as penetration testing is for software
 - Ion channel tunneling profiles serve as the ultimate biometric — unforgeable by the laws of physics
-- The security community thinks in 14 layers, not 7, when the signal path includes a brain
+- The security community thinks in 7 bands (not just the silicon stack) when the signal path includes a brain
 
 The brain is not a computer. It is something far more complex, far more precious, and far more vulnerable. It deserves a security framework that understands what it actually is — down to the quantum level. That is what QIF provides.
 
@@ -943,6 +1016,18 @@ QI is not a constant. The equation is deterministic — same inputs produce the 
 
 54. Bernal, S. L., Celdrán, A. H., Pérez, G. M., Barros, M. T., & Balasubramaniam, S. (2022). Security in brain-computer interfaces: State-of-the-art, opportunities, and future challenges. *ACM Computing Surveys*, 54(1), 1-35. DOI: 10.1145/3427376
 
+### Recent Developments (2022–2025)
+
+55. Perry, C. (2025). Quantum sensing approaches to microtubule coherence measurement using NV-center diamond magnetometry. *SSRN preprint*.
+
+56. Clarke, J., Devoret, M. H., & Martinis, J. M. (2025). [Nobel Prize context] Macroscopic quantum tunneling in Josephson junction circuits. *Nobel Prize in Physics 2025*.
+
+57. Kim, H. et al. (2025). Under-the-barrier recollision in quantum tunneling. *Physical Review Letters*.
+
+58. Wiest, R. (2025). NeuroQ: Quantum-inspired neural dynamics via Nelson's stochastic mechanics. *Neuroscience of Consciousness / MDPI Biomimetics*.
+
+59. Qaswal, A. B. et al. (2022). Mathematical models and experimental strategies for quantum tunneling through voltage-gated ion channels. *PMC / Quantum Reports*.
+
 ---
 
 ## 18. Encyclopedia of Terms
@@ -1071,14 +1156,14 @@ A protein pore in a cell membrane that allows specific ions (Na⁺, K⁺, Ca²�
 ### L
 
 #### Layer (OSI/QIF)
-A level of abstraction in a network stack. Each layer handles one aspect of communication and passes data to adjacent layers. OSI has 7 layers (Physical through Application). QIF extends this to 14 by adding 7 neural layers (L8-L14) that map the biological signal path from electrode to conscious experience.
+A level of abstraction in a network stack. Each layer handles one aspect of communication and passes data to adjacent layers. OSI has 7 layers (Physical through Application). QIF v3.1 replaces the OSI-extended model with a 7-band hourglass architecture: 3 neural bands (N3–N1), 1 interface band (I0), and 3 silicon bands (S1–S3), derived from the physics of the neural-silicon boundary rather than networking analogies.
 
 ---
 
 ### M
 
 #### Meta-Equation
-An equation that doesn't live at one level of a system but spans all levels, providing corrections everywhere. In QIF, the QI equation is a meta-equation: it provides quantum security corrections across all 14 layers, rather than sitting on a single layer. Analogy: the electrical system in a building runs through every floor, not just one.
+An equation that doesn't live at one level of a system but spans all levels, providing corrections everywhere. In QIF, the QI equation is a meta-equation: it provides quantum security corrections across all 7 bands of the hourglass, rather than sitting on a single band. Analogy: the electrical system in a building runs through every floor, not just one.
 
 ---
 
@@ -1090,8 +1175,8 @@ Calculates the equilibrium voltage across a membrane for a specific ion: E = (RT
 #### Nernst-Planck Equation
 Describes how ions move (flux) based on both concentration gradients and electrical fields: J = −D∇c − (zF/RT)Dc∇V. Extends the Nernst equation from equilibrium to dynamic flow. Important for modeling how signals propagate at the electrode-tissue interface.
 
-#### Neural Gateway (Layer 8)
-The most critical layer in QIF. L8 is the trust boundary between silicon (the BCI hardware) and biology (the brain). This is where digital signals become neural signals (or vice versa). No existing framework addresses this boundary at the quantum level. L8 is where the QI equation operates most directly.
+#### Neural Interface (I0 Band)
+The most critical band in QIF's hourglass architecture. I0 is the bottleneck — the trust boundary between silicon (the BCI hardware) and biology (the brain). This is where digital signals become neural signals (or vice versa). Unlike v2.0's thin "Layer 8," I0 has real thickness as a quasi-quantum zone where ΓD ∈ (0,1). No existing framework addresses this boundary at the quantum level. I0 is where the QI equation operates most directly.
 
 #### No-Cloning Theorem
 A fundamental result of quantum mechanics (1982): it is impossible to create an identical copy of an arbitrary unknown quantum state. This is not a technological limitation — it's a law of physics.
@@ -1103,7 +1188,7 @@ A fundamental result of quantum mechanics (1982): it is impossible to create an 
 ### O
 
 #### OSI Model (Open Systems Interconnection)
-The standard 7-layer model for network communication, developed in 1984. Each layer has a specific role: Physical, Data Link, Network, Transport, Session, Presentation, Application. QIF adopts OSI as layers 1-7 and extends it with 7 neural layers to create a 14-layer model that covers the full BCI communication path.
+The standard 7-layer model for network communication, developed in 1984. Each layer has a specific role: Physical, Data Link, Network, Transport, Session, Presentation, Application. QIF v2.0 extended OSI with 7 neural layers (L8–L14); v3.1 replaced this with a physics-derived 7-band hourglass that collapses all classical networking into a single band (S3) and maps the neural domain by brain region and determinacy level.
 
 ---
 
@@ -1123,7 +1208,7 @@ See: Fisher's Posner Molecules.
 The central variable in the QI equation. Represents the fundamental unpredictability inherent in quantum measurement at the BCI interface, computed from the Robertson-Schrödinger relation and Von Neumann entropy. Qi is NOT a constant — it varies with the quantum state of the system. This variability is a security feature: an attacker cannot predict it.
 
 #### QIF (Quantum Indeterministic Framework)
-Pronounced "CHIEF." The 14-layer security framework presented in this paper, extending OSI into the neural domain with quantum-aware security. Successor to the ONI (Organic Neural Interface) framework.
+Pronounced "CHIEF." The 7-band hourglass security architecture (v3.1) presented in this paper, spanning the neural-silicon boundary with quantum-aware security. Successor to the ONI (Organic Neural Interface) framework and the deprecated v2.0 (14-layer OSI-based) architecture.
 
 #### QKD (Quantum Key Distribution)
 A method of distributing encryption keys using quantum mechanics, guaranteeing that any eavesdropper is detected. Two main protocols: BB84 (uses photon polarization) and E91 (uses entangled Bell pairs). Security is guaranteed by the laws of physics (Heisenberg uncertainty, no-cloning theorem), not computational hardness.
@@ -1203,10 +1288,10 @@ Named after the Greek philosopher Zeno of Elea. In quantum mechanics: frequently
 
 ---
 
-*QIF Whitepaper v2.0 — Working Draft*
+*QIF Whitepaper v3.1 — Working Draft*
 *Authors: Kevin Qi, with Claude (Anthropic)*
 *Collaboration: Quantum Intelligence (QI)*
-*Date: 2026-02-02*
+*Date: 2026-02-03*
 *Status: DRAFT — Not yet published*
 
 ---
@@ -1226,7 +1311,7 @@ Named after the Greek philosopher Zeno of Elea. In quantum mechanics: frequently
 | 4.1 | Periodic Table of QIF Knowns | Grid layout | Knowns/Unknowns |
 | 4.2 | Map of the Unknown | Grid layout (dotted) | Knowns/Unknowns |
 | 4.3 | The QIF Bridge | Flow diagram | Knowns/Unknowns |
-| 5.2 | 14-layer hourglass stack | Hourglass diagram | Architecture |
+| 5.2 | 7-band hourglass stack | Hourglass diagram | Architecture |
 | 5.3 | L8 quantum boundary zone | Cross-section | Architecture |
 | 6.1a | Three variance components | Three-panel signal | Coherence |
 | 6.1b | Coherence surface plot | 3D surface | Coherence |

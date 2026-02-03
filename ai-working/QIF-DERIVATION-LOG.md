@@ -1091,7 +1091,7 @@ The immersive features aren't cosmetic — they serve the framework's goals:
 | `qif-lab/whitepaper/Makefile` | NEW | One-command build pipeline |
 | `qif-lab/whitepaper/qif-immersive.css` | MODIFIED | Audio player styles, collapsible callout styles |
 | `qif-lab/whitepaper/qif-immersive.js` | MODIFIED | Hourglass scroll, audio player, collapsible callouts |
-| `QIF-FIELD-NOTES.md` | NEW | First-person research journal (drafts + main) |
+| `QIF-FIELD-JOURNAL.md` | NEW | First-person research journal (drafts + main) |
 | `docs/index.html` | MODIFIED | Dynamic roadmap progress tracker |
 | `docs/whitepaper/audio/*` | NEW | 16 MP3 files + manifest.json |
 
