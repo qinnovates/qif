@@ -248,7 +248,7 @@
           "title": "Visualization Suite",
           "description": "Interactive HTML apps: Coherence Playground, Layer Explorer, Kill Chain, NSAM, Scale-Frequency, Threat Matrix.",
           "badge": "live",
-          "url": "https://qinnovate.com/mindloft/visualizations/"
+          "url": "https://qinnovates.github.io/mindloft/visualizations/"
         },
         {
           "id": "qif-lab",
@@ -263,7 +263,7 @@
           "title": "QIF Whitepaper (Immersive)",
           "description": "3D reading experience: interactive Plotly figures, AI dictation, glassmorphism UI, aurora gradients, floating particles.",
           "badge": "live",
-          "url": "https://qinnovate.com/mindloft/whitepaper/",
+          "url": "https://qinnovates.github.io/mindloft/whitepaper/",
           "note": "Rendered from qif-lab/whitepaper/ via Quarto"
         }
       ]
