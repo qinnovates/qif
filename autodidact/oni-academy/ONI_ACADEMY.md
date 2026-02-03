@@ -1,10 +1,10 @@
-# ONI Academy: Neurosecurity Education Platform
+# Autodidactive: Neurosecurity Education Platform
 
 > *Lowering the barrier to entry for intellectually curious minds eager to shape the future of neural security.*
 
 ---
 
-## Why ONI Academy Exists
+## Why Autodidactive Exists
 
 While building the ONI Framework, I identified a critical gap: **neurosecurity concepts are not accessible**.
 
@@ -29,7 +29,7 @@ Consider the progression:
 
 Each transition brought new attack surfaces and required security professionals to adapt. The transition to Web 5.0 is no different — except the target is no longer just your data, it's *your thoughts*.
 
-ONI Academy exists to ensure we're ready. We're building the educational infrastructure to:
+Autodidactive exists to ensure we're ready. We're building the educational infrastructure to:
 
 1. **Democratize neurosecurity knowledge** — Make concepts accessible to anyone, not just PhDs
 2. **Create a shared vocabulary** — Establish common terms for researchers, developers, and regulators
@@ -40,7 +40,7 @@ ONI Academy exists to ensure we're ready. We're building the educational infrast
 
 ## What You'll Learn
 
-ONI Academy provides structured learning paths covering the full neurosecurity stack:
+Autodidactive provides structured learning paths covering the full neurosecurity stack:
 
 ### Core Modules
 
@@ -88,7 +88,7 @@ Ensure you have Python 3.9 or higher installed:
 python --version  # Should show Python 3.9+
 ```
 
-### Step 2: Install ONI Academy
+### Step 2: Install Autodidactive
 
 ```bash
 # Basic installation (includes oni-framework as dependency)
@@ -104,7 +104,7 @@ pip install oni-academy[full]
 import oni_academy
 import oni
 
-print(f"ONI Academy v{oni_academy.__version__}")
+print(f"Autodidactive v{oni_academy.__version__}")
 print(f"ONI Framework v{oni.__version__}")
 
 # List available learning modules
@@ -173,7 +173,7 @@ oni-academy (this package)
 ### Architecture
 
 ```
-ONI Academy Learning Stack
+Autodidactive Learning Stack
 ==========================
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -306,7 +306,7 @@ Browser-based tools requiring no installation:
 
 ## Contributing to Education
 
-ONI Academy is open-source. Help us improve neurosecurity education:
+Autodidactive is open-source. Help us improve neurosecurity education:
 
 ### Ways to Contribute
 
@@ -344,6 +344,6 @@ Apache 2.0 — Free to use, modify, and distribute.
 
 ---
 
-*ONI Academy — Because the brain's first firewall won't build itself.*
+*Autodidactive — Because the brain's first firewall won't build itself.*
 
 *Last Updated: 2026-01-26*

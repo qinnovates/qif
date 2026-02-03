@@ -246,7 +246,7 @@ The UNESCO Recommendation contains at least 11 policy areas. Below are the key a
 
 | UNESCO Recommendation | ONI Response | Location |
 |-----------------------|-------------|----------|
-| Keep neurotechnology inclusive and affordable | Open-source (Apache 2.0); published to PyPI for free access; educational modules (oni-academy) | `LICENSE`, PyPI packages |
+| Keep neurotechnology inclusive and affordable | Open-source (Apache 2.0); published to PyPI for free access; educational modules (Autodidactive) | `LICENSE`, PyPI packages |
 | Protect vulnerable groups | Pediatric considerations, incapacity protections, variable capacity model, advance directives for neural devices | `PEDIATRIC_CONSIDERATIONS.md` |
 
 ---

@@ -26,7 +26,7 @@ Whether protecting digital identities of millions in consumer tech or securing h
 
 Everything I build is about **protection**.
 
-**Qinnovate** is the parent — a commitment to innovation grounded in rigor. **Mindloft** is Qinnovate's future vision division — *"Let's Mind Our Way Home."* And **QIF** (Quantum Indeterministic Framework for Neural Security) is Mindloft's flagship research: a living effort to develop rigorous, testable frameworks that protect the "crown jewels" of what makes us human — our unique cognitive fingerprints — as we enter the age of brain–computer interfaces.
+**Qinnovate** is the engine — where forward thinking begins. **Mindloft** is the workshop — where research is built, developed, and shared. *"Let's Mind Our Way."* And **QIF** (Quantum Indeterministic Framework for Neural Security) is Mindloft's flagship research: a living effort to develop rigorous, testable frameworks that protect the "crown jewels" of what makes us human — our unique cognitive fingerprints — as we enter the age of brain–computer interfaces.
 
 Our minds deserve the same security architecture we've built for our networks. QIF is that architecture.
 
@@ -61,6 +61,6 @@ Because only the most important things in life require the utmost thought, and *
 
 ---
 
-**Let's Mind Our Way Home.**
+**Let's Mind Our Way.**
 
 *Connect: [GitHub](https://github.com/qikevinl) | [Medium](https://medium.com/@qikevinl)*
