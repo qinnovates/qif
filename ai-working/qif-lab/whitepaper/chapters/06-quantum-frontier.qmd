@@ -11,6 +11,34 @@ import numpy as np
 import pandas as pd
 from src.config import DECOHERENCE_CAMPS, DEFAULT_C1_PARAMS
 from src.qif_equations import qi_candidate1, QICandidate1Params, quantum_gate
+
+# Plotly / matplotlib detection
+_IS_HTML = os.environ.get('QUARTO_FIG_FORMAT', 'png') != 'pdf'
+try:
+    import plotly.graph_objects as go
+    _HAS_PLOTLY = True
+except ImportError:
+    _HAS_PLOTLY = False
+_USE_PLOTLY = _IS_HTML and _HAS_PLOTLY
+
+if _USE_PLOTLY:
+    _plotly_template = go.layout.Template(
+        layout=go.Layout(
+            paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='#161b22',
+            font=dict(color='#c9d1d9', family='sans-serif', size=12),
+            xaxis=dict(gridcolor='#21262d', linecolor='#30363d', tickfont=dict(color='#8b949e')),
+            yaxis=dict(gridcolor='#21262d', linecolor='#30363d', tickfont=dict(color='#8b949e')),
+            colorway=['#58a6ff', '#bc8cff', '#3fb950', '#f85149', '#d29922', '#79c0ff', '#f0883e'],
+        )
+    )
+
+import matplotlib.pyplot as plt
+plt.rcParams.update({
+    'figure.facecolor': '#0d1117', 'axes.facecolor': '#161b22',
+    'text.color': '#c9d1d9', 'axes.labelcolor': '#c9d1d9',
+    'xtick.color': '#8b949e', 'ytick.color': '#8b949e',
+    'axes.edgecolor': '#30363d', 'grid.color': '#21262d',
+})
 ```
 
 ::: {.callout-note}
@@ -78,8 +106,6 @@ pd.DataFrame(rows)
 #| label: fig-tegmark-spectrum
 #| fig-cap: "QI score as a function of decoherence time. The framework transitions smoothly from purely classical (left) to quantum-enhanced (right). Vertical lines mark key literature positions."
 
-import matplotlib.pyplot as plt
-
 tau_d_range = np.logspace(-20, 4, 500)
 t_eval = 1e-6
 
@@ -89,32 +115,50 @@ for td in tau_d_range:
     qi = qi_candidate1(c_class=0.8, qi_indeterminacy=0.5, q_entangle=0.3, q_tunnel=0.1, t=t_eval, params=params)
     qi_scores.append(qi)
 
-fig, ax = plt.subplots(figsize=(10, 5))
-ax.plot(tau_d_range, qi_scores, color='#bc8cff', linewidth=2.5)
-ax.set_xscale('log')
-ax.set_xlabel('Decoherence time τ_D (seconds)')
-ax.set_ylabel('QI Score')
-ax.set_title('QI Score vs Decoherence Time (t = 1 μs)')
-
-# Mark literature positions
 markers = [
-    (1e-20, "Tegmark\n(worst)"),
-    (1e-13, "Tegmark\n(2000)"),
-    (1e-4,  "Hagan\n(2002)"),
-    (1e-3,  "Dewan\n(2026)"),
-    (3600,  "Fisher\n(Posner)"),
+    (1e-20, "Tegmark (worst)"),
+    (1e-13, "Tegmark (2000)"),
+    (1e-4,  "Hagan (2002)"),
+    (1e-3,  "Dewan (2026)"),
+    (3600,  "Fisher (Posner)"),
 ]
-for td, label in markers:
-    ax.axvline(x=td, color='gray', linestyle=':', alpha=0.5)
-    params = QICandidate1Params(tau_d=td)
-    qi = qi_candidate1(c_class=0.8, qi_indeterminacy=0.5, q_entangle=0.3, q_tunnel=0.1, t=t_eval, params=params)
-    ax.annotate(label, xy=(td, qi), xytext=(0, 15), textcoords='offset points',
-                ha='center', fontsize=8, color='#8b949e')
 
-ax.axhline(y=0.75, color='#d29922', linestyle='--', alpha=0.3, label='Classical-only baseline')
-ax.legend(loc='lower right')
-plt.tight_layout()
-plt.show()
+if _USE_PLOTLY:
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=tau_d_range.tolist(), y=qi_scores, mode='lines',
+                             line=dict(color='#bc8cff', width=2.5), name='QI(t)',
+                             hovertemplate='τ_D=%{x:.2e} s<br>QI=%{y:.4f}<extra></extra>'))
+    for td, label in markers:
+        params = QICandidate1Params(tau_d=td)
+        qi = qi_candidate1(c_class=0.8, qi_indeterminacy=0.5, q_entangle=0.3, q_tunnel=0.1, t=t_eval, params=params)
+        fig.add_vline(x=td, line_dash='dot', line_color='gray', opacity=0.5)
+        fig.add_annotation(x=np.log10(td), y=qi, text=label, showarrow=True,
+                           arrowhead=0, ax=0, ay=-30, font=dict(size=9, color='#8b949e'),
+                           xref='x', yref='y')
+    fig.add_hline(y=0.75, line_dash='dash', line_color='#d29922', opacity=0.3,
+                  annotation_text='Classical-only baseline')
+    fig.update_xaxes(type='log', title='Decoherence time τ_D (seconds)')
+    fig.update_yaxes(title='QI Score')
+    fig.update_layout(template=_plotly_template, title='QI Score vs Decoherence Time (t = 1 μs)',
+                      height=500)
+    fig.show()
+else:
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(tau_d_range, qi_scores, color='#bc8cff', linewidth=2.5)
+    ax.set_xscale('log')
+    ax.set_xlabel('Decoherence time τ_D (seconds)')
+    ax.set_ylabel('QI Score')
+    ax.set_title('QI Score vs Decoherence Time (t = 1 μs)')
+    for td, label in markers:
+        ax.axvline(x=td, color='gray', linestyle=':', alpha=0.5)
+        params = QICandidate1Params(tau_d=td)
+        qi = qi_candidate1(c_class=0.8, qi_indeterminacy=0.5, q_entangle=0.3, q_tunnel=0.1, t=t_eval, params=params)
+        ax.annotate(label, xy=(td, qi), xytext=(0, 15), textcoords='offset points',
+                    ha='center', fontsize=8, color='#8b949e')
+    ax.axhline(y=0.75, color='#d29922', linestyle='--', alpha=0.3, label='Classical-only baseline')
+    ax.legend(loc='lower right')
+    plt.tight_layout()
+    plt.show()
 ```
 
 ### Key Insight

@@ -11,6 +11,11 @@ format:
     code-fold: true
     code-tools: true
     self-contained: true
+    css: qif-immersive.css
+    include-in-header: qif-head-includes.html
+    include-after-body:
+      text: |
+        <script src="qif-immersive.js"></script>
   pdf:
     documentclass: article
     papersize: letter
