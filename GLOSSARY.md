@@ -14,13 +14,18 @@ mindloft/
 │   ├── qif/                  # Quantum Indeterminacy Framework
 │   │   ├── framework/        # 9 research documents
 │   │   └── governance/       # 9 ethics/compliance documents
-│   ├── legacy-core/          # ONI Foundation (v1)
-│   │   ├── oni-framework/    # Python package
-│   │   ├── tara-nsec-platform/
-│   │   ├── publications/     # 31 papers
-│   │   ├── project/          # Project management
-│   │   └── resources/        # Templates, brand, pipeline
-│   └── autodidact/           # Educational content
+│   └── legacy-core/          # ONI Foundation (v1)
+│       ├── oni-framework/    # Python package
+│       ├── tara-nsec-platform/
+│       ├── publications/     # 31 papers
+│       ├── project/          # Project management
+│       ├── resources/        # Templates, brand, pipeline
+│       └── oni-product-demo/ # ONI demo video (Remotion)
+├── autodidact/               # Educational content
+│   ├── oni-academy/          # ONI Academy
+│   ├── bci-zoom/             # BCI zoom animation
+│   ├── motion/               # Motion graphics
+│   └── workflow/             # Workflow tools
 └── docs/                     # GitHub Pages website
 ```
 

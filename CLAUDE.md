@@ -97,6 +97,7 @@ mindloft/                               # Local folder (remote: github.com/qinno
 │   │   ├── publications/               # 31 research papers across 8 topics
 │   │   ├── project/                    # Project management (prd.json, KANBAN.md)
 │   │   ├── resources/                  # Brand, agents, templates, pipeline, editor
+│   │   ├── oni-product-demo/           # ONI demo video (Remotion) + rendered MP4
 │   │   └── archive/                    # Website evolution (v1-v5)
 │
 ├── autodidact/                        # Educational content

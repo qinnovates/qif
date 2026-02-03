@@ -59,11 +59,15 @@ mindloft/
 │   │   ├── oni-framework/             # Python: pip install oni-framework
 │   │   ├── tara-nsec-platform/        # Python: pip install oni-tara
 │   │   ├── resources/                 # Brand, templates, pipeline, editor
+│   │   ├── oni-product-demo/          # ONI demo video (Remotion) + rendered MP4
 │   │   └── archive/                   # Website evolution (v1-v5)
 │
 ├── autodidact/                        # Educational content
 │   ├── oni-academy/                   # Python: pip install oni-academy
-│   └── neuroscience/                  # Neuroscience fundamentals
+│   ├── neuroscience/                  # Neuroscience fundamentals
+│   ├── bci-zoom/                      # BCI zoom animation
+│   ├── motion/                        # Motion graphics
+│   └── workflow/                      # Workflow tools
 │
 ├── docs/                              # GitHub Pages website
 │   ├── index.html                     # Landing page
