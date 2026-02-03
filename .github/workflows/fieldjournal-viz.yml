@@ -1,0 +1,41 @@
+name: Field Journal Visualization Generator
+
+on:
+  push:
+    branches: [drafts]
+    paths:
+      - 'ai-working/QI-FIELDJOURNAL.md'
+
+jobs:
+  generate-viz:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: drafts
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install matplotlib numpy pillow
+
+      - name: Generate visualizations
+        run: python scripts/fieldjournal_viz.py
+
+      - name: Commit generated files
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add autodidact/learnviz/output/fieldjournal/ ai-working/QI-FIELDJOURNAL.md
+          git diff --cached --quiet || git commit -m "Auto-generate field journal visualizations
+
+          Co-Authored-By: GitHub Actions <actions@github.com>"
+          git push

@@ -217,7 +217,7 @@ Through this analysis, I identified eleven open ethical questions, which cluster
 
 I built the technical framework. I can describe the threat model, derive the equations, and specify the experiments. But I cannot — and should not — determine the governance structure for quantum biometric data. That requires training in neuroethics, policy analysis, legal reasoning, and stakeholder engagement that I do not have.
 
-This is why I am pursuing a Master's in neuroethics. Not because I am leaving the technical work behind, but because the technical work demands it. A Master's program gives me the formal foundation — ethical reasoning, policy analysis, stakeholder engagement — to govern what I have built, while I continue developing the framework itself. The research does not pause while I learn. It deepens.
+This is why I am seeking formal training in neuroethics. Not because I am leaving the technical work behind, but because the technical work demands it. Academic collaboration gives me the foundation — ethical reasoning, policy analysis, stakeholder engagement — to govern what I have built, while I continue developing the framework itself. The research does not pause while I learn. It deepens.
 
 ---
 
@@ -237,9 +237,9 @@ This is why I am pursuing a Master's in neuroethics. Not because I am leaving th
 
 More striking: during this research, I noticed that my synesthetic mappings are changing as I build visualizations of the framework. The act of creating external representations of abstract structures is feeding back into my internal perceptual system. My brain is adapting in real time. I document these observations in a field journal that could itself become a case study in neuroplasticity — a neurodivergent researcher studying neural processing while observing changes in their own neural processing. This is not detached academic interest. It is personal in a way that few researchers can claim.
 
-### What I Need from a Master's Program
+### What I Need from the Academic Community
 
-**The ethical and policy foundation.** I built the technical framework. Now I need the formal training to govern it — neuroethics, bioethics methodology, policy analysis, regulatory landscape. A Master's gives me this foundation while I continue building QIF in parallel.
+**The ethical and policy foundation.** I built the technical framework. Now I need the formal training to govern it — neuroethics, bioethics methodology, policy analysis, regulatory landscape. Academic collaboration gives me this foundation while I continue building QIF in parallel.
 
 **Legal and policy expertise.** The governance gap I have identified needs rigorous analysis. Which existing frameworks can be extended? Which require new law? What enforcement mechanisms are feasible? I need mentorship from scholars who work at the intersection of technology law and bioethics.
 
@@ -247,7 +247,7 @@ More striking: during this research, I noticed that my synesthetic mappings are 
 
 **A community.** I have pushed this framework as far as I can alone, with AI as my primary collaborator. I have reached the limits of what solitary work can accomplish — not because the ideas have run out, but because the ideas now require expertise, equipment, and perspectives that no individual possesses. I am eager to move from this mode of solitary invention to a collaborative research environment where my work can be challenged, corrected, and strengthened by peers and mentors who bring what I lack.
 
-**A launchpad, not a finish line.** I see the Master's as the beginning of a longer trajectory. The framework, the ethical questions, the governance gaps — these are large enough to sustain a career. A doctoral path may follow. But first, I need the formal grounding that turns self-directed exploration into rigorous scholarship. I have built something that I believe is important. I am asking for the opportunity to make it defensible.
+**A launchpad, not a finish line.** I see formal academic training as the beginning of a longer trajectory. The framework, the ethical questions, the governance gaps — these are large enough to sustain a career. A doctoral path may follow. But first, I need the formal grounding that turns self-directed exploration into rigorous scholarship. I have built something that I believe is important. I am asking for the opportunity to make it defensible.
 
 ---
 
@@ -259,7 +259,7 @@ If we build that architecture using only classical security — as every current
 
 The time to act is before the first catastrophic breach, not after.
 
-I am not asking anyone to accept my framework uncritically. I am asking for the opportunity to subject it to the most rigorous scrutiny available — in a Master's program, with expert mentors, surrounded by people who think differently than I do. I want to build the ethical and policy foundations while continuing to develop the technical framework. The two cannot be separated, and I do not intend to separate them.
+I am not asking anyone to accept my framework uncritically. I am asking for the opportunity to subject it to the most rigorous scrutiny available — in a collaborative research environment, with expert mentors, surrounded by people who think differently than I do. I want to build the ethical and policy foundations while continuing to develop the technical framework. The two cannot be separated, and I do not intend to separate them.
 
 The questions are real. The gap is real. The clock is running.
 
