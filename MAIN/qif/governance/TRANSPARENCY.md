@@ -192,6 +192,16 @@ Using AI for efficiency creates a risk: cognitive offloading may trade deep unde
 
 **Note on Cross-AI Validation (added 2026-02-02)**: To counteract potential confirmation bias from the primary development AI (Claude), significant framework changes now trigger an independent review by a different AI system (Gemini 2.5 via CLI). The reviewing AI receives the full whitepaper with no prior context and is instructed to provide unsoftened criticism. This is formalized in the [Validation Pipeline](../../../drafts/ai-working/PROPAGATION.md) (Section E). Results are logged in the [Derivation Log](../../../drafts/ai-working/QIF-DERIVATION-LOG.md).
 
+**Note on Automatic Documentation (added 2026-02-03)**: All multi-AI validation sessions, architectural reviews, and significant framework decisions are now **automatically documented** in both the Derivation Log and this Transparency Statement at the time they occur. This includes: which AI systems were involved, what roles they played, what the human decided vs. what AI suggested, and the rationale for the decision. This practice is mandatory for all future sessions — not retroactive documentation, but real-time audit trail creation.
+
+### Cross-AI Validation Sessions
+
+| Date | Topic | AI Systems | Human Decision | Derivation Log |
+|------|-------|------------|----------------|----------------|
+| 2026-02-02 | QIF v3.1 whitepaper review | Gemini 2.5 (independent critique) | Accepted structural feedback, rejected some scope suggestions | Entry #16 |
+| 2026-02-03 | ONI L8 positioning + L14 consciousness scope | Gemini 2.5 (independent review) + Claude Opus 4.5 (research agent) + Aurora (synthesis) | PENDING — awaiting results | Entry #20 |
+| 2026-02-03 | NIST CSF adoption for project structure | Claude Opus 4.5 (proposed mapping) | Kevin selected NIST over Kill Chain and STRIDE | Entry #21 |
+
 ### Non-AI Tools
 - Python 3.9+ for implementation
 - pytest for testing
@@ -266,87 +276,6 @@ This transparency statement is provided for:
 2. **Critical Engagement Demonstrated**: 40% of AI suggestions modified or rejected
 3. **Verification Performed**: All claims traced to sources; code tested
 4. **Meta-Awareness Present**: The author analyzed their own human-AI cognitive boundary as a neuroethics exercise
-
----
-
-## Website Security Controls (GitHub Pages)
-
-> **Added:** 2026-01-26 | **Location:** `docs/index.html`
-
-The ONI Framework website dynamically loads brand content (mission, slogan, vision, stats) from `brand.json` via GitHub's raw content API. This creates a potential attack vector if the repository is compromised. The following security controls mitigate these risks:
-
-### Content Security Policy (CSP)
-
-```html
-<meta http-equiv="Content-Security-Policy" content="
-  default-src 'self';
-  script-src 'self' 'unsafe-inline' https://unpkg.com;
-  style-src 'self' 'unsafe-inline' https://unpkg.com;
-  img-src 'self' https: data:;
-  connect-src 'self' https://raw.githubusercontent.com https://api.github.com;
-  font-src 'self';
-">
-```
-
-**Effect:** Restricts where scripts, styles, and data can be loaded from. Blocks execution of scripts from unauthorized sources.
-
-### Subresource Integrity (SRI)
-
-External dependencies (AOS animation library) include cryptographic hashes:
-
-```html
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css"
-      integrity="sha384-/rJKQnzXffaXJfyu1v+..." crossorigin="anonymous">
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"
-        integrity="sha384-oZixfuJpr9a/P06Xslt0X..." crossorigin="anonymous">
-```
-
-**Effect:** Browser refuses to load the resource if the hash doesn't match, preventing supply chain attacks via compromised CDN.
-
-### Input Validation for brand.json
-
-All values from `brand.json` pass through validation before DOM insertion:
-
-| Function | Validation | Rejection Criteria |
-|----------|------------|-------------------|
-| `sanitizeText(input, maxLength)` | Type check, length limit, pattern check | Non-string, >maxLength chars, contains HTML tags, control characters |
-| `sanitizeNumber(input, min, max)` | Type check, range validation | Non-number, outside min/max range |
-
-**Implementation:**
-```javascript
-function sanitizeText(input, maxLength = 500) {
-    if (typeof input !== 'string') return null;
-    if (input.length > maxLength) return null;
-    if (/<[^>]*>/.test(input)) return null;  // Reject HTML tags
-    return input.replace(/[\x00-\x1F\x7F]/g, '');  // Strip control chars
-}
-```
-
-### Safe DOM Assignment
-
-All dynamic content uses `.textContent` (never `.innerHTML`):
-
-```javascript
-missionEl.textContent = safeMission;  // Safe - treats content as text
-// NOT: missionEl.innerHTML = safeMission;  // Unsafe - would parse HTML
-```
-
-**Effect:** Even if malicious content bypasses validation, it renders as literal text, not executable code.
-
-### Attack Vectors Mitigated
-
-| Attack Vector | Mitigation | Status |
-|---------------|------------|--------|
-| XSS via brand.json | Input validation + textContent | ✅ Blocked |
-| Supply chain (CDN compromise) | SRI hashes | ✅ Blocked |
-| Script injection (external) | CSP whitelist | ✅ Blocked |
-| DoS via oversized input | Max length validation | ✅ Blocked |
-| Malformed JSON | Structure validation | ✅ Blocked |
-
-### Remaining Considerations
-
-1. **Repository compromise**: If an attacker gains write access to the repo, they could modify the JavaScript itself. Mitigation: Branch protection, required reviews, audit logging.
-2. **GitHub raw content availability**: If GitHub is unavailable, fallback to hardcoded defaults preserves functionality.
 
 ---
 
