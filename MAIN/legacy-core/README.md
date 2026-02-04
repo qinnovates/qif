@@ -1,14 +1,14 @@
-# Neurosecurity Research
+# Classical Model for Neurosecurity
 
-> The foundational research that led to the QIF (Quantum Indeterministic Framework for Neural Security).
+> The ONI 14-Layer Framework — established, tested, foundational.
 
 > **Start here:** [INDEX.md](INDEX.md) — Central wiki hub with navigation, dependency map, cross-references, and reading order.
 
 ---
 
-## What This Is
+## Securing Today's Neural Frontier
 
-This folder contains the original ONI (Open Neurosecurity Interoperability) research — publications, Python packages, interactive tools, and the analytical foundation that informed the [QIF (Quantum Indeterministic Framework for Neural Security)](../qif/).
+The Classical Model extends the OSI networking stack into the biological domain, providing the first comprehensive reference architecture for brain-computer interface security. This is the established foundation that the [Quantum Model (QIF)](../qif/) builds upon.
 
 ---
 
@@ -37,6 +37,12 @@ This folder contains the original ONI (Open Neurosecurity Interoperability) rese
 - [oni-framework/](oni-framework/) — 14-layer model, coherence metric, scale-frequency, neural firewall
 - [tara-nsec-platform/](tara-nsec-platform/) — Telemetry Analysis & Response Automation (TARA)
 
+### Threat Taxonomy
+
+- 10 tactics, 46 techniques mapped to ONI layers
+- MITRE ATT&CK-inspired neural threat taxonomy
+- See: [ONI_THREAT_MATRIX.md](oni-framework/ONI_THREAT_MATRIX.md)
+
 ### Resources
 
 - [resources/brand/](resources/brand/) — Brand configuration and sync
@@ -47,14 +53,13 @@ This folder contains the original ONI (Open Neurosecurity Interoperability) rese
 
 ### Archive
 
-- [archive/website-versions/](archive/website-versions/) — Website evolution (v1 through v5)
-- [archive/](archive/) — Completed project snapshots
+- [archive/website-versions/](archive/website-versions/) — Website evolution (v1 through v6)
 
 ---
 
-## Relationship to the New Framework
+## Relationship to the Quantum Model
 
-The QIF (Quantum Indeterministic Framework for Neural Security) (v2) was built by identifying what was wrong with this original model and rebuilding from neuroscience constraints. Key learnings:
+The Classical Model identified the right problem — BCIs have no security standard. The [Quantum Model (QIF)](../qif/) deepens that vision by rebuilding from neuroscience constraints. Key learnings:
 
 1. **BCIs are physical hardware** — they belong at OSI Layer 1, not Layer 8
 2. **The brain is a cycle, not a stack** — the funnel model replaced the linear layer model
@@ -67,3 +72,4 @@ The publications here remain valid research. The architectural model evolved.
 
 *Originally developed as: ONI (Open Neurosecurity Interoperability)*
 *Author: Kevin Qi*
+*See also: [Quantum Model →](../qif/) | [Neuroethics →](../qif/governance/)*

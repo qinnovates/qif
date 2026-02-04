@@ -2,15 +2,21 @@
   "_meta": {
     "repo": "qinnovates/mindloft",
     "base_url": "https://github.com/qinnovates/mindloft/blob/main",
-    "last_updated": "2026-02-02",
+    "last_updated": "2026-02-03",
     "roadmap_source": "MAIN/legacy-core/project/prd.json",
-    "description": "Single source of truth for all documentation links. Update paths here instead of editing HTML."
+    "description": "Single source of truth for all documentation links. Update paths here instead of editing HTML.",
+    "models": {
+      "classical": "ONI 14-Layer Model — securing today's neural frontier",
+      "quantum": "QIF 7-Band Hourglass — securing tomorrow's neural frontier",
+      "bridge": "Neuroethics & governance — the foundation for both models"
+    }
   },
   "categories": [
     {
       "id": "framework",
       "title": "Framework",
       "color": "blue",
+      "model": "classical",
       "documents": [
         {
           "id": "oni-whitepaper",
@@ -53,6 +59,7 @@
       "id": "mathematics",
       "title": "Mathematics",
       "color": "purple",
+      "model": "classical",
       "documents": [
         {
           "id": "equations-reference",
@@ -88,6 +95,7 @@
       "id": "security",
       "title": "Security",
       "color": "emerald",
+      "model": "classical",
       "documents": [
         {
           "id": "neural-firewall-blog",
@@ -137,6 +145,7 @@
       "id": "signal-processing",
       "title": "Signal Processing",
       "color": "cyan",
+      "model": "classical",
       "documents": [
         {
           "id": "coherence-metric-blog",
@@ -179,6 +188,7 @@
       "id": "quantum",
       "title": "Quantum",
       "color": "pink",
+      "model": "quantum",
       "documents": [
         {
           "id": "quantum-encryption-techdoc",
@@ -221,6 +231,7 @@
       "id": "tools-code",
       "title": "Tools & Code",
       "color": "amber",
+      "model": "both",
       "documents": [
         {
           "id": "external-tools",
@@ -272,6 +283,7 @@
       "id": "governance-ethics",
       "title": "Governance & Ethics",
       "color": "emerald",
+      "model": "bridge",
       "documents": [
         {
           "id": "transparency",
@@ -350,6 +362,7 @@
       "id": "project",
       "title": "Project",
       "color": "blue",
+      "model": "both",
       "documents": [
         {
           "id": "contributing",
@@ -399,6 +412,7 @@
       "id": "learning",
       "title": "Learning",
       "color": "purple",
+      "model": "both",
       "documents": [
         {
           "id": "oni-academy",

@@ -1,8 +1,8 @@
-# QIF — Quantum Indeterministic Framework for Neural Security
+# Quantum Model for Neurosecurity
 
-> **QIF** is pronounced **"CHIEF"**
+> **QIF** — Quantum Indeterministic Framework for Neural Security (pronounced **"CHIEF"**)
 
-### A Model for Quantum Neural Interfaces
+### Securing Tomorrow's Neural Frontier
 
 > *Life's most important connections deserve the best thought.*
 
@@ -12,7 +12,7 @@
 
 ## What This Is
 
-A ground-up architectural redesign of BCI (Brain-Computer Interface) security, built from neuroscience constraints rather than retrofitted IT models.
+A ground-up architectural redesign of BCI (Brain-Computer Interface) security, built from neuroscience constraints rather than retrofitted IT models. This is the Quantum Model — the active research framework that builds upon the [Classical Model (ONI)](../legacy-core/).
 
 The original ONI Framework put the Neural Gateway at Layer 8 (middle of a 14-layer stack). BCIs are physical hardware — they belong adjacent to OSI Layer 1. Everything needed to be rebuilt from that realization.
 
@@ -39,6 +39,7 @@ The original ONI Framework put the Neural Gateway at Layer 8 (middle of a 14-lay
 ## Governance (Neuroethics First)
 
 > The foundation isn't faster tools. It's defining the rules those tools must follow.
+> Neuroethics bridges the Classical and Quantum models — without it, both risk enabling the very threats they aim to prevent.
 
 | Document | Focus |
 |----------|-------|
@@ -57,10 +58,23 @@ The original ONI Framework put the Neural Gateway at Layer 8 (middle of a 14-lay
 ## Key Concepts
 
 - **The Funnel Model** — Biology narrows to a neck (BCI), then widens into silicon. Not a stack — a cycle.
+- **7-Band Hourglass** — N3/N2/N1 | I0 | S1/S2/S3 (3 neural bands, 1 interface, 3 silicon bands)
 - **Quantum Integer (Q)** — A labeled gap for quantum unknowns at each ring. Like Mendeleev's empty boxes.
 - **Defense-in-Depth Rings** — 7 concentric security rings from governance (outer) to neural data (core).
 - **DSKE** — Distributed Symmetric Key Establishment: quantum-safe encryption without quantum hardware at the implant.
 - **NIST CSF Lifecycle** — Identify, Protect, Detect, Respond, Recover — mapped to the funnel diagram.
+
+---
+
+## Two Models, One Mission
+
+| | Classical | Quantum |
+|---|---|---|
+| **Framework** | ONI 14-Layer Model | QIF 7-Band Hourglass |
+| **Focus** | Securing today | Securing tomorrow |
+| **Foundation** | OSI extension into biology | Quantum physics at neural boundary |
+| **Status** | Established | Active research |
+| **Bridge** | ← Neuroethics & Security by Design → |
 
 ---
 
@@ -73,3 +87,4 @@ This framework evolved from the original ONI (Open Neurosecurity Interoperabilit
 *Author: Kevin Qi*
 *Started: February 2026*
 *Status: Active Design Phase*
+*See also: [Classical Model →](../legacy-core/) | [Neuroethics →](governance/)*
