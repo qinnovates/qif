@@ -805,13 +805,13 @@ The preceding twelve sections have constructed QIF from first principles: an arc
 
 The Mindloft project maintains two complementary models for neurosecurity — the **Classical Model** (ONI 14-layer) for securing today's BCI landscape, and the **Quantum Model** (QIF 7-band hourglass) for securing tomorrow's. Between them sits neuroethics: not as a compliance addendum bolted onto either model, but as the architectural foundation that makes both trustworthy. Without it, the most sophisticated security framework in the world is just a lock on a door no one agreed to build.
 
-### 14.1 The Purple Team Principle
+### 14.1 Why Security Engineering Needs Neuroethics
 
-In classical cybersecurity, ethical hackers form **purple teams** — professionals who simultaneously discover vulnerabilities and build defenses. They exist because systems cannot be secured by defenders alone. You need people actively trying to break the system to understand where it fails. Red teams attack; blue teams defend; purple teams do both at once, and the system gets stronger because of the adversarial tension.
+Security engineering has always required thinking like both architect and adversary. You cannot defend a system you have not tried to break. This dual perspective — probing for vulnerabilities while building defenses — is what distinguishes security engineering from access control. It is adversarial by design, because the threat landscape is adversarial by nature.
 
 This principle applies with even greater urgency to neural security. A data breach exposes information — credit card numbers, social security numbers, embarrassing emails. A neural breach could alter identity, cognition, or autonomy. The CIA triad (confidentiality, integrity, availability) that governs classical cybersecurity extends, at the neural boundary, into something far more personal: **cognitive liberty**, **mental privacy**, and **psychological continuity**. These are not abstract rights in a philosophy seminar. BCIs are implanted in human patients today, and the security gap is not hypothetical — it is operational.
 
-The Classical Model provides the purple team's defensive playbook: 14 layers, 46 threat techniques, firewall architectures, coherence scoring. The Quantum Model provides the attack surface that classical defenses cannot see: decoherence at the electrode-tissue interface, tunneling as both vulnerability and biometric, soliton propagation through neural protein chains. Together, they form the purple team for the mind-machine boundary. But a purple team without ethical rules of engagement is indistinguishable from a threat actor.
+The Classical Model provides the defensive architecture: 14 layers, 46 threat techniques, firewall architectures, coherence scoring. The Quantum Model discovers the attack surfaces that classical methods cannot see: decoherence at the electrode-tissue interface, tunneling as both vulnerability and biometric, soliton propagation through neural protein chains. Together, they form a security engineering approach grounded in neuroscience — but security engineering without ethical constraints is indistinguishable from threat development.
 
 ### 14.2 The Risks of Security Without Ethics
 

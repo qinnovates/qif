@@ -3,7 +3,7 @@
 > *"The most important connections require the most thought."*
 
 **Qinnovate** — the engine. **Mindloft** — the workshop.
-Where we discover AND secure the frontier of mind — a Purple Team approach to neurosecurity.
+Where security engineering meets neuroethics — building the frameworks that protect minds in the age of brain-computer interfaces.
 
 > *"Let's Mind Our Way."* — **Direct link:** [qinnovate.com/mindloft](https://qinnovate.com/mindloft/)
 

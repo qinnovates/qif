@@ -7,13 +7,14 @@ AI assists with execution; every concept, direction, and framework choice is Kev
 > Last generated: 2026-02-04
 
 ## Summary
-- **Commits**: 651 | **Date range**: 2026-01-18 — 2026-02-04
+- **Commits**: 652 | **Date range**: 2026-01-18 — 2026-02-04
 - **prd.json**: 40/46 tasks complete (87%)
 - **Future Work**: 2/7 initiatives complete
 
 ## Timeline
 
 ### 2026-02-04
+- `8cc9bac` Regenerate PROGRESS.md with latest commits
 - `110be47` Update whitepaper and framework: Cognitive Sovereignty, hourglass-classical reconciliation
 - `10172c6` Add auto-tracked progress log generator
 - `69fb1fa` Revert sphere colors to original: Classical=magenta bubble, Quantum=teal glow

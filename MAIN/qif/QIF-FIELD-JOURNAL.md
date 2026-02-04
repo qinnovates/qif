@@ -104,7 +104,7 @@ The two-sphere visualization makes this obvious in a way that words didn't.
 
 **Connected to:**
 - The QIF hourglass itself is about scale transitions — N3 (macro) through I0 (boundary) to S1 (micro). The Classical/Quantum split maps directly: Classical covers S1-S3 + some of I0, Quantum covers I0 + N1-N3 where quantum effects emerge
-- The "Purple Team" concept — you need people attacking AND defending. Classical model is more "defense" (established standards). Quantum model is more "attack surface discovery" (what can go wrong that we haven't seen yet)
+- The security engineering + neuroethics convergence — Classical model provides the defensive standards (established architecture). Quantum model discovers the attack surfaces that classical methods can't see (what can go wrong that we haven't seen yet). Neuroethics ensures both serve the person, not just the system
 - Entry 001 — "the pieces stopped being separate tasks and became one thing." This is that same unification, but at a higher level. Not just equations and ethics becoming one — but two entire frameworks becoming one project with two perspectives
 
 **Mood:** Symmetry. Like finding the axis of something you've been circling.

@@ -22,13 +22,13 @@ Over 15+ years, I've worked across biotech, high-scale consumer tech, publishing
 
 Whether protecting digital identities of millions in consumer tech or securing high-value assets during complex financial acquisitions, the challenge was always the same: thinking simultaneously like an engineer, an adversary, and a human operator.
 
-That dual perspective — engineer and adversary — has a name in security: **Purple Team**. In traditional cybersecurity, Blue Teams defend and Red Teams attack. Purple Team is where both converge — you probe your own systems like an adversary so you can defend them like an architect. I started on the Blue side, building defenses. But I learned quickly that you can't protect what you don't understand from the attacker's perspective. Over time, the line between offense and defense dissolved entirely. Others choose different paths through security — some stay Red, some stay Blue. This is mine.
+That dual perspective — engineer and adversary — is what makes security engineering work. I started on the defensive side, building systems. But I learned quickly that you can't protect what you don't understand from the attacker's perspective. Over time, the line between offense and defense dissolved entirely. The best security architects think like both — probing their own systems like an adversary so they can defend them like an engineer. That convergence is what I bring to neurosecurity.
 
 ## The Vision: Qinnovate > Mindloft > QIF
 
 Everything I build is about **protection**.
 
-**Qinnovate** is the engine — where forward thinking begins. **Mindloft** is the workshop — where research is built, developed, and shared. *"Let's Mind Our Way."* And **QIF** (Quantum Indeterministic Framework for Neural Security) is Mindloft's flagship research: a Purple Team effort to discover AND secure the frontier of mind — developing rigorous, testable frameworks that protect the "crown jewels" of what makes us human — our unique cognitive fingerprints — as we enter the age of brain–computer interfaces.
+**Qinnovate** is the engine — where forward thinking begins. **Mindloft** is the workshop — where research is built, developed, and shared. *"Let's Mind Our Way."* And **QIF** (Quantum Indeterministic Framework for Neural Security) is Mindloft's flagship research: security engineering grounded in neuroethics — developing rigorous, testable frameworks that protect the "crown jewels" of what makes us human — our unique cognitive fingerprints — as we enter the age of brain–computer interfaces.
 
 Our minds deserve the same security architecture we've built for our networks. QIF is that architecture.
 
