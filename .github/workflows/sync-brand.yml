@@ -3,7 +3,7 @@ name: Sync Brand to Docs
 on:
   push:
     paths:
-      - 'neurosec-research/resources/brand/brand.json'
+      - 'MAIN/legacy-core/resources/brand/brand.json'
     branches:
       - main
 

@@ -35,19 +35,19 @@ jobs:
 
       - name: Build oni-framework
         run: |
-          cd neurosec-research/oni-framework
+          cd MAIN/legacy-core/oni-framework
           python -m build
 
       - name: Check package
         run: |
-          cd neurosec-research/oni-framework
+          cd MAIN/legacy-core/oni-framework
           twine check dist/*
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist-oni-framework
-          path: neurosec-research/oni-framework/dist/
+          path: MAIN/legacy-core/oni-framework/dist/
 
   build-oni-tara:
     runs-on: ubuntu-latest
@@ -67,19 +67,19 @@ jobs:
 
       - name: Build oni-tara
         run: |
-          cd neurosec-research/tara-nsec-platform
+          cd MAIN/legacy-core/tara-nsec-platform
           python -m build
 
       - name: Check package
         run: |
-          cd neurosec-research/tara-nsec-platform
+          cd MAIN/legacy-core/tara-nsec-platform
           twine check dist/*
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist-oni-tara
-          path: neurosec-research/tara-nsec-platform/dist/
+          path: MAIN/legacy-core/tara-nsec-platform/dist/
 
   publish-oni-framework:
     needs: build-oni-framework
