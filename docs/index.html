@@ -515,9 +515,10 @@
         var xOffset = isMobile ? 0 : 1.6;
         var yOffset = isMobile ? 1.4 : 0;
 
-        // Classical sphere (left / top on mobile) — purple/pink
+        // Classical sphere (left / top on mobile) — teal/cyan bubble
         var classicalUniforms = {
-            uColor: { value: new THREE.Vector3(0.80, 0.55, 0.75) },
+            uColor: { value: new THREE.Vector3(0.10, 0.65, 0.75) },
+            uInnerGlow: { value: new THREE.Vector3(0.05, 0.85, 0.90) },
             uOpacity: { value: 0.7 },
             uTime: { value: 0 },
             uActiveGlow: { value: 0.0 },
@@ -527,7 +528,7 @@
         var classicalMat = new THREE.ShaderMaterial({
             uniforms: classicalUniforms,
             vertexShader: fresnelVert,
-            fragmentShader: classicalFrag,
+            fragmentShader: bubbleFrag,
             transparent: true,
             depthWrite: false,
             side: THREE.DoubleSide,
@@ -539,18 +540,20 @@
         classicalSphere.position.set(-xOffset, yOffset * 0.5, 0);
         scene.add(classicalSphere);
 
-        // Quantum sphere (right / bottom on mobile) — cyan/amber
+        // Quantum sphere (right / bottom on mobile) — magenta/purple bubble
         var quantumUniforms = {
-            uColor: { value: new THREE.Vector3(0.20, 0.55, 0.60) },
+            uColor: { value: new THREE.Vector3(0.80, 0.55, 0.75) },
+            uInnerGlow: { value: new THREE.Vector3(0.85, 0.15, 0.95) },
             uOpacity: { value: 0.7 },
             uTime: { value: 0 },
-            uActiveGlow: { value: 0.0 }
+            uActiveGlow: { value: 0.0 },
+            uGlowIntensity: { value: 2.5 }
         };
 
         var quantumMat = new THREE.ShaderMaterial({
             uniforms: quantumUniforms,
             vertexShader: fresnelVert,
-            fragmentShader: quantumFrag,
+            fragmentShader: bubbleFrag,
             transparent: true,
             depthWrite: false,
             side: THREE.DoubleSide,
