@@ -44,7 +44,7 @@ In reality, the electrode IS the physical contact point. L1 and the neural inter
 ### 👤 Problem 2: Identity as a Layer
 
 v1 placed "Identity & Ethics" as L14 — the top of the stack.
-Identity involves consciousness. We cannot:
+The name implied modeling consciousness. We cannot:
 - Define its dataflow
 - Measure its dependency chain
 - Prove its mechanisms
@@ -52,7 +52,7 @@ Identity involves consciousness. We cannot:
 
 **If we can't define it, we can't layer it. If we can't layer it, we can't secure it.**
 
-We do not model consciousness. That is not our job.
+We do not model consciousness. That is not our job. But we CAN model **cognitive sovereignty** — the measurable, security-relevant properties of cognition: volitional control, neural signature integrity, cognitive state monitoring, and the four neurorights (cognitive liberty, mental privacy, mental integrity, psychological continuity). L14 is renamed **Cognitive Sovereignty** in the hourglass and maps to band N3.
 
 ### 🔄 Problem 3: Linear Stack for a Non-Linear System
 
@@ -76,12 +76,12 @@ at different depths operating simultaneously.
 - 📊 Dependency-based layering (proven by both OSI and neuroscience)
 - 📐 The mathematical scaling pattern (~1.1 orders of magnitude per layer)
 
-## ❌ What Goes
+## 🔄 What Changes
 
-- 🗑️ 14-layer combined stack
-- 🗑️ Identity/consciousness as a layer
-- 🗑️ L8 as a "middle bridge"
-- 🗑️ Pyramid/triangle visualization
+- ♻️ 14-layer stack → **reframed** as the hourglass's detailed engineering view (see §5.7 of whitepaper). The 14 layers remain valid for threat analysis and security operations — the hourglass is the architectural view that reveals the symmetric structure.
+- ♻️ "Identity & Ethics" → **renamed** to "Cognitive Sovereignty" — we model measurable neurorights, not consciousness
+- ♻️ L8 "middle bridge" → **repositioned** as I0, the hourglass waist — the most physical point, not an abstraction above L7
+- 🗑️ Pyramid/triangle visualization — replaced by hourglass
 - 🗑️ Any layer we cannot prove dataflow for
 
 ---

@@ -172,11 +172,11 @@ Since 2024, several developments have directly impacted the framework's testabil
 
 ## 5. The QIF Layer Architecture (v3.1 — Hourglass Model)
 
-> **v2.0 (14-layer OSI-based) is DEPRECATED.** Replaced 2026-02-02 with a hourglass architecture derived from neuroscience and quantum physics. No OSI heritage. See QIF-TRUTH.md Section 2 for canonical definitions.
+> **v2.0 (14-layer OSI-based) has been superseded** by the v3.1 hourglass architecture, derived from neuroscience and quantum physics rather than networking analogy. The 14-layer model remains valid as a detailed engineering view — it is the hourglass expanded (see §5.7). See QIF-TRUTH.md Section 2 for canonical definitions.
 
 ### 5.1 The Core Insight
 
-The v2.0 architecture extended the OSI model by stacking 7 neural layers (L8–L14) on top of 7 silicon layers. This was intuitive but wrong — it implied a linear signal path and inherited OSI's networking assumptions, which don't apply to neural tissue. The v3.1 hourglass model is derived from the actual physics:
+The v2.0 architecture extended the OSI model by stacking 7 neural layers (L8–L14) on top of 7 silicon layers. This was intuitive and productive — it generated 31 publications, two Python packages, and a 46-technique threat taxonomy. But it inherited OSI's networking assumptions (linear signal path, strict layering) which don't apply to neural tissue. The v3.1 hourglass model is derived from the actual physics:
 
 - **Width represents state space** — how many possible states exist at each band
 - The architecture is **widest at the extremes** (N3: integrative association with maximum security-relevant indeterminacy; S3: maximum classical application pathways) and **narrowest at the center** (I0: the electrode-tissue interface where measurement collapses possibilities)
@@ -214,6 +214,8 @@ The v2.0 architecture extended the OSI model by stacking 7 neural layers (L8–L
 
 I0 (Neural Interface) is the bottleneck of the hourglass — where silicon meets biology. Unlike v2.0's "Layer 8" which was modeled as a thin boundary, I0 has **real thickness**: it is a quasi-quantum zone where the decoherence factor ΓD ∈ (0,1), meaning quantum and classical physics coexist.
 
+**I0 IS the physical layer.** A common objection is that BCIs are physical devices — electrodes, wires, amplifiers — and therefore the interface should sit at the bottom of the stack (adjacent to OSI L1), not in the middle. The hourglass resolves this. I0 is not "above" anything. It is the **waist** — the most physical, most constrained point in the entire system. Everything above it (N1–N3) is progressively more abstract neural processing. Everything below it (S1–S3) is progressively more abstract digital processing. The waist is where platinum touches tissue, where electrons become ions, where classical measurement meets quantum state. It is the system's L1 — not by numbering convention, but by physical reality.
+
 - This is the attack surface for quantum-level threats
 - This is where the QI equation operates most directly
 - No existing framework addresses this boundary at the quantum level
@@ -243,7 +245,29 @@ The boundary between N2 (chaotic/stochastic) and N3 (quantum uncertain) is the *
 | L11 (Cognitive Transport) | N2 | Sensorimotor Processing |
 | L12 (Cognitive Session) | N3 | Integrative Association |
 | L13 (Semantic Layer) | N3 | Integrative Association |
-| L14 (Identity Layer) | N3 | Integrative Association (merged from former N4) |
+| L14 (Cognitive Sovereignty) | N3 | Integrative Association (merged from former N4) |
+
+### 5.7 Relationship to the Classical 14-Layer Model
+
+The hourglass does not invalidate the Classical model. It reframes it. The 14-layer model is the hourglass *expanded* — a detailed engineering view where each band decomposes into actionable layers with specific protocols, threats, and mitigations:
+
+| Hourglass Band | Classical Layers | Domain |
+|---|---|---|
+| S3 (Application) | L5–L7 (Session, Presentation, Application) | Digital application |
+| S2 (Digital Processing) | L3–L4 (Network, Transport) | Digital transport |
+| S1 (Analog Front-End) | L1–L2 (Physical Carrier, Data Link) | Silicon hardware |
+| **I0 (Interface)** | **L8 (Neural Gateway)** | **Electrode-tissue boundary** |
+| N1 (Subcortical Relay) | L9–L10 (Signal Processing, Neural Protocol) | Neural signaling |
+| N2 (Sensorimotor Processing) | L11–L12 (Cognitive Transport, Cognitive Session) | Neural processing |
+| N3 (Integrative Association) | L13–L14 (Semantic, Cognitive Sovereignty) | Cognitive integrity |
+
+**When to use which:**
+- **Classical 14-layer** — Security teams performing threat analysis, writing firewall rules, mapping attack surfaces to specific protocol layers. It speaks the language of network security professionals.
+- **Hourglass 7-band** — Researchers analyzing the architecture's symmetry, physicists modeling the quantum-classical boundary, architects designing systems that must span both domains. It reveals *why* the architecture works.
+
+The key correction the hourglass introduces is positional, not structural: L8 was always the physical interface — the electrode touching tissue. The 14-layer numbering implied it sat "above" OSI L7 in abstraction. The hourglass corrects this by placing it at the **waist** — the narrowest, most physical point — not a higher layer of abstraction. The Purdue Enterprise Reference Architecture for industrial control systems makes the same distinction: the physical process sits at Level 0 (the center), not above the network stack. The EvoArch model (Akhshabi & Dovrolis, 2011) provides theoretical backing: layered protocol stacks naturally evolve toward hourglass topologies, with the most universal protocol (here, the physical interface) at the waist.
+
+Neither view is wrong. They are different zoom levels of the same system.
 
 ---
 
@@ -817,7 +841,7 @@ Ethics in QIF is not a governance appendix. It is embedded in the framework's ar
 
 The quantum biometric proposed in Section 9 is **opt-in by design**. The underlying quantum tunneling state at the electrode-tissue interface is non-extractable — the no-cloning theorem prevents copying the quantum state, though the classical measurement output can be recorded. This means the biometric cannot be silently harvested; it requires active participation from the device and informed consent from the patient. The classical measurement residue is insufficient to reconstruct the full quantum state, creating a natural asymmetry between the user (who has the quantum state) and any adversary (who can only observe classical projections of it).
 
-The framework **explicitly models threats to identity and cognition** at the architectural level. Band N3 (Integrative Association) is not a technical afterthought — it is the band where neural activity corresponds to selfhood, decision-making, and consciousness. By placing it at the outermost neural band, the hourglass architecture ensures that threats to identity must traverse every other security layer before reaching it.
+The framework **explicitly models threats to cognitive sovereignty** at the architectural level. Band N3 (Integrative Association) is not a technical afterthought — it is the band where neural activity corresponds to volitional control, cognitive integrity, and the four neurorights identified by Ienca & Andorno (2017): cognitive liberty, mental privacy, mental integrity, and psychological continuity. By placing it at the outermost neural band, the hourglass architecture ensures that threats to cognitive sovereignty must traverse every other security layer before reaching it. The framework does not model consciousness — it models the measurable, security-relevant properties of cognition that can be verified, authenticated, and protected.
 
 **Decoherence parameter transparency** is a design commitment. Every quantum term in the QI Equation is labeled with its empirical status — established, hypothesized, or unknown. The framework does not hide behind impressive notation. Where the science is uncertain (and much of it is — Section 15), the uncertainty is flagged. This is not a weakness; it is what distinguishes a research framework from marketing.
 
@@ -833,7 +857,7 @@ The Quantum Model identified what the Classical Model could not see: at the elec
 
 Neither model answers the question that matters most: **should we?**
 
-Should we implant devices that can read motor intentions? Under what consent framework? Should we develop the capability to write neural signals? With what oversight? Should we pursue quantum biometric identification? For whom — patients, or surveillance targets? Should we model consciousness at all — or is the attempt itself an ethical violation?
+Should we implant devices that can read motor intentions? Under what consent framework? Should we develop the capability to write neural signals? With what oversight? Should we pursue quantum biometric identification? For whom — patients, or surveillance targets? Where does cognitive liberty end and neural surveillance begin?
 
 These questions — asked honestly, with regulatory teeth and philosophical rigor — are what neuroethics provides. It is the bridge between Classical and Quantum, between engineering and philosophy, between what we can build and what we should build. The Venn diagram on the Mindloft landing page is not a design metaphor. The two circles — Classical and Quantum — overlap, and in the overlap is neuroethics. The white glow at the center is not decorative. It is the point.
 
