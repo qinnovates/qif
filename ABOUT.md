@@ -30,7 +30,9 @@ That dual perspective — engineer and adversary — is what makes security engi
 
 ## The Vision: Qinnovate > Mindloft > QIF
 
-Everything I build is about my search for a better future, because if we cannot see it, we cannot design it. It started with the book I found from the late 1800s called Periodic Law. As I was reading it, I was able to envision the cognitive thought process that each scientist faced that showcased the evolution of discovery and frameworks to visualize how we can distill complex knowledge into the table we know of today; one that middle-schoolers can even appreciate. There were many iterations, and this is my first iteration. 
+Everything I build is about my search for a better future. Like a book that writes as you turn each chapter, if we cannot see the chapter we're on and know the preceeding chapters, there's no book to be read or written.
+
+It started with the book I found from the late 1800s called Periodic Law. As I was reading it, I was able to envision the cognitive thought process that each scientist faced that showcased the evolution of discovery and frameworks to visualize how we can distill complex knowledge into the table we know of today; one that middle-schoolers can even appreciate. There were many iterations, and this is my first iteration. 
 
 **Qinnovate** is the engine — where forward thinking begins. **Mindloft** is the workshop — where research is built, developed, and shared. *"Let's Mind Our Way."* And **QIF** (Quantum Indeterministic Framework for Neural Security) is Mindloft's flagship research: security engineering grounded in neuroethics — developing rigorous, testable frameworks that protect the "crown jewels" of what makes us human — our unique cognitive fingerprints — as we enter the age of brain–computer interfaces.
 
