@@ -41,6 +41,8 @@ A BCI electrode is hardware — copper, platinum, silicon. It belongs at the phy
 Putting it at L8 implies 7 layers of abstraction between the physical world and the brain.
 In reality, the electrode IS the physical contact point. L1 and the neural interface are the same boundary.
 
+UPDATE - 2/5/26 - Upon further research and exploring. I think L8 is safe to keep in this order as the hourglass diagram conveys that that this is two systems (see notes from recent synthesis). Further discussions are warranted to get concensus from the broader community.
+
 ### 👤 Problem 2: Identity as a Layer
 
 v1 placed "Identity & Ethics" as L14 — the top of the stack.
