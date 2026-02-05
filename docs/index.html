@@ -741,7 +741,7 @@
         }
 
         .music-toggle.expanded .music-follow {
-            max-width: 180px;
+            max-width: 200px;
             opacity: 1;
             margin-left: 0.5rem;
         }
@@ -753,11 +753,18 @@
             letter-spacing: 0.03em;
             text-transform: uppercase;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.2s, opacity 0.3s;
         }
 
         .music-follow-link:hover {
             color: #fff;
+        }
+
+        .music-follow-text {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+            transition: opacity 0.3s;
         }
 
         .music-follow-icon {
@@ -765,6 +772,11 @@
             height: 14px;
             color: var(--accent-cyan);
             flex-shrink: 0;
+            transition: opacity 0.3s;
+        }
+
+        .music-follow .hidden {
+            display: none;
         }
 
         #sc-player {
@@ -951,10 +963,12 @@
         </div>
         <span class="music-label">Music</span>
         <div class="music-follow" id="music-follow">
-            <svg class="music-follow-icon" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="music-follow-icon" id="sc-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.255-2.154c-.009-.054-.049-.1-.099-.1zm-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.283c.013.06.044.094.104.094.058 0 .09-.038.104-.094l.21-1.283-.21-1.332c-.014-.057-.046-.094-.104-.094zm1.8-1.087c-.066 0-.12.055-.129.122l-.189 2.39.189 2.313c.009.066.063.12.129.12.064 0 .119-.054.13-.12l.218-2.313-.218-2.39c-.011-.067-.066-.122-.13-.122zm.89-.238c-.077 0-.14.063-.15.141l-.174 2.628.174 2.532c.01.076.073.14.15.14.075 0 .138-.064.15-.14l.2-2.532-.2-2.628c-.012-.078-.075-.141-.15-.141zm.904-.21c-.088 0-.159.072-.168.161l-.159 2.838.159 2.62c.009.088.08.16.168.16.086 0 .157-.072.168-.16l.183-2.62-.183-2.838c-.011-.089-.082-.161-.168-.161zm.903.049c-.1 0-.181.082-.19.183l-.144 2.789.144 2.62c.009.1.09.182.19.182.098 0 .179-.082.19-.182l.165-2.62-.165-2.789c-.011-.101-.092-.183-.19-.183zm2.69-.714c-.055 0-.109.01-.16.029-.136.049-.243.165-.28.308l-.109 3.166.109 2.602c.037.143.144.259.28.308.051.019.105.029.16.029.056 0 .11-.01.161-.029.137-.049.243-.165.281-.308l.124-2.602-.124-3.166c-.038-.143-.144-.259-.281-.308-.051-.019-.105-.029-.161-.029zm.957-.153c-.121 0-.22.1-.231.223l-.099 3.319.099 2.584c.011.122.11.222.231.222.12 0 .219-.1.23-.222l.113-2.584-.113-3.319c-.011-.123-.11-.223-.23-.223zm.901-.052c-.132 0-.241.108-.252.242l-.085 3.371.085 2.584c.011.133.12.241.252.241.13 0 .24-.108.251-.241l.097-2.584-.097-3.371c-.011-.134-.121-.242-.251-.242zm.904.003c-.143 0-.261.118-.272.263l-.071 3.368.071 2.584c.011.144.129.262.272.262.141 0 .26-.118.271-.262l.081-2.584-.081-3.368c-.011-.145-.13-.263-.271-.263zm5.846.983c-.252 0-.491.046-.713.131-.146-1.655-1.548-2.953-3.26-2.953-.391 0-.77.068-1.122.195-.131.048-.166.096-.167.191v5.95c.001.098.071.181.167.195h5.095c1.22 0 2.209-.989 2.209-2.209 0-1.22-.989-2.209-2.209-2.209v.709z"/>
             </svg>
-            <a href="https://soundcloud.com/keviano" target="_blank" rel="noopener" class="music-follow-link" onclick="event.stopPropagation()">Follow on SoundCloud</a>
+            <a href="https://soundcloud.com/keviano" target="_blank" rel="noopener" class="music-follow-link" id="msg-follow" onclick="event.stopPropagation()">Follow on SoundCloud</a>
+            <span class="music-follow-text hidden" id="msg-first">my first piano piece</span>
+            <span class="music-follow-text hidden" id="msg-learning">still learning · more coming</span>
         </div>
     </div>
 
@@ -1177,7 +1191,13 @@
             let hasInteracted = false;
             let playTimeAccumulated = 0;
             let playStartTime = null;
-            let hasExpanded = false;
+            let messagePhase = 0; // 0=none, 1=follow, 2=first piece, 3=learning, 4=collapsed
+
+            // Message elements
+            const msgFollow = document.getElementById('msg-follow');
+            const msgFirst = document.getElementById('msg-first');
+            const msgLearning = document.getElementById('msg-learning');
+            const scIcon = document.getElementById('sc-icon');
 
             // Initialize widget when API loads
             function initWidget() {
@@ -1210,7 +1230,7 @@
                     isPlaying = true;
                     toggle.classList.add('playing');
                     playStartTime = Date.now();
-                    checkExpandTimer();
+                    startMessageSequence();
                 });
 
                 widget.bind(SC.Widget.Events.PAUSE, function() {
@@ -1230,9 +1250,17 @@
                 });
             }
 
-            // Check if we should expand the follow button
-            function checkExpandTimer() {
-                if (hasExpanded) return;
+            // Show a specific message, hide others
+            function showMessage(phase) {
+                msgFollow.classList.toggle('hidden', phase !== 1);
+                msgFirst.classList.toggle('hidden', phase !== 2);
+                msgLearning.classList.toggle('hidden', phase !== 3);
+                scIcon.style.display = (phase === 2 || phase === 3) ? 'none' : 'block';
+            }
+
+            // Message sequence: 15s=follow, 30s=first piece, 45s=learning, 60s=collapse
+            function startMessageSequence() {
+                if (messagePhase >= 4) return; // Already completed sequence
 
                 const checkInterval = setInterval(function() {
                     if (!isPlaying) {
@@ -1243,10 +1271,25 @@
                     const currentPlayTime = playTimeAccumulated +
                         (playStartTime ? (Date.now() - playStartTime) / 1000 : 0);
 
-                    if (currentPlayTime >= 10 && !hasExpanded) {
-                        hasExpanded = true;
-                        toggle.classList.add('expanded');
+                    if (currentPlayTime >= 60 && messagePhase < 4) {
+                        // Collapse after 60s
+                        messagePhase = 4;
+                        toggle.classList.remove('expanded');
+                        showMessage(0);
                         clearInterval(checkInterval);
+                    } else if (currentPlayTime >= 45 && messagePhase < 3) {
+                        // Show "still learning" at 45s
+                        messagePhase = 3;
+                        showMessage(3);
+                    } else if (currentPlayTime >= 30 && messagePhase < 2) {
+                        // Show "my first piano piece" at 30s
+                        messagePhase = 2;
+                        showMessage(2);
+                    } else if (currentPlayTime >= 15 && messagePhase < 1) {
+                        // Expand and show "Follow on SoundCloud" at 15s
+                        messagePhase = 1;
+                        toggle.classList.add('expanded');
+                        showMessage(1);
                     }
                 }, 500);
             }
