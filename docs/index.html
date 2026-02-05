@@ -40,6 +40,98 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* WebGL Canvas (primary - if supported) */
+        #webgl-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            display: none; /* Hidden until WebGL confirmed */
+        }
+
+        /* CSS Fallback Background (shown if no WebGL) */
+        .wave-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: var(--bg-deep);
+            overflow: hidden;
+        }
+
+        .wave-bg.hidden { display: none; }
+
+        .wave-bg::before,
+        .wave-bg::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            animation: wave-float 20s ease-in-out infinite;
+        }
+
+        .wave-bg::after {
+            background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+            animation: wave-float 25s ease-in-out infinite reverse;
+            animation-delay: -5s;
+        }
+
+        .wave-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 40% 40%, rgba(212, 165, 67, 0.05) 0%, transparent 20%);
+            animation: wave-drift 30s linear infinite;
+        }
+
+        .wave-layer:nth-child(2) {
+            background-image:
+                radial-gradient(circle at 60% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 30% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 30%);
+            animation: wave-drift 40s linear infinite reverse;
+            opacity: 0.7;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: grid-pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes wave-float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(2%, 2%) rotate(2deg); }
+            50% { transform: translate(0, 4%) rotate(0deg); }
+            75% { transform: translate(-2%, 2%) rotate(-2deg); }
+        }
+
+        @keyframes wave-drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-10%, -10%); }
+        }
+
+        @keyframes grid-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
         html, body {
             min-height: 100vh;
             background: var(--bg-deep);
@@ -74,6 +166,21 @@
             color: var(--text-primary);
             text-decoration: none;
             letter-spacing: -0.02em;
+        }
+
+        .nav-logo .separator {
+            color: var(--text-muted);
+            font-weight: 400;
+            margin: 0 0.4rem;
+        }
+
+        .nav-logo .tagline {
+            color: var(--accent-amber);
+            font-weight: 400;
+        }
+
+        .nav-logo .tagline strong {
+            font-weight: 700;
         }
 
         .nav-links {
@@ -136,6 +243,7 @@
         /* Hero */
         .hero {
             position: relative;
+            z-index: 1;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -144,17 +252,6 @@
             text-align: center;
             padding: 6rem 2rem 4rem;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 40% 50% at 20% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 50% at 80% 50%, rgba(6, 182, 212, 0.10) 0%, transparent 70%),
-                radial-gradient(ellipse 30% 40% at 50% 60%, rgba(212, 165, 67, 0.08) 0%, transparent 60%);
-            pointer-events: none;
         }
 
         .hero-label {
@@ -189,82 +286,340 @@
             max-width: 500px;
         }
 
-        /* Pillar Cards */
-        .pillars {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 960px;
-            width: 100%;
-            margin-top: 3.5rem;
+        /* Venn Diagram Container */
+        .venn-container {
             position: relative;
-            z-index: 1;
+            width: 100%;
+            max-width: 700px;
+            margin-top: 3rem;
+            aspect-ratio: 2 / 1.2;
         }
 
-        .pillar-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.25s, border-color 0.25s, background 0.25s;
-            display: flex;
-            flex-direction: column;
+        .venn-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Circle links */
+        .venn-link {
+            cursor: pointer;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+        }
+
+        .venn-link:hover {
+            filter: brightness(1.2);
+        }
+
+        .venn-link:hover .circle-glow {
+            opacity: 0.6;
+        }
+
+        .circle-fill {
+            transition: fill-opacity 0.3s ease;
+        }
+
+        .circle-glow {
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Concentric mode (initial state) */
+        .venn-svg.concentric #link-classical {
+            transform: translateX(120px);
+        }
+
+        .venn-svg.concentric #link-quantum {
+            transform: translateX(-120px);
+        }
+
+        .venn-svg.concentric .venn-label,
+        .venn-svg.concentric .venn-label-sub {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .venn-svg:not(.concentric) .venn-label,
+        .venn-svg:not(.concentric) .venn-label-sub {
+            opacity: 1;
+            transition: opacity 0.5s ease 0.3s;
+        }
+
+        /* BCI Enable Button */
+        .bci-enable-btn {
+            display: inline-flex;
+            align-items: center;
             gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 24px;
+            color: var(--accent-purple);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .pillar-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.06);
+        .bci-enable-btn:hover {
+            background: rgba(139, 92, 246, 0.25);
+            border-color: rgba(139, 92, 246, 0.6);
+            transform: scale(1.02);
         }
 
-        .pillar-card.classical { border-color: rgba(139, 92, 246, 0.25); }
-        .pillar-card.classical:hover { border-color: rgba(139, 92, 246, 0.5); }
-        .pillar-card.classical h2 { color: #c084fc; }
+        .bci-enable-btn.active {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
 
-        .pillar-card.quantum { border-color: rgba(6, 182, 212, 0.25); }
-        .pillar-card.quantum:hover { border-color: rgba(6, 182, 212, 0.5); }
-        .pillar-card.quantum h2 { color: #22d3ee; }
+        .bci-enable-btn .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
 
-        .pillar-card.governance { border-color: rgba(212, 165, 67, 0.25); }
-        .pillar-card.governance:hover { border-color: rgba(212, 165, 67, 0.5); }
-        .pillar-card.governance h2 { color: var(--accent-amber); }
+        .bci-enable-btn.active .pulse-dot {
+            animation: pulse 1.5s ease-in-out infinite;
+            opacity: 1;
+        }
 
-        .pillar-card h2 {
-            font-size: 1.25rem;
+        /* Labels */
+        .venn-label {
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
-            letter-spacing: -0.02em;
+            font-size: 18px;
+            fill: var(--text-primary);
+            text-anchor: middle;
         }
 
-        .pillar-card .card-subtitle {
+        .venn-label-sub {
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 11px;
+            fill: var(--text-secondary);
+            text-anchor: middle;
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            max-width: 280px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s, visibility 0.25s, transform 0.25s;
+            transform: translateY(10px);
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .tooltip h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .tooltip p {
             font-size: 0.8rem;
             color: var(--text-secondary);
             line-height: 1.5;
         }
 
-        .pillar-card .card-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
+        .tooltip.classical h3 { color: #c084fc; }
+        .tooltip.quantum h3 { color: #22d3ee; }
+        .tooltip.governance h3 { color: var(--accent-amber); }
+
+        @media (max-width: 768px) {
+            .venn-container {
+                max-width: 100%;
+                margin-top: 2rem;
+            }
+
+            .venn-label {
+                font-size: 14px;
+            }
+
+            .venn-label-sub {
+                font-size: 9px;
+            }
+        }
+
+        /* Threat Landscape Widget */
+        .threat-landscape {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .threat-header {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
             letter-spacing: 0.15em;
+            text-transform: uppercase;
             color: var(--text-muted);
-            margin-top: auto;
-            padding-top: 0.75rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .threat-header:hover {
+            color: var(--text-secondary);
+        }
+
+        .threat-pulse {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .threat-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .threat-stat {
+            text-align: center;
+        }
+
+        .threat-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .threat-stat-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .threat-ticker {
+            position: relative;
+            height: 2.5rem;
+            overflow: hidden;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .threat-item {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+            padding: 0 1rem;
+        }
+
+        .threat-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .threat-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .threat-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .threat-badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .threat-badge.classical { background: rgba(139, 92, 246, 0.2); color: #c084fc; }
+        .threat-badge.quantum { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+        .threat-badge.critical { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+
+        .explore-threats {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .explore-threats:hover {
+            color: var(--text-primary);
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .explore-threats svg {
+            width: 14px;
+            height: 14px;
         }
 
         @media (max-width: 768px) {
-            .pillars {
-                grid-template-columns: 1fr;
-                margin-top: 2.5rem;
+            .threat-stats {
+                gap: 1.5rem;
+            }
+
+            .threat-stat-value {
+                font-size: 1.5rem;
+            }
+
+            .threat-desc {
+                white-space: normal;
             }
         }
 
         /* Footer */
         .site-footer {
+            position: relative;
+            z-index: 1;
             text-align: center;
             padding: 3rem 2rem 2rem;
             border-top: 1px solid rgba(255,255,255,0.05);
+            background: var(--bg-deep);
         }
 
         .footer-links {
@@ -293,9 +648,19 @@
 </head>
 <body>
 
+    <!-- WebGL Background (if supported) -->
+    <canvas id="webgl-bg"></canvas>
+
+    <!-- CSS Fallback Background (if no WebGL) -->
+    <div class="wave-bg" id="css-bg">
+        <div class="wave-layer"></div>
+        <div class="wave-layer"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
     <nav id="main-nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">Mindloft</a>
+            <a href="/" class="nav-logo">Mindloft<span class="separator">|</span><span class="tagline">Neurosecurity Standards</span></a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="/" class="active">Home</a></li>
                 <li><a href="/classical/">Classical Neurosec</a></li>
@@ -311,28 +676,141 @@
     </nav>
 
     <main class="hero">
-        <div class="hero-label">Home of Neurosecurity Standards</div>
+        <div class="hero-label">Open Standards for Neural Interface Security</div>
         <h1>Mindloft</h1>
-        <p class="tagline">"Let's mind our way."</p>
-        <p class="sub-tagline">Two models. One mission. Securing the mind-machine boundary.</p>
+        <p class="tagline">Where neuroscience meets cybersecurity</p>
+        <p class="sub-tagline">Research frameworks built on neuroethics — protecting thought, securing tomorrow.</p>
 
-        <div class="pillars">
-            <a href="classical/" class="pillar-card classical">
-                <h2>Classical Model</h2>
-                <p class="card-subtitle">The ONI 14-layer framework securing today's brain-computer interfaces — from silicon to synapse.</p>
-                <span class="card-tag">ONI Framework</span>
-            </a>
+        <button class="bci-enable-btn" id="bci-enable-btn">
+            <span class="pulse-dot"></span>
+            <span>Enable BCI Mode</span>
+        </button>
 
-            <a href="quantum/" class="pillar-card quantum">
-                <h2>Quantum Model</h2>
-                <p class="card-subtitle">The QIF hourglass leveraging quantum indeterminacy as a security feature for tomorrow's neural frontier.</p>
-                <span class="card-tag">QIF Whitepaper</span>
-            </a>
+        <div class="venn-container">
+            <svg class="venn-svg concentric" viewBox="0 0 700 420" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <!-- Classical (Purple) gradient -->
+                    <radialGradient id="grad-classical" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.4"/>
+                        <stop offset="70%" stop-color="#8b5cf6" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.05"/>
+                    </radialGradient>
+                    <radialGradient id="glow-classical" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+                    </radialGradient>
 
-            <a href="governance/" class="pillar-card governance">
-                <h2>Governance</h2>
-                <p class="card-subtitle">Neuroethics, informed consent, regulatory compliance, and accessibility standards bridging both models.</p>
-                <span class="card-tag">10 Policy Documents</span>
+                    <!-- Quantum (Cyan) gradient -->
+                    <radialGradient id="grad-quantum" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.4"/>
+                        <stop offset="70%" stop-color="#06b6d4" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#0891b2" stop-opacity="0.05"/>
+                    </radialGradient>
+                    <radialGradient id="glow-quantum" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+                    </radialGradient>
+
+                    <!-- Governance (Amber) gradient for intersection -->
+                    <radialGradient id="grad-governance" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.5"/>
+                        <stop offset="70%" stop-color="#d4a543" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#b45309" stop-opacity="0.1"/>
+                    </radialGradient>
+
+                    <!-- Clip path for intersection -->
+                    <clipPath id="clip-left">
+                        <circle cx="230" cy="210" r="170"/>
+                    </clipPath>
+                    <clipPath id="clip-right">
+                        <circle cx="470" cy="210" r="170"/>
+                    </clipPath>
+                </defs>
+
+                <!-- Classical Circle (Left) -->
+                <a href="classical/" class="venn-link" id="link-classical">
+                    <circle cx="230" cy="210" r="180" fill="url(#glow-classical)" class="circle-glow"/>
+                    <circle cx="230" cy="210" r="170" fill="url(#grad-classical)" class="circle-fill" stroke="#8b5cf6" stroke-width="2" stroke-opacity="0.4"/>
+                </a>
+
+                <!-- Quantum Circle (Right) -->
+                <a href="quantum/" class="venn-link" id="link-quantum">
+                    <circle cx="470" cy="210" r="180" fill="url(#glow-quantum)" class="circle-glow"/>
+                    <circle cx="470" cy="210" r="170" fill="url(#grad-quantum)" class="circle-fill" stroke="#06b6d4" stroke-width="2" stroke-opacity="0.4"/>
+                </a>
+
+                <!-- Governance Intersection (Center) - drawn on top -->
+                <a href="governance/" class="venn-link" id="link-governance">
+                    <g clip-path="url(#clip-left)">
+                        <circle cx="470" cy="210" r="170" fill="url(#grad-governance)"/>
+                    </g>
+                    <g clip-path="url(#clip-right)">
+                        <circle cx="230" cy="210" r="170" fill="url(#grad-governance)"/>
+                    </g>
+                </a>
+
+                <!-- Labels -->
+                <text x="160" y="205" class="venn-label">Classical</text>
+                <text x="160" y="225" class="venn-label-sub">ONI Framework</text>
+
+                <text x="540" y="205" class="venn-label">Quantum</text>
+                <text x="540" y="225" class="venn-label-sub">QIF Whitepaper</text>
+
+                <text x="350" y="205" class="venn-label">Governance</text>
+                <text x="350" y="225" class="venn-label-sub">Neuroethics</text>
+            </svg>
+
+            <!-- Tooltips -->
+            <div class="tooltip classical" id="tooltip-classical">
+                <h3>Classical Model</h3>
+                <p>The ONI 14-layer framework securing today's brain-computer interfaces — from silicon to synapse.</p>
+            </div>
+            <div class="tooltip quantum" id="tooltip-quantum">
+                <h3>Quantum Model</h3>
+                <p>The QIF hourglass leveraging quantum indeterminacy as a security feature for tomorrow's neural frontier.</p>
+            </div>
+            <div class="tooltip governance" id="tooltip-governance">
+                <h3>Governance</h3>
+                <p>Neuroethics, informed consent, regulatory compliance, and accessibility standards bridging both models.</p>
+            </div>
+        </div>
+
+        <!-- Threat Landscape Widget -->
+        <div class="threat-landscape">
+            <div class="threat-header" id="threat-header">
+                <span class="threat-pulse"></span>
+                <span>Live Threat Landscape</span>
+            </div>
+
+            <div class="threat-stats">
+                <div class="threat-stat">
+                    <div class="threat-stat-value" id="stat-tactics">9</div>
+                    <div class="threat-stat-label">Attack Tactics</div>
+                </div>
+                <div class="threat-stat">
+                    <div class="threat-stat-value" id="stat-techniques">30</div>
+                    <div class="threat-stat-label">Techniques</div>
+                </div>
+                <div class="threat-stat">
+                    <div class="threat-stat-value" id="stat-defenses">6</div>
+                    <div class="threat-stat-label">Defenses</div>
+                </div>
+                <div class="threat-stat">
+                    <div class="threat-stat-value" id="stat-neurorights">4</div>
+                    <div class="threat-stat-label">Neurorights</div>
+                </div>
+            </div>
+
+            <div class="threat-ticker" id="threat-ticker">
+                <!-- Threats will be injected here -->
+            </div>
+
+            <a href="visualizations/threat-explorer.html" class="explore-threats">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                Explore Threat Matrix
             </a>
         </div>
     </main>
@@ -349,9 +827,183 @@
     </footer>
 
     <script>
+        // Mobile nav toggle
         document.getElementById('nav-hamburger').addEventListener('click', function() {
             document.getElementById('nav-links').classList.toggle('open');
         });
+
+        // Tooltip handling
+        const container = document.querySelector('.venn-container');
+        const links = {
+            classical: document.getElementById('link-classical'),
+            quantum: document.getElementById('link-quantum'),
+            governance: document.getElementById('link-governance')
+        };
+        const tooltips = {
+            classical: document.getElementById('tooltip-classical'),
+            quantum: document.getElementById('tooltip-quantum'),
+            governance: document.getElementById('tooltip-governance')
+        };
+
+        function showTooltip(type, event) {
+            const tooltip = tooltips[type];
+            const rect = container.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            // Position tooltip near cursor
+            tooltip.style.left = (x + 15) + 'px';
+            tooltip.style.top = (y - 10) + 'px';
+
+            // Keep tooltip within container bounds
+            const tooltipRect = tooltip.getBoundingClientRect();
+            if (x + tooltipRect.width + 15 > rect.width) {
+                tooltip.style.left = (x - tooltipRect.width - 15) + 'px';
+            }
+
+            tooltip.classList.add('visible');
+        }
+
+        function hideTooltip(type) {
+            tooltips[type].classList.remove('visible');
+        }
+
+        // Add event listeners
+        Object.keys(links).forEach(type => {
+            links[type].addEventListener('mouseenter', (e) => showTooltip(type, e));
+            links[type].addEventListener('mousemove', (e) => showTooltip(type, e));
+            links[type].addEventListener('mouseleave', () => hideTooltip(type));
+        });
+
+        // BCI Mode Toggle
+        let bciEnabled = false;
+        let tickerInterval = null;
+        let threatData = null;
+
+        const bciBtn = document.getElementById('bci-enable-btn');
+        const vennSvg = document.querySelector('.venn-svg');
+
+        bciBtn.addEventListener('click', function() {
+            bciEnabled = !bciEnabled;
+            bciBtn.classList.toggle('active', bciEnabled);
+            bciBtn.querySelector('span:last-child').textContent = bciEnabled ? 'BCI Mode Active' : 'Enable BCI Mode';
+
+            // Animate circles from concentric to Venn diagram
+            vennSvg.classList.toggle('concentric', !bciEnabled);
+
+            // Enable/disable dynamic stats
+            if (bciEnabled && threatData) {
+                activateThreatLandscape(threatData);
+            } else {
+                deactivateThreatLandscape();
+            }
+        });
+
+        function activateThreatLandscape(data) {
+            const ticker = document.getElementById('threat-ticker');
+            const statTactics = document.getElementById('stat-tactics');
+            const statTechniques = document.getElementById('stat-techniques');
+            const statDefenses = document.getElementById('stat-defenses');
+            const statNeurorights = document.getElementById('stat-neurorights');
+
+            const tactics = data.tactics || [];
+            let techniques = [];
+            tactics.forEach(t => techniques.push(...(t.techniques || [])));
+            const defenses = data.defenses || [];
+            const neurorights = data.neurorights || [];
+
+            // Animate stat updates
+            animateNumber(statTactics, tactics.length);
+            animateNumber(statTechniques, techniques.length);
+            animateNumber(statDefenses, defenses.length);
+            animateNumber(statNeurorights, neurorights.length);
+
+            // Build and start threat ticker
+            ticker.innerHTML = '';
+            const criticalThreats = techniques.filter(t =>
+                t.classical?.severity === 'Critical' || t.quantum?.detection?.includes('Enhanced')
+            );
+            const displayThreats = criticalThreats.length > 0 ? criticalThreats : techniques.slice(0, 10);
+
+            displayThreats.forEach((threat, i) => {
+                const item = document.createElement('div');
+                item.className = 'threat-item' + (i === 0 ? ' active' : '');
+
+                const isQuantum = threat.id.startsWith('QIF');
+                const isCritical = threat.classical?.severity === 'Critical';
+
+                let badges = '';
+                if (isCritical) badges += '<span class="threat-badge critical">Critical</span>';
+                if (isQuantum) badges += '<span class="threat-badge quantum">Quantum</span>';
+                else if (!isQuantum && threat.quantum?.quantum_advantage) badges += '<span class="threat-badge classical">Classical+Q</span>';
+
+                item.innerHTML = '<div class="threat-name">' + threat.name + badges + '</div>' +
+                    '<div class="threat-desc">' + threat.description + '</div>';
+                ticker.appendChild(item);
+            });
+
+            // Start cycling
+            let currentIndex = 0;
+            const items = ticker.querySelectorAll('.threat-item');
+            if (items.length > 1) {
+                tickerInterval = setInterval(() => {
+                    items[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % items.length;
+                    items[currentIndex].classList.add('active');
+                }, 4000);
+            }
+        }
+
+        function deactivateThreatLandscape() {
+            // Stop ticker
+            if (tickerInterval) {
+                clearInterval(tickerInterval);
+                tickerInterval = null;
+            }
+
+            // Reset to static values
+            document.getElementById('stat-tactics').textContent = '9';
+            document.getElementById('stat-techniques').textContent = '30';
+            document.getElementById('stat-defenses').textContent = '6';
+            document.getElementById('stat-neurorights').textContent = '4';
+            document.getElementById('threat-ticker').innerHTML = '';
+        }
+
+        function animateNumber(el, target) {
+            const start = parseInt(el.textContent) || 0;
+            const duration = 800;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(start + (target - start) * eased);
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Preload threat data (but don't activate until BCI enabled)
+        (async function preloadThreatMatrix() {
+            try {
+                let data;
+                try {
+                    const localRes = await fetch('../MAIN/shared/threat-matrix.json');
+                    if (localRes.ok) data = await localRes.json();
+                } catch (e) {}
+
+                if (!data) {
+                    const res = await fetch('https://raw.githubusercontent.com/qinnovates/mindloft/main/MAIN/shared/threat-matrix.json');
+                    if (!res.ok) throw new Error('Failed to load threat matrix');
+                    data = await res.json();
+                }
+
+                threatData = data;
+            } catch (err) {
+                console.log('Threat matrix not loaded:', err.message);
+            }
+        })();
     </script>
 
 </body>
