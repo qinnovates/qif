@@ -683,6 +683,60 @@
       "feasibility": "research-needed",
       "estimated_effort": "large",
       "timeline": "12-24 months"
+    },
+    {
+      "id": "future-academic-discoverability",
+      "title": "Academic Discoverability & SEO for Research",
+      "type": "infrastructure",
+      "status": "backlog",
+      "description": "Implement academic metadata and structured data to maximize discoverability by Google Scholar, Semantic Scholar, and research databases. Does NOT involve AI scrapers (GPTBot, CCBot, etc.) — those remain blocked.",
+      "rationale": "Academic visibility requires proper metadata, not AI crawler access. Google Scholar uses citation meta tags. Semantic Scholar indexes via ORCID/DOI. These are the real levers for research discoverability.",
+      "deliverables": [
+        {
+          "id": "citation-meta-tags",
+          "title": "Add Google Scholar citation meta tags",
+          "description": "Add <meta name=\"citation_*\"> tags to whitepaper HTML: citation_title, citation_author, citation_publication_date, citation_pdf_url, citation_abstract, citation_keywords",
+          "status": "backlog"
+        },
+        {
+          "id": "schema-markup",
+          "title": "Add JSON-LD ScholarlyArticle schema",
+          "description": "Add structured data markup for ScholarlyArticle type to whitepaper pages for rich search results",
+          "status": "backlog"
+        },
+        {
+          "id": "zenodo-doi",
+          "title": "Get DOI via Zenodo",
+          "description": "Upload whitepaper to Zenodo (free) to get a citable DOI. Link DOI in citation meta tags.",
+          "status": "backlog"
+        },
+        {
+          "id": "orcid-profile",
+          "title": "Create/link ORCID researcher profile",
+          "description": "Create ORCID profile, link all publications for unified researcher identity",
+          "status": "backlog"
+        },
+        {
+          "id": "semantic-scholar-submission",
+          "title": "Submit to Semantic Scholar",
+          "description": "Submit whitepaper PDF directly to Semantic Scholar for indexing",
+          "status": "backlog"
+        },
+        {
+          "id": "arxiv-preprint",
+          "title": "Consider arXiv/SSRN preprint",
+          "description": "Evaluate submitting QIF whitepaper as preprint to arXiv (cs.CR) or SSRN for academic reach",
+          "status": "backlog"
+        }
+      ],
+      "prerequisites": [
+        "QIF whitepaper finalized",
+        "Framework equations validated",
+        "At least one experimental result documented"
+      ],
+      "feasibility": "practical",
+      "estimated_effort": "small",
+      "timeline": "1-2 weeks after framework finalization"
     }
   ],
 

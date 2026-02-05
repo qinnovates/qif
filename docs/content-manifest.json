@@ -3,7 +3,7 @@
     "repo": "qinnovates/mindloft",
     "base_url": "https://github.com/qinnovates/mindloft/blob/main",
     "last_updated": "2026-02-03",
-    "roadmap_source": "MAIN/legacy-core/project/prd.json",
+    "roadmap_source": "project/prd.json",
     "description": "Single source of truth for all documentation links. Update paths here instead of editing HTML.",
     "models": {
       "classical": "ONI 14-Layer Model — securing today's neural frontier",
