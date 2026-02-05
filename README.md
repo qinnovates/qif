@@ -10,9 +10,6 @@
 
   > *"The most important connections require the most thought."*
 
-  [![Tests](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml)
-  [![Security](https://github.com/qinnovates/mindloft/actions/workflows/security.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/security.yml)
-
   [qinnovate.com/mindloft](https://qinnovate.com/mindloft/) · *"Let's Mind Our Way."*
 
 </div>
