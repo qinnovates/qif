@@ -2,8 +2,8 @@
 
 > **Purpose:** Persistent learnings from Ralph Loop iterations. AI agents read this file at the start of each session to benefit from discovered patterns, gotchas, and conventions.
 
-**Last Updated:** 2026-01-29
-**Loop Iterations:** 17
+**Last Updated:** 2026-02-06
+**Loop Iterations:** 18
 
 ---
 
@@ -15,48 +15,50 @@
 
 | Workstream | Status | Last Activity | Notes |
 |------------|--------|---------------|-------|
-| **ONI Demo Video** | COMPLETE | 2026-01-29 | v1.0 complete, 3:56 duration, all voiceovers + sound design |
-| **ONI Academy** | Active | 2026-01-28 | v0.2.0 published to PyPI, LearnViz integration complete |
-| **GitHub Pages** | Active | 2026-01-28 | Wave background added to viz page, nav renamed to "ONI Search WIP" |
-| **TARA Stack** | Stable | 2026-01-26 | v0.8.1 on PyPI, WCAG compliant |
-| **oni-framework** | Stable | 2026-01-26 | v0.2.5 on PyPI |
+| **Repository Separation** | COMPLETE | 2026-02-06 | Qinnovate (standards) vs Mindloft (tools) — separation finalized |
+| **VERA Engine** | Active | 2026-02-06 | New lifecycle model replacing CIV — Time-to-Autonomy over Time-to-Market |
+| **Tool Migration** | COMPLETE | 2026-02-06 | CTF, ONI framework, TARA, demo moved to mindloft/main/tools/ |
+| **ONI Demo Video** | COMPLETE | 2026-01-29 | v1.0 complete, now in tools/oni-product-demo/ |
+| **GitHub Pages** | Active | 2026-02-06 | qinnovate.com serves from /docs with CNAME |
+| **TARA Stack** | Stable | 2026-01-26 | v0.8.1 on PyPI, now in tools/ |
+| **oni-framework** | Stable | 2026-01-26 | v0.2.5 on PyPI, now in tools/ |
 
 ### User Preferences & Decisions
 
 | Preference | Decision | Date |
 |------------|----------|------|
+| **Standards vs Implementation** | Qinnovate = standards body (like NIST), Mindloft = products (like vendors) | 2026-02-06 |
+| **VERA Engine** | Four pillars (Validation, Ethics, Research, Authority) with governance at center | 2026-02-06 |
+| **Time-to-Autonomy** | Neuroethics-aligned term replacing "Time-to-Truth" | 2026-02-06 |
+| **Tool location** | Implementation tools in mindloft/tools/, not qinnovate | 2026-02-06 |
 | **Background style** | Flowing wave canvas animation (not neural dots/grid) | 2026-01-28 |
 | **PyPI publishing** | Use GitHub Actions trusted publishing (not manual twine) | 2026-01-26 |
-| **Moltbot** | Tabled for later scaling — added to kevinqicode backlog | 2026-01-28 |
-| **Memory persistence** | Enhance AGENTS.md (not Moltbot) | 2026-01-28 |
 | **Brand naming** | "TARA Stack" not "Platform" | 2026-01-26 |
-| **Nav link naming** | "ONI Search WIP" not "Autodidactive demo" | 2026-01-28 |
 
 ### Pending Items
 
 | Item | Priority | Context |
 |------|----------|---------|
-| — | — | No pending items |
+| **QIF integration** | High | QIF framework needs integration into Qinnovate standards |
+| **MAIN folder rename** | Medium | "archived" folder created but may need reorganization |
 
 ### Recent Session Context
+
+**2026-02-06 Session:**
+- Evolved CIV (Continuous Iteration & Validation) to VERA Engine (Validation • Ethics • Research • Authority)
+- Renamed "Time-to-Truth" to "Time-to-Autonomy" for neuroethics alignment
+- Created circular VERA diagram with governance at center
+- Moved tools from Qinnovate to Mindloft: CTF challenge, ONI framework Python package, TARA platform, demo video
+- CNAME incident: Removed, restored, then correctly removed root CNAME (actual one is in /docs)
+- Added Post-Mortem Protocols to MEMORY.md (mandatory pre-flight checks for file deletion, diagram creation, git operations)
+- Renamed MAIN → archived in mindloft
 
 **2026-01-29 Session:**
 - COMPLETED ONI Demo Video v1.0 (3:56 duration, 7080 frames @ 30fps)
 - Generated all voiceovers with ElevenLabs (Jay Wayne + Lily voices)
 - Created complete sound design with psychology-backed audio
 - Implemented voice-reactive waves in credits scene
-- Created video production CLAUDE.md with sync guidelines
-- Documented all audio files and voice configurations
-- Key files: `MAIN/legacy-core/oni-product-demo/CLAUDE.md`, `MAIN/legacy-core/oni-product-demo/SESSION_NOTES.md`, `MAIN/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md`
-
-**2026-01-28 Session:**
-- Fixed oni-academy imports (LEARNVIZ_AVAILABLE = True when installed from PyPI)
-- Published oni-academy v0.2.0 via GitHub Actions
-- Added Moltbot to kevinqicode opportunities backlog (not pursuing now)
-- Renamed "Autodidactive demo" → "ONI Search WIP" in nav
-- Added flowing wave canvas background to `docs/visualizations/08-oni-framework-viz.html`
-- User explicitly wants wave animation, NOT neural dots or grid lines
-- Enhanced AGENTS.md with Session Memory section for persistent context
+- Key files: `tools/oni-product-demo/CLAUDE.md`, `tools/oni-product-demo/SESSION_NOTES.md`
 
 ---
 
@@ -137,6 +139,50 @@
 - **Fade audio at scene boundaries** — Without fade-out, audio bleeds into next scene. Use `interpolate(f, [duration-30, duration], [1, 0])` for 1-second fade.
 - **Voice iterations required** — "Bold" vs "encouraging" voice settings produce very different results. User may need 2-3 iterations to find the right tone.
 - **Complex visual effects may be rejected** — User rejected black hole collapse effect ("too dark") and spiral graphics ("bad"). Simpler approaches often work better.
+- **⚠️ CRITICAL: Check dependencies before deleting files** (2026-02-06) — CNAME incident: removed root CNAME without checking GitHub Pages config. Pages was serving from /docs so CNAME belonged there, not root. ALWAYS check what a file does before removing.
+- **CNAME location matters:** GitHub Pages serving from /docs looks for CNAME in /docs, not root. Check Pages configuration before file operations.
+
+---
+
+## Operational Protocols (Post-Mortems)
+
+### Critical Pattern: Moving Too Fast
+
+**Identified:** 2026-02-06 (CNAME incident, circular diagram failures)
+
+**Problem:** Repeated pattern of acting before fully understanding, pattern matching instead of thinking, not visualizing consequences.
+
+### Mandatory Pre-Flight Checks (LOADED FROM MEMORY.md)
+
+**Before ANY File Deletion:**
+1. Ask: What is this file for? (Read it if needed)
+2. Check: What depends on it? (grep for references, check configs)
+3. Verify: Is it actually unused? (git log, Pages config, build scripts)
+4. Example failure: CNAME removal without checking GitHub Pages config
+
+**Before Creating Diagrams/Visualizations:**
+1. Visualize first: Picture the structure before coding
+2. Read instructions twice: Don't pattern-match to previous work
+3. Check examples: If user provides reference images, look at them
+4. Example failure: VERA circular diagram made vertical twice despite "circle" instruction
+
+**Before ANY Git Push:**
+1. Review the diff: What exactly am I changing?
+2. Run security audit: For qinnovate/mindloft repos
+3. Consider blast radius: Who/what depends on these changes?
+
+### General Operating Principles
+
+- **Slow down on destructive operations** (rm, delete, overwrite)
+- **When uncertain, ask before acting** — cost of confirmation < cost of mistake
+- **Read config files before assuming** — don't rely on memory/patterns
+- **Post-mortems must change behavior** — documenting failures isn't enough
+
+### Session Checkpoints
+
+- If I catch myself "moving fast" → pause, ask what I might be missing
+- If user says "are you sure?" → stop, recheck assumptions
+- After any mistake → update MEMORY.md Post-Mortem Protocols section
 
 ---
 
