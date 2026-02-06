@@ -23,6 +23,7 @@
 
 | Date | Event | Link |
 |------|-------|------|
+| 2026-02-06 ~late night | Unified Neural Security Taxonomy: 60 techniques across 11 MITRE-compatible tactics, deduplication of 3 attack inventories, T2000+ ID range, extended schema with coupling/detection/status fields | [Entry 37](#entry-37-unified-neural-security-taxonomy-mitre-attck-compatible-bci-threat-registry) |
 | 2026-02-06 ~08:15 AM | Black Hole Security Principle: Hawking/Susskind/Maldacena applied to BCI, 4 derivations, scrambling bound, holographic I0, Page curve = key exchange | [Entry 35](#entry-35-the-black-hole-security-principle--hawkingsusskindmaldacena-applied-to-bci-security) |
 | 2026-02-06 ~09:00 AM | v4.0 IMPLEMENTED: 11 bands in config.py, quantum proof scenario, hourglass diagram as-code, JSON export, framework name validated | [Entry 34](#entry-34-v40-implemented--quantum-proof-scenario--hourglass-diagram--name-validation) |
 | 2026-02-06 ~08:00 AM | NSP v2.0 pitch document updated — 5 defense layers, Merkle-amortized SPHINCS+, compress→encrypt→sign pipeline, 20-year key lifecycle, 3.25% power overhead. See [NSP-PITCH.md](./NSP-PITCH.md) | N/A (captured in NSP-PITCH.md) |
@@ -126,6 +127,24 @@ Each entry follows this structure:
 | 14 | 2026-02-02 ~evening | QIF v3.0 Hourglass Layer Model — Finalized and Implemented | Implemented — 8-band model across all files |
 | 15 | 2026-02-02 ~night | QIF v3.1 — 7-Band Symmetric Model (Validated by External Research) | Implemented — 3 agents validated, 6 decisions confirmed |
 | 16 | 2026-02-02 ~late night | Independent AI Peer Review (Gemini 2.5) — Critical Assessment | Active — actionable feedback received, improvements queued |
+| 17 | 2026-02-02 ~late night | Immersive Whitepaper UX — Audio, Hourglass Scroll, Field Notes | Implemented |
+| 18 | 2026-02-03 ~night | The Hamiltonian Is the Missing Root Node of the QI Equation | Validated — unifying insight |
+| 19 | 2026-02-03 ~night | Research Assessment — Who Is Working on H_total | Active |
+| 22 | 2026-02-03 ~night | Classical-Hourglass Reconciliation and Cognitive Sovereignty Rename | Validated |
+| 24 | 2026-02-06 ~02:30 AM | 7-Layer Neural Expansion, Neural Sensory Protocol, Multi-AI Validation | Implemented |
+| 25 | 2026-02-06 ~06:00 AM | 3-1-3 vs Tactical 7-1-3 — Architecture Stress Test and the Spinal Gap | Validated |
+| 26 | 2026-02-06 | Unified QI Equation with Dsf | Implemented |
+| 27 | 2026-02-06 | No-Cloning Theorem at I0 | Validated |
+| 28 | 2026-02-06 ~06:30 AM | L=v/f Unification, Government-Restricted Spectrum, Resonance Shield | Implemented |
+| 29 | 2026-02-06 | Break-It Test Plan and Honest Framing | Active |
+| 30 | 2026-02-06 ~07:30 AM | Cross-Session Synthesis — Detection-Prediction Architecture | Active |
+| 31 | 2026-02-06 ~07:45 AM | NSP Goes Post-Quantum — The Implant Lifetime Argument | Active |
+| 32 | 2026-02-06 ~07:30 AM | BCI Device Taxonomy (92 Devices), Frequency Registry, MITRE Framing | Implemented |
+| 33 | 2026-02-06 ~08:00 AM | QIF v4.0 — 7-1-3 Hourglass Architecture (Final Decision) | Decision — awaiting implementation |
+| 34 | 2026-02-06 ~09:00 AM | v4.0 IMPLEMENTED — Quantum Proof Scenario, Hourglass Diagram, Name Validation | Implemented |
+| 35 | 2026-02-06 ~08:15 AM | The Black Hole Security Principle — Hawking/Susskind/Maldacena Applied to BCI | Derived |
+| 36 | 2026-02-06 | Synthetic Domain Rename, I0 as Domain-Indeterminate Superposition | Validated |
+| 37 | 2026-02-06 ~late night | Unified Neural Security Taxonomy: MITRE ATT&CK-Compatible BCI Threat Registry | Implemented — 60 techniques, 11 tactics, config.py updated |
 
 ---
 

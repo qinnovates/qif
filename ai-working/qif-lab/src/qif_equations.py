@@ -5,6 +5,11 @@ This module implements:
 - Coherence Metric (Cₛ)
 - QI Equation Candidate 1 (Additive/Engineering)
 - QI Equation Candidate 2 (Tensor/Theoretical)
+- Unified QI Equation: QI(b,t) = e^(-Σ(b,t))
+- Consumer QI (simplified)
+- Scale-frequency term Dsf
+- Spectral consistency Dspec
+- Wave length L = v/f
 - Decoherence factor ΓD(t)
 - Tunneling coefficient T
 
@@ -16,6 +21,11 @@ Changelog:
 - 2026-02-02: σ²τ renamed to Hτ (it's entropy, not variance)
 - 2026-02-02: Candidate 1 inputs now require [0,1] normalization
 - 2026-02-02: Added input validation (negative variances, negative time)
+- 2026-02-06: Unified QI equation QI(b,t) = e^(-Σ) replacing separate candidates
+- 2026-02-06: Added Dsf (scale-frequency), L=v/f, Dspec (consumer spectral)
+- 2026-02-06: Added qi_consumer (3-term simplified)
+- 2026-02-06: Tunneling ungated in quantum terms (Gemini correction)
+- 2026-02-06: Hτ normalized by ln(N) in unified equation
 """
 
 import numpy as np
@@ -350,6 +360,222 @@ def qi_candidate2(
     """
     sq = s_quantum(svn, phi_tunnel, e_entangle, params)
     return c_class * np.exp(-sq)
+
+
+# ──────────────────────────────────────────────
+# Unified QI Equation (Entry 26+, 2026-02-06)
+# ──────────────────────────────────────────────
+# Candidates 1 and 2 are the same equation in different spaces.
+# Candidate 1 (additive) is log-space; Candidate 2 (exponential) is real-space.
+# The unified equation: QI(b,t) = e^(-Σ(b,t)) where Σ = Σc + Σq
+
+@dataclass
+class BandParams:
+    """Parameters for a specific neural/silicon band."""
+    name: str = "N3"
+    v_expected: float = 7.0      # Expected conduction velocity (m/s)
+    n_channels: int = 64         # Number of channels in this band
+
+
+def dsf_term(f: float, L: float, v_expected: float) -> float:
+    """Dsf — Scale-frequency consistency check.
+
+    Dsf = (ln(f·L / v_expected))²
+
+    Measures whether a signal's frequency and spatial extent obey L = v/f.
+    Returns 0 when f·L = v_expected (physically consistent).
+    Grows quadratically on log-scale for deviations.
+
+    Args:
+        f: Signal frequency (Hz)
+        L: Spatial extent / wavelength (meters)
+        v_expected: Expected wave velocity for this tissue/medium (m/s)
+
+    Returns:
+        Dsf score (0 = consistent, >0 = anomalous)
+    """
+    if f <= 0 or L <= 0 or v_expected <= 0:
+        return float('inf')
+    ratio = (f * L) / v_expected
+    if ratio <= 0:
+        return float('inf')
+    return (np.log(ratio)) ** 2
+
+
+def wave_length(v: float, f: float) -> float:
+    """L = v/f — Unified wave equation.
+
+    Single equation for both neural spatial extent and silicon wavelength.
+    L is "length of one wave" in any medium. Only v differs.
+
+    Args:
+        v: Wave velocity (m/s). Neural: 0.1-30 m/s. Silicon: ~2e8 m/s.
+        f: Frequency (Hz)
+
+    Returns:
+        L in meters
+    """
+    if f <= 0:
+        raise ValueError(f"Frequency must be positive: f={f}")
+    return v / f
+
+
+def dspec_term(power_spectrum: np.ndarray, expected_spectrum: np.ndarray) -> float:
+    """Dspec — Spectral consistency for consumer devices.
+
+    Replaces Dsf when spatial resolution is insufficient.
+    Measures KL-divergence between observed and expected power spectra.
+
+    Args:
+        power_spectrum: Observed normalized power spectrum (sums to 1)
+        expected_spectrum: Expected normalized power spectrum (sums to 1)
+
+    Returns:
+        Dspec score (0 = perfectly consistent, >0 = anomalous)
+    """
+    # Normalize to distributions
+    p = np.clip(power_spectrum / (np.sum(power_spectrum) + 1e-15), 1e-15, 1.0)
+    q = np.clip(expected_spectrum / (np.sum(expected_spectrum) + 1e-15), 1e-15, 1.0)
+    # Symmetric KL divergence
+    return 0.5 * (np.sum(p * np.log(p / q)) + np.sum(q * np.log(q / p)))
+
+
+def sigma_classical(
+    sigma_phi: float,
+    h_tau: float,
+    sigma_gamma: float,
+    n_channels: int,
+    dsf: float = 0.0,
+) -> float:
+    """Σc — Classical anomaly sum.
+
+    Σc = σ²φ + Hτ/ln(N) + σ²γ + Dsf
+
+    Args:
+        sigma_phi: Phase variance (circular, pi²-scaled)
+        h_tau: Transport entropy (raw sum)
+        sigma_gamma: Gain variance (normalized)
+        n_channels: Number of channels (for Hτ normalization)
+        dsf: Scale-frequency consistency (0 if not computed)
+
+    Returns:
+        Classical anomaly score (≥ 0)
+    """
+    # Normalize transport entropy by ln(N)
+    ln_n = np.log(max(n_channels, 2))  # min 2 to avoid log(1)=0
+    h_tau_normalized = h_tau / ln_n
+    return sigma_phi + h_tau_normalized + sigma_gamma + dsf
+
+
+def sigma_quantum(
+    qi_hat: float,
+    qt_hat: float,
+    qe_hat: float,
+    t: float,
+    tau_d: float,
+) -> float:
+    """Σq — Quantum anomaly sum.
+
+    Σq = (1-ΓD)·Q̂i + Q̂t + (1-ΓD)·Q̂e
+
+    Note: Tunneling (Q̂t) is UNGATED — persists even in classical regime.
+    Indeterminacy and entanglement decay with decoherence.
+
+    Args:
+        qi_hat: Normalized indeterminacy [0,1]
+        qt_hat: Normalized tunneling [0,1] — ungated
+        qe_hat: Normalized entanglement [0,1]
+        t: Time elapsed (seconds)
+        tau_d: Decoherence time (seconds)
+
+    Returns:
+        Quantum anomaly score (≥ 0)
+    """
+    gate = quantum_gate(t, tau_d)
+    return gate * qi_hat + qt_hat + gate * qe_hat
+
+
+def qi_unified(
+    sigma_phi: float,
+    h_tau: float,
+    sigma_gamma: float,
+    n_channels: int,
+    f: float = 10.0,
+    L: float = 0.15,
+    v_expected: float = 7.0,
+    qi_hat: float = 0.0,
+    qt_hat: float = 0.0,
+    qe_hat: float = 0.0,
+    t: float = 1e-6,
+    tau_d: float = 1e-5,
+    include_dsf: bool = True,
+    include_quantum: bool = True,
+) -> float:
+    """QI(b,t) = e^(-Σ(b,t)) — Unified QI equation.
+
+    The master equation for QIF neural security scoring.
+    Σ = Σc + Σq (classical + quantum anomaly).
+
+    Args:
+        sigma_phi: Phase variance
+        h_tau: Transport entropy (raw)
+        sigma_gamma: Gain variance
+        n_channels: Channel count for Hτ normalization
+        f: Signal frequency (Hz)
+        L: Spatial extent / wavelength (meters)
+        v_expected: Expected wave velocity (m/s)
+        qi_hat: Normalized quantum indeterminacy [0,1]
+        qt_hat: Normalized tunneling [0,1]
+        qe_hat: Normalized entanglement [0,1]
+        t: Time since state prep (seconds)
+        tau_d: Decoherence time (seconds)
+        include_dsf: Include scale-frequency term (False for consumer)
+        include_quantum: Include quantum terms (False for consumer)
+
+    Returns:
+        QI score (0 to 1). 1 = normal, 0 = anomalous.
+    """
+    # Classical terms
+    dsf = dsf_term(f, L, v_expected) if include_dsf else 0.0
+    sc = sigma_classical(sigma_phi, h_tau, sigma_gamma, n_channels, dsf)
+
+    # Quantum terms (optional)
+    sq = 0.0
+    if include_quantum:
+        sq = sigma_quantum(qi_hat, qt_hat, qe_hat, t, tau_d)
+
+    total_sigma = sc + sq
+    return np.exp(-total_sigma)
+
+
+def qi_consumer(
+    sigma_phi: float,
+    h_tau: float,
+    sigma_gamma: float,
+    n_channels: int,
+    w1: float = 1.0,
+    w2: float = 1.0,
+    w3: float = 1.0,
+) -> float:
+    """QI_consumer = e^(-(w₁·σ²φ + w₂·Hτ/ln(N) + w₃·σ²γ))
+
+    Simplified QI for consumer devices (Muse, NeuroSky).
+    3 classical terms only, no Dsf, no quantum terms.
+    Weighted for calibration flexibility.
+
+    Args:
+        sigma_phi: Phase variance
+        h_tau: Transport entropy (raw)
+        sigma_gamma: Gain variance
+        n_channels: Channel count
+        w1, w2, w3: Calibratable weights
+
+    Returns:
+        Consumer QI score (0 to 1)
+    """
+    ln_n = np.log(max(n_channels, 2))
+    total = w1 * sigma_phi + w2 * (h_tau / ln_n) + w3 * sigma_gamma
+    return np.exp(-total)
 
 
 # ──────────────────────────────────────────────

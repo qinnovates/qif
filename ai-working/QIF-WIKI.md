@@ -2,7 +2,7 @@
 
 > **A running glossary of every term, equation, and concept in the QIF framework.**
 > Each entry has a short description here; full details in the linked section below.
-> **Last updated: 2026-02-02**
+> **Last updated: 2026-02-06**
 
 ---
 
@@ -49,6 +49,27 @@
 | **Quantum Biometric** | Concept (novel) | Ion channel tunneling profile as unforgeable identity signature | [Full details](#quantum-biometric) |
 | **Zeno-BCI Stabilization** | Hypothesis (novel) | High-frequency BCI sampling may stabilize quantum states | [Full details](#zeno-bci-stabilization) |
 | **QIF Layers (v2.0)** | Architecture | L1-7: OSI networking, L8-14: Neural extension | [Full details](#qif-layer-architecture) |
+| **QI Unified Equation** | Equation | Master equation: QI(b,t) = e^(-Σ(b,t)), unifying Candidates 1 and 2 | [Full details](#qi-unified-equation) |
+| **Σ (Anomaly Score)** | Variable | Total anomaly: Σ = Σc + Σq (classical + quantum) | [Full details](#anomaly-score) |
+| **Dsf (Scale-Frequency Term)** | Variable | Physical plausibility check: (ln(f·L/v_expected))² | [Full details](#scale-frequency-term-dsf) |
+| **L = v/f (Unified Wave)** | Equation | Length of one wave in any medium -- unifies λ and S | [Full details](#unified-wave-equation) |
+| **Dspec (Spectral Consistency)** | Variable | Consumer substitute for Dsf -- KL divergence of power spectrum | [Full details](#spectral-consistency-dspec) |
+| **QI Consumer** | Equation | Simplified 3-term QI for consumer BCIs | [Full details](#qi-consumer-equation) |
+| **NSP (Neural Sensory Protocol)** | Protocol | Open post-quantum security protocol wrapping BCI data | [Full details](#neural-sensory-protocol) |
+| **Black Hole Security Principle** | Principle | Encrypted neural data indistinguishable from noise (Hawking radiation analog) | [Full details](#black-hole-security-principle) |
+| **HNDL (Harvest Now Decrypt Later)** | Threat | Nation-states recording encrypted BCI traffic for future quantum decryption | [Full details](#harvest-now-decrypt-later) |
+| **ML-KEM (Kyber)** | Algorithm | Post-quantum key encapsulation (FIPS 203) | [Full details](#ml-kem) |
+| **ML-DSA (Dilithium)** | Algorithm | Post-quantum digital signatures (FIPS 204) | [Full details](#ml-dsa) |
+| **SPHINCS+ (SLH-DSA)** | Algorithm | Hash-based post-quantum signatures (FIPS 205) -- most conservative | [Full details](#sphincs-plus) |
+| **Hybrid Key Exchange** | Protocol | KDF(ECDH_secret \|\| ML-KEM_secret) -- secure if either holds | [Full details](#hybrid-key-exchange) |
+| **Attack Coupling Mechanisms** | Classification | 5 types: Direct, Harmonic, Envelope Modulation, Temporal Interference, Intermodulation | [Full details](#attack-coupling-mechanisms) |
+| **Resonance Shield** | Concept | Active EM cancellation at device boundary -- defense + MRI compatibility | [Full details](#resonance-shield) |
+| **Scrambling Bound** | Equation | t* ~ (β/2π)·ln(S) -- encryption satisfies black hole scrambling speed | [Full details](#scrambling-bound) |
+| **Page Curve** | Concept | Key exchange mirrors black hole information recovery curve | [Full details](#page-curve) |
+| **Holographic Principle** | Principle | S_max = A/(4·l_P²) -- volume info encoded on boundary surface | [Full details](#holographic-principle) |
+| **Landauer's Principle** | Principle | E_min = kT·ln(2) per bit erasure -- fundamental energy limit | [Full details](#landauers-principle) |
+| **Bekenstein-Hawking Entropy** | Equation | S_BH = k_B·A/(4·l_P²) -- entropy proportional to area | [Full details](#bekenstein-hawking-entropy) |
+| **QIF Hourglass v3.1** | Architecture | 7-band symmetric (3-1-3): N3-N2-N1-I0-S1-S2-S3 | [Full details](#qif-layer-architecture) |
 
 ---
 
@@ -546,25 +567,205 @@ where Squantum = SvN(ρ) + λ·Φtunnel − μ·E(ρAB)
 
 ---
 
-### QIF Layer Architecture
+### QI Unified Equation
 
-**Version:** 2.0 (2026-01-22)
+**Equation:** `QI(b,t) = e^(-Σ(b,t))` where Σ = Σc + Σq
 
-| Layer | Name | Domain |
-|-------|------|--------|
-| L1-L7 | Standard OSI | Networking |
-| L8 | Neural Gateway | Firewall / trust boundary |
-| L9 | Signal Processing | Raw signal conditioning |
-| L10 | Neural Protocol | Oscillatory encoding |
-| L11 | Cognitive Transport | Reliable neural data delivery |
-| L12 | Cognitive Session | Context, working memory |
-| L13 | Semantic Layer | Intent, goals, meaning |
-| L14 | Identity Layer | Agency, self |
+**What it does:** Single master equation replacing both Candidates 1 and 2. Scores signal legitimacy from 0 (anomalous) to 1 (normal) per band per time window. The exponential form is a Boltzmann factor -- anomaly plays the role of energy.
 
-**DEPRECATED:** Any reference to L1-L7 as biological layers uses the v1.0 model (pre-2026-01-22).
+**Key insight (Entry 26):** Candidates 1 and 2 are the same equation in different spaces (log vs real). This equation absorbs both.
+
+**Status:** Proposed (QIF contribution). Replaces separate candidates.
 
 ---
 
-*QIF Wiki version: 1.0*
+### Anomaly Score
+
+**Symbol:** Σ(b,t) = Σc + Σq
+
+**What it measures:** Total signal anomaly. Classical sum (4 terms: phase, transport, amplitude, scale-frequency) plus quantum sum (3 terms: indeterminacy, tunneling, entanglement). Higher Σ = more anomalous = lower QI score.
+
+---
+
+### Scale-Frequency Term (Dsf)
+
+**Equation:** `Dsf = (ln(f·L / v_expected))²`
+
+**What it measures:** Whether a signal's frequency and spatial extent obey the wave equation L = v/f. Returns 0 when physically consistent. Log-scale handles the orders-of-magnitude range.
+
+**How QIF uses it:** Fourth classical term in the unified equation. Catches physically impossible signals.
+
+---
+
+### Unified Wave Equation
+
+**Equation:** `L = v/f`
+
+**What it means:** L is "length of one wave" -- the same measurement in any medium. In neural tissue, L is spatial extent of coherent activity. In silicon, L is wavelength. Only velocity v differs.
+
+**Key insight (Entry 28):** Eliminated the false distinction between "analog" neural waves and "digital" silicon signals. All signals are waves.
+
+---
+
+### Spectral Consistency (Dspec)
+
+**What it is:** Consumer-device substitute for Dsf when spatial resolution is insufficient. Symmetric KL-divergence between observed and expected power spectra.
+
+**How QIF uses it:** Consumer QI replaces Dsf with Dspec for devices with too few electrodes for spatial analysis.
+
+---
+
+### QI Consumer Equation
+
+**Equation:** `QI_consumer = e^(-(w1·σ²φ + w2·Hτ/ln(N) + w3·σ²γ))`
+
+**What it does:** Simplified QI for consumer headbands. 3 weighted classical terms only. No Dsf (insufficient spatial data), no quantum terms.
+
+---
+
+### Neural Sensory Protocol
+
+**Abbreviation:** NSP
+
+**What it is:** Open post-quantum security protocol for BCI data. Five defense layers: (1) Hardware root of trust, (2) Hybrid PQC key exchange, (3) Signal physics (QI score), (4) Adaptive ML (TTT), (5) EM environment (resonance shield).
+
+**Status:** Protocol design v2.1. Not yet implemented.
+
+---
+
+### Black Hole Security Principle
+
+**What it is:** The principle that NSP-encrypted neural data is indistinguishable from random noise -- the same information-theoretic property as Hawking radiation. Grounded in four established physics results: scrambling bound, holographic principle, Page curve, and semantic security.
+
+**How QIF uses it:** Provides a physics-derived information-theoretic foundation for NSP security guarantees. No other BCI security approach has this.
+
+**Status:** Proposed (QIF contribution, Entry 35). Pending peer review.
+
+---
+
+### Harvest Now Decrypt Later
+
+**Abbreviation:** HNDL
+
+**What it is:** Strategy where adversaries record encrypted traffic today and store it until quantum computers can decrypt it retroactively.
+
+**How QIF uses it:** Core urgency argument for NSP. Implant lifetime (10-20 years) > quantum computer arrival (2030-2035). Neural data cannot be rotated like a password.
+
+---
+
+### ML-KEM
+
+**Standard:** FIPS 203 (NIST, 2024). Formerly CRYSTALS-Kyber.
+
+**What it does:** Post-quantum key encapsulation mechanism based on lattice problems. Used in NSP hybrid key exchange.
+
+---
+
+### ML-DSA
+
+**Standard:** FIPS 204 (NIST, 2024). Formerly CRYSTALS-Dilithium.
+
+**What it does:** Post-quantum digital signatures (lattice-based). Used in NSP for real-time frame authentication. 2,420-byte signatures.
+
+---
+
+### SPHINCS+ (SLH-DSA)
+
+**Standard:** FIPS 205 (NIST, 2024).
+
+**What it does:** Hash-based post-quantum signatures. Most conservative security assumptions. Used for firmware signing and key rotation (29 KB signatures acceptable for rare operations).
+
+---
+
+### Hybrid Key Exchange
+
+**Equation:** `Shared secret = KDF(ECDH_secret || ML-KEM_secret)`
+
+**What it does:** Run classical and post-quantum key exchange simultaneously. Session is secure if EITHER algorithm holds.
+
+**Status:** NSA-recommended transition strategy.
+
+---
+
+### Attack Coupling Mechanisms
+
+**Five types identified (Entry 28):**
+1. **Direct** -- attacker frequency IS neural frequency (e.g., ELF 3-76 Hz)
+2. **Harmonic** -- attacker at harmonic of neural frequency
+3. **Envelope modulation** -- high-frequency carrier with neural-frequency amplitude modulation
+4. **Temporal interference** -- two beams intersecting to produce neural-frequency beat pattern
+5. **Intermodulation** -- attacker RF + BCI wireless mix in nonlinear tissue to produce neural frequencies
+
+**Most dangerous:** Intermodulation -- BCI becomes the weapon.
+
+---
+
+### Resonance Shield
+
+**What it is:** Active destructive interference system at device boundary. Like noise-canceling headphones for EM fields.
+
+**How QIF uses it:** Layer 5 defense for implanted devices. Catches temporal interference and intermodulation attacks that signals-only detection (QI) cannot. Also solves MRI compatibility.
+
+---
+
+### Scrambling Bound
+
+**Equation:** `t* ~ (β/2π)·ln(S)` (Sekino-Susskind, 2008)
+
+**What it means:** Black holes are nature's fastest information scramblers. AES-256 satisfies this bound. Encryption IS scrambling.
+
+---
+
+### Page Curve
+
+**What it is:** Don Page (1993) showed information escaping a black hole appears maximally random until the "Page time." Maps to key exchange: before key = noise, after key = full recovery.
+
+---
+
+### Holographic Principle
+
+**Equation:** `S_max = A/(4·l_P²)`
+
+**What it means:** Maximum information in a volume is proportional to its surface area, not volume ('t Hooft, Susskind; proven via AdS/CFT). At I0, the electrode surface IS the holographic screen.
+
+---
+
+### Landauer's Principle
+
+**Equation:** `E_min = kT·ln(2)` per bit erasure
+
+**What it means:** The fundamental thermodynamic minimum energy cost of erasing one bit. Replaces Moore's Law as the correct fundamental limit for computation energy.
+
+---
+
+### Bekenstein-Hawking Entropy
+
+**Equation:** `S_BH = k_B · A / (4 · l_P²)`
+
+**What it means:** Black hole entropy is proportional to its surface area (in Planck units), not volume. Foundation of the holographic principle.
+
+---
+
+### QIF Layer Architecture
+
+**Version:** v3.1 Hourglass (2026-02-02)
+
+**NOTE:** v2.0 (14-layer OSI-based) is DEPRECATED. Replaced by v3.1 Hourglass (7-band, 3-1-3 symmetric) on 2026-02-02.
+
+| Band | Name | Domain |
+|------|------|--------|
+| N3 | Integrative Association | Neural (quantum uncertain) |
+| N2 | Sensorimotor Processing | Neural (chaotic-stochastic) |
+| N1 | Subcortical Relay | Neural (stochastic) |
+| I0 | Neural Interface | Interface (quasi-quantum) |
+| S1 | Analog Front-End | Silicon (stochastic) |
+| S2 | Digital Processing | Silicon (deterministic) |
+| S3 | Application | Silicon (deterministic) |
+
+**DEPRECATED (v2.0):** The previous 14-layer model (L1-L7 OSI networking + L8-L14 neural extension) is superseded. Any reference to L1-L7 as biological layers uses the v1.0 model (pre-2026-01-22).
+
+---
+
+*QIF Wiki version: 2.0*
 *Created: 2026-02-02*
 *This document grows with every session. Add entries as new terms arise.*
