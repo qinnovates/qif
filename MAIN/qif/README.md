@@ -1,4 +1,12 @@
-# Quantum Model for Neurosecurity
+# ⚠️ QIF FRAMEWORK HAS MOVED TO QINNOVATE
+
+**Active development:** [github.com/qinnovates/qinnovate/tree/main/qif-framework](https://github.com/qinnovates/qinnovate/tree/main/qif-framework)
+
+This archive is preserved for historical reference and research attribution. All commits and authorship remain visible in git history.
+
+---
+
+# Quantum Model for Neurosecurity (Archive)
 
 > **QIF** — Quantum Indeterministic Framework for Neural Security (pronounced **"CHIEF"**)
 

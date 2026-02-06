@@ -1,10 +1,18 @@
-# ONI Framework — Index
+# ⚠️ ONI FRAMEWORK HAS MOVED TO QINNOVATE
+
+**Active development:** [github.com/qinnovates/qinnovate/tree/main/oni-framework](https://github.com/qinnovates/qinnovate/tree/main/oni-framework)
+
+This archive is preserved for historical reference and research attribution. All commits and authorship remain visible in git history.
+
+---
+
+# ONI Framework — Index (Archive)
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
 **Version:** 2.5
 **Last Updated:** 2026-01-29
-**Status:** Active Development
+**Status:** Archived (moved to Qinnovate)
 
 ---
 

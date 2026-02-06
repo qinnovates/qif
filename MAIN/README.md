@@ -1,8 +1,33 @@
-# Neurosecurity
+# ⚠️ NEUROSECURITY RESEARCH HAS MOVED TO QINNOVATE
+
+> **This folder is preserved for historical reference and research attribution.**
+
+## 🔗 Active Development: [Qinnovate Repository](https://github.com/qinnovates/qinnovate)
+
+The frameworks and research developed here have been migrated to the **Qinnovate** standards body for broader academic collaboration and vendor-neutral governance.
+
+| Framework/Standards | Now Located At |
+|---------------------|----------------|
+| **QIF (Quantum Framework)** | [qinnovate/qif-framework](https://github.com/qinnovates/qinnovate/tree/main/qif-framework) |
+| **ONI (Classical Framework)** | [qinnovate/oni-framework](https://github.com/qinnovates/qinnovate/tree/main/oni-framework) |
+| **Governance & Neuroethics** | [qinnovate/governance](https://github.com/qinnovates/qinnovate/tree/main/governance) |
+| **Classical↔Quantum Bridge** | [qinnovate/shared](https://github.com/qinnovates/qinnovate/tree/main/shared) |
+
+**Organizational Structure:**
+- **[Qinnovate](https://qinnovate.com)** = Standards body (open frameworks, research, governance)
+- **[Mindloft](https://mindloft.org)** = Product company (commercial implementations)
+
+*Think: W3C (standards) vs Chrome (products)*
+
+**All commits, authorship, and research history are preserved in both repositories.** This content is no longer actively maintained here but remains for preservation and attribution.
+
+---
+
+# Neurosecurity (Archive)
 
 > Brain-Computer Interface security research — from quantum indeterminacy theory to practical threat detection.
 
-This pillar contains all neurosecurity research under the Mindloft umbrella.
+This archive contains all neurosecurity research originally developed under the Mindloft umbrella.
 
 ---
 
