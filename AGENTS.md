@@ -27,6 +27,7 @@
 
 | Preference | Decision | Date |
 |------------|----------|------|
+| **Writing Style** | No AI slop, no em dashes, direct prose, analogies over abstractions, teach complex math/science simply. Full guide: `_memory/writing-style.md`. Exception: RFC/technical specs follow own conventions. | 2026-02-06 |
 | **Standards vs Implementation** | Qinnovate = standards body (like NIST), Mindloft = products (like vendors) | 2026-02-06 |
 | **VERA Engine** | Four pillars (Validation, Ethics, Research, Authority) with governance at center | 2026-02-06 |
 | **Time-to-Autonomy** | Neuroethics-aligned term replacing "Time-to-Truth" | 2026-02-06 |

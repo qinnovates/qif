@@ -770,6 +770,25 @@ Update the metrics table:
 
 ---
 
+## Writing Style (MANDATORY for ALL Content)
+
+> **Full guide:** `PROJECTS/_memory/writing-style.md`
+> Grounded in: Orwell, Hemingway, Didion, Le Guin, Zinsser, Taleb, Dillard, McCarthy, Saunders, Montaigne.
+> **Exception:** RFC specs, protocol specifications, and formal academic papers follow their own conventions.
+
+### Core Principles (ALL Writing)
+
+1. **The Teacher's Mandate:** Make the complex feel obvious. Every equation has a physical analog. Present the intuition before the formalism. Name the confusion when something is genuinely hard.
+2. **No AI Slop:** No "landscape," "delve," "game-changer," "robust," "seamless," "holistic," "dive deep," "unpack," "leverage," "utilize." No em dashes. No "It's not X, it's Y" constructions. No filler hedging ("arguably," "interestingly," "it's worth noting").
+3. **Direct Writing:** McCarthy, editing science papers at Santa Fe Institute: "Impersonal, passive text doesn't fool anyone into thinking you're being objective." Use first person. Cut throat-clearing.
+4. **Scholarly but Accessible:** Taleb standard: rigorous ideas delivered through narrative, analogy, and historical context. Write for educated general audiences, not credentialing committees.
+5. **Concrete Over Abstract:** "Someone could read your inner speech through an unencrypted electrode" not "BCI security is important." Ground every abstraction in the physical world.
+6. **Math/Science Simplification:** Show the physical picture first, then notation. Introduce each symbol as a character. Ground variables in the sensory world. State assumptions plain. One concept per step.
+7. **Sentence Rhythm:** Vary length. Short sentences punch. Long ones carry momentum. Le Guin: "The optimum is variety."
+8. **Revision Test:** Saunders' line-by-line: "Each line should be able to answer: 'Excuse me, but what are you doing here?'"
+
+---
+
 ## Standard Acknowledgments
 
 Use this text in all technical documents:
