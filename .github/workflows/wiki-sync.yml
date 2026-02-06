@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths:
       - 'README.md'
-      - 'docs/qif-whitepaper/README.md'
   workflow_dispatch:
 
 jobs:
@@ -26,11 +25,6 @@ jobs:
           # Home page
           cp README.md wiki/Home.md
 
-          # QIF Whitepaper page (if exists)
-          if [ -f "docs/qif-whitepaper/README.md" ]; then
-            cp docs/qif-whitepaper/README.md wiki/QIF-Whitepaper.md
-          fi
-
           # Create sidebar navigation
           cat > wiki/_Sidebar.md << 'EOF'
           ## Mindloft Wiki
@@ -41,9 +35,6 @@ jobs:
           **Products**
           - [Mindloft Core](Home#-products)
           - [Subvocalization BCI](Home#subvocalization-bci-early-development)
-
-          **Documentation**
-          - [QIF Whitepaper](QIF-Whitepaper)
 
           ---
 
