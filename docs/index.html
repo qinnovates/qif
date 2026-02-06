@@ -27,6 +27,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Navigation System -->
+    <link rel="stylesheet" href="css/nav-dropdown.css">
+    <script src="js/nav-config.js"></script>
+    <script src="js/nav-dropdown.js"></script>
+
     <style>
         :root {
             --bg-deep: #050a14;
@@ -138,106 +143,6 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text-primary);
             -webkit-font-smoothing: antialiased;
-        }
-
-        /* Unified Navbar */
-        #main-nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            background: rgba(5, 10, 20, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 2rem;
-        }
-
-        .nav-logo {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-logo .separator {
-            color: var(--text-muted);
-            font-weight: 400;
-            margin: 0 0.4rem;
-        }
-
-        .nav-logo .tagline {
-            color: var(--accent-amber);
-            font-weight: 400;
-        }
-
-        .nav-logo .tagline strong {
-            font-weight: 700;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-
-        .nav-hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .nav-hamburger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--text-primary);
-            transition: transform 0.3s, opacity 0.3s;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0; right: 0;
-                background: rgba(5, 10, 20, 0.95);
-                backdrop-filter: blur(12px);
-                flex-direction: column;
-                padding: 1rem 2rem;
-                gap: 0.75rem;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-
-            .nav-links.open { display: flex; }
-
-            .nav-hamburger { display: flex; }
         }
 
         /* Hero */
@@ -799,22 +704,8 @@
         <div class="grid-overlay"></div>
     </div>
 
-    <nav id="main-nav">
-        <div class="nav-inner">
-            <a href="/" class="nav-logo">Mindloft<span class="separator">|</span><span class="tagline">Neurosecurity Standards</span></a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="/" class="active">Home</a></li>
-                <li><a href="/classical/">Classical Neurosec</a></li>
-                <li><a href="/quantum/">Quantum Neurosec</a></li>
-                <li><a href="/governance/">Governance</a></li>
-                <li><a href="/blog/">Blogs</a></li>
-                <li><a href="/about/">About</a></li>
-            </ul>
-            <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
+    <!-- Navigation (populated by nav-dropdown.js) -->
+    <nav id="main-nav"></nav>
 
     <main class="hero">
         <div class="hero-label">Open Standards for Neural Interface Security</div>
@@ -984,22 +875,11 @@
     </iframe>
 
     <footer class="site-footer">
-        <div class="footer-links">
-            <a href="visualizations/">Tools &amp; Visualizations</a>
-            <a href="https://github.com/qinnovates/mindloft" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://github.com/qinnovates/mindloft/tree/main/diy-bci/subvocalization" target="_blank" rel="noopener">DIY-BCI</a>
-            <a href="blog/">Blog</a>
-            <a href="about/">About</a>
-        </div>
+        <!-- Footer content to be determined -->
         <p class="footer-copy">&copy; 2026 Kevin Qi &amp; Qinnovate LLC</p>
     </footer>
 
     <script>
-        // Mobile nav toggle
-        document.getElementById('nav-hamburger').addEventListener('click', function() {
-            document.getElementById('nav-links').classList.toggle('open');
-        });
-
         // Tooltip handling
         const container = document.querySelector('.venn-container');
         const links = {
@@ -1227,11 +1107,7 @@
                         // Play first, then seek halfway
                         widget.play();
                         setTimeout(function() {
-                            widget.getDuration(function(duration) {
-                                if (duration > 0) {
-                                    widget.seekTo(duration / 2);
-                                }
-                            });
+                            widget.seekTo(20000); // Start at 20 seconds
                         }, 200);
                     }
                 });
@@ -1335,11 +1211,7 @@
                     if (firstPlay) {
                         firstPlay = false;
                         setTimeout(function() {
-                            widget.getDuration(function(duration) {
-                                if (duration > 0) {
-                                    widget.seekTo(duration / 2);
-                                }
-                            });
+                            widget.seekTo(20000); // Start at 20 seconds
                         }, 200);
                     }
                 }

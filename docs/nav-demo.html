@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Demo - Mindloft</title>
+
+    <!-- CSS Variables (required) -->
+    <style>
+        :root {
+            --bg-deep: #050a14;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-amber: #d4a543;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-deep);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Demo content styles */
+        main {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list {
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .code-example {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .highlight {
+            color: var(--accent-amber);
+            font-weight: 600;
+        }
+    </style>
+
+    <!-- Navigation System -->
+    <link rel="stylesheet" href="/css/nav-dropdown.css">
+    <script src="/js/nav-config.js"></script>
+    <script src="/js/nav-dropdown.js"></script>
+</head>
+<body>
+
+    <!-- Navigation (automatically populated by nav-dropdown.js) -->
+    <nav id="main-nav"></nav>
+
+    <!-- Demo Content -->
+    <main>
+        <h1>Navigation Dropdown System Demo</h1>
+
+        <p>
+            This page demonstrates the modular navigation system for mindloft.org.
+            Hover over the navigation items above to see dropdowns in action.
+        </p>
+
+        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Features</h2>
+        <ul class="feature-list">
+            <li><strong>Single Source of Truth:</strong> All navigation defined in <code>js/nav-config.js</code></li>
+            <li><strong>Hover Dropdowns:</strong> Desktop users see dropdowns on hover</li>
+            <li><strong>Mobile-Friendly:</strong> Touch-optimized with click-to-expand</li>
+            <li><strong>Active States:</strong> Current page automatically highlighted</li>
+            <li><strong>Responsive:</strong> Hamburger menu on small screens</li>
+            <li><strong>As-Code:</strong> Update navigation once, changes apply everywhere</li>
+        </ul>
+
+        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Integration (3 steps)</h2>
+
+        <p>To use this navigation system on any page:</p>
+
+        <div class="code-example">
+<strong>Step 1: Include CSS/JS in &lt;head&gt;</strong>
+
+&lt;link rel="stylesheet" href="/css/nav-dropdown.css"&gt;
+&lt;script src="/js/nav-config.js"&gt;&lt;/script&gt;
+&lt;script src="/js/nav-dropdown.js"&gt;&lt;/script&gt;
+        </div>
+
+        <div class="code-example">
+<strong>Step 2: Add nav element to &lt;body&gt;</strong>
+
+&lt;nav id="main-nav"&gt;&lt;/nav&gt;
+        </div>
+
+        <div class="code-example">
+<strong>Step 3: Define CSS variables</strong>
+
+:root {
+  --bg-deep: #050a14;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-amber: #d4a543;
+}
+        </div>
+
+        <p style="margin-top: 2rem;">
+            <strong class="highlight">That's it!</strong>
+            The navigation will automatically populate and handle all interactions.
+        </p>
+
+        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Adding New Pages</h2>
+
+        <p>
+            Edit <code>js/nav-config.js</code> to add pages to the navigation.
+            See <code>NAV-SYSTEM-README.md</code> for full documentation.
+        </p>
+
+        <div class="code-example">
+<strong>Example: Add a new dropdown item</strong>
+
+{
+  label: "Research",
+  href: "#",
+  dropdown: [
+    {
+      label: "New Research Topic",
+      href: "/research/new-topic/",
+      description: "Description of the new page"
+    }
+  ]
+}
+        </div>
+
+        <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+            💡 Try hovering over "Research" or "Resources" in the navigation above to see multi-item dropdowns.
+            On mobile, tap the hamburger menu and click dropdown items to expand them.
+        </p>
+    </main>
+
+</body>
+</html>
