@@ -117,6 +117,20 @@ Three principles govern the design. Width represents state space: how many possi
 
 Band naming follows the convention {Zone}{Number}. Numbers increase away from the interface in both directions. This convention has no relation to OSI layer numbers. Each band maps to specific real-world BCI devices (e.g., N5: Medtronic Percept STN DBS; N7: Neuralink N1; N2: vagus nerve stimulators) and carries 38 canonical brain region assignments documented in the implementation codebase.
 
+#### Why Three Silicon Bands: Frequency-Regime Security
+
+The silicon domain is decomposed by electromagnetic physics regime rather than by OSI-style protocol layering or functional role alone. The three bands correspond to three distinct physics regimes that govern signal propagation and, critically, the physics of attack:
+
+| Band | Physics Regime | Frequency Range | Attack Physics |
+|------|---------------|-----------------|----------------|
+| **S1** | Near-field (analog) | 0 Hz to 10 kHz | Side-channel leakage, analog noise injection, impedance manipulation |
+| **S2** | Guided-wave (digital) | 10 kHz to 1 GHz | Firmware exploits, fault injection, algorithm poisoning |
+| **S3** | Far-field (RF/wireless) | 1 GHz and above | Wireless interception, protocol attacks, remote exploitation |
+
+This decomposition is grounded in a fundamental parallel between biological and electronic signal identity. Just as neural tissue generates unique electromagnetic signatures (individualized EEG patterns arising from synaptic architecture, dendritic morphology, and ion channel distributions), all electronic hardware generates unique electromagnetic fingerprints. Manufacturing process variations in oscillators, capacitors, amplifiers, and clock distribution networks cause each device to emit a distinct spectral signature. This principle, known as Radio Frequency (RF) Fingerprinting, enables individual device identification with greater than 99% accuracy (Suski et al., 2008; Brik et al., 2008). It is also the basis of TEMPEST-class vulnerabilities, where unintentional electromagnetic emanations leak information about internal device operations (Gandolfi et al., 2001).
+
+The frequency-regime decomposition is superior to OSI-style layering for BCI security because the OSI model was designed for network protocol abstraction, not for the physical security of implanted devices where analog side-channels, firmware integrity, and wireless exposure represent categorically different threat surfaces. Each regime demands different security engineering: S1 requires shielding and analog integrity monitoring, S2 requires secure boot and memory protection, S3 requires cryptographic protocols and RF hardening. The QI equation operates across all three bands, providing the functional security scoring that unifies the physical decomposition into a coherent threat assessment.
+
 ### 4.3 I0: The Bottleneck
 
 I0 is the most critical band. Unlike v2.0's "Layer 8" which was modeled as a thin boundary, I0 has real thickness: it is a quasi-quantum zone where the decoherence factor GammaD lies between 0 and 1, meaning quantum and classical physics coexist.

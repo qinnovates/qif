@@ -23,6 +23,7 @@
 
 | Date | Event | Link |
 |------|-------|------|
+| 2026-02-08 | Silicon Band Rationale: frequency-regime security validated by Gemini + literature review, RF fingerprinting parallel to EEG uniqueness confirmed, whitepaper + visualization updated | [Entry 42](#entry-42-silicon-band-rationale--frequency-regime-security-and-rf-fingerprinting-parallel) |
 | 2026-02-07 | First Multi-Model Validation Cycle: QwQ-32B found 3 equation errors in QIF-TRUTH, Grok-3 found stale NSP terminology, Gemini confirmed 5 fixes + found 2 minor NSP issues, all fixed | [Entry 41](#entry-41-first-multi-model-validation-cycle--equation-fixes-and-cross-document-sync) |
 | 2026-02-07 | Unrestricted AI Validation Team: multi-model adversarial review protocol, v4.0 propagation to all docs, DeepSeek-R1 + QwQ-32B + WhiteRabbitNeo team | [Entry 40](#entry-40-unrestricted-ai-validation-team--multi-model-adversarial-review-protocol) |
 | 2026-02-07 | Project Runemate: 3-pass Gemini review, NSP number unification, cross-document consistency, AI transparency log | [Entry 39](#entry-39-project-runemate--three-pass-independent-review-and-nsp-number-unification) |
@@ -4325,8 +4326,82 @@ While applying the QwQ fixes, spotted that QIF-TRUTH §4.1 still listed v3.1 ban
 
 ---
 
-*Document version: 3.4*
+## Entry 42: Silicon Band Rationale — Frequency-Regime Security and RF Fingerprinting Parallel
+
+**Date:** 2026-02-08
+**Context:** Kevin asked why the S bands are named "Analog Front-End," "Digital Processing," and "Application" rather than security-role names like "Protocol Security." This triggered a formal validation of the silicon band naming rationale. The question also surfaced a key insight: the S bands should be explicitly documented as organized by electromagnetic physics regime, and the rationale should draw the parallel between electronic device fingerprints and biological neural fingerprints.
+**Builds on:** Entry 33 (v4.0 architecture decision — "3 Silicon because: Three physics regimes (near-field, guided wave, far-field)"), Entry 34 (v4.0 implementation), Entry 40 (multi-model validation protocol)
+**Status:** VALIDATED AND DOCUMENTED — whitepaper updated, visualization tour step added, QIF-TRUTH already correct
+**AI Systems:** Gemini 2.5 Pro (independent verification), Claude Opus 4.6 (synthesis and implementation)
+**Human Decision:** Kevin directed the investigation, asked for multi-model validation, and specified inclusion in both whitepaper and visualization
+
+### The Question
+
+Kevin noticed the S bands are named by function (Analog Front-End, Digital Processing, Application) and asked why they weren't named by security role (e.g., "Protocol Security"). This is a legitimate question — the naming should reflect the organizational principle.
+
+### The Answer: Physics Regime, Not Protocol Role
+
+Entry 33 already established the rationale: "Three physics regimes (near-field, guided wave, far-field) cover the full EM spectrum." The S bands are organized by frequency regime because the physics of the attack differs fundamentally at each regime:
+
+| Band | Physics Regime | Frequency Range | Attack Physics |
+|------|---------------|-----------------|----------------|
+| S1 | Near-field (analog) | 0 Hz – 10 kHz | Side-channel leakage, analog noise injection, impedance manipulation |
+| S2 | Guided-wave (digital) | 10 kHz – 1 GHz | Firmware exploits, fault injection, algorithm poisoning |
+| S3 | Far-field (RF/wireless) | 1 GHz+ | Wireless interception, protocol attacks, remote exploitation |
+
+The functional names (Analog Front-End, Digital Processing, Application) correctly describe what each band DOES, and the physics regime determines WHERE attacks originate and HOW they propagate. The naming is accurate — "Protocol Security" would be a security function name, not a physics-regime name.
+
+### The Signal Fingerprint Parallel
+
+A key insight formalized in this entry: just as biological neural tissue generates unique electromagnetic signatures (individualized EEG patterns from synaptic architecture, dendritic morphology, ion channel distributions), all electronic hardware generates unique electromagnetic fingerprints from manufacturing process variations. This is not speculative — it is established science.
+
+**RF Fingerprinting research confirms:**
+- Individual Wi-Fi devices identified with >99% accuracy via unintentional RF emissions (Suski et al., 2008, Naval Postgraduate School)
+- Wireless device authentication via analog front-end imperfections stable across time and environment (Brik et al., 2008, MobiCom "FRIEND" system)
+- Sensor node identification via power-on transient signals (Danev & Capkun, 2009)
+- Side-channel information leakage from EM emanations demonstrated on smartcard DES (Gandolfi et al., 2001, CHES)
+- Extensive 2024 survey literature on deep-learning-based RF fingerprinting for IoT (IEEE TIFS 2024, PMC surveys)
+- TEMPEST program (NSA, 1950s–present): exploiting unintentional EM emanations for intelligence
+
+**The parallel is direct:**
+- Biology: unique EEG patterns → QI measures their integrity via Σc and Σq
+- Silicon: unique EM fingerprints → each physics regime has different attack vectors → S bands decompose by regime
+
+This means the silicon domain decomposition mirrors the neural domain decomposition in principle: both organize by the physics of the signals, not by abstract protocol layers.
+
+### Gemini Review
+
+Gemini 2.5 Pro was asked to verify both the RF fingerprinting claim and the frequency-regime architecture. Verdict:
+
+1. **Signal fingerprint claim: CONFIRMED** with 4 peer-reviewed citations
+2. **Frequency-regime approach: "Sound and physically grounded"** — endorsed as the correct physical security model
+3. **Caveat:** Recommended integrating with functional security goals (Authentication, Integrity, Confidentiality) as the primary axis, with frequency-regime as secondary
+
+**Response to caveat:** QIF already addresses this. The QI equation (QI = e^(-Σ)) provides the functional security scoring across all bands. The 60-technique threat taxonomy provides cross-band attack analysis. The S bands are the physical substrate classification; the equation provides the functional security layer Gemini recommended. The framework is already a hybrid of both approaches.
+
+### Changes Made
+
+1. **QIF-WHITEPAPER-v5.md §4.2:** Added "Why Three Silicon Bands: Frequency-Regime Security" subsection with physics-regime table, RF fingerprinting explanation with citations, and comparison to OSI layering
+2. **Visualization tour (qi.astro + qi-viz-prototype.html):** Added new "Silicon Bands" tour step (step 3 of 7) explaining the physics-regime rationale and RF fingerprinting parallel
+3. **QIF-TRUTH.md:** Already correct (v4.0 silicon domain table unchanged)
+
+### Implications
+
+This entry formalizes a principle that was implicit in the v4.0 architecture but never explicitly stated: **the organizing principle of the silicon domain is electromagnetic physics regime, and this is justified by the same signal-identity principle that underlies the neural domain.** Both domains have unique fingerprints; both are organized by the physics of their signals.
+
+This also provides a strong counter-argument to the OSI-layering objection. OSI was designed for network protocol abstraction between software layers. BCI security requires physical-layer decomposition where the attack physics differ by frequency regime. The hourglass model with frequency-regime silicon bands is the correct abstraction for implanted device security.
+
+### Status
+
+- **Classification:** Rationale validation + documentation — no architectural change, but foundational reasoning now explicit
+- **Impact:** Medium — whitepaper strengthened with citations, visualization improved with teaching content
+- **Dependencies:** Entry 33 (original rationale), Entry 34 (implementation), Entry 40 (validation protocol)
+- **Next:** When OpenRouter API key is available, validate with Grok-3 and DeepSeek-R1 for additional consensus
+
+---
+
+*Document version: 3.5*
 *Created: 2026-02-02*
-*Last entry: #41 (2026-02-07)*
+*Last entry: #42 (2026-02-08)*
 *Maintainer: Kevin Qi*
 *Location: qinnovates/mindloft/drafts/ai-working/QIF-DERIVATION-LOG.md*
